@@ -24,6 +24,8 @@ if has("gui_running")
     let s:uname = system("uname")
     if s:uname == "Linux\n"
         set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
+    elseif s:uname == "Darwin\n"
+        set guifont=Inconsolata\ for\ Powerline:h15
     endif
 else
     set term=xterm-256color
