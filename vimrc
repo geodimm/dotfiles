@@ -1,6 +1,3 @@
-" Fix colors
-set term=xterm-256color
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -24,10 +21,12 @@ filetype plugin indent on    " required
 " Powerline setup for MacVim/ GVim
 set laststatus=2
 if has("gui_running")
-   let s:uname = system("uname")
-   if s:uname == "Linux\n"
-       set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
-   endif
+    let s:uname = system("uname")
+    if s:uname == "Linux\n"
+        set guifont=Ubuntu\ Mono\ for\ Powerline\ 12
+    endif
+else
+    set term=xterm-256color
 endif
 
 " Supertab
@@ -56,14 +55,31 @@ autocmd! bufwritepost ~/.vimrc source % " Autoupdate changes
 colors molokai " Color scheme
 set splitbelow " New files open on the right
 set splitright " New files open on the bottom
-set tabstop=4
-set shiftwidth=4
-set expandtab
+
+" Use 4 spaces instead of tabs
+set tabstop=4 " Number of space chars inserted
+set shiftwidth=4 " Number of space chars inserted for identation
+set expandtab " Spaces instead of tabs
+" Use 2 spaces instead of tabs for HTML files
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+
 set nu " Line numbers
+set hlsearch " Highlight all search matches 
+set incsearch " Move cursor to the matched string, while typing
+" Temporary turn off hlsearch
+nnoremap <silent> <leader>l :noh<CR>
+" Fix identation when pasting in Insert mode
+set pastetoggle=<F3>
+" Toggle NERDTree hotkey
 map <F2> :NERDTreeToggle<CR>
+" Exit insert mode with jk/jj
+inoremap jk <Esc>
+inoremap jj <Esc>
+" Ctrl+s saves changes
 nmap <C-S> :w<CR>
 vmap <C-S> <Esc><C-S>gv
 imap <C-S> <Esc><C-S>gi
+"Easier navigation through split windows
 nnoremap <C-J> <C-W><Down>
 nnoremap <C-K> <C-W><Up>
 nnoremap <C-L> <C-W><Right>
