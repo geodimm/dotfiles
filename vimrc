@@ -72,6 +72,8 @@ set incsearch " Move cursor to the matched string, while typing
 nnoremap <silent> <leader>l :noh<CR>
 " Fix identation when pasting in Insert mode
 set pastetoggle=<F3>
+" Remap Ctrl+v to paste text in insert mode
+inoremap <C-v> <F3><C-r>+<F3>
 " Toggle NERDTree hotkey
 map <F2> :NERDTreeToggle<CR>
 " Exit insert mode with jk/jj
