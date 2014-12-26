@@ -66,7 +66,7 @@ vundle_install()
     if [ ! -d ${VIM_DIR}/bundle/Vundle.vim ]; then
         read -r -p  "Vundle is not installed! Would you like to install it now? [y/n] " response
         if [[ ${response} =~ ^(yes|y|YES|Y) ]]; then
-            echo "Installing Vundle..."
+            echo -n "Installing Vundle..."
             git clone https://github.com/gmarik/Vundle.vim.git ${VIM_DIR}/bundle/Vundle.vim >/dev/null 2>&1
             print_result $?
         else
