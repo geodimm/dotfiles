@@ -14,7 +14,7 @@ If you want, you can run the following command to automatically setup Vim, Vundl
 . setup_vim.sh
 ```
 
-In case you don't have Git installed, just download the zip file for this project and unzip it to ~/dotfiles. Then:
+In case you don't have Git installed, just download the [ZIP file](https://github.com/georgijd/dotfiles/archive/master.zip) for this project and unzip it to ~/dotfiles. Then:
 ```bash
 cd ~/dotfiles
 . make_symlinks.sh
