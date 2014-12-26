@@ -8,7 +8,7 @@
 
 DIR=~/dotfiles  # dotfiles directory
 OLDDIR=~/backup_dotfiles  # old dotfiles backup directory
-FILES="bash_profile vimrc git-prompt.sh"  # list of files/folders to symlink in homedir
+FILES="bash_profile git-prompt.sh"  # list of files/folders to symlink in homedir
 
 COL_GREEN="\x1b[32;01m"  # green colour for OK messages
 COL_RED="\x1b[31;01m"  # red colour for ERROR messages
