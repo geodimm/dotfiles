@@ -43,7 +43,10 @@ let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 " CtrlP Settings
 let g:ctrlp_max_height = 30
 set wildignore+=*.pyc,*_build/*,*/coverage/*
- 
+
+" Jedi-vim
+let g:jedi#use_splits_not_buffers = "left" 
+
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -57,6 +60,10 @@ autocmd! bufwritepost ~/.vimrc source % " Autoupdate changes
 colors molokai " Color scheme
 set splitbelow " New files open on the right
 set splitright " New files open on the bottom
+" Disable backups
+set nobackup
+set noswapfile
+set nowritebackup
 
 " Use 4 spaces instead of tabs
 set tabstop=4 " Number of space chars inserted
@@ -65,6 +72,7 @@ set expandtab " Spaces instead of tabs
 " Use 2 spaces instead of tabs for HTML files
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 
+set nojoinspaces " Dont leave spaces between joined lines
 set nu " Line numbers
 set hlsearch " Highlight all search matches 
 set incsearch " Move cursor to the matched string, while typing
