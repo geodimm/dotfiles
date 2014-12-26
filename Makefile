@@ -9,8 +9,8 @@ update:
 install: $(ALL:%=install-%)
 
 install-bash:
-	echo "source ~/.bash_profile" >> ~/.bashrc
+	test -f ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
 	ln -fs `pwd`/bash/bash_profile ~/.bash_profile
 
 install-vim:
-	[[ -d ~/.vim ]] || ( git clone git@github.com:georgijd/vimfiles.git ~/.vim && cd ~/.vim && make install )
+	test -d  ~/.vim || ( git clone git@github.com:georgijd/vimfiles.git ~/.vim && cd ~/.vim && make install )
