@@ -1,0 +1,14 @@
+[user]
+	name = Georgi Dimitrov
+	email = georgijd92@gmail.com
+[core]
+	editor = vim
+	mergeoptions = --no-edit
+[push]
+	default = simple
+[alias]
+	tree = log --graph --decorate --pretty=oneline --all
+	st = status
+	b = branch
+	ch = checkout
+	co = commit
