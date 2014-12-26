@@ -86,7 +86,7 @@ vundle_plugins_install()
         read -r -p  "Would you like to install Vim plugins now? [y/n] " response
         if [[ ${response} =~ ^(yes|y|YES|Y) ]]; then
             echo -n "Installing Vim plugins "
-            vim +PluginInstall +qall
+            vim +PluginClean +PluginInstall +PluginUpdate +qall
             print_result $?
         else
             echo "Plugins were not installed."
