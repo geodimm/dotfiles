@@ -9,7 +9,7 @@ update:
 install: $(ALL:%=install-%)
 
 install-bash:
-	test -f ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
+	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
 	ln -fs `pwd`/bash/bash_profile ~/.bash_profile
 
 install-git:
