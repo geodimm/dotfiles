@@ -14,6 +14,7 @@ install-bash:
 
 install-git:
 	ln -fs `pwd`/gitconfig ~/.gitconfig
+	ln -fs `pwd`/git-prompt.sh ~/.git-prompt.sh
 
 install-vim:
 	test -d  ~/.vim || ( git clone git@github.com:georgijd/vimfiles.git ~/.vim && cd ~/.vim && make install )
