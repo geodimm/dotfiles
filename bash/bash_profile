@@ -69,3 +69,5 @@ alias lt='ls -ltr'
 alias cc='clear'
 alias kp='killall python'
 
+# Fix Ctrl+<key> for Vim
+stty -ixon
