@@ -60,7 +60,7 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="auto git"
 
 # Prompt
-PS1='\[\e[1;36m\]\u$(__git_ps1) \[\e[1;35m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
+PS1='\[\e[1;36m\]\h$(__git_ps1) \[\e[1;35m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
 
 # Aliases
 alias ll='ls -l'
