@@ -69,5 +69,11 @@ alias lt='ls -ltr'
 alias cc='clear'
 alias kp='killall python'
 
+alias gc='git commit -m'
+alias gf='git fetch --all'
+alias gp='git push'
+alias gpp='git pull'
+alias gs='git status'
+
 # Fix Ctrl+<key> for Vim
 stty -ixon
