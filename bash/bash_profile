@@ -69,7 +69,7 @@ alias lt='ls -ltr'
 alias cc='clear'
 alias kp='killall python'
 
-alias gc='git commit -m'
+alias gc='git commit'
 alias gf='git fetch --all'
 alias gp='git push'
 alias gpp='git pull'
