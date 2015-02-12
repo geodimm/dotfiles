@@ -7,7 +7,7 @@
 [push]
 	default = simple
 [alias]
-	tree = log --graph --decorate --pretty=oneline --all
+	tree = log --abbrev-commit --abbrev=5 --graph --decorate --pretty=oneline --all
 	st = status
 	b = branch
 	ch = checkout
