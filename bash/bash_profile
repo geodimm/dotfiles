@@ -67,7 +67,7 @@ alias ll='ls -l'
 alias la='ls -la'
 alias lt='ls -ltr'
 alias cc='clear'
-alias kp='killall python'
+alias kp='killall -9 python'
 
 alias gc='git commit'
 alias gf='git fetch --all'
