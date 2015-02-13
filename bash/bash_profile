@@ -75,5 +75,14 @@ alias gp='git push'
 alias gpp='git pull'
 alias gs='git status'
 
+alias ports='netstat -tulanp'
+
+if [ $UID -ne 0 ]; then
+    alias reboot='sudo reboot'
+    alias shutdown='sudo shutdown now'
+    alias apt-get='sudo apt-get'
+    alias service='sudo service'
+fi
+
 # Fix Ctrl+<key> for Vim
 stty -ixon
