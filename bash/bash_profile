@@ -82,6 +82,7 @@ if [ $UID -ne 0 ]; then
     alias shutdown='sudo shutdown now'
     alias apt-get='sudo apt-get'
     alias service='sudo service'
+    alias kill='sudo kill -9'
 fi
 
 # Fix Ctrl+<key> for Vim
