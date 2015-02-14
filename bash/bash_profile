@@ -63,6 +63,7 @@ GIT_PS1_SHOWUPSTREAM="auto git"
 PS1='\[\e[1;36m\]\h$(__git_ps1) \[\e[1;35m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
 
 # Aliases
+alias ..='cd ..'
 alias ll='ls -l'
 alias la='ls -la'
 alias lt='ls -ltr'
