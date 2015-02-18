@@ -12,3 +12,22 @@
 	b = branch
 	ch = checkout
 	co = commit
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    ui = auto
+[color "branch"]
+    current = yellow
+    local = blue
+    remote = magenta
+[color "diff"]
+    meta = blue
+    frag = magenta
+    old = red bold
+    new = green bold
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    deleted = red bold
+    untracked = blue bold
