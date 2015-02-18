@@ -46,7 +46,7 @@ fi
 # Personal settings
 
 # Exports
-export PATH=$PATH:.:/usr/local/bin
+export PATH=$PATH:/usr/local/bin:$HOME:.
 
 # Git stuff
 source ~/.git-prompt.sh
