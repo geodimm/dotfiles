@@ -11,6 +11,7 @@ install: $(ALL:%=install-%)
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
 	ln -fs `pwd`/bash/bash_profile ~/.bash_profile
+	ln -fs `pwd`/bash/colors ~/.colors
 
 install-git:
 	ln -fs `pwd`/gitconfig ~/.gitconfig
