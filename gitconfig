@@ -31,3 +31,7 @@
     changed = yellow bold
     deleted = red bold
     untracked = blue bold
+[pager]
+    log = .diff-highlight | less
+    show = .diff-highlight | less
+    diff = .diff-highlight | less
