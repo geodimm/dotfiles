@@ -17,6 +17,7 @@ install-git:
 	ln -fs `pwd`/gitconfig ~/.gitconfig
 	ln -fs `pwd`/git-prompt.sh ~/.git-prompt.sh
 	ln -fs `pwd`/git-completion.sh ~/.git-completion.sh
+	ln -fs `pwd`/diff-highlight ~/.diff-highlight
 
 install-vim:
 	test -d  ~/.vim || ( git clone git@github.com:georgijd/vimfiles.git ~/.vim && cd ~/.vim && make install )
