@@ -61,8 +61,16 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="auto git"
 
 # Prompt
+function virt_env() {
+    if [ -n "${VIRTUAL_ENV}" ]; then
+        echo "$BBLUE[`basename ${VIRTUAL_ENV}`]"
+    else
+        echo ""
+    fi
+}
+
 # PS1="┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]${OFF}\$(__git_ps1)\n└─$BGREEN[\$]$OFF "
-PROMPT_COMMAND='__git_ps1 "┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]$OFF" "\n└─$BGREEN[\$]$OFF "'
+PROMPT_COMMAND='__git_ps1 "┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]$OFF" "\n└─$(virt_env)$BGREEN[\$]$OFF "'
 
 # Aliases
 alias ..='cd ..'
