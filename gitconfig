@@ -8,7 +8,7 @@
 	default = simple
 [alias]
 	tree = log --abbrev-commit --abbrev=5 --graph --decorate --pretty=oneline --all
-	st = status
+	st = status --u=all
 	b = branch
 	ch = checkout
 	co = commit

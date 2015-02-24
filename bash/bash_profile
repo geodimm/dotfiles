@@ -84,7 +84,7 @@ alias gc='git commit'
 alias gf='git fetch --all'
 alias gp='git push'
 alias gpp='git pull'
-alias gs='git status'
+alias gs='git status --u=all'
 
 alias ports='netstat -tulanp'
 
