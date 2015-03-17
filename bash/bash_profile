@@ -87,6 +87,7 @@ alias gpp='git pull'
 alias gs='git status --u=all'
 
 alias ports='netstat -tulanp'
+alias vim='vim -O'
 
 if [ $UID -ne 0 ]; then
     alias reboot='sudo reboot'
