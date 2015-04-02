@@ -74,9 +74,9 @@ PROMPT_COMMAND='__git_ps1 "┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]$OFF" "\n└�
 
 # Aliases
 alias ..='cd ..'
-alias ll='ls -l'
-alias la='ls -la'
-alias lt='ls -ltr'
+alias ll='ls -lh'
+alias la='ls -lah'
+alias lt='ls -ltrh'
 alias cc='clear'
 alias kp='killall -9 python'
 
