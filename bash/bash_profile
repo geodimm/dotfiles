@@ -61,6 +61,8 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="auto git"
 
 # Prompt
+set -o vi
+
 function virt_env() {
     if [ -n "${VIRTUAL_ENV}" ]; then
         echo "$BBLUE[`basename ${VIRTUAL_ENV}`]"
