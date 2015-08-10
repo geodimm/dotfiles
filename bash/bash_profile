@@ -88,6 +88,7 @@ alias gp='git push'
 alias gpp='git pull'
 alias gs='git status --u=all'
 alias ggrep='git grep -B 3 -A 3'
+alias gu='git stash && git pull && git stash pop'
 
 alias ports='sudo netstat -tulanp'
 alias vim='vim -O'
