@@ -46,6 +46,7 @@ fi
 # Personal settings
 
 # Exports
+export CLICOLOR=1
 export PATH=$PATH:/usr/local/bin:$HOME:.
 
 # Git stuff
