@@ -101,6 +101,3 @@ if [ $UID -ne 0 ]; then
     alias service='sudo service'
     alias kill='sudo kill -9'
 fi
-
-# Fix Ctrl+<key> for Vim
-stty -ixon
