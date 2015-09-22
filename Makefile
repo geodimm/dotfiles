@@ -1,4 +1,4 @@
-ALL   := bash vim git
+ALL   := tmux bash vim git
 
 update:
 	git pull
@@ -7,6 +7,9 @@ update:
 	$(MAKE) install
 
 install: $(ALL:%=install-%)
+
+install-tmux:
+	ln -fs `pwd`/tmux/tmux.conf ~/.tmux.conf
 
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc

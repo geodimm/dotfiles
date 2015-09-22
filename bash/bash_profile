@@ -66,14 +66,14 @@ set -o vi
 
 function virt_env() {
     if [ -n "${VIRTUAL_ENV}" ]; then
-        echo "$BBLUE[`basename ${VIRTUAL_ENV}`]"
+        echo "$BCYAN[`basename ${VIRTUAL_ENV}`]"
     else
         echo ""
     fi
 }
 
 # PS1="┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]${OFF}\$(__git_ps1)\n└─$BGREEN[\$]$OFF "
-PROMPT_COMMAND='__git_ps1 "┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]$OFF" "\n└─$(virt_env)$BGREEN[\$]$OFF "'
+PROMPT_COMMAND='__git_ps1 "$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
 
 # Aliases
 alias ..='cd ..'
@@ -81,15 +81,27 @@ alias ll='ls -lh'
 alias la='ls -lah'
 alias lt='ls -ltrh'
 alias cc='clear'
-alias kp='killall -9 python'
+
+alias dps='docker ps -a'
+alias drm='docker rm -fv `docker ps -qa`'
 
 alias gc='git commit'
+alias gca='git commit --amend'
+alias gd='git diff'
+alias gdc='git diff --cached'
 alias gf='git fetch --all'
 alias gp='git push'
 alias gpp='git pull'
 alias gs='git status --u=all'
-alias ggrep='git grep -B 3 -A 3'
+alias ggrep='git grep -B0 -A0'
 alias gu='git stash && git pull && git stash pop'
+alias glog="git log --graph --date=local --pretty=format:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'"
+
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls'
+alias tkill='tmux kill-session -t'
 
 alias ports='sudo netstat -tulanp'
 alias vim='vim -O'
@@ -101,3 +113,6 @@ if [ $UID -ne 0 ]; then
     alias service='sudo service'
     alias kill='sudo kill -9'
 fi
+
+# Fix Ctrl+<key>
+stty -ixon
