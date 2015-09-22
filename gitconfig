@@ -9,6 +9,7 @@
 [pull]
 	rebase = true
 [alias]
+	hfemail = config user.email "georgi.dimitrov@headforwards.com"
 	ls = ls-files --full-name -st
 	tree = log --abbrev-commit --abbrev=5 --graph --decorate --pretty=oneline --all
 	st = status --u=all
