@@ -9,7 +9,7 @@
 [pull]
 	rebase = true
 [alias]
-    ls = ls-files --full-name -st
+	ls = ls-files --full-name -st
 	tree = log --abbrev-commit --abbrev=5 --graph --decorate --pretty=oneline --all
 	st = status --u=all
 	b = branch
