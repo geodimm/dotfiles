@@ -23,5 +23,14 @@ install-git:
 	ln -fs `pwd`/diff-highlight ~/.diff-highlight
 
 install-vim:
-	test -d  ~/.vim || ( git clone git@github.com:georgijd/vimfiles.git ~/.vim && cd ~/.vim && make install )
+	ln -sf `pwd`/vim ~/.vim
+	ln -sf `pwd`/vim/vimrc ~/.vimrc
+	git submodule init
+	git submodule update
+	vim +PluginInstall +qall
 
+update-vim:
+	git pull
+	git submodule init
+	git submodule update
+	vim +PluginClean +PluginInstall +PluginUpdate +qall
