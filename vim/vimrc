@@ -56,7 +56,7 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 
 " Jedi-vim
-let g:jedi#use_splits_not_buffers = "left" 
+let g:jedi#use_splits_not_buffers = "right"
 
 " Toggle NERDTree hotkey
 map <F2> :NERDTreeToggle<CR>
