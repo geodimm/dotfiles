@@ -70,7 +70,7 @@ let mapleader=','
 nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
 nmap <silent> <leader>ed :vsplit ~/.bash_profile<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 " CLI/ GUI settings
 if has("gui_running")
@@ -85,7 +85,7 @@ else
 endif
 
 " Define autocmd group vimrc.
-augroup vimrc
+augroup myvimrc
   autocmd!
 augroup END
 
@@ -117,9 +117,6 @@ set autoread
 " Set filetype specific options via modelines
 set modeline
 
-" Apply changes immediately
-autocmd vimrc BufWritePost $MYVIMRC source $MYVIMRC
-
 " Disable backups
 set nobackup
 set noswapfile
@@ -149,8 +146,8 @@ set splitbelow
 set splitright
 
 " Toggle highlighting current line only in active splits
-autocmd vimrc VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-autocmd vimrc WinLeave * setlocal nocursorline
+autocmd myvimrc VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+autocmd myvimrc WinLeave * setlocal nocursorline
 
 " Highlight current line
 set cursorline 
@@ -181,15 +178,6 @@ nmap <leader>q :q<CR>
 imap <leader>q <Esc>:q<CR>gi
 vmap <leader>q <Esc>:q<CR>gv
 
-" Return to last edit position when opening files (You want this!)
-autocmd vimrc BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
-" Remember info about open buffers on close
-set viminfo^=%
-
 " Visual autocomplete for command menu
 set wildmenu
 " First tab will complete to the longest common string 
@@ -208,10 +196,10 @@ set shiftwidth=4
 set expandtab
 
 " Use 2 spaces instead of tabs for HTML and YAML files
-autocmd vimrc FileType html,yaml setlocal shiftwidth=2 tabstop=2
+autocmd myvimrc FileType html,yaml setlocal shiftwidth=2 tabstop=2
 
 " Wrap lines to 72 characters in git commit messages and use 2 spaces for tab
-autocmd vimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2
+autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2
 
 " Don't leave space between joined lines
 set nojoinspaces
