@@ -146,6 +146,10 @@ syntax enable
 set splitbelow
 set splitright
 
+" Toggle highlighting current line only in active splits
+autocmd vimrc VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+autocmd vimrc WinLeave * setlocal nocursorline
+
 " Highlight current line
 set cursorline 
 
@@ -226,6 +230,10 @@ vnoremap > >gv
 
 " Exit insert mode with jj
 inoremap jj <Esc>
+
+" Go to the next line in editor for wrapped lines
+nnoremap j gj
+nnoremap k gk
 
 "Easier navigation through split windows
 nnoremap <C-j> <C-w><Down>
