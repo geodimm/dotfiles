@@ -71,9 +71,17 @@ function virt_env() {
         echo ""
     fi
 }
+function host_name() {
+    if [ -z "$TMUX" ]; then
+        echo "$BYELLOW[\h]"
+    else
+        echo ""
+    fi
+}
 
 # PS1="┌─$BCYAN[\u]$BYELLOW[\A]$BPURPLE[\w]${OFF}\$(__git_ps1)\n└─$BGREEN[\$]$OFF "
 PROMPT_COMMAND='__git_ps1 "$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
+PROMPT_COMMAND='__git_ps1 "$(host_name)$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
 
 # Aliases
 alias ..='cd ..'
