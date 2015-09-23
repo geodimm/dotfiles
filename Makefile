@@ -17,6 +17,7 @@ install-git:
 	ln -fs `pwd`/diff-highlight ~/.diff-highlight
 
 install-vim:
+	rm -f ~/.vim
 	ln -fs `pwd`/vim ~/.vim
 	ln -fs `pwd`/vim/vimrc ~/.vimrc
 	git submodule init
