@@ -1,11 +1,5 @@
 ALL   := tmux bash vim git
 
-update:
-	git pull
-	git submodule sync
-	git submodule foreach "git checkout master; git pull origin master; echo"
-	$(MAKE) install
-
 install: $(ALL:%=install-%)
 
 install-tmux:
@@ -23,14 +17,8 @@ install-git:
 	ln -fs `pwd`/diff-highlight ~/.diff-highlight
 
 install-vim:
-	ln -sf `pwd`/vim ~/.vim
-	ln -sf `pwd`/vim/vimrc ~/.vimrc
+	ln -fs `pwd`/vim ~/.vim
+	ln -fs `pwd`/vim/vimrc ~/.vimrc
 	git submodule init
 	git submodule update
 	vim +PluginInstall +qall
-
-update-vim:
-	git pull
-	git submodule init
-	git submodule update
-	vim +PluginClean +PluginInstall +PluginUpdate +qall
