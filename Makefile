@@ -1,4 +1,4 @@
-ALL   := tmux bash ssh vim git 
+ALL   := tmux bash vim git 
 
 install: $(ALL:%=install-%)
 
@@ -23,7 +23,3 @@ install-vim:
 	git submodule init
 	git submodule update
 	vim +PluginInstall +qall
-
-install-ssh:
-	mkdir -p ~/.ssh
-	ln -fs `pwd`/ssh/rc ~/.ssh/rc
