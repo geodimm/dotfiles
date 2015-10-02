@@ -1,3 +1,8 @@
+" Define autocmd group vimrc.
+augroup myvimrc
+  autocmd!
+augroup END
+
 set rtp+=~/.vim/bundle/Vundle.vim
 
 filetype off
@@ -59,6 +64,10 @@ let g:ctrlp_working_path_mode = 0
 " Jedi-vim
 let g:jedi#use_splits_not_buffers = "right"
 
+"Disptach
+autocmd myvimrc FileType python let b:dispatch = 'py.test %'
+nnoremap <F9> :Dispatch<CR>
+
 " Toggle NERDTree hotkey
 map <F2> :NERDTreeToggle<CR>
 
@@ -84,11 +93,6 @@ else
     set term=xterm-256color
     let g:rehash256 = 1
 endif
-
-" Define autocmd group vimrc.
-augroup myvimrc
-  autocmd!
-augroup END
 
 " Vim, not vi
 set nocompatible
