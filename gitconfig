@@ -11,7 +11,7 @@
 [alias]
 	hfemail = config user.email "georgi.dimitrov@headforwards.com"
 	ls = ls-files --full-name -st
-	tree = log --abbrev-commit --abbrev=5 --graph --decorate --pretty=oneline --all
+	tree = log --graph --date=local --pretty=format:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset' --all
 	st = status --u=all
 	b = branch
 	ch = checkout
