@@ -110,7 +110,6 @@ alias gpp='git pull'
 alias gs='git status --u=all'
 alias ggrep='git grep -B0 -A0'
 alias gu='git stash && git pull && git stash pop'
-alias glog="git log --graph --date=local --pretty=format:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'"
 
 alias tmux='tmux -2'
 alias ta='tmux attach -t'
