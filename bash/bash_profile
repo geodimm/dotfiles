@@ -48,6 +48,7 @@ fi
 # Exports
 export CLICOLOR=1
 export PATH=$PATH:/usr/local/bin:$HOME:.
+export REPOS=/repos
 
 # Git stuff
 source ~/.git-prompt.sh
@@ -84,6 +85,12 @@ PROMPT_COMMAND='__git_ps1 "$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
 PROMPT_COMMAND='__git_ps1 "$(host_name)$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
 
 # Aliases
+function today() {
+    for repo in `ls ${REPOS}`; do
+        git --git-dir ${REPOS}/${repo}/.git log --author="$(git config user.name)" --since="9am" --oneline --decorate
+    done
+}
+
 alias ..='cd ..'
 alias ll='ls -lh'
 alias la='ls -lah'
