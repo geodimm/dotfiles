@@ -85,9 +85,9 @@ PROMPT_COMMAND='__git_ps1 "$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
 PROMPT_COMMAND='__git_ps1 "$(host_name)$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
 
 # Aliases
-function today() {
+function commits() {
     for repo in `ls ${REPOS}`; do
-        git --no-pager --git-dir ${REPOS}/${repo}/.git log --author="$(git config user.name)" --since="9am" --date=local --pretty=tformat:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'
+        git --no-pager --git-dir ${REPOS}/${repo}/.git log --author="$(git config user.name)" --since="$1" --date=local --pretty=tformat:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'
     done
 }
 
