@@ -96,6 +96,8 @@ alias ll='ls -lh'
 alias la='ls -lah'
 alias lt='ls -ltrh'
 alias cc='clear'
+alias a='. devenv/bin/activate'
+alias d='deactivate'
 
 alias dps='docker ps -a'
 alias drm='docker rm -fv `docker ps -qa`'
