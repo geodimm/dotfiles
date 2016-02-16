@@ -16,6 +16,7 @@
 	b = branch
 	ch = checkout
 	co = commit
+	find = !git log -p -S     
 [color]
     branch = auto
     diff = auto
