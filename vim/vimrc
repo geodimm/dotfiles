@@ -67,6 +67,7 @@ let g:jedi#use_splits_not_buffers = "right"
 "Disptach
 autocmd myvimrc FileType python let b:dispatch = 'py.test %'
 nnoremap <F9> :Dispatch<CR>
+nnoremap <F10> :Dispatch python %<CR>
 
 " Toggle NERDTree hotkey
 map <F2> :NERDTreeToggle<CR>
