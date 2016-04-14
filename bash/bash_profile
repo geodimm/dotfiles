@@ -96,7 +96,7 @@ alias ll='ls -lh'
 alias la='ls -lah'
 alias lt='ls -ltrh'
 alias cc='clear'
-alias a='. ${PWD%/*/*}/devenv/bin/activate'
+alias a='. $(echo ${PWD}|cut -d/ -f 1-3)/devenv/bin/activate'
 alias d='deactivate'
 
 alias dps='docker ps -a'
