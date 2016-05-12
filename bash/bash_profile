@@ -46,9 +46,13 @@ fi
 # Personal settings
 
 # Exports
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME:.
 export CLICOLOR=1
-export PATH=$PATH:/usr/local/bin:$HOME:.
 export REPOS=/repos
+
+# Golang
+export GOPATH=~/work
+export PATH=$PATH:/usr/local/go/bin
 
 # Git stuff
 source ~/.git-prompt.sh
