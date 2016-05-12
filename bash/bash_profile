@@ -102,6 +102,7 @@ alias lt='ls -ltrh'
 alias cc='clear'
 alias a='. $(echo ${PWD}|cut -d/ -f 1-3)/devenv/bin/activate'
 alias d='deactivate'
+alias t='py.test -vs'
 
 alias dps='docker ps -a'
 alias drm='docker rm -fv `docker ps -qa`'
