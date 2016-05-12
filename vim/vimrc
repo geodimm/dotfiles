@@ -27,6 +27,7 @@ Plugin 'klen/python-mode'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 
