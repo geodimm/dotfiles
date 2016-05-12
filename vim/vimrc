@@ -83,9 +83,9 @@ let g:ctrlp_working_path_mode = 0
 let g:jedi#use_splits_not_buffers = "right"
 
 "Disptach
-autocmd myvimrc FileType python let b:dispatch = 'py.test %'
-nnoremap <F9> :Dispatch<CR>
-nnoremap <F10> :Dispatch python %<CR>
+autocmd myvimrc FileType python let b:dispatch = 'py.test -v %'
+autocmd myvimrc FileType python nnoremap <F9> :Dispatch<CR>
+autocmd myvimrc FileType python nnoremap <F10> :Dispatch python %<CR>
 
 " Toggle NERDTree hotkey
 map <F2> :NERDTreeToggle<CR>
@@ -95,7 +95,7 @@ map <F2> :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader=','
-" Quickly edit/reload the vimrc file
+" Quickly edit dotfiles
 nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
 nmap <silent> <leader>ed :vsplit ~/.bash_profile<CR>
