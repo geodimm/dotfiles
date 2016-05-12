@@ -52,7 +52,7 @@ export REPOS=/repos
 
 # Golang
 export GOPATH=~/work
-export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # Git stuff
 source ~/.git-prompt.sh
