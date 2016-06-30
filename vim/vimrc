@@ -86,8 +86,9 @@ autocmd myvimrc FileType python let b:dispatch = 'py.test -v %'
 autocmd myvimrc FileType python nnoremap <F9> :Dispatch<CR>
 autocmd myvimrc FileType python nnoremap <F10> :Dispatch python %<CR>
 
-" Toggle NERDTree hotkey
+" NERDTree settings
 map <F2> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$', '\.egg-info$']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
