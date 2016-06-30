@@ -116,6 +116,7 @@ alias gp='git push'
 alias gpp='git pull'
 alias gs='git status --u=all'
 alias ggrep='git grep -B0 -A0'
+alias ggrepi='git grep --ignore-case -B0 -A0'
 alias gu='git stash && git pull && git stash pop'
 
 alias tmux='tmux -2'
