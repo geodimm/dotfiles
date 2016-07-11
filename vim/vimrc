@@ -105,7 +105,7 @@ if has("gui_running")
     " Start window maximized
     set lines=999 columns=999
     " Fix Powerline icons for the GUI
-    set guifont=Inconsolata\ for\ Powerline:h15
+    set guifont=Inconsolata\ for\ Powerline:h14
 else
     " Configure Vim to use 256 colours
     set t_Co=256
