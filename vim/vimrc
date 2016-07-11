@@ -57,9 +57,6 @@ let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 
-" gitgutter
-let g:gitgutter_highlight_lines = 1
-let g:gitgutter_override_sign_column_highlight = 0
 
 " vim-go
 let g:go_highlight_functions = 1
@@ -167,12 +164,6 @@ endtry
 
 " Enable syntax highlighing
 syntax enable
-
-" GitGutter line hightlighing (should be after colors and syntax commands)
-hi GitGutterAddLine ctermbg=22
-hi GitGutterChangeLine ctermbg=94
-hi GitGutterDeleteLine ctermbg=52
-hi default link GitGutterChangeDeleteLine GitGutterChangeLine
 
 " Open splitpanes below and on the right of the current one.
 set splitbelow
