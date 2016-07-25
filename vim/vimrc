@@ -204,12 +204,10 @@ nnoremap <silent> <leader><CR> :noh<CR>
 
 " Save files
 nmap <leader>w :w<CR>
-imap <leader>w <Esc>:w<CR>gi
 vmap <leader>w <Esc>:w<CR>gv
 
 " Close files (will raise confirmation dialog for unsaved changes)
 nmap <leader>q :q<CR>
-imap <leader>q <Esc>:q<CR>gi
 vmap <leader>q <Esc>:q<CR>gv
 
 " Visual autocomplete for command menu
