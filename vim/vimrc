@@ -76,6 +76,15 @@ let g:ctrlp_max_height = 10
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
+let g:ctrlp_use_caching = 0
+" configure CtrP to use git for autocompletion
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+    let g:ctrlp_prompt_mappings = {'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>']}
+endif
 
 " Jedi-vim
 let g:jedi#use_splits_not_buffers = "right"
