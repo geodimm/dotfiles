@@ -96,13 +96,13 @@ autocmd myvimrc FileType python nnoremap <F10> :Dispatch python %<CR>
 
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '\.egg-info$']
+let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let mapleader=','
+let mapleader = "\<Space>"
 " Quickly edit dotfiles
 nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
@@ -247,6 +247,9 @@ vnoremap <leader>s :sort<CR>
 " Go back to visual mode after reindenting
 vnoremap < <gv
 vnoremap > >gv
+
+" Use double spacebar tab to select the current line
+map <leader><leader> V
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Navigation and moving around
