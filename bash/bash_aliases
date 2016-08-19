@@ -1,3 +1,4 @@
+#!/bin/bash
 # vim: set filetype=sh:
 
 function commits() {
@@ -8,11 +9,11 @@ function commits() {
             git --git-dir ${REPOS}/${repo}/.git \
                 --no-pager \
                 log \
-                --all
+                --all \ 
                 --author="$(git config user.name)" \
                 --date=local \
                 --pretty=tformat:"${tformat} ${repo}" \
-                --since="${since:=8am}" \
+                --since="${since:=8am}"
         done
     fi
 }
@@ -95,4 +96,3 @@ alias ta='tmux attach -t'
 alias tnew='tmux new -s'
 alias tls='tmux ls 2>/dev/null || echo "No tmux sessions running"'
 alias tkill='tmux kill-session -t'
-
