@@ -61,8 +61,17 @@ function host_name() {
         echo ""
     fi
 }
+function prompt_before() {
+    RESULT=$?
+    echo "$(host_name)$(virt_env)$BPURPLE[\w]$OFF"
+    return $RESULT
+}
+function prompt_after() {
+    color=$([ $? = 0 ] && echo "$BGREEN" || echo "$BRED")
+    echo "\n${color}\$$OFF "
+}
 
-PROMPT_COMMAND='__git_ps1 "$(host_name)$(virt_env)$BPURPLE[\w]$OFF" "\n$BGREEN\$$OFF "'
+PROMPT_COMMAND='__git_ps1 "`prompt_before`" "`prompt_after`" "[%s]"'
 
 # Aliases
 function commits() {
