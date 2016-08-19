@@ -7,6 +7,7 @@ install-tmux:
 
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
+	ln -fs `pwd`/bash/bash_aliases ~/.bash_aliases
 	ln -fs `pwd`/bash/bash_profile ~/.bash_profile
 	ln -fs `pwd`/bash/colors ~/.colors
 

@@ -1,0 +1,98 @@
+# vim: set filetype=sh:
+
+function commits() {
+    local tformat='$repo %Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'
+    local since=$1
+    if [ -d "${REPOS}" ]; then
+        for repo in `ls ${REPOS}`; do
+            git --git-dir ${REPOS}/${repo}/.git \
+                --no-pager \
+                log \
+                --all
+                --author="$(git config user.name)" \
+                --date=local \
+                --pretty=tformat:"${tformat} ${repo}" \
+                --since="${since:=8am}" \
+        done
+    fi
+}
+
+function weather() {
+    curl 'http://wttr.in/redruth'
+}
+
+function moon() {
+    curl 'http://wttr.in/Moon'
+}
+
+function extract () {
+    if [ -f $1 ]; then
+        case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+if [ $UID -ne 0 ]; then
+    alias reboot='sudo reboot'
+    alias shutdown='sudo shutdown now'
+    alias apt-get='sudo apt-get'
+    alias service='sudo service'
+    alias kill='sudo kill -9'
+fi
+
+# misc
+alias ..='cd ..'
+alias ls='ls $LS_OPTS'
+alias ll='ls -lh'
+alias la='ls -lah'
+alias lt='ls -ltrh'
+alias grep='grep --color=auto'
+alias grepi='grep -i'
+alias vim='vim -O'
+
+alias c='clear'
+alias a='. devenv/bin/activate'
+alias d='deactivate'
+alias t='py.test -vs'
+alias x='exit'
+
+# docker
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias drm='docker rm -fv `docker ps -qa`'
+alias dvrm='docker volume rm `docker volume ls -q`'
+
+# git
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gf='git fetch --all'
+alias gp='git push'
+alias gpp='git pull'
+alias gs='git status --u=all'
+alias ggrep='git grep -B0 -A0'
+alias ggrepi='git grep --ignore-case -B0 -A0'
+alias gu='git stash && git pull && git stash pop'
+
+# tmux
+alias tmux='tmux -2'
+alias ta='tmux attach -t'
+alias tnew='tmux new -s'
+alias tls='tmux ls 2>/dev/null || echo "No tmux sessions running"'
+alias tkill='tmux kill-session -t'
+

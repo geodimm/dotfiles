@@ -1,51 +1,82 @@
 # vim: set filetype=sh:
 
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+    *) return;;
+esac
+
 # History file settings
 HISTCONTROL=ignoreboth
-shopt -s histappend
-HISTSIZE=1000
 HISTFILESIZE=2000
+HISTSIZE=1000
+shopt -s histappend
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# update the screen based on the window size 
 shopt -s checkwinsize
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix ; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-# Personal settings
+# Fix Ctrl+<key>
+stty -ixon
 
 # Exports
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME:.
 export CLICOLOR=1
+export EDITOR=vim
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME:.
 export REPOS=/repos
-
 # Golang
 export GOPATH=~/work
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-# Git stuff
-source ~/.git-prompt.sh
-source ~/.git-completion.sh
-source ~/.colors
+case "$OSTYPE" in
+    darwin*)
+        if [ -f $(brew --prefix)/etc/bash_completion ]; then
+            . $(brew --prefix)/etc/bash_completion
+        fi
+        LS_OPTS='-G'
+        ;;
+    linux*)
+        if ! shopt -oq posix ; then
+          if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+          elif [ -f /etc/bash_completion ]; then
+            . /etc/bash_completion
+          fi
+        fi
+        LS_OPTS='--color=auto'
+        ;;
+    *) ;;
+esac
 
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_DESCRIBE_STYLE="branch"
-GIT_PS1_SHOWUPSTREAM="auto git"
+if [ -f /etc/bash_completion.d/docker ]; then
+    . /etc/bash_completion.d/docker
+fi
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if [ -f ~/.git-completion.sh ]; then
+    . ~/.git-completion.sh
+fi
+
+if [ -f ~/.colors ]; then
+    . ~/.colors
+fi
+
+# Predictable SSH authentication socket location.
+SOCK="/tmp/ssh-agent-$USER-screen"
+if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]; then
+    rm -f /tmp/ssh-agent-$USER-screen
+    ln -sf $SSH_AUTH_SOCK $SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
 
 # Prompt
 set -o vi
+
+if [ -f ~/.git-prompt.sh ]; then
+    . ~/.git-prompt.sh
+fi
 
 function virt_env() {
     if [ -n "${VIRTUAL_ENV}" ]; then
@@ -54,6 +85,7 @@ function virt_env() {
         echo ""
     fi
 }
+
 function host_name() {
     if [ -z "$TMUX" ]; then
         echo "$BYELLOW[\h]"
@@ -61,74 +93,22 @@ function host_name() {
         echo ""
     fi
 }
+
 function prompt_before() {
     RESULT=$?
     echo "$(host_name)$(virt_env)$BPURPLE[\w]$OFF"
     return $RESULT
 }
+
 function prompt_after() {
     color=$([ $? = 0 ] && echo "$BGREEN" || echo "$BRED")
     echo "\n${color}\$$OFF "
 }
 
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWUPSTREAM="auto git"
 PROMPT_COMMAND='__git_ps1 "`prompt_before`" "`prompt_after`" "[%s]"'
-
-# Aliases
-function commits() {
-    for repo in `ls ${REPOS}`; do
-        git --no-pager --git-dir ${REPOS}/${repo}/.git log --author="$(git config user.name)" --since="$1" --date=local --pretty=tformat:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset' --all
-    done
-}
-
-alias ..='cd ..'
-alias ll='ls -lh'
-alias la='ls -lah'
-alias lt='ls -ltrh'
-alias cc='clear'
-alias a='. $(echo ${PWD}|cut -d/ -f 1-3)/devenv/bin/activate'
-alias d='deactivate'
-alias t='py.test -vs'
-
-alias dps='docker ps -a'
-alias drm='docker rm -fv `docker ps -qa`'
-
-alias gc='git commit'
-alias gca='git commit --amend'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gf='git fetch --all'
-alias gp='git push'
-alias gpp='git pull'
-alias gs='git status --u=all'
-alias ggrep='git grep -B0 -A0'
-alias ggrepi='git grep --ignore-case -B0 -A0'
-alias gu='git stash && git pull && git stash pop'
-
-alias tmux='tmux -2'
-alias ta='tmux attach -t'
-alias tnew='tmux new -s'
-alias tls='tmux ls'
-alias tkill='tmux kill-session -t'
-
-alias ports='sudo netstat -tulanp'
-alias vim='vim -O'
-
-if [ $UID -ne 0 ]; then
-    alias reboot='sudo reboot'
-    alias shutdown='sudo shutdown now'
-    alias apt-get='sudo apt-get'
-    alias service='sudo service'
-    alias kill='sudo kill -9'
-fi
-
-# Fix Ctrl+<key>
-stty -ixon
-
-# Predictable SSH authentication socket location.
-SOCK="/tmp/ssh-agent-$USER-screen"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-then
-    rm -f /tmp/ssh-agent-$USER-screen
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
-fi
