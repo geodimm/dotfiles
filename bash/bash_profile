@@ -47,21 +47,9 @@ case "$OSTYPE" in
     *) ;;
 esac
 
-if [ -f /etc/bash_completion.d/docker ]; then
-    . /etc/bash_completion.d/docker
-fi
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-if [ -f ~/.git-completion.sh ]; then
-    . ~/.git-completion.sh
-fi
-
-if [ -f ~/.colors ]; then
-    . ~/.colors
-fi
+test -f /etc/bash_completion.d/docker && . /etc/bash_completion.d/docker 
+test -f ~/.bash_aliases && . ~/.bash_aliases
+test -f ~/.git-completion.sh && . ~/.git-completion.sh
 
 # Predictable SSH authentication socket location.
 SOCK="/tmp/ssh-agent-$USER-screen"
