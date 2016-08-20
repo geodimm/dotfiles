@@ -62,34 +62,20 @@ fi
 # Prompt
 set -o vi
 
-if [ -f ~/.git-prompt.sh ]; then
-    . ~/.git-prompt.sh
-fi
-
-function virt_env() {
-    if [ -n "${VIRTUAL_ENV}" ]; then
-        echo "$BCYAN[`echo $VIRTUAL_ENV|rev| cut -d"/" -f1,2|rev`]"
-    else
-        echo ""
-    fi
-}
-
-function host_name() {
-    if [ -z "$TMUX" ]; then
-        echo "$BYELLOW[\h]"
-    else
-        echo ""
-    fi
-}
+test -f ~/.git-prompt.sh && . ~/.git-prompt.sh
+test -f ~/.colors && . ~/.colors
 
 function prompt_before() {
-    RESULT=$?
-    echo "$(host_name)$(virt_env)$BPURPLE[\w]$OFF"
-    return $RESULT
+    local result=$?
+    local hostname=$(test -z "$TMUX" && echo "$BYELLOW[\h]")
+    local virtenv=$(test $VIRTUAL_ENV && echo "$BCYAN[$(echo $VIRTUAL_ENV|rev|cut -d"/" -f1,2|rev)]")
+    local curdir="$BPURPLE[\w]"
+    echo "${hostname}${virtenv}${curdir}$OFF"
+    return $result
 }
 
 function prompt_after() {
-    color=$([ $? = 0 ] && echo "$BGREEN" || echo "$BRED")
+    local color=$([ $? = 0 ] && echo "$BGREEN" || echo "$BRED")
     echo "\n${color}\$$OFF "
 }
 
@@ -99,4 +85,5 @@ GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWCOLORHINTS=1
 GIT_PS1_DESCRIBE_STYLE="branch"
 GIT_PS1_SHOWUPSTREAM="auto git"
-PROMPT_COMMAND='__git_ps1 "`prompt_before`" "`prompt_after`" "[%s]"'
+
+PROMPT_COMMAND='__git_ps1 "$(prompt_before)" "$(prompt_after)" "[%s]"'
