@@ -27,6 +27,7 @@ Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
 Plugin 'SirVer/ultisnips'
 Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 
@@ -97,6 +98,9 @@ autocmd myvimrc FileType python nnoremap <F10> :Dispatch python %<CR>
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
+
+" TagBar settings
+map <F3> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -189,8 +193,8 @@ set cursorline
 " Line numbers
 set number
 set relativenumber
-map <F4> :set relativenumber!<CR>
-map! <F4> <Esc>:set relativenumber!<CR>gi
+map <F5> :set relativenumber!<CR>
+map! <F5> <Esc>:set relativenumber!<CR>gi
 
 " Regex and search options
 set ignorecase
@@ -237,7 +241,7 @@ autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabs
 set nojoinspaces
 
 " Fix identation when pasting in Insert mode
-set pastetoggle=<F3>
+set pastetoggle=<F4>
 
 " Sort lines alphabetically (useful for sorting Python imports)
 vnoremap <leader>s :sort<CR>
