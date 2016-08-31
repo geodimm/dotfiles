@@ -71,6 +71,7 @@ let g:go_def_reuse_buffer = 0
 autocmd myvimrc FileType go nnoremap <leader>g :GoDef<CR>
 autocmd myvimrc FileType go nnoremap <F9> :GoTest<CR>
 autocmd myvimrc FileType go nnoremap <F10> :GoRun<CR>
+autocmd myvimrc BufWritePost,FileWritePost *.go :GoLint
 
 " CtrlP Settings
 let g:ctrlp_max_height = 10
