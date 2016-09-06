@@ -12,6 +12,7 @@ install-bash:
 	ln -fs `pwd`/bash/colors ~/.colors
 
 install-git:
+	ln -fs `pwd`/gitignore ~/.gitignore
 	ln -fs `pwd`/gitconfig ~/.gitconfig
 	ln -fs `pwd`/git-prompt.sh ~/.git-prompt.sh
 	ln -fs `pwd`/git-completion.sh ~/.git-completion.sh

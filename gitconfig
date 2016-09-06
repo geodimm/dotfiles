@@ -4,6 +4,7 @@
 [core]
 	editor = vim
 	mergeoptions = --no-edit
+	excludesFile = ~/.gitignore
 [push]
 	default = simple
 [pull]
