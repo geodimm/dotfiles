@@ -4,6 +4,7 @@ install: $(ALL:%=install-%)
 
 install-tmux:
 	ln -fs `pwd`/tmux/tmux.conf ~/.tmux.conf
+	ln -fs `pwd`/tmux/tnew.sh ~/tnew.sh
 
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
