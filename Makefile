@@ -13,11 +13,11 @@ install-bash:
 	ln -fs `pwd`/bash/colors ~/.colors
 
 install-git:
-	ln -fs `pwd`/gitignore ~/.gitignore
-	ln -fs `pwd`/gitconfig ~/.gitconfig
-	ln -fs `pwd`/git-prompt.sh ~/.git-prompt.sh
-	ln -fs `pwd`/git-completion.sh ~/.git-completion.sh
-	ln -fs `pwd`/diff-highlight ~/.diff-highlight
+	ln -fs `pwd`/git/gitignore ~/.gitignore
+	ln -fs `pwd`/git/gitconfig ~/.gitconfig
+	ln -fs `pwd`/git/git-prompt.sh ~/.git-prompt.sh
+	ln -fs `pwd`/git/git-completion.sh ~/.git-completion.sh
+	ln -fs `pwd`/git/diff-highlight ~/.diff-highlight
 
 install-vim:
 	rm -f ~/.vim
