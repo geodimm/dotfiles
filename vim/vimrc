@@ -10,7 +10,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'tyrannicaltoucan/vim-deep-space'
+Plugin 'notpratheek/vim-luna'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
@@ -39,7 +39,7 @@ call vundle#end()
 let g:tmux_navigator_no_mappings = 1
 
 " Airline
-let g:airline_theme = "deep_space"
+let g:airline_theme = "simple"
 let g:airline_powerline_fonts = 1
 
 " Supertab
@@ -169,7 +169,7 @@ set wildignore+=*.pyc,*_build/*,*/coverage/*
 
 " Colorscheme
 try
-    colors deep-space
+    colors luna-term
 catch
 endtry
 
