@@ -6,14 +6,17 @@ function commits() {
     local since=$1
     if [ -d "${REPOS}" ]; then
         for repo in `ls ${REPOS}`; do
-            git --git-dir ${REPOS}/${repo}/.git \
-                --no-pager \
-                log \
-                --all \
-                --author="$(git config user.name)" \
-                --date=local \
-                --pretty=tformat:"${repo} ${tformat}" \
-                --since="${since:=8am}"
+            local git_repo="${REPOS}/${repo}/.git"
+            if [ -d ${git_repo} ]; then
+                git --git-dir ${git_repo} \
+                    --no-pager \
+                    log \
+                    --all \
+                    --author="$(git config user.name)" \
+                    --date=local \
+                    --pretty=tformat:"${repo} ${tformat}" \
+                    --since="${since:=8am}"
+            fi
         done
     fi
 }
