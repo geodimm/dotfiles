@@ -1,4 +1,4 @@
-ALL   := tmux bash vim git 
+ALL   := tmux bash vim git misc
 
 install: $(ALL:%=install-%)
 
@@ -26,3 +26,7 @@ install-vim:
 	git submodule init
 	git submodule update
 	vim +PluginInstall +qall
+
+install-misc:
+	ln -fs `pwd`/tigrc ~/.tigrc
+	mkdir -p .ssh/tmp
