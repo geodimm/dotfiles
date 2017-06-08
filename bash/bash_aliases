@@ -60,7 +60,7 @@ fi
 
 # misc
 alias ..='cd ..'
-alias ls='ls $LS_OPTS'
+alias ls='ls $LS_OPTS --group-directories-first'
 alias ll='ls -lh'
 alias la='ls -lah'
 alias lt='ls -ltrh'
