@@ -29,4 +29,4 @@ install-vim:
 
 install-misc:
 	ln -fs `pwd`/tigrc ~/.tigrc
-	mkdir -p .ssh/tmp
+	mkdir -p ~/.ssh/tmp
