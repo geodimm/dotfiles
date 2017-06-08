@@ -18,6 +18,8 @@
 	ch = checkout
 	co = commit
 	find = !git log -p -S     
+	hide = update-index --assume-unchanged
+	unhide = update-index --no-assume-unchanged
 [color]
     branch = auto
     diff = auto
