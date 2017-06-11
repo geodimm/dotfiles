@@ -42,7 +42,7 @@ case "$OSTYPE" in
             . /etc/bash_completion
           fi
         fi
-        LS_OPTS='--color=auto'
+        LS_OPTS='--color=auto --group-directories-first'
         ;;
     *) ;;
 esac
