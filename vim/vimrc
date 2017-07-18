@@ -25,7 +25,6 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'klen/python-mode'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
 
@@ -44,12 +43,6 @@ let g:airline_powerline_fonts = 1
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-n>"
-
-" UltiSnips
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-tab>"
-let g:UltiSnipsSnippetDir="~/.vim/UltiSnips"
 
 " Pymode
 let g:pymode_rope = 0
