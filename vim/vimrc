@@ -10,7 +10,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'notpratheek/vim-luna'
+Plugin 'fatih/molokai'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'edkolev/tmuxline.vim'
@@ -148,7 +148,8 @@ set wildignore+=*.pyc,*_build/*,*/coverage/*
 
 " Colorscheme
 try
-    colors luna-term
+    colors molokai
+    let g:molokai_original=1
 catch
 endtry
 
