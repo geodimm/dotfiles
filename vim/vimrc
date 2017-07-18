@@ -41,6 +41,9 @@ let g:tmux_navigator_no_mappings = 1
 let g:airline_theme = "simple"
 let g:airline_powerline_fonts = 1
 
+" Tmuxline
+let g:airline#extensions#tmuxline#enabled = 0
+
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
