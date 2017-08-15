@@ -19,13 +19,13 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-dispatch'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/nerdtree'
-Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Shougo/neocomplete'
+Plugin 'ervandew/supertab'
+Plugin 'klen/python-mode'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 
@@ -53,6 +53,8 @@ let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 
 " vim-go
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -66,8 +68,12 @@ autocmd myvimrc FileType go nnoremap <F9> :GoTest<CR>
 autocmd myvimrc FileType go nnoremap <F10> :GoRun<CR>
 autocmd myvimrc BufWritePost,FileWritePost *.go :GoLint
 
-" Jedi-vim
-let g:jedi#use_splits_not_buffers = "right"
+" neocomplete
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+set completeopt-=preview
 
 "Disptach
 autocmd myvimrc FileType python let b:dispatch = 'py.test -v %'
