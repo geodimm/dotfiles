@@ -1,5 +1,4 @@
 ### My dotfiles
-========
 
 __Installation:__
 
