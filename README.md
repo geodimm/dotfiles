@@ -1,5 +1,6 @@
 ### My dotfiles
 ========
+
 __Installation:__
 
 > Note: Remember to backup your current dotfiles and ~/.vim folder
