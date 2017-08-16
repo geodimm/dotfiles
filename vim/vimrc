@@ -22,7 +22,6 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/neocomplete'
 Plugin 'ervandew/supertab'
 Plugin 'klen/python-mode'
 Plugin 'fatih/vim-go'
@@ -53,8 +52,6 @@ let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 
 " vim-go
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -67,13 +64,6 @@ let g:go_def_reuse_buffer = 0
 autocmd myvimrc FileType go nnoremap <F9> :GoTest<CR>
 autocmd myvimrc FileType go nnoremap <F10> :GoRun<CR>
 autocmd myvimrc BufWritePost,FileWritePost *.go :GoLint
-
-" neocomplete
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-set completeopt-=preview
 
 "Disptach
 autocmd myvimrc FileType python let b:dispatch = 'py.test -v %'
