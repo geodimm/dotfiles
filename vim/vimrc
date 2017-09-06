@@ -46,7 +46,7 @@ let g:airline#extensions#tmuxline#enabled = 0
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " Pymode
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
