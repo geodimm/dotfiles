@@ -1,6 +1,18 @@
 #!/bin/bash
 # vim: set filetype=sh:
 
+function notes() {
+    if [ ! -z "$1" ]; then
+        # Using the "$@" here will take all parameters passed into
+        # this function so we can place everything into our file.
+        echo "$@" >> "$HOME/notes.txt"
+    else
+        # If no arguments were passed we will take stdout and place
+        # it into our notes instead.
+        cat - >> "$HOME/notes.txt"
+    fi
+}
+
 function commits() {
     local tformat='%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'
     local since=$1
