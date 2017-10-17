@@ -170,6 +170,9 @@ autocmd myvimrc WinLeave * setlocal nocursorline
 " reload vimrc on save
 autocmd myvimrc BufWritePost .vimrc,vimrc nested source $MYVIMRC
 
+" Set the colored vertical column
+set colorcolumn=85
+
 " Highlight current line
 set cursorline
 
@@ -201,6 +204,9 @@ vmap <leader>q <Esc>:q<CR>gv
 set wildmenu
 " First tab will complete to the longest common string
 set wildmode=longest:full,full
+
+" Don't select the first completion item; show even if there's only one match
+set completeopt=longest,menuone
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text and formatting
