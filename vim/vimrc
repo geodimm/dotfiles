@@ -45,7 +45,7 @@ let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 
 " vim-go
-let g:go_auto_type_info = 1
+let g:go_auto_type_info = 0
 let g:go_addtags_transform = "snakecase"
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
@@ -139,6 +139,89 @@ set wildignore+=*.pyc,*_build/*,*/coverage/*
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Build our status line
+" (inspired by " https://github.com/maciakl/vim-neatstatus)
+let g:last_mode=""
+let g:myvimrc_color_normal   = 'guifg=#1c1c1c guibg=#00d7ff gui=bold ctermfg=234 ctermbg=45  cterm=bold'
+let g:myvimrc_color_insert   = 'guifg=#1c1c1c guibg=#00d700 gui=bold ctermfg=234 ctermbg=40  cterm=bold'
+let g:myvimrc_color_replace  = 'guifg=#1c1c1c guibg=#d7ff00 gui=bold ctermfg=234 ctermbg=190 cterm=bold'
+let g:myvimrc_color_visual   = 'guifg=#1c1c1c guibg=#ffaf00 gui=bold ctermfg=234 ctermbg=214 cterm=bold'
+let g:myvimrc_color_modified = 'guifg=#1c1c1c guibg=#00d700 gui=bold ctermfg=234 ctermbg=40  cterm=bold'
+let g:myvimrc_color_filetype = 'guifg=#1c1c1c guibg=#c0c0c0 gui=bold ctermfg=234 ctermbg=7   cterm=bold'
+
+function! SetStatusLineColors()
+    exec 'hi User1 '.g:myvimrc_color_normal
+    exec 'hi User2 '.g:myvimrc_color_replace
+    exec 'hi User3 '.g:myvimrc_color_insert
+    exec 'hi User4 '.g:myvimrc_color_visual
+    exec 'hi User5 '.g:myvimrc_color_modified
+    exec 'hi User6 '.g:myvimrc_color_filetype
+endfunc
+
+" Convery one-letter status to words
+function! VimMode()
+    redraw
+    let l:mode = mode()
+    if mode ==# "n"
+        exec 'hi User1 '.g:myvimrc_color_normal
+        return "NORMAL"
+    elseif mode ==# "i"
+        exec 'hi User1 '.g:myvimrc_color_insert
+        return "INSERT"
+    elseif mode ==# "R"
+        exec 'hi User1 '.g:myvimrc_color_replace
+        return "REPLACE"
+    elseif mode ==# "v"
+        exec 'hi User1 '.g:myvimrc_color_visual
+        return "VISUAL"
+    elseif mode ==# "V"
+        exec 'hi User1 '.g:myvimrc_color_visual
+        return "V-LINE"
+    elseif mode ==# "\<C-v>"
+        exec 'hi User1 '.g:myvimrc_color_visual
+        return "V-BLOCK"
+    else
+        return l:mode
+    endif
+endfunc
+
+if has('statusline')
+    call SetStatusLineColors()
+    function! SetStatusLineStyle()
+        let &stl=""
+        " mode (changes color)
+        let &stl.="%1*\ %{VimMode()} %0*"
+        " file path; %< colapses to the left if the window is too small
+        let &stl.=" %<%F "
+        " read only, modified, modifiable flags in brackets
+        let &stl.="%([%R%M]%) "
+        " right-aligh everything past this point
+        let &stl.="%= "
+        " file type (eg. python, ruby, etc..)
+        let &stl.="%6*%( %{&filetype} %)%0* "
+        " file format (eg. unix, dos, etc..)
+        let &stl.="%{&fileformat} | "
+        " file encoding (eg. utf8, latin1, etc..)
+        let &stl.="%(%{(&fenc!=''?&fenc:&enc)} | %)"
+        "line number/total lines | col number"
+        let &stl.="LN %l/%L\ %0* | COL %-3.c"
+        " " modified / unmodified (purple)
+        let &stl.="%(%5*%{&modified?' modified ':''}%)"
+    endfunc
+    if !has('gui_running')
+        au InsertEnter  * redraw!
+        au InsertChange * redraw!
+        au InsertLeave  * redraw!
+    endif
+    " whenever the color scheme changes re-apply the colors
+    au ColorScheme * call SetStatusLineColors()
+    " Make sure the statusbar is reloaded late to pick up servername
+    au ColorScheme,VimEnter * call SetStatusLineStyle()
+    " Switch between the normal and vim-debug modes in the status line
+    nmap _ds :call SetStatusLineStyle()<CR>
+    call SetStatusLineStyle()
+endif
+
 " Colorscheme
 try
     colors molokai
@@ -156,9 +239,6 @@ set splitright
 " Toggle highlighting current line only in active splits
 autocmd myvimrc VimEnter,WinEnter,BufWinEnter * setlocal cursorline
 autocmd myvimrc WinLeave * setlocal nocursorline
-
-" reload vimrc on save
-autocmd myvimrc BufWritePost .vimrc,vimrc nested source $MYVIMRC
 
 " Set the colored vertical column
 set colorcolumn=85
