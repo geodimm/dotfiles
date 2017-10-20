@@ -62,11 +62,6 @@ autocmd myvimrc FileType go nnoremap <F9> :GoTest<CR>
 autocmd myvimrc FileType go nnoremap <F10> :GoRun<CR>
 autocmd myvimrc BufWritePost,FileWritePost *.go :GoLint
 
-"Disptach
-autocmd myvimrc FileType python let b:dispatch = 'py.test -v %'
-autocmd myvimrc FileType python nnoremap <F9> :Dispatch<CR>
-autocmd myvimrc FileType python nnoremap <F10> :Dispatch python %<CR>
-
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
