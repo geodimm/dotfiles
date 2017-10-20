@@ -11,8 +11,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'fatih/molokai'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary'
@@ -33,13 +31,6 @@ call vundle#end()
 
 " Vim-Tmux-Navigator
 let g:tmux_navigator_no_mappings = 1
-
-" Airline
-let g:airline_theme = "simple"
-let g:airline_powerline_fonts = 1
-
-" Tmuxline
-let g:airline#extensions#tmuxline#enabled = 0
 
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
