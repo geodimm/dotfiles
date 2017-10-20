@@ -204,7 +204,7 @@ if has('statusline')
         " file encoding (eg. utf8, latin1, etc..)
         let &stl.="%(%{(&fenc!=''?&fenc:&enc)} | %)"
         "line number/total lines | col number"
-        let &stl.="LN %l/%L\ %0* | COL %-3.c"
+        let &stl.="LN %l/%L %0*| COL %-3.c"
         " " modified / unmodified (purple)
         let &stl.="%(%5*%{&modified?' modified ':''}%)"
     endfunc
