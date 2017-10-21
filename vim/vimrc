@@ -135,7 +135,7 @@ set wildignore+=*.pyc,*_build/*,*/coverage/*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Build our status line
-" (inspired by " https://github.com/maciakl/vim-neatstatus)
+" (inspired by https://github.com/maciakl/vim-neatstatus)
 let g:last_mode=""
 let g:myvimrc_color_normal   = 'guifg=#1c1c1c guibg=#00d7ff gui=bold ctermfg=234 ctermbg=45  cterm=bold'
 let g:myvimrc_color_insert   = 'guifg=#1c1c1c guibg=#00d700 gui=bold ctermfg=234 ctermbg=40  cterm=bold'
@@ -153,7 +153,7 @@ function! SetStatusLineColors()
     exec 'hi User6 '.g:myvimrc_color_filetype
 endfunc
 
-" Convery one-letter status to words
+" Convert one-letter status to words
 function! VimMode()
     redraw
     let l:mode = mode()
@@ -198,10 +198,8 @@ if has('statusline')
         let &stl.="%{&fileformat} | "
         " file encoding (eg. utf8, latin1, etc..)
         let &stl.="%(%{(&fenc!=''?&fenc:&enc)} | %)"
-        "line number/total lines | col number"
-        let &stl.="LN %l/%L %0*| COL %-3.c"
-        " " modified / unmodified (purple)
-        let &stl.="%(%5*%{&modified?' modified ':''}%)"
+        " line number/total lines:col number"
+        let &stl.="%l/%L:%-3.c"
     endfunc
     if !has('gui_running')
         au InsertEnter  * redraw!
@@ -210,8 +208,6 @@ if has('statusline')
     endif
     " whenever the color scheme changes re-apply the colors
     au ColorScheme * call SetStatusLineColors()
-    " Make sure the statusbar is reloaded late to pick up servername
-    au ColorScheme,VimEnter * call SetStatusLineStyle()
     " Switch between the normal and vim-debug modes in the status line
     nmap _ds :call SetStatusLineStyle()<CR>
     call SetStatusLineStyle()
