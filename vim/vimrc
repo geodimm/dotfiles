@@ -70,6 +70,10 @@ let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
 " TagBar settings
 map <F3> :TagbarToggle<CR>
 
+" Colorizer
+map <F6> :ColorToggle<CR>
+map! <F6> <Esc>:ColorToggle<CR>gi
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
