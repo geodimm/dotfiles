@@ -22,6 +22,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
 Plugin 'klen/python-mode'
 Plugin 'fatih/vim-go'
+Plugin 'chrisbra/Colorizer'
 
 call vundle#end()
 
