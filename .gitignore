@@ -1,2 +1,2 @@
-# Ignore bundles, since Vundle is taking care of them
-bundle/
+vim/autoload/plug.vim
+vim/plugged/

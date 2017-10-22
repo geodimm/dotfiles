@@ -23,9 +23,9 @@ install-vim:
 	rm -f ~/.vim
 	ln -fs `pwd`/vim ~/.vim
 	ln -fs `pwd`/vim/vimrc ~/.vimrc
-	git submodule init
-	git submodule update
-	vim +PluginInstall +qall
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	vim +PlugInstall +qall
 
 install-misc:
 	ln -fs `pwd`/tigrc ~/.tigrc

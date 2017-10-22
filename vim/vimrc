@@ -3,28 +3,25 @@ augroup myvimrc
   autocmd!
 augroup END
 
-set rtp+=~/.vim/bundle/Vundle.vim
-
 filetype off
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'fatih/molokai'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-dispatch'
-Plugin 'majutsushi/tagbar'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'klen/python-mode'
-Plugin 'fatih/vim-go'
-Plugin 'chrisbra/Colorizer'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'fatih/molokai'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'ervandew/supertab'
+Plug 'klen/python-mode',
+Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'chrisbra/Colorizer'
 
-call vundle#end()
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins settings
