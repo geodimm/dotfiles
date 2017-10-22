@@ -19,7 +19,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
 Plug 'klen/python-mode',
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'chrisbra/Colorizer'
+Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 
 call plug#end()
 
