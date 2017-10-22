@@ -3,7 +3,6 @@ augroup myvimrc
   autocmd!
 augroup END
 
-filetype off
 call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -269,6 +268,8 @@ nnoremap <silent> <leader><CR> :noh<CR>
 " Save files
 nmap <leader>w :w<CR>
 vmap <leader>w <Esc>:w<CR>gv
+" Save with sudo
+cmap w!! %!sudo tee > /dev/null %
 
 " Close files (will raise confirmation dialog for unsaved changes)
 nmap <leader>q :q<CR>
@@ -291,6 +292,7 @@ set backspace=indent,eol,start
 
 " Use 4 spaces instead of tabs
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 
@@ -306,7 +308,7 @@ set nojoinspaces
 " Fix identation when pasting in Insert mode
 set pastetoggle=<F4>
 
-" Sort lines alphabetically (useful for sorting Python imports)
+" Sort lines alphabetically
 vnoremap <leader>s :sort<CR>
 
 " Go back to visual mode after reindenting
@@ -315,6 +317,9 @@ vnoremap > >gv
 
 " Use double spacebar tab to select the current line
 map <leader><leader> V
+
+" Select the last inserted text
+nnoremap <leader>le `[v`]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Navigation and moving around
