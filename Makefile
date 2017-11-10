@@ -8,6 +8,7 @@ install-tmux:
 
 install-i3:
 	ln -fs `pwd`/i3/config ~/.config/i3/config
+	ln -fs `pwd`/i3/toggletouchpad.sh ~/.config/i3/toggletouchpad.sh
 	ln -fs `pwd`/i3/status.conf ~/.i3status.conf
 
 install-bash:
