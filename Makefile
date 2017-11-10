@@ -8,7 +8,7 @@ install-tmux:
 
 install-i3:
 	ln -fs `pwd`/i3/config ~/.config/i3/config
-	ln -fs `pwd`/i3/status ~/.i3status.conf
+	ln -fs `pwd`/i3/status.conf ~/.i3status.conf
 
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
