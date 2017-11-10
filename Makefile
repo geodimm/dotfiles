@@ -1,10 +1,14 @@
-ALL   := tmux bash vim git misc
+ALL   := tmux bash vim git misc i3
 
 install: $(ALL:%=install-%)
 
 install-tmux:
 	ln -fs `pwd`/tmux/tmux.conf ~/.tmux.conf
 	ln -fs `pwd`/tmux/tnew.sh ~/tnew.sh
+
+install-i3:
+	ln -fs `pwd`/i3/config ~/.config/i3/config
+	ln -fs `pwd`/i3/status ~/.i3status.conf
 
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
