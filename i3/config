@@ -8,6 +8,7 @@ focus_follows_mouse no
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
+bindsym $mod+o exec i3lock -c \#1c1c1c
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
