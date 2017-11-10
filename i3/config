@@ -74,9 +74,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+client.focused          #005577 #005577 #eeeeee #005577 #005577
+client.focused_inactive #444444 #444444 #bbbbbb #444444 #444444
+client.unfocused        #222222 #222222 #bbbbbb #222222 #222222
+client.urgent           #770000 #770000 #eeeeee #770000 #770000
+client.background       #000000
+
 bar {
     status_command i3status
     tray_output primary
+    colors {
+        background #222222
+        statusline #bbbbbb
+        separator  #555555
+
+        focused_workspace  #00d700 #00d700 #eeeeee
+        active_workspace   #222222 #222222 #bbbbbb
+        inactive_workspace #222222 #222222 #bbbbbb
+        urgent_workspace   #770000 #770000 #eeeeee
+        binding_mode       #770000 #770000 #eeeeee
+    }
 }
 
 
