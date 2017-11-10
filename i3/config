@@ -1,5 +1,7 @@
 set $mod Mod4
 
+hide_edge_borders both
+
 font pango:monospace 8
 
 floating_modifier $mod
