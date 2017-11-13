@@ -1,6 +1,8 @@
 set $mod Mod4
 
 hide_edge_borders both
+new_window pixel 3
+new_float pixel 3
 
 font pango:monospace 8
 
@@ -91,7 +93,7 @@ bar {
         statusline #bbbbbb
         separator  #555555
 
-        focused_workspace  #00d700 #00d700 #eeeeee
+        focused_workspace  #00d700 #00d700 #1c1c1c
         active_workspace   #222222 #222222 #bbbbbb
         inactive_workspace #222222 #222222 #bbbbbb
         urgent_workspace   #770000 #770000 #eeeeee
