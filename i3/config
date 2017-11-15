@@ -10,6 +10,9 @@ floating_modifier $mod
 
 focus_follows_mouse no
 
+bindsym --release XF86Tools exec scrot -s
+bindsym --release Shift+XF86Tools exec scrot
+
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+o exec i3lock -c \#1c1c1c
