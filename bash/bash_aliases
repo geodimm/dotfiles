@@ -88,10 +88,10 @@ alias x='exit'
 
 # docker
 function dps() {
-	docker ps "$@" --format \
-		'table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' \
-		| sed -re 's|([0-9a-f]+\s+)containers.*:\d{4}/|\1cbnnn/|' \
-		-e 's|  +|\t|g' \
+    docker ps "$@" --format \
+        'table {{.ID}}\t{{.Image}}\t{{.Command}}\t{{.RunningFor}}\t{{.Status}}\t{{.Names}}' \
+        | sed -re 's|([0-9a-f]+\s+)containers.*:[0-9]{4}/|\1cbnnn/|' \
+        -e 's|  +|\t|g' \
         | column -ts "$(echo -e "\t")"
 }
 alias dpsa='dps -a'
