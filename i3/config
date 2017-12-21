@@ -10,6 +10,8 @@ floating_modifier $mod
 
 focus_follows_mouse no
 
+exec --no-startup-id ~/dotfiles/dual-monitors.sh
+
 for_window [class="Thunderbird"] move container to workspace 4
 for_window [class="Slack"] move container to workspace 3
 for_window [class="Google-chrome"] move container to workspace 2
