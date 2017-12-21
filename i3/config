@@ -10,6 +10,16 @@ floating_modifier $mod
 
 focus_follows_mouse no
 
+for_window [class="Thunderbird"] move container to workspace 4
+for_window [class="Slack"] move container to workspace 3
+for_window [class="Google-chrome"] move container to workspace 2
+for_window [class="Gnome-terminal"] move container to workspace 1
+
+exec --no-startup-id i3-sensible-terminal
+exec --no-startup-id google-chrome
+exec --no-startup-id slack
+exec --no-startup-id thunderbird
+
 bindsym --release XF86Tools exec scrot -s
 bindsym --release Shift+XF86Tools exec scrot
 
