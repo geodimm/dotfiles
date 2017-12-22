@@ -51,12 +51,10 @@ test -f /etc/bash_completion.d/docker && . /etc/bash_completion.d/docker
 test -f ~/.bash_aliases && . ~/.bash_aliases
 test -f ~/.git-completion.sh && . ~/.git-completion.sh
 
-# Predictable SSH authentication socket location.
-SOCK="/tmp/ssh-agent-$USER-screen"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]; then
-    rm -f /tmp/ssh-agent-$USER-screen
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
+if [ "$DESKTOP_SESSION" = "i3" ]; then
+    export $(gnome-keyring-daemon --start)
+    # SSH_AGENT_PID required to stop xinitrc-common from starting ssh-agent
+    export SSH_AGENT_PID=${GNOME_KEYRING_PID:-gnome}
 fi
 
 # Prompt
