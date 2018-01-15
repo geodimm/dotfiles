@@ -10,6 +10,7 @@ floating_modifier $mod
 
 focus_follows_mouse no
 
+exec --no-startup-id /usr/libexec/gnome-settings-daemon
 exec --no-startup-id ~/dotfiles/dual-monitors.sh
 
 for_window [class="Thunderbird"] move container to workspace 4
