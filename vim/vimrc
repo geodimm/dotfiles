@@ -18,7 +18,6 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
 Plug 'klen/python-mode',
 Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
-Plug 'w0rp/ale'
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 
 call plug#end()
@@ -58,18 +57,7 @@ let g:go_dispatch_enabled = 1
 let g:go_def_reuse_buffer = 0
 autocmd myvimrc FileType go nnoremap <F9> :GoTest<CR>
 autocmd myvimrc FileType go nnoremap <F10> :GoRun<CR>
-
-" ale
-let g:ale_sign_column_always = 1
-let g:ale_linters = {
-    \ 'go': 'all',
-    \ 'json': 'all',
-    \}
-let g:ale_go_gometalinter_options = "--disable gocyclo --concurrency 2"
-let g:ale_fixers = {
-    \ 'json': 'fixjson',
-    \}
-let g:ale_fix_on_save = 1
+autocmd myvimrc BufWritePost,FileWritePost *.go :GoLint
 
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
