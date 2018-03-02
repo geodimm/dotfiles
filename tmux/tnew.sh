@@ -2,9 +2,7 @@
 
 SESSION_NAME="work"
 
-tmux has-session -t ${SESSION_NAME}
-
-if [ $? != 0 ]
+if ! tmux has-session -t ${SESSION_NAME}
 then
     tmux new-session -s ${SESSION_NAME} -n "deploy" -d
     tmux new-window -n "bash" -t ${SESSION_NAME}
