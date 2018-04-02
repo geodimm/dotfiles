@@ -7,12 +7,14 @@ case $- in
 esac
 
 # History file settings
-HISTCONTROL=ignoreboth
-HISTFILESIZE=2000
-HISTSIZE=1000
+HISTCONTROL=erasedups:ignoreboth
+HISTFILESIZE=500000
+HISTSIZE=100000
+HISTTIMEFORMAT='%F %T '
+export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 shopt -s histappend
 
-# update the screen based on the window size 
+# update the screen after every command
 shopt -s checkwinsize
 
 # Fix Ctrl+<key>
@@ -58,6 +60,10 @@ if [ "$DESKTOP_SESSION" = "i3" ]; then
 fi
 
 # Prompt
+
+# Automatically trin long paths in the prompt
+PROMPT_DIRTRIM=2
+
 set -o vi
 
 test -f ~/.git-prompt.sh && . ~/.git-prompt.sh
