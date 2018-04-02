@@ -33,14 +33,6 @@ function commits() {
     fi
 }
 
-function weather() {
-    curl 'http://wttr.in/redruth'
-}
-
-function moon() {
-    curl 'http://wttr.in/Moon'
-}
-
 function extract () {
     if [ -f $1 ]; then
         case $1 in
@@ -62,16 +54,7 @@ function extract () {
     fi
 }
 
-if [ $UID -ne 0 ]; then
-    alias reboot='sudo reboot'
-    alias shutdown='sudo shutdown now'
-    alias apt-get='sudo apt-get'
-    alias service='sudo service'
-    alias kill='sudo kill -9'
-fi
-
 # misc
-alias ..='cd ..'
 alias ls='ls $LS_OPTS'
 alias ll='ls -lh'
 alias la='ls -lah'
@@ -79,12 +62,6 @@ alias lt='ls -ltrh'
 alias grep='grep --color=auto'
 alias grepi='grep -i'
 alias vim='vim -O'
-
-alias c='clear'
-alias a='. devenv/bin/activate'
-alias d='deactivate'
-alias t='py.test -vs'
-alias x='exit'
 
 # docker
 function dps() {
