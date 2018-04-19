@@ -74,6 +74,8 @@ map! <F6> <Esc>:ColorToggle<CR>gi
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set updatetime=750
+
 let mapleader = "\<Space>"
 " Quickly edit dotfiles
 nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
