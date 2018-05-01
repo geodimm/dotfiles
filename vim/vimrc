@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'hickop/vim-hickop-colors'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive', {'on': 'Gblame'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
@@ -16,8 +16,8 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
-Plug 'klen/python-mode',
-Plug 'fatih/vim-go', {'do': ':GoInstallBinaries'}
+Plug 'klen/python-mode', {'for': 'python'}
+Plug 'fatih/vim-go', {'for':'go', 'do': ':GoInstallBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 
 call plug#end()
