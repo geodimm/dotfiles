@@ -6,7 +6,7 @@ augroup END
 call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'fatih/molokai'
+Plug 'hickop/vim-hickop-colors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -222,8 +222,7 @@ endif
 
 " Colorscheme
 try
-    colors molokai
-    let g:molokai_original=1
+    colors hickop
 catch
 endtry
 
