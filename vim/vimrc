@@ -55,9 +55,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
 let g:go_def_reuse_buffer = 0
-autocmd myvimrc FileType go nnoremap <F9> :GoTest<CR>
-autocmd myvimrc FileType go nnoremap <F10> :GoRun<CR>
-autocmd myvimrc BufWritePost,FileWritePost *.go :GoLint
+let g:go_metalinter_autosave = 1
 
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
