@@ -17,10 +17,11 @@ exec --no-startup-id "setxkbmap -layout us,bg -variant ,phonetic -option ctrl:no
 for_window [class="Thunderbird"] move container to workspace 4
 for_window [class="Slack"] move container to workspace 3
 for_window [class="Google-chrome"] move container to workspace 2
+for_window [class="Firefox"] move container to workspace 2
 for_window [class="Gnome-terminal"] move container to workspace 1
 
 exec --no-startup-id i3-sensible-terminal
-exec --no-startup-id google-chrome
+exec --no-startup-id sensible-browser
 exec --no-startup-id slack
 exec --no-startup-id thunderbird
 
