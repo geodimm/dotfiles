@@ -1,6 +1,16 @@
-ALL   := tmux bash vim git misc i3
+ALL   := deps tmux bash vim git misc i3
 
 install: $(ALL:%=install-%)
+
+install-deps:
+	sudo apt install -y\
+		curl \
+		tmux \
+		i3 \
+		py3status \
+		scrot \
+		vim-nox \
+		tig
 
 install-tmux:
 	ln -fs `pwd`/tmux/tmux.conf ~/.tmux.conf
