@@ -6,7 +6,7 @@ augroup END
 call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'hickop/vim-hickop-colors'
+Plug 'fatih/molokai'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -219,8 +219,10 @@ if has('statusline')
 endif
 
 " Colorscheme
+set background=dark
+set termguicolors
 try
-    colors hickop
+    colors molokai
 catch
 endtry
 
