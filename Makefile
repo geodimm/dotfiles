@@ -17,6 +17,7 @@ install-tmux:
 	ln -fs `pwd`/tmux/tnew.sh ~/tnew.sh
 
 install-i3:
+	mkdir -p ~/.config/i3/
 	ln -fs `pwd`/i3/config ~/.config/i3/config
 	ln -fs `pwd`/i3/status.conf ~/.i3status.conf
 	ln -fs `pwd`/i3/lock.sh ~/.config/i3/lock.sh
