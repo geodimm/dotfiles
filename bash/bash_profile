@@ -20,10 +20,13 @@ shopt -s checkwinsize
 # Fix Ctrl+<key>
 stty -ixon
 
+# Set keyboard settings
+setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_toggle
+
 # Exports
 export CLICOLOR=1
 export EDITOR=vim
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$HOME:.
+export PATH=$PATH:$HOME:.
 export REPOS=/repos
 # Golang
 export GOPATH=$REPOS/go
@@ -50,6 +53,7 @@ case "$OSTYPE" in
 esac
 
 test -f /etc/bash_completion.d/docker && . /etc/bash_completion.d/docker 
+test -f /usr/local/bin/kubectl && . <(kubectl completion bash)
 test -f ~/.bash_aliases && . ~/.bash_aliases
 test -f ~/.git-completion.sh && . ~/.git-completion.sh
 
@@ -60,9 +64,6 @@ if [ "$DESKTOP_SESSION" = "i3" ]; then
 fi
 
 # Prompt
-
-# Automatically trin long paths in the prompt
-PROMPT_DIRTRIM=2
 
 set -o vi
 
@@ -79,8 +80,9 @@ function prompt_before() {
 }
 
 function prompt_after() {
-    local color=$([ $? = 0 ] && echo "$BGREEN" || echo "$BRED")
-    echo "\n${color}\$$OFF "
+    local result=$?
+    local color=$([ $result = 0 ] && echo "$BGREEN" || echo "$BRED")
+    echo " ${color}RC=$result$OFF\n$ "
 }
 
 GIT_PS1_SHOWDIRTYSTATE=1

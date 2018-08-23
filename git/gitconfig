@@ -43,3 +43,5 @@
     log = .diff-highlight | less
     show = .diff-highlight | less
     diff = .diff-highlight | less
+[http]
+    postBuffer = 1024288000
