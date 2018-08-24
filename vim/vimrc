@@ -16,7 +16,7 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
-Plug 'klen/python-mode', {'for': 'python'}
+Plug 'python-mode/python-mode', {'for': 'python' }
 Plug 'fatih/vim-go', {'for':'go', 'do': ':GoInstallBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 
@@ -35,11 +35,11 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Pymode
+let g:pymode_python = 'python'
 let g:pymode_rope = 0
 let g:pymode_rope_goto_definition_cmd = 'vnew'
 let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
-let g:pymode_lint_checkers = ['pep8', 'pyflakes']
 
 " vim-go
 let g:go_auto_type_info = 0
