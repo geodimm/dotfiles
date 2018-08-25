@@ -108,7 +108,7 @@ bar {
     status_command py3status
     tray_output primary
     colors {
-        background #222222
+        background #1c1c1c
         statusline #bbbbbb
         separator  #555555
 
