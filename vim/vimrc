@@ -40,6 +40,10 @@ let g:pymode_rope = 0
 let g:pymode_rope_goto_definition_cmd = 'vnew'
 let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
+let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
+" C0111 - Missing docstrings
+" W0703 - Cathing too general exception
+let g:pymode_lint_ignore = [ "C0111", "W0703", ]
 
 " vim-go
 let g:go_auto_type_info = 0
