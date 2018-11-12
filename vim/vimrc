@@ -16,8 +16,8 @@ Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
-Plug 'python-mode/python-mode', {'for': 'python' }
-Plug 'fatih/vim-go', {'for':'go', 'do': ':GoInstallBinaries'}
+Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python' }
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 
 call plug#end()
