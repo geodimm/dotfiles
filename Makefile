@@ -24,6 +24,7 @@ install-i3:
 	ln -fs `pwd`/i3/lock.png ~/.config/i3/lock.png
 	ln -fs `pwd`/i3/xrandr.sh ~/.config/i3/xrandr.sh
 	ln -fs `pwd`/i3/backlight.sh ~/.config/i3/backlight.sh
+	ln -fs `pwd`/i3/volume.sh ~/.config/i3/volume.sh
 
 install-bash:
 	touch ~/.bashrc && echo "source ~/.bash_profile" >> ~/.bashrc
