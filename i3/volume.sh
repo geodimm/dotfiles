@@ -1,6 +1,9 @@
 #! /bin/bash -e
 
-sink="$(pactl list short sinks | grep RUNNING | cut -f1)"
+sink="$(pactl list short sinks | grep a2dp_sink | cut -f1)"
+if [ -z "${sink}" ]; then
+    sink="$(pactl list short sinks | grep analog-stereo | cut -f1)"
+fi
 
 cmd_opts+=("${sink}")
 
