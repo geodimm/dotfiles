@@ -14,7 +14,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 Plug 'airblade/vim-gitgutter'
-Plug 'zivyangll/git-blame.vim'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
 Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python' }
@@ -61,9 +60,6 @@ let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
 let g:go_def_reuse_buffer = 0
 let g:go_metalinter_autosave = 1
-
-" git-blame
-nnoremap <Leader>b :<C-u>call gitblame#echo()<CR>
 
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
