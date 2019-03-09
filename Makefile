@@ -10,7 +10,9 @@ install-deps:
 		py3status \
 		scrot \
 		vim-nox \
-		tig
+		tig \
+		httpie \
+		htop
 
 install-tmux:
 	ln -fs `pwd`/tmux/tmux.conf ~/.tmux.conf
