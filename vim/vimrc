@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/molokai'
+Plug 'liuchengxu/space-vim-theme'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -71,6 +72,10 @@ map <F3> :TagbarToggle<CR>
 " Colorizer
 map <F6> :ColorToggle<CR>
 map! <F6> <Esc>:ColorToggle<CR>gi
+
+" space-vim-theme
+let g:space_vim_transp_bg = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -226,7 +231,7 @@ endif
 set background=dark
 set termguicolors
 try
-    colors molokai
+    colors space_vim_theme
 catch
 endtry
 
