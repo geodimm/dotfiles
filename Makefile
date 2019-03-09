@@ -12,7 +12,8 @@ install-deps:
 		vim-nox \
 		tig \
 		httpie \
-		htop
+		htop \
+		jq
 
 install-tmux:
 	ln -fs `pwd`/tmux/tmux.conf ~/.tmux.conf
