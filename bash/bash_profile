@@ -23,6 +23,9 @@ stty -ixon
 # Set keyboard settings
 setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_toggle
 
+# Set the default umask
+umask 022
+
 # Exports
 export CLICOLOR=1
 export EDITOR=vim
