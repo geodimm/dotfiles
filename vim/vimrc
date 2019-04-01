@@ -81,6 +81,10 @@ let g:space_vim_transp_bg = 1
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Python
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
 set updatetime=750
 
 let mapleader = "\<Space>"
