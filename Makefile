@@ -27,11 +27,7 @@ bash:
 	ln -fs `pwd`/bash/bash_profile $(HOME)/.bash_profile
 
 git:
-	ln -fs `pwd`/git/gitignore $(HOME)/.gitignore
 	ln -fs `pwd`/git/gitconfig $(HOME)/.gitconfig
-	ln -fs `pwd`/git/git-prompt.sh $(HOME)/.git-prompt.sh
-	ln -fs `pwd`/git/git-completion.sh $(HOME)/.git-completion.sh
-	ln -fs `pwd`/git/diff-highlight $(HOME)/.diff-highlight
 
 vim:
 	rm -f ~/.vim

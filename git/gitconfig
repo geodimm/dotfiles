@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	mergeoptions = --no-edit
-	excludesFile = ~/.gitignore
+	excludesFile = ~/dotfiles/git/gitignore
 [push]
 	default = simple
 [pull]
@@ -40,8 +40,8 @@
     deleted = red bold
     untracked = blue bold
 [pager]
-    log = .diff-highlight | less
-    show = .diff-highlight | less
-    diff = .diff-highlight | less
+    log = ~/dotfiles/git/diff-highlight | less
+    show = ~/dotfiles/git/diff-highlight | less
+    diff = ~/dotfiles/git/diff-highlight | less
 [http]
     postBuffer = 1024288000

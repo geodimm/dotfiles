@@ -60,8 +60,8 @@ test -f /etc/bash_completion.d/docker && . /etc/bash_completion.d/docker
 test -f /usr/local/bin/kubectl && . <(kubectl completion bash)
 test -f ~/dotfiles/bash/aliases && . ~/dotfiles/bash/aliases
 test -f ~/dotfiles/bash/colors && . ~/dotfiles/bash/colors
-test -f ~/.git-prompt.sh && . ~/.git-prompt.sh
-test -f ~/.git-completion.sh && . ~/.git-completion.sh
+test -f ~/dotfiles/git/git-prompt.sh && . ~/dotfiles/git/git-prompt.sh
+test -f ~/dotfiles/git/git-completion.sh && . ~/dotfiles/git/git-completion.sh
 
 if [ "$DESKTOP_SESSION" = "i3" ]; then
     export $(gnome-keyring-daemon --start)
