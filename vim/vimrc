@@ -36,7 +36,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Pymode
-let g:pymode_python = 'python'
+let g:pymode_python = 'python3'
 let g:pymode_rope = 0
 let g:pymode_rope_goto_definition_cmd = 'vnew'
 let g:pymode_folding = 0
