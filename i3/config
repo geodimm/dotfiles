@@ -28,8 +28,8 @@ bindsym --release Shift+XF86Tools exec scrot
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym $mod+o exec ~/.config/i3/lock.sh
-bindsym $mod+x exec ~/.config/i3/xrandr.sh
+bindsym $mod+o exec ~/dotfiles/i3/lock.sh
+bindsym $mod+x exec ~/dotfiles/i3/xrandr.sh
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -121,10 +121,10 @@ bar {
 }
 
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume.sh -I5
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume.sh -D5
-bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/volume.sh -M
-bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/backlight.sh -dmonitor -A10
-bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/backlight.sh -dmonitor -U10
-bindsym XF86KbdBrightnessUp exec --no-startup-id ~/.config/i3/backlight.sh -dkeyboard -A20
-bindsym XF86KbdBrightnessDown exec --no-startup-id ~/.config/i3/backlight.sh -dkeyboard -U20
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/dotfiles/i3/volume.sh -I5
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/dotfiles/i3/volume.sh -D5
+bindsym XF86AudioMute exec --no-startup-id ~/dotfiles/i3/volume.sh -M
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/dotfiles/i3/backlight.sh -dmonitor -A10
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/dotfiles/i3/backlight.sh -dmonitor -U10
+bindsym XF86KbdBrightnessUp exec --no-startup-id ~/dotfiles/i3/backlight.sh -dkeyboard -A20
+bindsym XF86KbdBrightnessDown exec --no-startup-id ~/dotfiles/i3/backlight.sh -dkeyboard -U20

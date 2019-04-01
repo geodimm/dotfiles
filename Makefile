@@ -18,14 +18,9 @@ tmux:
 	ln -fs `pwd`/tmux/tnew.sh $(HOME)/tnew.sh
 
 i3:
-	mkdir -p ~/.config/i3/
+	mkdir -p $(XDG_CONFIG_HOME)/i3
 	ln -fs `pwd`/i3/config $(XDG_CONFIG_HOME)/i3/config
 	ln -fs `pwd`/i3/status.conf $(HOME)/.i3status.conf
-	ln -fs `pwd`/i3/lock.sh $(XDG_CONFIG_HOME)/i3/lock.sh
-	ln -fs `pwd`/i3/lock.png $(XDG_CONFIG_HOME)/i3/lock.png
-	ln -fs `pwd`/i3/xrandr.sh $(XDG_CONFIG_HOME)/i3/xrandr.sh
-	ln -fs `pwd`/i3/backlight.sh $(XDG_CONFIG_HOME)/i3/backlight.sh
-	ln -fs `pwd`/i3/volume.sh $(XDG_CONFIG_HOME)/i3/volume.sh
 
 bash:
 	touch $(HOME)/.bashrc && echo "source ~/.bash_profile" >> $(HOME)/.bashrc
