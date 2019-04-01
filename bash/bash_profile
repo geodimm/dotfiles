@@ -29,6 +29,7 @@ umask 022
 # Exports
 export CLICOLOR=1
 export EDITOR=vim
+export XDG_CONFIG_HOME=~/.config
 export PATH=$PATH:$HOME:.
 export REPOS=/repos
 # Golang
