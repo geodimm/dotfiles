@@ -29,9 +29,7 @@ i3:
 
 bash:
 	touch $(HOME)/.bashrc && echo "source ~/.bash_profile" >> $(HOME)/.bashrc
-	ln -fs `pwd`/bash/bash_aliases $(HOME)/.bash_aliases
 	ln -fs `pwd`/bash/bash_profile $(HOME)/.bash_profile
-	ln -fs `pwd`/bash/colors $(HOME)/.colors
 
 git:
 	ln -fs `pwd`/git/gitignore $(HOME)/.gitignore
