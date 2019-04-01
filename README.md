@@ -8,10 +8,10 @@ If you already have [Git](http://git-scm.com/) installed, you can run the follow
 ```bash
 git clone https://github.com/georgijd/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-make install
+make
 ```
 In case you don't have [Git](http://git-scm.com/) installed, just download the [ZIP file](https://github.com/georgijd/dotfiles/archive/master.zip) for this project and unzip it to ~/dotfiles. Then:
 ```bash
 cd ~/dotfiles
-make install
+make
 ```
