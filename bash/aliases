@@ -1,38 +1,6 @@
 #!/bin/bash
 # vim: set filetype=sh:
 
-function notes() {
-    if [ ! -z "$1" ]; then
-        # Using the "$@" here will take all parameters passed into
-        # this function so we can place everything into our file.
-        echo "$@" >> "$HOME/notes.txt"
-    else
-        # If no arguments were passed we will take stdout and place
-        # it into our notes instead.
-        cat - >> "$HOME/notes.txt"
-    fi
-}
-
-function commits() {
-    local tformat='%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset'
-    local since=$1
-    if [ -d "${REPOS}" ]; then
-        for repo in `ls ${REPOS}`; do
-            local git_repo="${REPOS}/${repo}/.git"
-            if [ -d ${git_repo} ]; then
-                git --git-dir ${git_repo} \
-                    --no-pager \
-                    log \
-                    --all \
-                    --author="$(git config user.name)" \
-                    --date=local \
-                    --pretty=tformat:"${repo} ${tformat}" \
-                    --since="${since:=8am}"
-            fi
-        done
-    fi
-}
-
 function extract () {
     if [ -f $1 ]; then
         case $1 in

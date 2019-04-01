@@ -58,7 +58,9 @@ esac
 
 test -f /etc/bash_completion.d/docker && . /etc/bash_completion.d/docker 
 test -f /usr/local/bin/kubectl && . <(kubectl completion bash)
-test -f ~/.bash_aliases && . ~/.bash_aliases
+test -f ~/dotfiles/bash/aliases && . ~/dotfiles/bash/aliases
+test -f ~/dotfiles/bash/colors && . ~/dotfiles/bash/colors
+test -f ~/.git-prompt.sh && . ~/.git-prompt.sh
 test -f ~/.git-completion.sh && . ~/.git-completion.sh
 
 if [ "$DESKTOP_SESSION" = "i3" ]; then
@@ -70,9 +72,6 @@ fi
 # Prompt
 
 set -o vi
-
-test -f ~/.git-prompt.sh && . ~/.git-prompt.sh
-test -f ~/.colors && . ~/.colors
 
 function prompt_before() {
     local result=$?
