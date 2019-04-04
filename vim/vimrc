@@ -3,7 +3,7 @@ augroup myvimrc
   autocmd!
 augroup END
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/dotfiles/vim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'fatih/molokai'
@@ -91,27 +91,6 @@ nmap <silent> <leader>ed :vsplit ~/.bash_profile<CR>
 nmap <silent> <leader>ei :vsplit ~/.config/i3/config<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>
 
-" CLI/ GUI settings
-if has("gui_running")
-    " Start window maximized
-    set lines=999 columns=999
-    " Fix Powerline icons for the GUI
-    set guifont=Inconsolata\ for\ Powerline:h14
-else
-    " Configure Vim to use 256 colours
-    set t_Co=256
-endif
-
-" Vim, not vi
-set nocompatible
-
-" Show the command shortcut in the status line
-set showcmd
-
-" Optimize redrawing (improves speed)
-set lazyredraw
-set ttyfast
-
 " Raise a dialogue for saving changes
 set confirm
 
@@ -121,12 +100,6 @@ filetype plugin indent on
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
 
-" Set output encoding
-set encoding=utf-8
-
-" Autoupdate file changes made outside vim
-set autoread
-
 " Set filetype specific options via modelines
 set modeline
 
@@ -134,9 +107,6 @@ set modeline
 set nobackup
 set noswapfile
 set nowritebackup
-
-" Always display the status line, even if only one window is displayed
-set laststatus=2
 
 " Ignore these files
 set wildignore+=*.pyc,*_build/*,*/coverage/*
@@ -259,10 +229,6 @@ map <F5> :set relativenumber!<CR>
 map! <F5> <Esc>:set relativenumber!<CR>gi
 
 " Regex and search options
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
 set magic
 
 " Temporary turn off hlsearch
@@ -278,20 +244,12 @@ cmap w!! %!sudo tee > /dev/null %
 nmap <leader>q :q<CR>
 vmap <leader>q <Esc>:q<CR>gv
 
-" Visual autocomplete for command menu
-set wildmenu
 " First tab will complete to the longest common string
 set wildmode=longest:full,full
-
-" Don't select the first completion item; show even if there's only one match
-set completeopt=longest,menuone
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text and formatting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Allow backspacing over everything in insert mode
-set backspace=indent,eol,start
 
 " Use 4 spaces instead of tabs
 set tabstop=4
