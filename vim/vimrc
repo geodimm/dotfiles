@@ -16,9 +16,16 @@ Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
-Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python' }
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoInstallBinaries'}
+Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python'}
+Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+    Plug 'deoplete-plugins/deoplete-jedi'
+    Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+    Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/dotfiles/vim/plugged/gocode/nvim/symlink.sh'}
+    let g:deoplete#enable_at_startup = 1
+endif
 
 call plug#end()
 
@@ -32,7 +39,6 @@ let g:tmux_navigator_no_mappings = 1
 " Supertab
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
-let g:SuperTabClosePreviewOnPopupClose = 1
 
 " Pymode
 let g:pymode_python = 'python3'
@@ -102,6 +108,12 @@ set ffs=unix,mac,dos
 
 " Set filetype specific options via modelines
 set modeline
+
+" Don't open preview on autocompletion
+set completeopt-=preview
+
+" Don't select the first completion item; show even if there's only one match
+set completeopt+=menuone
 
 " Disable backups
 set nobackup
