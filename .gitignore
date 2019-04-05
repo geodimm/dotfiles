@@ -1,4 +1,5 @@
-vim/autoload/plug.vim
 vim/plugged/
+vim/autoload/
+vim/ftplugin/
 vim/.netrwhist
 vim/init.vim
