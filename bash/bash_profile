@@ -26,6 +26,9 @@ setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_togg
 # Set the default umask
 umask 022
 
+# Always follow symlinks
+set -o physical
+
 # Exports
 export CLICOLOR=1
 export EDITOR=vim
