@@ -52,7 +52,7 @@ let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
 let g:pymode_lint_ignore = [ "C0111", "W0703", ]
 
 " vim-go
-let g:go_auto_type_info = 0
+let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
 let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
