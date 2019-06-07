@@ -29,6 +29,8 @@ i3:
 zsh:
 	ln -fs `pwd`/zsh/zshrc ~/.zshrc
 	ln -fs `pwd`/zsh/custom/themes/oxide.zsh-theme ~/.oh-my-zsh/custom/themes/oxide.zsh-theme
+	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+		${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 .PHONY: git
 git:
