@@ -77,12 +77,24 @@ plugins=(
     nvm
     ssh-agent
     tmux
+    vi-mode
     web-search
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Save all history
+# Incrementally write history to file
+setopt INC_APPEND_HISTORY
+# Save timestamp to history file too
+setopt EXTENDED_HISTORY
+# Import newly written commands from the history file
+setopt SHARE_HISTORY
+
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
 
 # Fix Ctrl+<key>
 stty -ixon
@@ -153,3 +165,11 @@ set blink-matching-paren on
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/dotfiles/zsh/aliases
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
+
+# vi-mode extras
+# allow arrow keys to search history in insert mode
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
+# allow home keys to search history in normal mode
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
