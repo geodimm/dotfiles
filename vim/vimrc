@@ -17,6 +17,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
 Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python'}
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 if has('nvim')
@@ -93,7 +94,7 @@ let mapleader = "\<Space>"
 " Quickly edit dotfiles
 nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
-nmap <silent> <leader>ed :vsplit ~/.bash_profile<CR>
+nmap <silent> <leader>ed :vsplit ~/.zshrc<CR>
 nmap <silent> <leader>ei :vsplit ~/.config/i3/config<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>
 
@@ -271,6 +272,9 @@ set expandtab
 
 " Use 2 spaces instead of tabs for HTML and YAML files
 autocmd myvimrc FileType html,yaml setlocal shiftwidth=2 tabstop=2
+
+" " Use 2 spaces instead of tabs for JS
+autocmd myvimrc FileType javascript setlocal shiftwidth=2 tabstop=2 colorcolumn=80
 
 " Wrap lines to 72 characters in git commit messages and use 2 spaces for tab
 autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2

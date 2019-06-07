@@ -3,3 +3,4 @@ vim/autoload/
 vim/ftplugin/
 vim/.netrwhist
 vim/init.vim
+zsh/extras

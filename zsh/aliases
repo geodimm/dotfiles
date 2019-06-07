@@ -1,4 +1,3 @@
-#!/bin/bash
 # vim: set filetype=sh:
 
 function extract () {
@@ -23,13 +22,13 @@ function extract () {
 }
 
 # misc
-alias ls='ls $LS_OPTS'
-alias ll='ls -lh'
-alias la='ls -lah'
-alias lt='ls -ltrh'
-alias grep='grep --color=auto'
-alias grepi='grep -i'
-alias vim='vim -O'
+alias ls="ls ${LS_OPTS}"
+alias ll="ls -lh"
+alias la="ls -lah"
+alias lt="ls -ltrh"
+alias grep="grep --color=auto"
+alias grepi="grep -i"
+alias vim="vim -O"
 
 # docker
 function dps() {
@@ -44,19 +43,11 @@ alias drm='docker rm -fv `docker ps -qa`'
 alias dvrm='docker volume rm `docker volume ls -q`'
 
 # git
-alias gc='git commit'
-alias gca='git commit --amend'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gf='git fetch --all'
-alias gp='git push'
-alias gpp='git pull'
-alias gs='git status --u=all'
-alias ggrep='git grep -B0 -A0'
-alias ggrepi='ggrep --ignore-case'
-alias gu='git stash && git pull && git stash pop || true'
+alias ggrep="git grep -B0 -A0"
+alias ggrepi="ggrep --ignore-case"
+alias gu="git stash && git pull && git stash pop || true"
 
 # tmux
-alias tmux='tmux -2'
-alias ta='tmux attach -t'
-alias tk='tmux kill-session -t'
+alias tmux="tmux -2"
+alias ta="tmux attach -t"
+alias tk="tmux kill-session -t"
