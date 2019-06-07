@@ -85,14 +85,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# Save all history
-# Incrementally write history to file
-setopt INC_APPEND_HISTORY
-# Save timestamp to history file too
-setopt EXTENDED_HISTORY
-# Import newly written commands from the history file
-setopt SHARE_HISTORY
-
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
