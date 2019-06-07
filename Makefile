@@ -28,6 +28,7 @@ i3:
 .PHONY: zsh
 zsh:
 	ln -fs `pwd`/zsh/zshrc ~/.zshrc
+	ln -fs `pwd`/zsh/oxide.zsh-theme ~/.oh-my-zsh/custom/themes/oxide.zsh-theme
 
 .PHONY: git
 git:
