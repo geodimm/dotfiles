@@ -46,8 +46,3 @@ alias dvrm='docker volume rm `docker volume ls -q`'
 alias ggrep="git grep -B0 -A0"
 alias ggrepi="ggrep --ignore-case"
 alias gu="git stash && git pull && git stash pop || true"
-
-# tmux
-alias tmux="tmux -2"
-alias ta="tmux attach -t"
-alias tk="tmux kill-session -t"
