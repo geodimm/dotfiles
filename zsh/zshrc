@@ -1,6 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/georgi/.oh-my-zsh"
 
@@ -45,6 +42,7 @@ stty -ixon
 
 # Set keyboard settings
 setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_toggle
+setxkbmap -option altwin:swap_alt_win
 
 # Set the default umask
 umask 022
@@ -75,12 +73,6 @@ case "$OSTYPE" in
     *) ;;
 esac
 
-if [ "$DESKTOP_SESSION" = "i3" ]; then
-    export $(gnome-keyring-daemon --start)
-    # SSH_AGENT_PID required to stop xinitrc-common from starting ssh-agent
-    export SSH_AGENT_PID="${GNOME_KEYRING_PID:-gnome}"
-fi
-
 set editing-mode vi
 set blink-matching-paren on
 
@@ -88,13 +80,6 @@ set blink-matching-paren on
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
