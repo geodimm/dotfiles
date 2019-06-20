@@ -20,6 +20,7 @@ Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     Plug 'deoplete-plugins/deoplete-jedi'
@@ -293,7 +294,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Use double spacebar tab to select the current line
-map <leader><leader> V
+map <leader><leader> :FZF<CR>
 
 " Select the last inserted text
 nnoremap <leader>le `[v`]

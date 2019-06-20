@@ -94,6 +94,7 @@ set blink-matching-paren on
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/dotfiles/zsh/aliases
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
+test -f ~/.fzf.zsh  && source ~/.fzf.zsh
 
 # vi-mode extras
 # allow arrow keys to search history in insert mode
