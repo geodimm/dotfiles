@@ -1,4 +1,5 @@
 XDG_CONFIG_HOME ?= $(HOME)/.config
+ZSH_CUSTOM ?= ~/.oh-my-zsh/custom
 
 deps:
 	sudo apt install -y\
@@ -30,7 +31,7 @@ zsh:
 	ln -fs `pwd`/zsh/zshrc ~/.zshrc
 	ln -fs `pwd`/zsh/custom/themes/oxide.zsh-theme ~/.oh-my-zsh/custom/themes/oxide.zsh-theme
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-		~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+		$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting
 
 .PHONY: git
 git:
