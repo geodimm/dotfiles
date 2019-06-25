@@ -13,7 +13,8 @@ deps:
 		tig \
 		httpie \
 		htop \
-		jq
+		jq \
+		bat
 
 .PHONY: tmux
 tmux:
