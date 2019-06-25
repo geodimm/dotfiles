@@ -60,6 +60,9 @@ export EDITOR=vim
 export XDG_CONFIG_HOME=~/.config
 export REPOS=/repos
 
+# FZF settings
+export FZF_DEFAULT_OPTS="--layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
+
 # Golang
 export GOPATH=$REPOS/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
