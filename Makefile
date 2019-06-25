@@ -31,7 +31,9 @@ zsh:
 	ln -fs `pwd`/zsh/zshrc ~/.zshrc
 	ln -fs `pwd`/zsh/custom/themes/oxide.zsh-theme ~/.oh-my-zsh/custom/themes/oxide.zsh-theme
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-		$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting
+		$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting || true
+	git clone https://github.com/zsh-users/zsh-autosuggestions \
+		$(ZSH_CUSTOM)/plugins/zsh-autosuggestions || true
 
 .PHONY: git
 git:
