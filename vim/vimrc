@@ -5,30 +5,29 @@ augroup END
 
 call plug#begin('~/dotfiles/vim/plugged')
 
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'fatih/molokai'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'ervandew/supertab'
 Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python'}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-    Plug 'deoplete-plugins/deoplete-jedi'
-    Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-    Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/dotfiles/vim/plugged/gocode/nvim/symlink.sh'}
-    let g:deoplete#enable_at_startup = 1
-endif
+Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
+Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/dotfiles/vim/plugged/gocode/nvim/symlink.sh'}
+
+let g:deoplete#enable_at_startup = 1
 
 call plug#end()
 
@@ -45,11 +44,7 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " Pymode
 let g:pymode_python = 'python3'
-let g:pymode_motion = 0
-let g:pymode_doc = 0
 let g:pymode_rope = 0
-let g:pymode_breakpoint = 0
-let g:pymode_run = 0
 let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
@@ -77,6 +72,13 @@ let g:go_metalinter_autosave = 1
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
 
+" vim-devicons
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
 " FZF settings
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -93,10 +95,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-nmap <leader>f :FZF<CR>
-nmap <leader>c :Commits<CR>
-nmap <leader>b :BCommits<CR>
 
 " Colorizer
 map <F6> :ColorToggle<CR>
@@ -123,6 +121,11 @@ nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
 nmap <silent> <leader>ed :vsplit ~/.zshrc<CR>
 nmap <silent> <leader>ei :vsplit ~/.config/i3/config<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>
+
+" FZF mappings
+nmap <leader>f :FZF<CR>
+nmap <leader>c :Commits<CR>
+nmap <leader>bc :BCommits<CR>
 
 " Raise a dialogue for saving changes
 set confirm
@@ -368,3 +371,12 @@ map 0 ^
 
 " Remap Y to apply till EOL, just like D and C.
 map Y y$
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Post-hooks
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Fix vim-devicons issues after reloading $MYVIMRC
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
