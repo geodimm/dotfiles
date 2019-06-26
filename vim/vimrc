@@ -21,6 +21,7 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
     Plug 'deoplete-plugins/deoplete-jedi'
@@ -44,8 +45,11 @@ let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 " Pymode
 let g:pymode_python = 'python3'
+let g:pymode_motion = 0
+let g:pymode_doc = 0
 let g:pymode_rope = 0
-let g:pymode_rope_goto_definition_cmd = 'vnew'
+let g:pymode_breakpoint = 0
+let g:pymode_run = 0
 let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
@@ -72,6 +76,27 @@ let g:go_metalinter_autosave = 1
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
+
+" FZF settings
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+nmap <leader>f :FZF<CR>
+nmap <leader>c :Commits<CR>
+nmap <leader>b :BCommits<CR>
 
 " Colorizer
 map <F6> :ColorToggle<CR>
@@ -294,7 +319,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Use double spacebar tab to select the current line
-map <leader><leader> :FZF<CR>
+map <leader><leader> V
 
 " Select the last inserted text
 nnoremap <leader>le `[v`]
