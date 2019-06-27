@@ -10,6 +10,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'liuchengxu/space-vim-theme'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
@@ -77,6 +79,7 @@ let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
+let g:airline_powerline_fonts = 1
 
 " FZF settings
 " Customize fzf colors to match your color scheme
@@ -102,6 +105,9 @@ map! <F6> <Esc>:ColorToggle<CR>gi
 " space-vim-theme
 let g:space_vim_transp_bg = 1
 
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16_spacemacs'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -155,88 +161,6 @@ set wildignore+=*.pyc,*_build/*,*/coverage/*
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Build our status line
-" (inspired by https://github.com/maciakl/vim-neatstatus)
-let g:last_mode=""
-let g:myvimrc_color_normal   = 'guifg=#1c1c1c guibg=#00d7ff gui=bold ctermfg=234 ctermbg=45  cterm=bold'
-let g:myvimrc_color_insert   = 'guifg=#1c1c1c guibg=#00d700 gui=bold ctermfg=234 ctermbg=40  cterm=bold'
-let g:myvimrc_color_replace  = 'guifg=#1c1c1c guibg=#d7ff00 gui=bold ctermfg=234 ctermbg=190 cterm=bold'
-let g:myvimrc_color_visual   = 'guifg=#1c1c1c guibg=#ffaf00 gui=bold ctermfg=234 ctermbg=214 cterm=bold'
-let g:myvimrc_color_paste    = 'guifg=#1c1c1c guibg=#d7afff gui=bold ctermfg=234 ctermbg=183 cterm=bold'
-let g:myvimrc_color_filetype = 'guifg=#1c1c1c guibg=#c0c0c0 gui=bold ctermfg=234 ctermbg=7   cterm=bold'
-
-function! SetStatusLineColors()
-    exec 'hi User1 '.g:myvimrc_color_normal
-    exec 'hi User2 '.g:myvimrc_color_replace
-    exec 'hi User3 '.g:myvimrc_color_insert
-    exec 'hi User4 '.g:myvimrc_color_visual
-    exec 'hi User5 '.g:myvimrc_color_paste
-    exec 'hi User6 '.g:myvimrc_color_filetype
-endfunc
-
-function! IsPaste()
-    if &paste == 1
-        return " PASTE "
-    else
-        return ""
-    endif
-endfunction
-
-" Convert one-letter status to words
-function! VimMode()
-    redraw
-    let l:mode = mode()
-    if mode ==# "n"
-        exec 'hi User1 '.g:myvimrc_color_normal
-        return "NORMAL"
-    elseif mode ==# "i"
-        exec 'hi User1 '.g:myvimrc_color_insert
-        return "INSERT"
-    elseif mode ==# "R"
-        exec 'hi User1 '.g:myvimrc_color_replace
-        return "REPLACE"
-    elseif mode ==# "v"
-        exec 'hi User1 '.g:myvimrc_color_visual
-        return "VISUAL"
-    elseif mode ==# "V"
-        exec 'hi User1 '.g:myvimrc_color_visual
-        return "V-LINE"
-    elseif mode ==# "\<C-v>"
-        exec 'hi User1 '.g:myvimrc_color_visual
-        return "V-BLOCK"
-    else
-        return l:mode
-    endif
-endfunc
-
-if has('statusline')
-    call SetStatusLineColors()
-    function! SetStatusLineStyle()
-        let &stl=""
-        " mode (changes color)
-        let &stl.="%1* %{VimMode()} %*"
-        " add paste if it's toggled
-        let &stl.="%5*%{IsPaste()}%*"
-        " file path; %< colapses to the left if the window is too small
-        let &stl.=" %<%F "
-        " read only, modified, modifiable flags in brackets
-        let &stl.="%([%R%M]%)"
-        " right-aligh everything past this point
-        let &stl.="%= "
-        " file type (eg. python, ruby, etc..)
-        let &stl.="%6* %(%{&filetype}%) %*"
-        " file format (eg. unix, dos, etc..)
-        let &stl.=" %{&fileformat} "
-        " file encoding (eg. utf8, latin1, etc..)
-        let &stl.="%6* %(%{(&fenc!=''?&fenc:&enc)} %* %)"
-        " line number/total lines:col number"
-        let &stl.="%l/%L:%-3.c"
-    endfunc
-    " whenever the color scheme changes re-apply the colors
-    au ColorScheme * call SetStatusLineColors()
-    call SetStatusLineStyle()
-endif
 
 " Colorscheme
 set background=dark
