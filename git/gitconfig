@@ -5,11 +5,13 @@
 	editor = vim
 	mergeoptions = --no-edit
 	excludesFile = ~/dotfiles/git/gitignore
+	pager = less -F -X
 [push]
 	default = simple
 [pull]
 	rebase = true
 [alias]
+	co = checkout
 	ls = ls-files --full-name -st
 	tree = log --graph --date=local --pretty=format:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset' --all
 	find = !git log -p -S     
