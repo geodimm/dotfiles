@@ -78,7 +78,7 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-st
     behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
     (( $behind )) && gitstatus+=( "%{$oxide_reset_color%} %{$oxide_red%}⇣${behind}" )
 
-    hook_com[misc]+=${(j:/:)gitstatus}
+    hook_com[misc]+=${(j::)gitstatus}
 }
 
 # Executed before each prompt.
