@@ -19,15 +19,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/git-messenger.vim'
 Plug 'airblade/vim-gitgutter'
-Plug 'ervandew/supertab'
-Plug 'python-mode/python-mode', {'branch': 'develop', 'for': 'python'}
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
-Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'deoplete-plugins/deoplete-jedi'
-Plug 'zchee/deoplete-go', {'build': {'unix': 'make'}}
-Plug 'mdempsky/gocode', {'rtp': 'nvim', 'do': '~/dotfiles/vim/plugged/gocode/nvim/symlink.sh'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 let g:deoplete#enable_at_startup = 1
 
@@ -44,15 +38,19 @@ let g:tmux_navigator_no_mappings = 1
 let g:SuperTabDefaultCompletionType = "context"
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
-" Pymode
-let g:pymode_python = 'python3'
-let g:pymode_rope = 0
-let g:pymode_folding = 0
-let g:pymode_lint_unmodified = 1
-let g:pymode_lint_checkers = ['pylint', 'pyflakes', 'pep8', 'mccabe']
-" C0111 - Missing docstrings
-" W0703 - Cathing too general exception
-let g:pymode_lint_ignore = [ "C0111", "W0703", ]
+" coc.vim
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " vim-go
 let g:go_auto_type_info = 1
@@ -118,7 +116,8 @@ let g:airline_theme='base16_spacemacs'
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
-set updatetime=750
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
 
 let mapleader = "\<Space>"
 " Quickly edit dotfiles
