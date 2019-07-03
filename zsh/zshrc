@@ -51,6 +51,9 @@ umask 022
 # Resolve symbolic links to their true values when changing directory
 setopt CHASE_LINKS
 
+# Correct typos
+setopt correct
+
 unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
