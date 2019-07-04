@@ -16,6 +16,7 @@ zstyle :omz:plugins:ssh-agent identities id_rsa hf_id_rsa
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    colored-man-pages
     docker
     git
     golang
@@ -27,8 +28,8 @@ plugins=(
     vi-mode
     web-search
     z
-    zsh-syntax-highlighting
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
