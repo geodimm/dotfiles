@@ -18,6 +18,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/git-messenger.vim'
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
@@ -34,9 +35,15 @@ call plug#end()
 " Vim-Tmux-Navigator
 let g:tmux_navigator_no_mappings = 1
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" Pymode
+let g:pymode_python = 'python3'
+let g:pymode_rope = 0
+let g:pymode_folding = 0
+let g:pymode_lint_unmodified = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+" C0111 - Missing docstrings
+" W0703 - Cathing too general exception
+let g:pymode_lint_ignore = [ "C0111", "W0703", ]
 
 " coc.vim
 " Use tab for trigger completion with characters ahead and navigate.
