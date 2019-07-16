@@ -18,6 +18,9 @@ deps:
 
 .PHONY: tmux
 tmux:
+	mkdir -p ~/.tmux/themes
+	git clone https://github.com/srcery-colors/srcery-tmux/ \
+		~/.tmux/themes/srcery-tmux
 	ln -fs `pwd`/tmux/tmux.conf $(HOME)/.tmux.conf
 	ln -fs `pwd`/tmux/tnew.sh $(HOME)/tnew.sh
 
