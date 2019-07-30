@@ -24,8 +24,6 @@ Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-let g:deoplete#enable_at_startup = 1
-
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
