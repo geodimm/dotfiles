@@ -98,25 +98,54 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-client.focused          #005577 #005577 #eeeeee #005577 #005577
-client.focused_inactive #444444 #444444 #bbbbbb #444444 #444444
-client.unfocused        #222222 #222222 #bbbbbb #222222 #222222
-client.urgent           #770000 #770000 #eeeeee #770000 #770000
-client.background       #000000
+# srcery palette
+set $black          #1C1B19
+set $red            #EF2F27
+set $green          #519F50
+set $yellow         #FBB829
+set $blue           #2C78BF
+set $magenta        #E02C6D
+set $cyan           #0AAEB3
+set $white          #918175
+set $bright_black   #2D2C29
+set $bright_red     #F75341
+set $bright_green   #98BC37
+set $bright_yellow  #FED06E
+set $bright_blue    #68A8E4
+set $bright_magenta #FF5C8F
+set $bright_cyan    #53FDE9
+set $bright_white   #FCE8C3
+
+# xterm colors.
+set $orange        #FF5F00
+set $bright_orange #FF8700
+set $hard_black    #121212
+set $xgray1        #262626
+set $xgray2        #303030
+set $xgray3        #3A3A3A
+set $xgray4        #444444
+set $xgray5        #4E4E4E
+
+# color                 border      background     text
+client.focused          $cyan       $cyan          $bright_white
+client.focused_inactive $xgray5     $xgray4        $hard_black
+client.unfocused        $xgray5     $xgray1        $hard_black
+client.urgent           $bright_red $bright_red    $bright_white
+client.background       $black
 
 bar {
     status_command py3status
     tray_output primary
     colors {
-        background #1c1c1c
-        statusline #bbbbbb
-        separator  #555555
+        background $black
+        statusline $bright_white
+        separator  $xgray5
 
-        focused_workspace  #00d700 #00d700 #1c1c1c
-        active_workspace   #222222 #222222 #bbbbbb
-        inactive_workspace #222222 #222222 #bbbbbb
-        urgent_workspace   #770000 #770000 #eeeeee
-        binding_mode       #770000 #770000 #eeeeee
+        focused_workspace  $green $bright_green $black
+        active_workspace   $xgray5 $xgray4 $bright_white
+        inactive_workspace $xgray2 $xgray1 $bright_white
+        urgent_workspace   $red $bright_red $bright_white
+        binding_mode       $orange $bright_orange $bright_white
     }
 }
 
