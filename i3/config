@@ -32,7 +32,7 @@ bindsym $mod+o exec ~/dotfiles/i3/lock.sh
 bindsym $mod+x exec ~/dotfiles/i3/xrandr.sh
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec dmenu_run -nb '#2D2C29' -nf '#FCE8C3' -sb '#0AAEB3' -sf '#121212'
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
