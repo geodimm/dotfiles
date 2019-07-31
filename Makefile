@@ -29,6 +29,8 @@ i3:
 	mkdir -p $(XDG_CONFIG_HOME)/i3
 	ln -fs `pwd`/i3/config $(XDG_CONFIG_HOME)/i3/config
 	ln -fs `pwd`/i3/status.conf $(HOME)/.i3status.conf
+	mkdir -p $(XDG_CONFIG_HOME)/dunst
+	ln -fs `pwd`/i3/dunstrc $(XDG_CONFIG_HOME)/dunst/dunstrc
 
 .PHONY: zsh
 zsh:
