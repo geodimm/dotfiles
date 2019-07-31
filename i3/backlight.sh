@@ -44,5 +44,5 @@ done
 sudo light "${light_opts[@]}"
 
 notify-send \
-    "${device^} brightness"\ "Set to <b>$(light -s $target)%</b>"\
+    "Brightness" "${device^}" -h int:value:$(light -s $target) \
     -t 1000
