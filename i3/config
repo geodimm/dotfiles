@@ -32,7 +32,7 @@ bindsym $mod+o exec ~/dotfiles/i3/lock.sh
 bindsym $mod+x exec ~/dotfiles/i3/xrandr.sh
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -nb '#2D2C29' -nf '#FCE8C3' -sb '#0AAEB3' -sf '#121212'
+bindsym $mod+d exec dmenu_run -nb '#2D2C29' -nf '#918175' -sb '#3A3A3A' -sf '#FCE8C3'
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -131,6 +131,7 @@ client.focused          $cyan       $cyan          $bright_white
 client.focused_inactive $xgray5     $xgray4        $hard_black
 client.unfocused        $xgray5     $xgray1        $hard_black
 client.urgent           $bright_red $bright_red    $bright_white
+
 client.background       $black
 
 bar {
@@ -142,9 +143,9 @@ bar {
         statusline $bright_white
         separator  $xgray5
 
-        focused_workspace  $green $bright_green $black
-        active_workspace   $xgray5 $xgray4 $bright_white
-        inactive_workspace $xgray2 $xgray1 $bright_white
+        focused_workspace  $xgray3 $xgray3 $bright_white
+        active_workspace   $xgray5 $xgray5 $bright_white
+        inactive_workspace $bright_black $bright_black $white
         urgent_workspace   $red $bright_red $bright_white
         binding_mode       $orange $bright_orange $bright_white
     }
