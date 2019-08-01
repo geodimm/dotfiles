@@ -40,6 +40,8 @@ zsh:
 		$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting || true
 	git clone https://github.com/zsh-users/zsh-autosuggestions \
 		$(ZSH_CUSTOM)/plugins/zsh-autosuggestions || true
+	git clone https://github.com/romkatv/powerlevel10k.git \
+		$(ZSH_CUSTOM)/themes/powerlevel10k || true
 
 .PHONY: git
 git:
