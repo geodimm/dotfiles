@@ -20,7 +20,7 @@ deps:
 tmux:
 	mkdir -p ~/.tmux/themes
 	git clone https://github.com/srcery-colors/srcery-tmux/ \
-		~/.tmux/themes/srcery-tmux
+		~/.tmux/themes/srcery-tmux || true
 	ln -fs `pwd`/tmux/tmux.conf $(HOME)/.tmux.conf
 	ln -fs `pwd`/tmux/tnew.sh $(HOME)/tnew.sh
 
@@ -44,12 +44,6 @@ zsh:
 .PHONY: git
 git:
 	ln -fs `pwd`/git/gitconfig $(HOME)/.gitconfig
-
-.PHONY: vim
-vim:
-	rm -f ~/.vim
-	ln -fs `pwd`/vim ~/.vim
-	ln -fs `pwd`/vim/vimrc ~/.vimrc
 
 .PHONY: neovim
 neovim:
