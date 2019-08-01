@@ -2,7 +2,7 @@ XDG_CONFIG_HOME ?= $(HOME)/.config
 ZSH_CUSTOM ?= ~/.oh-my-zsh/custom
 
 deps:
-	sudo apt install -y\
+	sudo apt install -y \
 		zsh \
 		curl \
 		tmux \
@@ -35,7 +35,7 @@ i3:
 .PHONY: zsh
 zsh:
 	ln -fs `pwd`/zsh/zshrc ~/.zshrc
-	ln -fs `pwd`/zsh/custom/themes/oxide.zsh-theme ~/.oh-my-zsh/custom/themes/oxide.zsh-theme
+	ln -fs `pwd`/zsh/custom/themes/oxide.zsh-theme $(ZSH_CUSTOM)/themes/oxide.zsh-theme
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
 		$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting || true
 	git clone https://github.com/zsh-users/zsh-autosuggestions \
@@ -56,5 +56,5 @@ neovim:
 
 .PHONY: misc
 misc:
-	ln -fs `pwd`/tigrc $(HOME)/.tigrc
+	ln -fs `pwd`/tig/tigrc $(HOME)/.tigrc
 	mkdir -p $(HOME)/.ssh/tmp
