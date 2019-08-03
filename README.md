@@ -13,9 +13,9 @@
 **tmux**  | `$HOME/.tmux.conf`
 || `$HOME/.tmux/themes/srcery-tmux/`
 **zsh**  | `$HOME/.zshrc`
-|| `$HOME/.oh-my-zsh/custom/themes/oxide.zsh-theme`
 || `$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting`
 || `$HOME/.oh-my-zsh/plugins/zsh-autosuggestions`
+|| `$HOME/.p10k.zsh`
 **neovim**  | `$XDG_CONFIG_HOME/nvim`
 **git**  | `$HOME/.gitconfig`
 **tig**  | `$HOME/.tigrc`
