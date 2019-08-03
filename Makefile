@@ -36,7 +36,6 @@ i3:
 zsh:
 	ln -fs `pwd`/zsh/zshrc ~/.zshrc
 	ln -fs `pwd`/zsh/p10k.zsh ~/.p10k.zsh
-	ln -fs `pwd`/zsh/custom/themes/oxide.zsh-theme $(ZSH_CUSTOM)/themes/oxide.zsh-theme
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
 		$(ZSH_CUSTOM)/plugins/zsh-syntax-highlighting || true
 	git clone https://github.com/zsh-users/zsh-autosuggestions \
