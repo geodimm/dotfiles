@@ -59,6 +59,10 @@ fi
       go_version              # golang version
       time                    # current time
       # =========================[ Line #2 ]=========================
+      newline
+      load
+      ram
+      disk_usage
   )
 
   # To disable default icons for all segments, set POWERLEVEL9K_VISUAL_IDENTIFIER_EXPANSION=''.
@@ -444,6 +448,19 @@ fi
   typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND=94
   # Custom icon.
   # typeset -g POWERLEVEL9K_PUBLIC_IP_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  ###############################[ load: Machine's load average ]###############################
+  # Show load average
+  typeset -g POWERLEVEL9K_LOAD_WHICH=1
+
+  # Load avg colors
+  typeset -g POWERLEVEL9K_LOAD_NORMAL_FOREGROUND=70
+  typeset -g POWERLEVEL9K_LOAD_WARNING_FOREGROUND=178
+  typeset -g POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND=1
+
+  ###############################[ ram: Machine's free memory ]#################################
+  # Show free memory
+  typeset -g POWERLEVEL9K_RAM_FOREGROUND=70
 
   ################################[ battery: internal battery ]#################################
   # Show battery in red when it's below this level and not connected to power supply.
