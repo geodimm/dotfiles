@@ -4,7 +4,7 @@ hide_edge_borders both
 new_window pixel 3
 new_float pixel 3
 
-font pango:monospace 10
+font pango:Meslo LG M DZ for Powerline Regular 10
 
 floating_modifier $mod
 
@@ -137,7 +137,7 @@ client.background       $black
 bar {
     status_command py3status
     tray_output primary
-    font pango:monospace 10
+    font pango:Meslo LG M DZ for Powerline Regular 10
     colors {
         background $black
         statusline $bright_white
