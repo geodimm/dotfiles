@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/georgi/.oh-my-zsh"
+export ZSH="${HOME}/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -32,7 +32,7 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+source ${ZSH}/oh-my-zsh.sh
 
 # User configuration
 
@@ -41,10 +41,6 @@ export KEYTIMEOUT=1
 
 # Fix Ctrl+<key>
 stty -ixon
-
-# Set keyboard settings
-setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_toggle
-setxkbmap -option altwin:swap_alt_win
 
 # Set the default umask
 umask 022
@@ -68,15 +64,21 @@ export REPOS=/repos
 export FZF_DEFAULT_OPTS="--layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
 
 # Golang
-export GOPATH=$REPOS/go
+export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
-case "$OSTYPE" in
+case "${OSTYPE}" in
     darwin*)
         LS_OPTS="-G"
         ;;
     linux*)
         LS_OPTS="--color=auto --group-directories-first"
+
+        # Set keyboard settings
+        if (( $+commands[setxkbmap] )); then
+            setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_toggle
+            setxkbmap -option altwin:swap_alt_win
+        fi
         ;;
     *) ;;
 esac
