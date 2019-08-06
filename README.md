@@ -8,8 +8,6 @@
 
 || File
 ------------- | -------------
-**i3**  | `$XDG_CONFIG_HOME/i3/config`
-|| `$HOME/.i3status.conf`
 **tmux**  | `$HOME/.tmux.conf`
 || `$HOME/.tmux/themes/srcery-tmux/`
 **zsh**  | `$HOME/.zshrc`
@@ -21,14 +19,14 @@
 **tig**  | `$HOME/.tigrc`
 **dunst**  | `$HOME/dunst/dunstrc`
 
-> For more information refer to the [Makefile](./Makefile)
+> For more information refer to the [install.sh](./install.sh)
 
 ### Using Git
 ```bash
-git clone https://github.com/georgijd/dotfiles.git ~/dotfiles && cd ~/dotfiles && make
+git clone https://github.com/georgijd/dotfiles.git ~/dotfiles && cd ~/dotfiles && ./install.sh
 ```
 
 ### Git-free install
 ```bash
-mkdir -p ~/dotfiles && curl -#L https://github.com/georgijd/dotfiles/tarball/master | tar -xzv -C ~/dotfiles --strip-components=1 && cd ~/dotfiles && make
+mkdir -p ~/dotfiles && curl -#L https://github.com/georgijd/dotfiles/tarball/master | tar -xzv -C ~/dotfiles --strip-components=1 && cd ~/dotfiles && ./install.sh
 ```
