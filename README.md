@@ -17,7 +17,6 @@
 **neovim**  | `$XDG_CONFIG_HOME/nvim`
 **git**  | `$HOME/.gitconfig`
 **tig**  | `$HOME/.tigrc`
-**dunst**  | `$HOME/dunst/dunstrc`
 
 > For more information refer to the [install.sh](./install.sh)
 
