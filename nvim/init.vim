@@ -3,7 +3,7 @@ augroup myvimrc
   autocmd!
 augroup END
 
-call plug#begin('~/dotfiles/vim/plugged')
+call plug#begin('~/dotfiles/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'

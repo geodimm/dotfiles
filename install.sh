@@ -105,8 +105,8 @@ function configure_nvim () {
 
     # setup configuration files
     rm -f "${XDG_CONFIG_HOME}/nvim"
-    ln -fs "$(pwd)/vim" "${XDG_CONFIG_HOME}/nvim"
-    curl -fLo "$(pwd)/vim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    ln -fs "$(pwd)/nvim" "${XDG_CONFIG_HOME}/nvim"
+    curl -fLo "$(pwd)/nvim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     nvim +PlugInstall +qall
 
     # install coc-settings deps

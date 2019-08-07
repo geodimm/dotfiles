@@ -1,6 +1,5 @@
-vim/plugged/
-vim/autoload/
-vim/ftplugin/
-vim/.netrwhist
-vim/init.vim
+nvim/plugged/
+nvim/autoload/
+nvim/ftplugin/
+nvim/.netrwhist
 zsh/extras
