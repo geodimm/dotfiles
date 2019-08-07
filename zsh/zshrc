@@ -1,20 +1,10 @@
-# Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Update the list of identities so the ssh-agent plugin sets up the correct ones
 zstyle :omz:plugins:ssh-agent identities id_rsa hf_id_rsa
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
     colored-man-pages
     docker
@@ -56,20 +46,9 @@ export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
 export PATH="${PATH}:${HOME}:."
-export EDITOR=vim
-export XDG_CONFIG_HOME=~/.config
+export EDITOR=nvim
+export XDG_CONFIG_HOME="${HOME}/.config"
 export REPOS=/repos
-
-# FZF settings
-export FZF_DEFAULT_OPTS="--layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
-
-# Golang
-export GOPATH="${HOME}/go"
-export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
-
-# Node Version Manager
-export NVM_DIR="${HOME}/.nvm"
-test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
 
 case "${OSTYPE}" in
     darwin*)
@@ -80,7 +59,7 @@ case "${OSTYPE}" in
 
         # Set keyboard settings
         if (( $+commands[setxkbmap] )); then
-            setxkbmap -layout us,bg -variant ,phonetic -option ctrl:nocaps grp:ctrl_alt_toggle
+            setxkbmap -option ctrl:nocaps
             setxkbmap -option altwin:swap_alt_win
         fi
         ;;
@@ -90,27 +69,6 @@ esac
 set editing-mode vi
 set blink-matching-paren on
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/dotfiles/zsh/aliases
-test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
-test -f ~/.fzf.zsh && source ~/.fzf.zsh
-test -f ~/.p10k.zsh && source ~/.p10k.zsh
-
 # vi-mode extras
 # allow arrow keys to search history in insert mode
 bindkey "^[OA" up-line-or-beginning-search
@@ -118,3 +76,18 @@ bindkey "^[OB" down-line-or-beginning-search
 # allow home keys to search history in normal mode
 bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
+
+# FZF
+export FZF_DEFAULT_OPTS="--layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
+test -f ~/.fzf.zsh && source ~/.fzf.zsh
+
+# Golang
+export GOPATH="${HOME}/go"
+export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+
+# Node Version Manager
+export NVM_DIR="${HOME}/.nvm"
+test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
+
+# Extras
+test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
