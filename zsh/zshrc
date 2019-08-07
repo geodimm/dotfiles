@@ -32,7 +32,7 @@ plugins=(
     zsh-syntax-highlighting
 )
 
-source ${ZSH}/oh-my-zsh.sh
+source "${ZSH}/oh-my-zsh.sh"
 
 # User configuration
 
@@ -55,7 +55,7 @@ unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
-export PATH=$PATH:$HOME:.
+export PATH="${PATH}:${HOME}:."
 export EDITOR=vim
 export XDG_CONFIG_HOME=~/.config
 export REPOS=/repos
@@ -64,8 +64,12 @@ export REPOS=/repos
 export FZF_DEFAULT_OPTS="--layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
 
 # Golang
-export GOPATH=$HOME/go
-export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+export GOPATH="${HOME}/go"
+export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+
+# Node Version Manager
+export NVM_DIR="${HOME}/.nvm"
+test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
 
 case "${OSTYPE}" in
     darwin*)
