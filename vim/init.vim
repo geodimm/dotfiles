@@ -128,7 +128,6 @@ let mapleader = "\<Space>"
 nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
 nmap <silent> <leader>ed :vsplit ~/.zshrc<CR>
-nmap <silent> <leader>ei :vsplit ~/.config/i3/config<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 " FZF mappings
