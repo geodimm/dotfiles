@@ -1,5 +1,15 @@
 # vim: set filetype=zsh:
 
+case "${OSTYPE}" in
+    darwin*)
+        LS_OPTS="-G"
+        ;;
+    linux*)
+        LS_OPTS="--color=auto --group-directories-first"
+        ;;
+    *) ;;
+esac
+
 # misc
 alias ls="ls ${LS_OPTS}"
 alias lt="ls -ltrh"
