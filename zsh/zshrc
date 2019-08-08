@@ -51,13 +51,7 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export REPOS=/repos
 
 case "${OSTYPE}" in
-    darwin*)
-        LS_OPTS="-G"
-        ;;
     linux*)
-        LS_OPTS="--color=auto --group-directories-first"
-
-        # Set keyboard settings
         if (( $+commands[setxkbmap] )); then
             setxkbmap -option ctrl:nocaps
             setxkbmap -option altwin:swap_alt_win
