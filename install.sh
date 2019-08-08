@@ -75,8 +75,8 @@ function install_deps () {
 }
 
 function configure_tmux () {
-    mkdir -p ~/.tmux/themes
-    git clone https://github.com/srcery-colors/srcery-tmux/ ~/.tmux/themes/srcery-tmux || true
+    mkdir -p ${HOME}/.tmux/themes
+    git clone https://github.com/srcery-colors/srcery-tmux/ ${HOME}/.tmux/themes/srcery-tmux || true
     ln -fs "$(pwd)/tmux/tmux.conf" "${HOME}/.tmux.conf"
     ln -fs "$(pwd)/tmux/tnew.sh" "${HOME}/tnew.sh"
 }
@@ -86,7 +86,7 @@ function configure_zsh () {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" || true
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" || true
     git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k" || true
-    ln -fs "$(pwd)/zsh/zshrc" ~/.zshrc
+    ln -fs "$(pwd)/zsh/zshrc" ${HOME}/.zshrc
     ln -fs "$(pwd)/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
     ln -fs "$(pwd)/zsh/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
 }
