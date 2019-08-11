@@ -74,6 +74,7 @@ let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
 let g:go_def_reuse_buffer = 0
 let g:go_metalinter_autosave = 1
+let g:go_doc_popup_window = 1
 
 " NERDTree settings
 map <F2> :NERDTreeToggle<CR>
