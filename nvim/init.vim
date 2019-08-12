@@ -249,6 +249,10 @@ set pastetoggle=<F4>
 " Sort lines alphabetically
 vnoremap <leader>s :sort<CR>
 
+" Allow pasting the same selection multiple times
+" 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again.
+xnoremap p pgvy
+
 " Go back to visual mode after reindenting
 vnoremap < <gv
 vnoremap > >gv
