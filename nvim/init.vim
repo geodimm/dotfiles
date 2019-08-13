@@ -6,6 +6,7 @@ augroup END
 call plug#begin('~/dotfiles/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -17,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'airblade/vim-gitgutter'
