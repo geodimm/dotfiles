@@ -17,6 +17,6 @@ alias grepi="grep -i"
 alias vim="vim -O"
 
 # git
-alias ggrep="git grep -B0 -A0"
+alias ggrep="git grep -n -I --break --heading -B0 -A0"
 alias ggrepi="ggrep --ignore-case"
 alias gu="git stash && git pull && git stash pop || true"
