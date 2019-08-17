@@ -80,7 +80,7 @@ let g:go_metalinter_autosave = 1
 let g:go_doc_popup_window = 1
 
 " NERDTree settings
-map <F2> :NERDTreeToggle<CR>
+noremap <F2> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
 
 " vim-devicons
@@ -109,8 +109,8 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Colorizer
-map <F6> :ColorToggle<CR>
-map! <F6> <Esc>:ColorToggle<CR>gi
+noremap <F6> :ColorToggle<CR>
+noremap! <F6> <Esc>:ColorToggle<CR>gi
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -129,15 +129,15 @@ set updatetime=300
 
 let mapleader = "\<Space>"
 " Quickly edit dotfiles
-nmap <silent> <leader>ev :vsplit $MYVIMRC<CR>
-nmap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
-nmap <silent> <leader>ed :vsplit ~/.zshrc<CR>
-nmap <silent> <leader>r :so $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
+nnoremap <silent> <leader>ed :vsplit ~/.zshrc<CR>
+nnoremap <silent> <leader>r :so $MYVIMRC<CR>
 
 " FZF mappings
-nmap <leader>f :FZF<CR>
-nmap <leader>c :Commits<CR>
-nmap <leader>bc :BCommits<CR>
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>c :Commits<CR>
+nnoremap <leader>bc :BCommits<CR>
 
 " Raise a dialogue for saving changes
 set confirm
@@ -202,8 +202,8 @@ set cursorline
 " Line numbers
 set number
 set relativenumber
-map <F5> :set relativenumber!<CR>
-map! <F5> <Esc>:set relativenumber!<CR>gi
+noremap <F5> :set relativenumber!<CR>
+noremap! <F5> <Esc>:set relativenumber!<CR>gi
 
 " Regex and search options
 set magic
@@ -212,14 +212,14 @@ set magic
 nnoremap <silent> <leader><CR> :noh<CR>
 
 " Save files
-nmap <leader>w :w<CR>
-vmap <leader>w <Esc>:w<CR>gv
+nnoremap <leader>w :w<CR>
+vnoremap <leader>w <Esc>:w<CR>gv
 " Save with sudo
-cmap w!! %!sudo tee > /dev/null %
+cnoremap w!! %!sudo tee > /dev/null %
 
 " Close files (will raise confirmation dialog for unsaved changes)
-nmap <leader>q :q<CR>
-vmap <leader>q <Esc>:q<CR>gv
+nnoremap <leader>q :q<CR>
+vnoremap <leader>q <Esc>:q<CR>gv
 
 " First tab will complete to the longest common string
 set wildmode=longest:full,full
@@ -261,7 +261,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Use double spacebar tab to select the current line
-map <leader><leader> V
+noremap <leader><leader> V
 
 " Select the last inserted text
 nnoremap <leader>le `[v`]
@@ -300,16 +300,16 @@ inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
+noremap <leader>tn :tabnew<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tc :tabclose<cr>
+noremap <leader>tm :tabmove
 
 " Remap 0 to go to first non-blank character of the line
-map 0 ^
+noremap 0 ^
 
 " Remap Y to apply till EOL, just like D and C.
-map Y y$
+noremap Y y$
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Post-hooks
