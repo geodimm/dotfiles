@@ -72,7 +72,7 @@ bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
 
 # FZF
-export FZF_DEFAULT_OPTS="--layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
+export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --border --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
 # Golang
