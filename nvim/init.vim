@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'srcery-colors/srcery-vim'
 Plug 'wellle/targets.vim'
+Plug 'thaerkh/vim-indentguides'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -60,6 +61,16 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Use `[e` and `]e` to navigate diagnostics
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
+
+" Show all diagnostics
+nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
 
 " vim-go
 let g:go_auto_type_info = 1
