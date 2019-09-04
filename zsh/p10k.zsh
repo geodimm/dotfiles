@@ -279,18 +279,18 @@ fi
   # We are using parameters defined by the gitstatus plugin. See reference:
   # https://github.com/romkatv/gitstatus/blob/master/gitstatus.plugin.zsh.
   local vcs=''
-  VCS_UNTRACKED_ICON=$'\uF059 '             # 
-  VCS_UNSTAGED_ICON=$'\uF06A '              # 
-  VCS_STAGED_ICON=$'\uF055 '                # 
+  VCS_UNTRACKED_ICON=$'\uF128 '             # 
+  VCS_UNSTAGED_ICON=$'\uF12A'               # 
+  VCS_STAGED_ICON=$'\uF067 '                # 
   VCS_STASH_ICON=$'\uF01C '                 # 
-  VCS_INCOMING_CHANGES_ICON=$'\uF01A '      # 
-  VCS_OUTGOING_CHANGES_ICON=$'\uF01B '      # 
+  VCS_INCOMING_CHANGES_ICON=$'\uF063 '      # 
+  VCS_OUTGOING_CHANGES_ICON=$'\uF062 '      # 
   VCS_TAG_ICON=$'\uF02B '                   # 
   VCS_BOOKMARK_ICON=$'\uF461 '              # 
   VCS_COMMIT_ICON=$'\uE729 '                # 
-  VCS_BRANCH_ICON=$'\uF126 '                # 
+  VCS_BRANCH_ICON=$'\uF725 '                # 
   VCS_REMOTE_BRANCH_ICON=$'\uE728 '         # 
-  VCS_MERGE_ICON=$'\uE727 '                 #
+  VCS_MERGE_ICON=$'\uE727 '                 # 
   # 'feature' or '@72f5c8a' if not on a branch.
   vcs+='${${VCS_STATUS_LOCAL_BRANCH:+%76F${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${VCS_STATUS_LOCAL_BRANCH//\%/%%}}'
   vcs+=':-%f${VCS_COMMIT_ICON}%76F${VCS_STATUS_COMMIT[1,8]}}'
