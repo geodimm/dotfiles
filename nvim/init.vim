@@ -119,6 +119,13 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" Command for git grep
+" - fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -bang -nargs=* FZFGGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
 " Colorizer
 noremap <F6> :ColorToggle<CR>
 noremap! <F6> <Esc>:ColorToggle<CR>gi
@@ -147,6 +154,7 @@ nnoremap <silent> <leader>r :so $MYVIMRC<CR>
 
 " FZF mappings
 nnoremap <leader>f :FZF<CR>
+nnoremap <leader>s :FZFGGrep<CR>
 nnoremap <leader>c :Commits<CR>
 nnoremap <leader>bc :BCommits<CR>
 
