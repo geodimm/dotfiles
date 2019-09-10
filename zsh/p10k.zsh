@@ -279,7 +279,7 @@ fi
   # We are using parameters defined by the gitstatus plugin. See reference:
   # https://github.com/romkatv/gitstatus/blob/master/gitstatus.plugin.zsh.
   local vcs=''
-  VCS_UNTRACKED_ICON=$'\uF128 '             # 
+  VCS_UNTRACKED_ICON=$'\uF128'              # 
   VCS_UNSTAGED_ICON=$'\uF12A'               # 
   VCS_STAGED_ICON=$'\uF067 '                # 
   VCS_STASH_ICON=$'\uF01C '                 # 
