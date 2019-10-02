@@ -2,9 +2,6 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Update the list of identities so the ssh-agent plugin sets up the correct ones
-zstyle :omz:plugins:ssh-agent identities id_rsa hf_id_rsa
-
 plugins=(
     colored-man-pages
     docker
@@ -13,7 +10,6 @@ plugins=(
     kubectl
     npm
     nvm
-    ssh-agent
     tmux
     vi-mode
     web-search
