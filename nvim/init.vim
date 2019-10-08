@@ -14,6 +14,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'srcery-colors/srcery-vim'
+Plug 'liuchengxu/vista.vim'
 Plug 'wellle/targets.vim'
 Plug 'thaerkh/vim-indentguides'
 Plug 'tpope/vim-surround'
@@ -101,6 +102,14 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:airline_powerline_fonts = 1
+
+" vista
+let g:vista_default_executive = 'coc'
+let g:vista_finder_alternative_executives = []
+let g:vista_fzf_preview = ['right:50%']
+let g:vista_echo_cursor_strategy = 'floating_win'
+let g:vista_disable_statusline = 0
+noremap <F3> :<C-u>Vista!!<CR>
 
 " FZF settings
 " Customize fzf colors to match your color scheme
