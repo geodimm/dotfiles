@@ -25,7 +25,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
-Plug 'chrisbra/Colorizer', {'on': 'ColorToggle'}
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
@@ -127,7 +127,7 @@ command! -bang -nargs=* FZFGGrep
   \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
 
 " Colorizer
-noremap <F6> :ColorToggle<CR>
+noremap <F6> :HexokinaseToggle<CR>
 noremap! <F6> <Esc>:ColorToggle<CR>gi
 
 " vim-airline
