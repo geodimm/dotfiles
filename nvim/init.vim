@@ -269,7 +269,7 @@ autocmd myvimrc FileType html,yaml setlocal shiftwidth=2 tabstop=2
 autocmd myvimrc FileType javascript setlocal shiftwidth=2 tabstop=2 colorcolumn=80
 
 " Wrap lines to 72 characters in git commit messages and use 2 spaces for tab
-autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2
+autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2 colorcolumn=+1 colorcolumn+=51
 
 " Don't leave space between joined lines
 set nojoinspaces
