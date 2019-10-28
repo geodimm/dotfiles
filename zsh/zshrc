@@ -81,3 +81,4 @@ test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
 
 # Extras
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
+export GPG_TTY=$(tty)
