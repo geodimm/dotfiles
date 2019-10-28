@@ -15,6 +15,7 @@ GO_VERSION="${GO_VERSION:=1.12.7}"
 set -e
 
 packages=(
+    ncurses-term
     curl
     htop
     httpie
