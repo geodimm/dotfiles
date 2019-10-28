@@ -38,7 +38,5 @@
     untracked = blue bold
 [http]
     postBuffer = 1024288000
-[url "ssh://georgi.dimitrov@git.ntteo.net/usr/local/ntt/git/"]
-    insteadOf = https://git.ntteo.net/
-[url "ssh://git@git.nflex.io:10022/"]
-    insteadOf = https://git.nflex.io/
+[url "git@github.com:"]
+	insteadOf = https://github.com/
