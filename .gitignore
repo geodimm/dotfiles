@@ -3,3 +3,4 @@ nvim/autoload/
 nvim/ftplugin/
 nvim/.netrwhist
 zsh/extras
+git/extras
