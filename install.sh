@@ -15,17 +15,18 @@ GO_VERSION="${GO_VERSION:=1.12.7}"
 set -e
 
 packages=(
-    ncurses-term
     curl
     htop
     httpie
     jq
+    ncurses-term
     python2-dev
     python2-pip
     python3-dev
     python3-pip
     tig
     tmux
+    xclip
     zsh
 )
 
