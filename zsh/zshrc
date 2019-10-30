@@ -2,6 +2,8 @@ export ZSH="${HOME}/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+CASE_SENSITIVE="true"
+
 plugins=(
     aws
     colored-man-pages
