@@ -57,6 +57,8 @@ fi
       virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
       nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       go_version              # golang version
+      aws
+      terraform
       time                    # current time
       # =========================[ Line #2 ]=========================
       newline
