@@ -458,6 +458,19 @@ fi
   # Custom icon.
   # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
+ ################[ terraform: terraform workspace (https://www.terraform.io) ]#################
+  # Terraform color.
+  typeset -g POWERLEVEL9K_TERRAFORM_FOREGROUND=38
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_TERRAFORM_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
+  # AWS profile color.
+  typeset -g POWERLEVEL9K_AWS_FOREGROUND=38
+  # typeset -g POWERLEVEL9K_AWS_BACKGROUND=1
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_AWS_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
   ###############################[ public_ip: public IP address ]###############################
   # Public IP color.
   typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND=94
