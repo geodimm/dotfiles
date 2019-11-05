@@ -40,6 +40,7 @@ fi
       # =========================[ Line #1 ]=========================
       dir                     # current directory
       vcs                     # git status
+      aws_token_expiry
       # =========================[ Line #2 ]=========================
       newline
       prompt_char             # prompt symbol
@@ -533,6 +534,15 @@ fi
   # User-defined prompt segments can be customized the same way as built-in segments.
   typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
+
+  function prompt_aws_token_expiry() {
+      if (( ${+AWS_EXPIRY} )); then
+          total=$(expr ${AWS_EXPIRY} - $(date +%s))
+          mins=$(expr $total / 60)
+          secs=$(expr $total % 60)
+          p10k segment -f 208 -i '' -t "${mins}m${secs}s"
+      fi
+  }
 }
 
 (( ! p9k_classic_restore_aliases )) || setopt aliases
