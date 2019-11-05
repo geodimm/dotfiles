@@ -88,6 +88,8 @@ let g:go_def_reuse_buffer = 0
 let g:go_metalinter_autosave = 1
 let g:go_doc_popup_window = 1
 
+autocmd myvimrc FileType go noremap <leader>t :<C-u>GoTestFunc<CR>
+
 " NERDTree settings
 noremap <F2> :<C-u>NERDTreeToggle<CR>
 
