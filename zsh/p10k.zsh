@@ -40,7 +40,6 @@ fi
       # =========================[ Line #1 ]=========================
       dir                     # current directory
       vcs                     # git status
-      aws_token_expiry
       # =========================[ Line #2 ]=========================
       newline
       prompt_char             # prompt symbol
@@ -60,6 +59,7 @@ fi
       go_version              # golang version
       aws
       terraform
+      form3
       time                    # current time
       # =========================[ Line #2 ]=========================
       newline
@@ -535,12 +535,12 @@ fi
   typeset -g POWERLEVEL9K_EXAMPLE_FOREGROUND=208
   typeset -g POWERLEVEL9K_EXAMPLE_VISUAL_IDENTIFIER_EXPANSION='${P9K_VISUAL_IDENTIFIER}'
 
-  function prompt_aws_token_expiry() {
-      if (( ${+AWS_EXPIRY} )); then
+  function prompt_form3() {
+      if (( ${+F3_ENVIRONMENT} && ${+AWS_EXPIRY} )); then
           total=$(expr ${AWS_EXPIRY} - $(date +%s))
           mins=$(expr $total / 60)
           secs=$(expr $total % 60)
-          p10k segment -f 208 -i '' -t "${mins}m${secs}s"
+          p10k segment -f 208 -i '' -t "${mins}m${secs}s on ${F3_ENVIRONMENT}"
       fi
   }
 }
