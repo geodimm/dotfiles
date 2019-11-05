@@ -89,8 +89,7 @@ let g:go_metalinter_autosave = 1
 let g:go_doc_popup_window = 1
 
 " NERDTree settings
-noremap <F2> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '\.egg-info$', '__pycache__']
+noremap <F2> :<C-u>NERDTreeToggle<CR>
 
 " vim-devicons
 let g:webdevicons_conceal_nerdtree_brackets = 1
@@ -131,10 +130,6 @@ command! -bang -nargs=* FZFGGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
-" Colorizer
-noremap <F6> :HexokinaseToggle<CR>
-noremap! <F6> <Esc>:ColorToggle<CR>gi
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -226,9 +221,8 @@ set cursorline
 
 " Line numbers
 set number
-set relativenumber
-noremap <F5> :set relativenumber!<CR>
-noremap! <F5> <Esc>:set relativenumber!<CR>gi
+noremap <F4> :set relativenumber!<CR>
+noremap! <F4> <Esc>:set relativenumber!<CR>gi
 
 " Regex and search options
 set magic
@@ -270,9 +264,6 @@ autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabs
 
 " Don't leave space between joined lines
 set nojoinspaces
-
-" Fix identation when pasting in Insert mode
-set pastetoggle=<F4>
 
 " Sort lines alphabetically
 vnoremap <leader>s :sort<CR>
