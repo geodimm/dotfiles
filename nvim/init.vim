@@ -26,6 +26,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -73,9 +74,10 @@ nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
 " vim-go
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
-let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
@@ -84,14 +86,30 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
-let g:go_def_reuse_buffer = 0
 let g:go_metalinter_autosave = 1
 let g:go_doc_popup_window = 1
 let g:go_term_mode = "split"
 let g:go_term_enabled = 1
 let g:go_term_close_on_exit = 0
+let g:go_debug_windows = {'vars':'leftabove vnew','stack':'botright 10new'}
+let g:go_debug = ["lsp", "debugger-commands"]
 
-autocmd myvimrc FileType go noremap <leader>t :<C-u>GoTestFunc<CR>
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+        call go#test#Test(0, 1)
+    elseif l:file =~# '^\f\+\.go$'
+        call go#cmd#Build(0)
+    endif
+endfunction
+
+autocmd myvimrc FileType go nmap <buffer> <leader>gr <Plug>(go-run)
+autocmd myvimrc FileType go nmap <buffer> <leader>gt <Plug>(go-test-func)
+autocmd myvimrc FileType go nmap <buffer> <leader>gb :<C-u>call <SID>build_go_files()<CR>
+autocmd myvimrc FileType go nmap <buffer> <leader>gc <Plug>(go-coverage-toggle)
+autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>GoDebugStart<CR>
+autocmd myvimrc FileType go nmap <buffer> <F9> :<C-u>GoDebugBreakpoint<CR>
 
 " NERDTree settings
 noremap <F2> :<C-u>NERDTreeToggle<CR>
@@ -169,7 +187,7 @@ let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
+set updatetime=100
 
 let mapleader = "\<Space>"
 " Quickly edit dotfiles
