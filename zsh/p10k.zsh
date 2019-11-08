@@ -542,7 +542,7 @@ fi
           local secs=$(expr $total % 60)
           local duration="${mins}m${secs}s"
           local color=208
-          if [[ $mins -lt 0 ]]; then
+          if [[ $mins -lt 0 || $secs -lt 0 ]]; then
               duration="EXPIRED"
               color=160
           fi
