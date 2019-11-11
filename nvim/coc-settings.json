@@ -14,7 +14,10 @@
         "golang": {
             "command": "gopls",
             "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-            "filetypes": ["go"]
+            "filetypes": ["go"],
+            "initializationOptions": {
+                "completeUnimported": true
+            }
         },
         "lua": {
             "command": "lua-lsp",

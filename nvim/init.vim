@@ -68,10 +68,26 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 
-" Show all diagnostics
-nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
+" gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+
+" Use K to show documentation in preview window
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " vim-go
+let g:go_def_mapping_enabled = 0
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
 let g:go_highlight_types = 1
@@ -84,6 +100,7 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
+let g:go_highlight_variable_assignments = 1
 let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
 let g:go_metalinter_autosave = 1
@@ -92,6 +109,7 @@ let g:go_term_mode = "split"
 let g:go_term_enabled = 1
 let g:go_term_close_on_exit = 0
 let g:go_debug_windows = {'vars':'leftabove vnew','stack':'botright 10new'}
+let g:go_gopls_complete_unimported = 1
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
