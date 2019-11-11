@@ -92,7 +92,6 @@ let g:go_term_mode = "split"
 let g:go_term_enabled = 1
 let g:go_term_close_on_exit = 0
 let g:go_debug_windows = {'vars':'leftabove vnew','stack':'botright 10new'}
-let g:go_debug = ["lsp", "debugger-commands"]
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
