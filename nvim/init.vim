@@ -29,6 +29,7 @@ Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ncm2/float-preview.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
@@ -85,6 +86,9 @@ function! s:show_documentation()
 endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" float-preview.nvim
+let g:float_preview#docked = 0
 
 " vim-go
 let g:go_def_mapping_enabled = 0
