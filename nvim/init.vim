@@ -121,25 +121,30 @@ function! s:build_go_files()
     endif
 endfunction
 
-" run :GoDebugTest for the current test func
-function! s:debug_test_func()
-    let test = search('func \(Test\|Example\)', "bcnW")
-    if test == 0
-        echo "vim-go: [debug] no test found immediate to cursor"
-        return
-    end
+" run :GoDebugStart or :GoDebugTest based on the go file
+function! s:debug_go_files()
+    let l:file = expand('%')
+    if l:file =~# '^\f\+_test\.go$'
+        let test = search('func \(Test\|Example\)', "bcnW")
+        if test == 0
+            echo "vim-go: [debug] no test found immediate to cursor"
+            return
+        end
 
-    let line = getline(test)
-    let name = split(split(line, " ")[1], "(")[0]
-    call go#debug#Start(1, "./...", "-test.run", name)
+        let line = getline(test)
+        let name = split(split(line, " ")[1], "(")[0]
+        call go#debug#Start(1, "./...", "-test.run", name)
+    elseif l:file =~# '^\f\+\.go$'
+        call go#debug#Start(0)
+    endif
 endfunction
 
 autocmd myvimrc FileType go nmap <buffer> <leader>gr <Plug>(go-run)
 autocmd myvimrc FileType go nmap <buffer> <leader>gt <Plug>(go-test-func)
 autocmd myvimrc FileType go nmap <buffer> <leader>gb :<C-u>call <SID>build_go_files()<CR>
 autocmd myvimrc FileType go nmap <buffer> <leader>gc <Plug>(go-coverage-toggle)
-autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_test_func()<CR>
-autocmd myvimrc FileType go nmap <buffer> <F9> :<C-u>GoDebugBreakpoint<CR>
+autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_go_files()<CR>
+autocmd myvimrc FileType go nmap <buffer> <leader>b :<C-u>GoDebugBreakpoint<CR>
 
 " NERDTree settings
 noremap <F2> :<C-u>NERDTreeToggle<CR>
@@ -229,8 +234,6 @@ nnoremap <silent> <leader>r :so $MYVIMRC<CR>
 " FZF mappings
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>s :FZFGGrep<CR>
-nnoremap <leader>c :Commits<CR>
-nnoremap <leader>bc :BCommits<CR>
 
 " Raise a dialogue for saving changes
 set confirm
