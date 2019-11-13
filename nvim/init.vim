@@ -148,6 +148,7 @@ autocmd myvimrc FileType go nmap <buffer> <leader>gt <Plug>(go-test-func)
 autocmd myvimrc FileType go nmap <buffer> <leader>gb :<C-u>call <SID>build_go_files()<CR>
 autocmd myvimrc FileType go nmap <buffer> <leader>gc <Plug>(go-coverage-toggle)
 autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_go_files()<CR>
+autocmd myvimrc FileType go nmap <buffer> <leader>gi <Plug>(go-imports)
 autocmd myvimrc FileType go nmap <buffer> <leader>b :<C-u>GoDebugBreakpoint<CR>
 
 " NERDTree settings
