@@ -63,7 +63,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd myvimrc CursorHold * silent call CocActionAsync('highlight')
 
 " Use `[e` and `]e` to navigate diagnostics
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
