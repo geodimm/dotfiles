@@ -10,18 +10,19 @@ BAT_VERSION="${BAT_VERSION:=0.11.0}"
 NVM="${HOME}/.nvm"
 NVM_VERSION="${NVM_VERSION:=0.34.0}"
 
-GO_VERSION="${GO_VERSION:=1.12.7}"
+GO_VERSION="${GO_VERSION:=1.13.4}"
 
 set -e
 
 packages=(
     curl
+    exuberant-ctags
     htop
     httpie
     jq
     ncurses-term
-    python2-dev
-    python2-pip
+    python-dev
+    python-pip
     python3-dev
     python3-pip
     tig
@@ -30,11 +31,17 @@ packages=(
     zsh
 )
 
+function is_installed() {
+    which $1 > /dev/null 2>&1
+}
+
 function install_packages () {
+    sudo apt update
     sudo apt install -y "${packages[@]}"
 }
 
 function install_neovim () {
+    is_installed nvim && return
     sudo add-apt-repository ppa:neovim-ppa/unstable
     sudo apt update
     sudo apt install -y neovim
@@ -46,21 +53,25 @@ function install_oh_my_zsh () {
 }
 
 function install_bat () {
+    is_installed bat && return
     curl -fLo /tmp/bat${BAT_VERSION}.deb "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb"
     sudo dpkg -i /tmp/bat${BAT_VERSION}.deb
 }
 
 function install_nvm () {
+    test -f "${NVM}/nvm.sh" return
     mkdir -p ${NVM}
     curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash
 }
 
 function install_node () {
-    test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
+    is_installed node && return
+    test -f "${NVM}/nvm.sh" && source "${NVM}/nvm.sh"
     nvm install node
 }
 
 function install_go () {
+    if [[ "$(go version)" == *"${GO_VERSION}"* ]]; then return; fi
     curl -fLo /tmp/go${GO_VERSION}.tar.gz "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz"
     sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf /tmp/go${GO_VERSION}.tar.gz
@@ -84,7 +95,7 @@ function configure_tmux () {
 }
 
 function configure_zsh () {
-    sudo chsh -s $(which zsh)
+    chsh -s $(which zsh)
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" || true
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" || true
     git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k" || true
@@ -105,7 +116,13 @@ function configure_nvim () {
     python3 -m pip install neovim --user
 
     # set as a default editor
-    sudo update-alternatives --set editor "$(which nvim)"
+    local nvim_path="$(which nvim)"
+    sudo update-alternatives --install /usr/bin/vi vi $nvim_path 60
+    sudo update-alternatives --set vi $nvim_path
+    sudo update-alternatives --install /usr/bin/vim vim $nvim_path 60
+    sudo update-alternatives --set vim $nvim_path
+    sudo update-alternatives --install /usr/bin/editor editor $nvim_path 60
+    sudo update-alternatives --set editor $nvim_path
 
     # setup configuration files
     rm -f "${XDG_CONFIG_HOME}/nvim"
@@ -114,8 +131,6 @@ function configure_nvim () {
     nvim +PlugInstall +qall
 
     # install coc-settings deps
-    # bash-language-server fails under 12.4.0, use 11.14.0
-    # nvm install 11.14.0 && nvm use 11.14.0
     npm i -g bash-language-server
     npm i -g dockerfile-language-server-nodejs
 }
