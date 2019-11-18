@@ -1,10 +1,14 @@
+"" vim:fdm=marker
+
 " Define autocmd group vimrc.
 augroup myvimrc
   autocmd!
 augroup END
-
+" Plugins {{{
 call plug#begin('~/dotfiles/nvim/plugged')
 
+Plug 'mattn/calendar-vim'
+Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
@@ -33,22 +37,18 @@ Plug 'ncm2/float-preview.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Pymode
+" }}}
+" Plugins settings {{{
+" Pymode {{{
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
-let g:pymode_folding = 0
 let g:pymode_lint_unmodified = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 " C0111 - Missing docstrings
 " W0703 - Cathing too general exception
 let g:pymode_lint_ignore = [ "C0111", "W0703", ]
-
-" coc.vim
+" }}}
+" coc.vim " {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -87,10 +87,11 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" float-preview.nvim
+" }}}
+" float-preview.nvim {{{
 let g:float_preview#docked = 0
-
-" vim-go
+" }}}
+" vim-go {{{
 let g:go_def_mapping_enabled = 0
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
@@ -113,7 +114,6 @@ let g:go_term_mode = "split"
 let g:go_term_enabled = 1
 let g:go_term_close_on_exit = 0
 let g:go_debug_windows = {'vars':'leftabove vnew','stack':'botright 10new'}
-let g:go_gopls_complete_unimported = 1
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -150,27 +150,27 @@ autocmd myvimrc FileType go nmap <buffer> <leader>gc <Plug>(go-coverage-toggle)
 autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_go_files()<CR>
 autocmd myvimrc FileType go nmap <buffer> <leader>gi <Plug>(go-imports)
 autocmd myvimrc FileType go nmap <buffer> <leader>b :<C-u>GoDebugBreakpoint<CR>
-
-" NERDTree settings
+" }}}
+" NERDTree settings {{{
 noremap <F2> :<C-u>NERDTreeToggle<CR>
-
-" vim-devicons
+" }}}
+" vim-devicons {{{
 let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:airline_powerline_fonts = 1
-
-" vista
+" }}}
+" vista {{{
 let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = []
 let g:vista_fzf_preview = ['right:50%']
 let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_disable_statusline = 0
 noremap <F3> :<C-u>Vista!!<CR>
-
-" FZF settings
+" }}}
+" FZF settings {{{
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -186,15 +186,15 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-" Command for git grep
+" }}}
+" Command for git grep {{{
 " - fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* FZFGGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-
-" vim-airline
+" }}}
+" vim-airline {{{
 function! GetForm3Status()
     let total = str2nr($AWS_EXPIRY, 10) - strftime("%s")
     let mins = total / 60
@@ -217,11 +217,9 @@ autocmd User AirlineAfterInit call AirlineInit()
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='srcery'
 let g:airline_skip_empty_sections = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" }}}
+" }}}
+" General {{{
 " Python
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -265,11 +263,8 @@ set nowritebackup
 
 " Ignore these files
 set wildignore+=*.pyc,*_build/*,*/coverage/*
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" }}}
+" UI {{{
 " Colorscheme
 set t_Co=256
 if has("termguicolors")
@@ -323,10 +318,11 @@ vnoremap <leader>q <Esc>:q<CR>gv
 
 " First tab will complete to the longest common string
 set wildmode=longest:full,full
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Text and formatting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" Text and formatting {{{
+" folds
+set foldmethod=syntax
+set foldlevelstart=99
 
 " Use 4 spaces instead of tabs
 set tabstop=4
@@ -362,11 +358,8 @@ noremap <leader><leader> V
 
 " Select the last inserted text
 nnoremap <leader>le `[v`]
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Navigation and moving around
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" }}}
+" Mappings {{{
 " Exit insert mode with jj
 inoremap jj <Esc>
 
@@ -401,12 +394,10 @@ noremap 0 ^
 
 " Remap Y to apply till EOL, just like D and C.
 noremap Y y$
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Post-hooks
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" }}}
+" Post-hooks {{{
 " Fix vim-devicons issues after reloading $MYVIMRC
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+" }}}
