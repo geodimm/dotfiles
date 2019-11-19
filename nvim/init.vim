@@ -33,7 +33,6 @@ Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ncm2/float-preview.nvim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
@@ -87,10 +86,6 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" }}}
-" float-preview.nvim {{{
-let g:float_preview#docked = 0
-" }}}
 " vim-go {{{
 let g:go_def_mapping_enabled = 0
 let g:go_auto_type_info = 1
@@ -397,6 +392,9 @@ noremap 0 ^
 
 " Remap Y to apply till EOL, just like D and C.
 noremap Y y$
+" }}}
+" Abbreviations {{{
+iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 " }}}
 " Post-hooks {{{
 " Fix vim-devicons issues after reloading $MYVIMRC
