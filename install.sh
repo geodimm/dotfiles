@@ -136,9 +136,9 @@ function configure_nvim () {
     # install coc-settings deps
     npm i -g bash-language-server
     npm i -g dockerfile-language-server-nodejs
-    luarocks install --local --server=http://luarocks.org/dev lua-lsp
-    luarocks install --local luacheck
-    luarocks install --local Formatter
+    sudo luarocks install --server=http://luarocks.org/dev lua-lsp
+    sudo luarocks install luacheck
+    sudo luarocks install Formatter
 }
 
 function configure () {
