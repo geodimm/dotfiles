@@ -27,6 +27,8 @@ packages=(
     python3-pip
     tig
     tmux
+    tree
+    units
     xclip
     zsh
 )
