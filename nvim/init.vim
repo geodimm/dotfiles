@@ -1,4 +1,4 @@
-"" vim:fdm=marker
+" vim: foldmethod=marker
 
 " Define autocmd group vimrc.
 augroup myvimrc
@@ -36,6 +36,182 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
+" }}}
+" General {{{
+" Python
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=100
+
+let mapleader = "\<Space>"
+
+" Raise a dialogue for saving changes
+set confirm
+
+" Enable file type detection and plugin loading
+filetype plugin indent on
+
+" Use Unix as the standard file type
+set ffs=unix,mac,dos
+
+" Set filetype specific options via modelines
+set modeline
+
+" Don't open preview on autocompletion
+set completeopt-=preview
+
+" Don't select the first completion item; show even if there's only one match
+set completeopt+=menuone
+
+" Disable backups
+set nobackup
+set noswapfile
+set nowritebackup
+
+" Ignore these files
+set wildignore+=*.pyc,*_build/*,*/coverage/*
+
+" Colorscheme
+set t_Co=256
+if has("termguicolors")
+    set t_8f=\[[38;2;%lu;%lu;%lum
+    set t_8b=\[[48;2;%lu;%lu;%lum
+    set termguicolors
+endif
+set background=dark
+try
+    colors srcery
+catch
+endtry
+
+" Enable syntax highlighing
+syntax enable
+
+" Open splitpanes below and on the right of the current one.
+set splitbelow
+set splitright
+
+" Toggle highlighting current line only in active splits
+autocmd myvimrc VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+autocmd myvimrc WinLeave * setlocal nocursorline
+
+" Set the colored vertical column
+set colorcolumn=80
+
+" Highlight current line
+set cursorline
+
+" Line numbers
+set number
+
+" Regex and search options
+set magic
+
+" First tab will complete to the longest common string
+set wildmode=longest:full,full
+
+" folds
+set foldmethod=syntax
+set foldlevelstart=99
+
+" Use 4 spaces instead of tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+" Use 2 spaces instead of tabs for HTML and YAML files
+autocmd myvimrc FileType html,yaml setlocal shiftwidth=2 tabstop=2
+
+" " Use 2 spaces instead of tabs for JS
+autocmd myvimrc FileType javascript setlocal shiftwidth=2 tabstop=2 colorcolumn=80
+
+" Wrap lines to 72 characters in git commit messages and use 2 spaces for tab
+autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2 colorcolumn=+1 colorcolumn+=51
+
+" Don't leave space between joined lines
+set nojoinspaces
+" }}}
+" Mappings {{{
+" Save files
+nnoremap <leader>w :w<CR>
+vnoremap <leader>w <Esc>:w<CR>gv
+" Save with sudo
+cnoremap w!! %!sudo tee > /dev/null %
+
+" Close files (will raise confirmation dialog for unsaved changes)
+nnoremap <leader>q :q<CR>
+vnoremap <leader>q <Esc>:q<CR>gv
+
+" Temporary turn off hlsearch
+nnoremap <silent> <leader><CR> :noh<CR>
+
+" Toggle relative numbers
+noremap <F4> :set relativenumber!<CR>
+noremap! <F4> <Esc>:set relativenumber!<CR>gi
+
+" Sort lines alphabetically
+vnoremap <leader>s :sort<CR>
+
+" Allow pasting the same selection multiple times
+" 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again.
+xnoremap p pgvy
+
+" Go back to visual mode after reindenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Use double spacebar tab to select the current line
+noremap <leader><leader> V
+
+" Select the last inserted text
+nnoremap <leader>le `[v`]
+
+" Quickly edit dotfiles
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
+nnoremap <silent> <leader>ed :vsplit ~/.zshrc<CR>
+nnoremap <silent> <leader>r :so $MYVIMRC<CR>
+
+" Exit insert mode with jj
+inoremap jj <Esc>
+
+" Go to the next line in editor for wrapped lines
+nnoremap j gj
+nnoremap k gk
+
+"Easier navigation through split windows
+nnoremap <C-j> <C-w><Down>
+nnoremap <C-k> <C-w><Up>
+nnoremap <C-l> <C-w><Right>
+nnoremap <C-h> <C-w><Left>
+
+" We say 'NO' to arrow keys
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
+" Useful mappings for managing tabs
+noremap <leader>tn :tabnew<cr>
+noremap <leader>to :tabonly<cr>
+noremap <leader>tc :tabclose<cr>
+noremap <leader>tm :tabmove
+
+" Remap 0 to go to first non-blank character of the line
+noremap 0 ^
+
+" Remap Y to apply till EOL, just like D and C.
+noremap Y y$
+" }}}
+" Abbreviations {{{
+iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 " }}}
 " Plugins settings {{{
 " Pymode {{{
@@ -156,6 +332,10 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:airline_powerline_fonts = 1
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
 " }}}
 " vista {{{
 let g:vista_default_executive = 'coc'
@@ -219,194 +399,12 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='srcery'
 let g:airline_skip_empty_sections = 1
 " }}}
-" }}}
-" General {{{
-" Python
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
-
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=100
-
-let mapleader = "\<Space>"
-
-" Raise a dialogue for saving changes
-set confirm
-
-" Enable file type detection and plugin loading
-filetype plugin indent on
-
-" Use Unix as the standard file type
-set ffs=unix,mac,dos
-
-" Set filetype specific options via modelines
-set modeline
-
-" Don't open preview on autocompletion
-set completeopt-=preview
-
-" Don't select the first completion item; show even if there's only one match
-set completeopt+=menuone
-
-" Disable backups
-set nobackup
-set noswapfile
-set nowritebackup
-
-" Ignore these files
-set wildignore+=*.pyc,*_build/*,*/coverage/*
-" }}}
-" UI {{{
-" Colorscheme
-set t_Co=256
-if has("termguicolors")
-    set t_8f=\[[38;2;%lu;%lu;%lum
-    set t_8b=\[[48;2;%lu;%lu;%lum
-    set termguicolors
-endif
-set background=dark
-try
-    colors srcery
-catch
-endtry
-
-" Enable syntax highlighing
-syntax enable
-
-" Open splitpanes below and on the right of the current one.
-set splitbelow
-set splitright
-
-" Toggle highlighting current line only in active splits
-autocmd myvimrc VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-autocmd myvimrc WinLeave * setlocal nocursorline
-
-" Set the colored vertical column
-set colorcolumn=80
-
-" Highlight current line
-set cursorline
-
-" Line numbers
-set number
-noremap <F4> :set relativenumber!<CR>
-noremap! <F4> <Esc>:set relativenumber!<CR>gi
-
-" Regex and search options
-set magic
-
-" Temporary turn off hlsearch
-nnoremap <silent> <leader><CR> :noh<CR>
-
-" Save files
-nnoremap <leader>w :w<CR>
-vnoremap <leader>w <Esc>:w<CR>gv
-" Save with sudo
-cnoremap w!! %!sudo tee > /dev/null %
-
-" Close files (will raise confirmation dialog for unsaved changes)
-nnoremap <leader>q :q<CR>
-vnoremap <leader>q <Esc>:q<CR>gv
-
-" First tab will complete to the longest common string
-set wildmode=longest:full,full
-" }}}
-" Text and formatting {{{
-" folds
-set foldmethod=syntax
-set foldlevelstart=99
-
-" Use 4 spaces instead of tabs
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-
-" Use 2 spaces instead of tabs for HTML and YAML files
-autocmd myvimrc FileType html,yaml setlocal shiftwidth=2 tabstop=2
-
-" " Use 2 spaces instead of tabs for JS
-autocmd myvimrc FileType javascript setlocal shiftwidth=2 tabstop=2 colorcolumn=80
-
-" Wrap lines to 72 characters in git commit messages and use 2 spaces for tab
-autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2 colorcolumn=+1 colorcolumn+=51
-
-" Don't leave space between joined lines
-set nojoinspaces
-
-" Sort lines alphabetically
-vnoremap <leader>s :sort<CR>
-
-" Allow pasting the same selection multiple times
-" 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again.
-xnoremap p pgvy
-
-" Go back to visual mode after reindenting
-vnoremap < <gv
-vnoremap > >gv
-
-" Use double spacebar tab to select the current line
-noremap <leader><leader> V
-
-" Select the last inserted text
-nnoremap <leader>le `[v`]
-" }}}
-" Mappings {{{
-" Quickly edit dotfiles
-nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
-nnoremap <silent> <leader>ed :vsplit ~/.zshrc<CR>
-nnoremap <silent> <leader>r :so $MYVIMRC<CR>
-
-" Exit insert mode with jj
-inoremap jj <Esc>
-
-" Go to the next line in editor for wrapped lines
-nnoremap j gj
-nnoremap k gk
-
-"Easier navigation through split windows
-nnoremap <C-j> <C-w><Down>
-nnoremap <C-k> <C-w><Up>
-nnoremap <C-l> <C-w><Right>
-nnoremap <C-h> <C-w><Left>
-
-" We say 'NO' to arrow keys
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-
-" Useful mappings for managing tabs
-noremap <leader>tn :tabnew<cr>
-noremap <leader>to :tabonly<cr>
-noremap <leader>tc :tabclose<cr>
-noremap <leader>tm :tabmove
-
-" Remap 0 to go to first non-blank character of the line
-noremap 0 ^
-
-" Remap Y to apply till EOL, just like D and C.
-noremap Y y$
-" }}}
-" Abbreviations {{{
-iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
-" }}}
-" Post-hooks {{{
-" Fix vim-devicons issues after reloading $MYVIMRC
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
-
-" Overwrite vimwiki header colors (srcery theme)
+" vimwiki {{{
 hi VimwikiHeader1 guifg=#EF2F27
 hi VimwikiHeader2 guifg=#519F50
 hi VimwikiHeader3 guifg=#FBB829
 hi VimwikiHeader4 guifg=#2C78BF
 hi VimwikiHeader5 guifg=#E02C6D
 hi VimwikiHeader6 guifg=#0AAEB3
+" }}}
 " }}}
