@@ -404,4 +404,12 @@ iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
+" Overwrite vimwiki header colors (srcery theme)
+hi VimwikiHeader1 guifg=#EF2F27
+hi VimwikiHeader2 guifg=#519F50
+hi VimwikiHeader3 guifg=#FBB829
+hi VimwikiHeader4 guifg=#2C78BF
+hi VimwikiHeader5 guifg=#E02C6D
+hi VimwikiHeader6 guifg=#0AAEB3
 " }}}
