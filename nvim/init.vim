@@ -193,6 +193,7 @@ command! -bang -nargs=* FZFGGrep
 " Mappings
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>s :FZFGGrep<CR>
+nnoremap <leader>a :Ag<CR>
 " }}}
 " vim-airline {{{
 function! GetForm3Status()
