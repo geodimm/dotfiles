@@ -21,6 +21,7 @@
         },
         "lua": {
             "command": "lua-lsp",
+            "args": ["--local"],
             "filetypes": ["lua"]
         }
     },
