@@ -23,6 +23,11 @@
             "command": "lua-lsp",
             "args": ["--local"],
             "filetypes": ["lua"]
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": ["tf"],
+            "initializationOptions": {}
         }
     },
     "python.jediEnabled": false
