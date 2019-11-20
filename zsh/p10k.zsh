@@ -378,20 +378,20 @@ fi
   # it will signify error by turning red.
   typeset -g POWERLEVEL9K_STATUS_ERROR=false
   typeset -g POWERLEVEL9K_STATUS_ERROR_FOREGROUND=160
-  typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='↵'
+  typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION='✘'
 
   # Status when the last command was terminated by a signal.
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_FOREGROUND=160
   # Use terse signal names: "INT" instead of "SIGINT(2)".
   typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=true
-  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='↵'
+  typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL_VISUAL_IDENTIFIER_EXPANSION='✘'
 
   # Status when some part of a pipe command fails and the overall exit status is also non-zero.
   # It may look like this: 1|0.
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
   typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_FOREGROUND=160
-  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='↵'
+  typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION='✘'
 
   ###################[ command_execution_time: duration of the last command ]###################
   # Background color.
@@ -467,10 +467,36 @@ fi
 
   #[ aws: aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) ]#
   # AWS profile color.
-  typeset -g POWERLEVEL9K_AWS_FOREGROUND=38
-  # typeset -g POWERLEVEL9K_AWS_BACKGROUND=1
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_AWS_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_AWS_DEFAULT_FOREGROUND=38
+  typeset -g POWERLEVEL9K_AWS_DEFAULT_BACKGROUND=1
+  # POWERLEVEL9K_AWS_CLASSES is an array with even number of elements. The first element
+  # in each pair defines a pattern against which the current AWS profile gets matched.
+  # More specifically, it's P9K_CONTENT prior to the application of context expansion (see below)
+  # that gets matched. If you unset all POWERLEVEL9K_AWS_*CONTENT_EXPANSION parameters,
+  # you'll see this value in your prompt. The second element of each pair in
+  # POWERLEVEL9K_AWS_CLASSES defines the context class. Patterns are tried in order. The
+  # first match wins.
+  #
+  # For example, given these settings:
+  #
+  #   typeset -g POWERLEVEL9K_AWS_CLASSES=(
+  #     '*prod*'  PROD
+  #     '*test*'  TEST
+  #     '*'       DEFAULT)
+  #
+  # If your current AWS profile is "company_test", its class is TEST
+  # because "company_test" doesn't match the pattern '*prod*' but does match '*test*'.
+  #
+  # You can define different colors, icons and content expansions for different classes:
+  #
+  #   typeset -g POWERLEVEL9K_AWS_TEST_FOREGROUND=28
+  #   typeset -g POWERLEVEL9K_AWS_TEST_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  #   typeset -g POWERLEVEL9K_AWS_TEST_CONTENT_EXPANSION='> ${P9K_CONTENT} <'
+  typeset -g POWERLEVEL9K_AWS_CLASSES=(
+      # '*prod*'  PROD    # These values are examples that are unlikely
+      # '*test*'  TEST    # to match your needs. Customize them as needed.
+      '*'       DEFAULT)
+  # typeset -g POWERLEVEL9K_AWS_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ###############################[ public_ip: public IP address ]###############################
   # Public IP color.
