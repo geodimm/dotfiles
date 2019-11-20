@@ -20,3 +20,10 @@ alias vim="vim -O"
 alias ggrep="git grep -n -I --break --heading -B0 -A0"
 alias ggrepi="ggrep --ignore-case"
 alias gu="git stash && git pull && git stash pop || true"
+
+# z with fzf
+unalias z 2> /dev/null
+z() {
+  [ $# -gt 0 ] && _z "$*" && return
+  cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
