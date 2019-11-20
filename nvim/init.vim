@@ -85,7 +85,7 @@ function! s:show_documentation()
 endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-
+" }}}
 " vim-go {{{
 let g:go_def_mapping_enabled = 0
 let g:go_auto_type_info = 1
@@ -163,6 +163,7 @@ let g:vista_finder_alternative_executives = []
 let g:vista_fzf_preview = ['right:50%']
 let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_disable_statusline = 0
+
 noremap <F3> :<C-u>Vista!!<CR>
 " }}}
 " FZF settings {{{
@@ -181,13 +182,17 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-" }}}
-" Command for git grep {{{
+
+" Command for git grep
 " - fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* FZFGGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
   \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+
+" Mappings
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>s :FZFGGrep<CR>
 " }}}
 " vim-airline {{{
 function! GetForm3Status()
@@ -223,15 +228,6 @@ let g:python3_host_prog = '/usr/bin/python3'
 set updatetime=100
 
 let mapleader = "\<Space>"
-" Quickly edit dotfiles
-nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
-nnoremap <silent> <leader>ed :vsplit ~/.zshrc<CR>
-nnoremap <silent> <leader>r :so $MYVIMRC<CR>
-
-" FZF mappings
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>s :FZFGGrep<CR>
 
 " Raise a dialogue for saving changes
 set confirm
@@ -358,6 +354,12 @@ noremap <leader><leader> V
 nnoremap <leader>le `[v`]
 " }}}
 " Mappings {{{
+" Quickly edit dotfiles
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
+nnoremap <silent> <leader>ed :vsplit ~/.zshrc<CR>
+nnoremap <silent> <leader>r :so $MYVIMRC<CR>
+
 " Exit insert mode with jj
 inoremap jj <Esc>
 
