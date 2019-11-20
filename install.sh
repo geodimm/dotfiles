@@ -20,6 +20,7 @@ packages=(
     htop
     httpie
     jq
+    luarocks
     ncurses-term
     python-dev
     python-pip
@@ -135,6 +136,9 @@ function configure_nvim () {
     # install coc-settings deps
     npm i -g bash-language-server
     npm i -g dockerfile-language-server-nodejs
+    luarocks install --local --server=http://luarocks.org/dev lua-lsp
+    luarocks install --local luacheck
+    luarocks install --local Formatter
 }
 
 function configure () {
