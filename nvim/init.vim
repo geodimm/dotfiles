@@ -297,7 +297,7 @@ nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>qf <Plug>(coc-fix-current)
+nmap <silent> <leader>fq <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window
 function! s:show_documentation()
