@@ -7,17 +7,18 @@ augroup END
 " Plugins {{{
 call plug#begin('~/dotfiles/nvim/plugged')
 
-Plug 'mattn/calendar-vim'
-Plug 'vimwiki/vimwiki'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'srcery-colors/srcery-vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'mattn/calendar-vim'
+Plug 'vimwiki/vimwiki'
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'liuchengxu/vista.vim'
 Plug 'wellle/targets.vim'
 Plug 'thaerkh/vim-indentguides'
@@ -214,6 +215,52 @@ noremap Y y$
 iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 " }}}
 " Plugins settings {{{
+" vim-airline {{{
+function! GetForm3Status()
+    let total = str2nr($AWS_EXPIRY, 10) - strftime("%s")
+    let mins = total / 60
+    let secs = total % 60
+    let duration = mins . "m" . secs . "s"
+    if mins < 0 || secs < 0
+        let duration = "EXPIRED"
+    endif
+    return "" . duration . "[" . $F3_ENVIRONMENT . "]"
+endfunction
+
+function! AirlineInit()
+    call airline#parts#define_function('form3', 'GetForm3Status')
+    call airline#parts#define_condition('form3', '$F3_ENVIRONMENT != "" && $AWS_EXPIRY != ""')
+    call airline#parts#define_accent('form3', 'orange')
+    let g:airline_section_y = airline#section#create_right(['form3', 'ffenc'])
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='srcery'
+let g:airline_skip_empty_sections = 1
+" }}}
+" vim-devicons {{{
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:airline_powerline_fonts = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_airline_statusline = 1
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
+" }}}
+" NERDTree settings {{{
+noremap <silent> <F2> :<C-u>NERDTreeToggle<CR>
+" }}}
+" vim-nerdtree-syntax-highlight {{{
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+" }}}
 " Pymode {{{
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
@@ -323,21 +370,6 @@ autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_go_fi
 autocmd myvimrc FileType go nmap <buffer> <leader>gi <Plug>(go-imports)
 autocmd myvimrc FileType go nmap <buffer> <leader>b :<C-u>GoDebugBreakpoint<CR>
 " }}}
-" NERDTree settings {{{
-noremap <F2> :<C-u>NERDTreeToggle<CR>
-" }}}
-" vim-devicons {{{
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:airline_powerline_fonts = 1
-
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
-" }}}
 " vista {{{
 let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = []
@@ -375,30 +407,6 @@ command! -bang -nargs=* FZFGGrep
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>s :FZFGGrep<CR>
 nnoremap <leader>a :Ag<CR>
-" }}}
-" vim-airline {{{
-function! GetForm3Status()
-    let total = str2nr($AWS_EXPIRY, 10) - strftime("%s")
-    let mins = total / 60
-    let secs = total % 60
-    let duration = mins . "m" . secs . "s"
-    if mins < 0 || secs < 0
-        let duration = "EXPIRED"
-    endif
-    return "" . duration . "[" . $F3_ENVIRONMENT . "]"
-endfunction
-
-function! AirlineInit()
-    call airline#parts#define_function('form3', 'GetForm3Status')
-    call airline#parts#define_condition('form3', '$F3_ENVIRONMENT != "" && $AWS_EXPIRY != ""')
-    call airline#parts#define_accent('form3', 'orange')
-    let g:airline_section_y = airline#section#create_right(['form3', 'ffenc'])
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='srcery'
-let g:airline_skip_empty_sections = 1
 " }}}
 " vimwiki {{{
 " Configure auto-export to HTML for vimwiki files
