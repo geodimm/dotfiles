@@ -238,15 +238,11 @@ autocmd User AirlineAfterInit call AirlineInit()
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='srcery'
 let g:airline_skip_empty_sections = 1
+let g:airline_powerline_fonts = 1
 " }}}
 " vim-devicons {{{
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
-let g:airline_powerline_fonts = 1
-let g:webdevicons_enable_airline_tabline = 1
 let g:webdevicons_enable_airline_statusline = 0
 
 if exists("g:loaded_webdevicons")
