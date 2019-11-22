@@ -247,7 +247,7 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:airline_powerline_fonts = 1
 let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_statusline = 0
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
