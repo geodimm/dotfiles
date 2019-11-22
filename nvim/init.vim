@@ -401,6 +401,8 @@ let g:airline_theme='srcery'
 let g:airline_skip_empty_sections = 1
 " }}}
 " vimwiki {{{
+" Configure auto-export to HTML for vimwiki files
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_export': 1}]
 hi VimwikiHeader1 guifg=#EF2F27
 hi VimwikiHeader2 guifg=#519F50
 hi VimwikiHeader3 guifg=#FBB829
