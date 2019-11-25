@@ -60,9 +60,6 @@ set ffs=unix,mac,dos
 " Set filetype specific options via modelines
 set modeline
 
-" Don't open preview on autocompletion
-set completeopt-=preview
-
 " Don't select the first completion item; show even if there's only one match
 set completeopt+=menuone
 
@@ -279,6 +276,10 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Highlight symbol under cursor on CursorHold
 autocmd myvimrc CursorHold * silent call CocActionAsync('highlight')
