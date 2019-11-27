@@ -21,6 +21,11 @@ alias ggrep="git grep -n -I --break --heading -B0 -A0"
 alias ggrepi="ggrep --ignore-case"
 alias gu="git stash && git pull && git stash pop || true"
 
+# docker
+docker-clean() {
+    docker rm -f $(docker ps -qa) && docker volume rm $(docker volume ls -q)
+}
+
 # z with fzf
 unalias z 2> /dev/null
 z() {
