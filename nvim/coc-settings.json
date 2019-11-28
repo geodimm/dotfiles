@@ -38,11 +38,6 @@
             "filetypes": ["dockerfile"],
             "args": ["--stdio"]
         },
-        "lua": {
-            "command": "lua-lsp",
-            "args": ["--local"],
-            "filetypes": ["lua"]
-        },
         "terraform": {
             "command": "terraform-lsp",
             "filetypes": ["tf"],
