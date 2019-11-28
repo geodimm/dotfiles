@@ -1,37 +1,4 @@
 {
-    "languageserver": {
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"]
-        },
-        "dockerfile": {
-            "command": "docker-langserver",
-            "filetypes": ["dockerfile"],
-            "args": ["--stdio"]
-        },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-            "filetypes": ["go"],
-            "initializationOptions": {
-                "completeUnimported": true
-            }
-        },
-        "lua": {
-            "command": "lua-lsp",
-            "args": ["--local"],
-            "filetypes": ["lua"]
-        },
-        "terraform": {
-            "command": "terraform-lsp",
-            "filetypes": ["tf"],
-            "initializationOptions": {}
-        }
-    },
-    "python.jediEnabled": false,
-    "java.errors.incompleteClasspath.severity": "ignore",
     "suggest.completionItemKindLabels": {
         "function": "\uf794",
         "method": "\uf6a6",
@@ -58,5 +25,35 @@
         "reference": "\uf87a",
         "typeParameter": "\uf278",
         "default": "\uf29c"
-    }
+    },
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh"],
+            "ignoredRootPaths": ["~"]
+        },
+        "dockerfile": {
+            "command": "docker-langserver",
+            "filetypes": ["dockerfile"],
+            "args": ["--stdio"]
+        },
+        "lua": {
+            "command": "lua-lsp",
+            "args": ["--local"],
+            "filetypes": ["lua"]
+        },
+        "terraform": {
+            "command": "terraform-lsp",
+            "filetypes": ["tf"],
+            "initializationOptions": {}
+        }
+    },
+    "go.goplsOptions": {
+        "usePlaceholders": true,
+        "completeUnimported": true,
+        "hoverKind": "FullDocumentation"
+    },
+    "python.jediEnabled": false,
+    "java.errors.incompleteClasspath.severity": "ignore"
 }
