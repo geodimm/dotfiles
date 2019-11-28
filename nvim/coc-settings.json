@@ -55,5 +55,8 @@
         "hoverKind": "FullDocumentation"
     },
     "python.jediEnabled": false,
-    "java.errors.incompleteClasspath.severity": "ignore"
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "yaml.schemas": {
+        "http://json.schemastore.org/swagger-2.0": "/swagger.yaml"
+    }
 }
