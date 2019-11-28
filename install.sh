@@ -133,7 +133,7 @@ function configure_nvim () {
     curl -fLo "$(pwd)/nvim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     nvim +PlugInstall +qall
 
-    # CocInstall coc-go coc-python coc-java coc-json coc-yaml coc-html coc-css
+    # CocInstall coc-go coc-python coc-java coc-json coc-yaml coc-html coc-css coc-lua coc-vimlsp
 
     # install coc-settings deps
     npm i -g bash-language-server
