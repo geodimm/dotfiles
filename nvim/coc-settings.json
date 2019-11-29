@@ -1,4 +1,16 @@
 {
+    "coc.source.around.shortcut": "\uf016",
+    "coc.source.buffer.shortcut": "\uf0c5",
+    "coc.source.file.shortcut": "\uf471",
+    "codeLens.enable": true,
+    "diagnostic.errorSign": "\uf00d",
+    "diagnostic.hintSign": "\uf7d5",
+    "diagnostic.infoSign": "\uf129",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextPrefix": "\uf292 ",
+    "diagnostic.warningSign": "\uf12a",
+    "suggest.noselect": false,
+    "suggest.snippetIndicator": " \ufb0c",
     "suggest.completionItemKindLabels": {
         "function": "\uf794",
         "method": "\uf6a6",
