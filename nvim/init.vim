@@ -268,16 +268,16 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd myvimrc CursorHold * silent call CocActionAsync('highlight')
 
 " Use `[e` and `]e` to navigate diagnostics
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
+nnoremap <silent> [e <Plug>(coc-diagnostic-prev)
+nnoremap <silent> ]e <Plug>(coc-diagnostic-next)
 
 " gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>cf <Plug>(coc-fix-current)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gt <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+nnoremap <silent> <leader>rn <Plug>(coc-rename)
+nnoremap <silent> <leader>cf <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window
 function! s:show_documentation()
@@ -296,20 +296,17 @@ noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
 " }}}
 " coc-git {{{
 " navigate chunks of current buffer
-nmap [c <Plug>(coc-git-prevchunk)
-nmap ]c <Plug>(coc-git-nextchunk)
+nnoremap [c <Plug>(coc-git-prevchunk)
+nnoremap ]c <Plug>(coc-git-nextchunk)
 
 " show chunk diff at current position
-nmap gm <Plug>(coc-git-chunkinfo)
+nnoremap gm <Plug>(coc-git-chunkinfo)
 
 " stage current chunk
-nmap <silent> gs :<C-u>CocCommand git.chunkStage<CR>
+nnoremap <silent> gs :<C-u>CocCommand git.chunkStage<CR>
 
 " undo current chunk
-nmap <silent> gu :<C-u>CocCommand git.chunkUndo<CR>
-
-" show commit contains current position
-nmap gc <Plug>(coc-git-commit)
+nnoremap <silent> gu :<C-u>CocCommand git.chunkUndo<CR>
 
 " create text object for git chunks
 omap ig <Plug>(coc-git-chunk-inner)
