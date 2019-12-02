@@ -11,9 +11,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'srcery-colors/srcery-vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -241,18 +238,6 @@ let g:airline_powerline_fonts = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:webdevicons_enable_airline_statusline = 0
-
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
-" }}}
-" NERDTree settings {{{
-noremap <silent> <F2> :<C-u>NERDTreeToggle<CR>
-" }}}
-" vim-nerdtree-syntax-highlight {{{
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
 " }}}
 " Pymode {{{
 let g:pymode_python = 'python3'
@@ -306,6 +291,9 @@ function! s:show_documentation()
 endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Use coc-explorer
+noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
 " }}}
 " vim-go {{{
 let g:go_def_mapping_enabled = 0
