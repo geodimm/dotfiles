@@ -13,6 +13,7 @@
     "explorer.sources": [{"name":"file","expand":true}],
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.enableVimDevions": true,
+    "explorer.file.autoReveal": false,
     "explorer.file.column.git.icon.modified": "\uf040",
     "explorer.file.column.git.icon.added": "\uf067",
     "explorer.file.column.git.icon.deleted": "\uf068",
