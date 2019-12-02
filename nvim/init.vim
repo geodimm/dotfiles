@@ -300,11 +300,13 @@ nmap [c <Plug>(coc-git-prevchunk)
 nmap ]c <Plug>(coc-git-nextchunk)
 
 " show chunk diff at current position
-nmap gs <Plug>(coc-git-chunkinfo)
+nmap gm <Plug>(coc-git-chunkinfo)
 
-" add/reset current chunk
-nmap <silent> ga :<C-u>CocCommand git.chunkStage<CR>
-nmap <silent> gr :<C-u>CocCommand git.chunkUndo<CR>
+" stage current chunk
+nmap <silent> gs :<C-u>CocCommand git.chunkStage<CR>
+
+" undo current chunk
+nmap <silent> gu :<C-u>CocCommand git.chunkUndo<CR>
 
 " show commit contains current position
 nmap gc <Plug>(coc-git-commit)
