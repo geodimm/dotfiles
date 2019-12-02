@@ -28,7 +28,6 @@ source "${ZSH}/oh-my-zsh.sh"
 
 # zsh-autosuggestions settings
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4E4E4E"
-bindkey '^l' autosuggest-accept
 
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
