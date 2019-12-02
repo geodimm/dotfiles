@@ -26,7 +26,6 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -292,8 +291,30 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Use coc-explorer
+" }}}
+" coc-explorer {{{
 noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
+" }}}
+" coc-git {{{
+" navigate chunks of current buffer
+nmap [c <Plug>(coc-git-prevchunk)
+nmap ]c <Plug>(coc-git-nextchunk)
+
+" show chunk diff at current position
+nmap gs <Plug>(coc-git-chunkinfo)
+
+" add/reset current chunk
+nmap <silent> ga :<C-u>CocCommand git.chunkStage<CR>
+nmap <silent> gr :<C-u>CocCommand git.chunkUndo<CR>
+
+" show commit contains current position
+nmap gc <Plug>(coc-git-commit)
+
+" create text object for git chunks
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
 " }}}
 " vim-go {{{
 let g:go_def_mapping_enabled = 0
