@@ -300,13 +300,13 @@ nnoremap [c <Plug>(coc-git-prevchunk)
 nnoremap ]c <Plug>(coc-git-nextchunk)
 
 " show chunk diff at current position
-nnoremap gm <Plug>(coc-git-chunkinfo)
+nmap gm <Plug>(coc-git-chunkinfo)
 
 " stage current chunk
-nnoremap <silent> gs :<C-u>CocCommand git.chunkStage<CR>
+nmap <silent> gs :<C-u>CocCommand git.chunkStage<CR>
 
 " undo current chunk
-nnoremap <silent> gu :<C-u>CocCommand git.chunkUndo<CR>
+nmap <silent> gu :<C-u>CocCommand git.chunkUndo<CR>
 
 " create text object for git chunks
 omap ig <Plug>(coc-git-chunk-inner)
