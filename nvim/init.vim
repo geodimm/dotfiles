@@ -245,7 +245,7 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 " W0703 - Cathing too general exception
 let g:pymode_lint_ignore = [ "C0111", "W0703", ]
 " }}}
-" coc.vim " {{{
+" coc.nvim " {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -266,9 +266,9 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Highlight symbol under cursor on CursorHold
 autocmd myvimrc CursorHold * silent call CocActionAsync('highlight')
 
-" Use `[e` and `]e` to navigate diagnostics
-nmap <silent> [e <Plug>(coc-diagnostic-prev)
-nmap <silent> ]e <Plug>(coc-diagnostic-next)
+" Use `[d` and `]d` to navigate diagnostics
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -312,6 +312,12 @@ omap ig <Plug>(coc-git-chunk-inner)
 xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
+" }}}
+" coc-terminal {{{
+
+" Open/close the terminal buffer
+nmap <silent> <leader>tt <Plug>(coc-terminal-toggle)
+
 " }}}
 " vim-go {{{
 let g:go_def_mapping_enabled = 0
