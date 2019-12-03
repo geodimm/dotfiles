@@ -97,6 +97,12 @@ function configure_tmux () {
     ln -fs "$(pwd)/tmux/tnew.sh" "${HOME}/tnew.sh"
 }
 
+function configure_lua () {
+    sudo luarocks install --server=http://luarocks.org/dev lua-lsp
+    sudo luarocks install luacheck
+    sudo luarocks install Formatter
+}
+
 function configure_zsh () {
     chsh -s $(which zsh)
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" || true
@@ -133,14 +139,7 @@ function configure_nvim () {
     curl -fLo "$(pwd)/nvim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     nvim +PlugInstall +qall
 
-    # CocInstall coc-explorer coc-go coc-python coc-java coc-json coc-yaml coc-html coc-css coc-lua coc-vimlsp
-
-    # install coc-settings deps
-    npm i -g bash-language-server
-    npm i -g dockerfile-language-server-nodejs
-    sudo luarocks install --server=http://luarocks.org/dev lua-lsp
-    sudo luarocks install luacheck
-    sudo luarocks install Formatter
+    # CocInstall coc-explorer coc-terminal coc-go coc-python coc-java coc-sh  coc-lua coc-vimlsp coc-json coc-yaml coc-html coc-css coc-docker coc-github coc-marketplace
 }
 
 function configure () {
@@ -148,6 +147,7 @@ function configure () {
     configure_tmux
     configure_zsh
     configure_nvim
+    configure_lua
 }
 
 install_deps
