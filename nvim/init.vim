@@ -412,6 +412,16 @@ nnoremap <leader>s :FZFGGrep<CR>
 nnoremap <leader>a :Ag<CR>
 " }}}
 " vimwiki {{{
+
+" Show raw markup
+let g:vimwiki_conceallevel = 0
+
+" Disable temporary vimwkis
+let g:vimwiki_global_ext = 0
+
+" Disable table mappings to allow <Tab> autocompletion
+let g:vimwiki_table_mappings = 0
+
 " Configure auto-export to HTML for vimwiki files
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_export': 1}]
 hi VimwikiHeader1 guifg=#EF2F27
