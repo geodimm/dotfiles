@@ -1,4 +1,4 @@
-# vim: set filetype=zsh:
+# vim: set filetype=zsh
 
 function cmd_path () {
     if [[ ${ZSH_VERSION} ]]; then
@@ -39,4 +39,20 @@ unalias z 2> /dev/null
 z() {
   [ $# -gt 0 ] && _z "$*" && return
   cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+}
+
+# convert minutes {0..60} to {red..green} in hex
+function _minutes_to_hex() {
+    local num=$1
+    local min=0
+    local max=60
+    local middle=$((($min + $max) / 2))
+    local scale=$((255.0 / ($middle - $min)))
+    if [[ $num -le $min ]]; then local num=$min; fi
+    if [[ $num -ge $max ]]; then local num=$max; fi
+    if [[ $num < $middle ]]; then
+        printf "#ff%02x00\n" $((($num - $min) * $scale))
+    else
+        printf "#%02xff00\n" $((255 - (($num - $middle) * $scale)))
+    fi
 }
