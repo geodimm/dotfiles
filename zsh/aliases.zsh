@@ -1,18 +1,26 @@
 # vim: set filetype=zsh:
 
-case "${OSTYPE}" in
-    darwin*)
-        LS_OPTS="-G"
-        ;;
-    linux*)
-        LS_OPTS="--color=auto --group-directories-first"
-        ;;
-    *) ;;
-esac
+function cmd_path () {
+    if [[ ${ZSH_VERSION} ]]; then
+        whence -cp "$1" > /dev/null 2>&1
+    else  # bash
+        type -P "$1" > /dev/null 2>&1
+    fi
+}
 
 # misc
-alias ls="ls ${LS_OPTS}"
-alias lt="ls -ltrh"
+if cmd_path colorls ; then
+    LS_OPTS="-l --sd --gs"
+    alias ls="colorls ${LS_OPTS}"
+    alias lt="ls -tr"
+    alias la="ls -A"
+else
+    LS_OPTS="--color=auto --group-directories-first"
+    alias ls="ls ${LS_OPTS}"
+    alias lt="ls -ltrh"
+    alias la="ls -A"
+fi
+
 alias grepi="grep -i"
 alias vim="vim -O"
 
