@@ -61,6 +61,11 @@ function install_bat () {
     sudo dpkg -i /tmp/bat${BAT_VERSION}.deb
 }
 
+function colorls () {
+    is_installed colorls && return
+    sudo gem install colorls
+}
+
 function install_nvm () {
     test -f "${NVM}/nvm.sh" return
     mkdir -p ${NVM}
@@ -85,6 +90,7 @@ function install_deps () {
     install_oh_my_zsh
     install_neovim
     install_bat
+    install_colorls
     install_go
     install_nvm
     install_node
