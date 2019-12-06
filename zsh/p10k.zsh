@@ -563,17 +563,16 @@ fi
 
   function prompt_form3() {
       if (( ${+F3_ENVIRONMENT} && ${+AWS_EXPIRY} )); then
-          local total=$(expr ${AWS_EXPIRY} - $(date +%s))
-          local mins=$(expr $total / 60)
-          local secs=$(expr $total % 60)
+          local total=$((${AWS_EXPIRY} - $(date +%s)))
+          local mins=$(($total / 60))
+          local secs=$(($total % 60))
           local duration="${mins}m${secs}s"
-          local color=208
-          if [[ $mins -lt 0 || $secs -lt 0 ]]; then
+          local color="$(_minutes_to_hex $mins)"
+          if [[ $total -lt 0 ]]; then
               duration="EXPIRED"
-              color=160
           fi
 
-          p10k segment -f $color -i '' -t "${duration} on ${F3_ENVIRONMENT}"
+          p10k segment -f ${color} -i '' -t "${duration} on ${F3_ENVIRONMENT}"
       fi
   }
 }
