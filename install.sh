@@ -61,7 +61,7 @@ function install_bat () {
     sudo dpkg -i /tmp/bat${BAT_VERSION}.deb
 }
 
-function colorls () {
+function install_colorls () {
     is_installed colorls && return
     sudo gem install colorls
 }
