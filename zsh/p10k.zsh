@@ -928,7 +928,7 @@
               duration="EXPIRED"
           fi
 
-          p10k segment -f ${color} -i '' -t "${duration} on ${F3_ENVIRONMENT}"
+          p10k segment -f ${color} -r -i EXECUTION_TIME_ICON -t "${duration} on ${F3_ENVIRONMENT}"
       fi
   }
 
