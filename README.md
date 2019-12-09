@@ -9,7 +9,6 @@
 || File
 ------------- | -------------
 **tmux**  | `$HOME/.tmux.conf`
-|| `$HOME/.tmux/themes/srcery-tmux/`
 **zsh**  | `$HOME/.zshrc`
 || `$HOME/.oh-my-zsh/custom/aliases.zsh`
 || `$HOME/.oh-my-zsh/custom/p10k.zsh`
@@ -18,6 +17,7 @@
 **neovim**  | `$XDG_CONFIG_HOME/nvim`
 **git**  | `$HOME/.gitconfig`
 **tig**  | `$HOME/.tigrc`
+**colorls**  | `$XDG_CONFIG_HOME/.colorls/dark_colors.yaml`
 
 > For more information refer to the [install.sh](./install.sh)
 
