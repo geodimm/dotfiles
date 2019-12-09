@@ -96,6 +96,11 @@ function install_deps () {
     install_node
 }
 
+function configure_colorls () {
+    mkdir -p "${XDG_CONFIG_HOME}/colorls"
+    ln -fs "$(pwd)/colorls/dark_colors.yaml" "${XDG_CONFIG_HOME}/colorls/dark_colors.yaml"
+}
+
 function configure_tmux () {
     mkdir -p ${HOME}/.tmux/themes
     git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
@@ -149,6 +154,7 @@ function configure_nvim () {
 }
 
 function configure () {
+    configure_colorls
     configure_git
     configure_tmux
     configure_zsh
