@@ -216,7 +216,7 @@ function! GetForm3Status()
     let mins = total / 60
     let secs = total % 60
     let duration = mins . "m" . secs . "s"
-    if mins < 0 || secs < 0
+    if total < 0
         let duration = "EXPIRED"
     endif
     return "" . duration . "[" . $F3_ENVIRONMENT . "]"
