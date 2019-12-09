@@ -81,6 +81,9 @@ endtry
 " Enable syntax highlighing
 syntax enable
 
+" Don't show the current mode
+set noshowmode
+
 " Open splitpanes below and on the right of the current one.
 set splitbelow
 set splitright
