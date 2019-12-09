@@ -98,7 +98,7 @@ function install_deps () {
 
 function configure_tmux () {
     mkdir -p ${HOME}/.tmux/themes
-    git clone https://github.com/srcery-colors/srcery-tmux/ ${HOME}/.tmux/themes/srcery-tmux || true
+    git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
     ln -fs "$(pwd)/tmux/tmux.conf" "${HOME}/.tmux.conf"
     ln -fs "$(pwd)/tmux/tnew.sh" "${HOME}/tnew.sh"
 }
