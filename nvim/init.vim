@@ -15,6 +15,7 @@ Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'tmux-plugins/vim-tmux'
 Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'liuchengxu/vista.vim'
 Plug 'wellle/targets.vim'
