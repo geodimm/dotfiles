@@ -50,7 +50,7 @@ function _minutes_to_hex() {
     local scale=$((255.0 / ($middle - $min)))
     if [[ $num -le $min ]]; then local num=$min; fi
     if [[ $num -ge $max ]]; then local num=$max; fi
-    if [[ $num < $middle ]]; then
+    if [[ $num -le $middle ]]; then
         printf "#ff%02x00\n" $((($num - $min) * $scale))
     else
         printf "#%02xff00\n" $((255 - (($num - $middle) * $scale)))
