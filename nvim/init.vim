@@ -228,7 +228,6 @@ endfunction
 function! AirlineInit()
     call airline#parts#define_function('form3', 'GetForm3Status')
     call airline#parts#define_condition('form3', '$F3_ENVIRONMENT != "" && $AWS_EXPIRY != ""')
-    call airline#parts#define_accent('form3', 'orange')
     let g:airline_section_y = airline#section#create_right(['form3', 'ffenc'])
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
