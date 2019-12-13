@@ -10,6 +10,7 @@ call plug#begin('~/dotfiles/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'srcery-colors/srcery-vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
@@ -78,7 +79,7 @@ if has("termguicolors")
 endif
 set background=dark
 try
-    colors srcery
+    colors nord
 catch
 endtry
 
@@ -233,7 +234,7 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='srcery'
+let g:airline_theme='nord'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 " }}}
@@ -436,11 +437,11 @@ let g:vimwiki_table_mappings = 0
 
 " Configure auto-export to HTML for vimwiki files
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_export': 1}]
-hi VimwikiHeader1 guifg=#EF2F27
-hi VimwikiHeader2 guifg=#519F50
-hi VimwikiHeader3 guifg=#FBB829
-hi VimwikiHeader4 guifg=#2C78BF
-hi VimwikiHeader5 guifg=#E02C6D
-hi VimwikiHeader6 guifg=#0AAEB3
+hi VimwikiHeader1 guifg=#bf616a
+hi VimwikiHeader2 guifg=#a3be8c
+hi VimwikiHeader3 guifg=#ebcb8b
+hi VimwikiHeader4 guifg=#88c0d0
+hi VimwikiHeader5 guifg=#b48ead
+hi VimwikiHeader6 guifg=#d8dee9
 " }}}
 " }}}
