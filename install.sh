@@ -5,7 +5,7 @@ XDG_CONFIG_HOME="${HOME}/.config"
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_CUSTOM="${ZSH}/custom"
 
-BAT_VERSION="${BAT_VERSION:=0.11.0}"
+BAT_VERSION="${BAT_VERSION:=0.12.1}"
 
 NVM="${HOME}/.nvm"
 NVM_VERSION="${NVM_VERSION:=0.34.0}"
