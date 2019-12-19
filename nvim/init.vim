@@ -171,8 +171,8 @@ nnoremap <leader>le `[v`]
 
 " Quickly edit dotfiles
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>et :vsplit ~/.tmux.conf<CR>
-nnoremap <silent> <leader>ed :vsplit ~/.zshrc<CR>
+nnoremap <silent> <leader>et :vsplit ~/dotfiles/tmux/tmux.conf<CR>
+nnoremap <silent> <leader>ed :vsplit ~/dotfiles/zsh/zshrc<CR>
 nnoremap <silent> <leader>r :so $MYVIMRC<CR>
 
 " Exit insert mode with jj
