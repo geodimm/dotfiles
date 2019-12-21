@@ -1,1 +1,24 @@
+# vim: foldmethod=marker
+
+# View settings {{{
+set main-view = line-number:no,interval=5 id:yes date:relative author:full commit-title:yes,graph,refs,overflow=50
+
+# }}}
+
+# Pager-based views {{{
+set diff-view = line-number:yes,interval=5 text:yes,commit-title-overflow=yes
+
+# }}}
+
+# UI display settings {{{
+set line-graphics = utf-8
+set tab-size = 4
+set truncation-delimiter = utf-8
+set wrap-lines = yes
+
+# }}}
+
+# Misc {{{
 set vertical-split = no
+
+# }}}
