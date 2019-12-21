@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 SESSION_NAME="work"
 
