@@ -32,7 +32,7 @@ alias gu="git stash && git pull && git stash pop || true"
 
 # docker
 docker-clean() {
-    docker rm -f "$(docker ps -qa)" && docker volume rm "$(docker volume ls -q)"
+    docker rm -f $(docker ps -qa) && docker volume rm $(docker volume ls -q)
 }
 
 # z with fzf
