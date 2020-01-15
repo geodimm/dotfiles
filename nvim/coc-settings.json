@@ -7,7 +7,6 @@
     "diagnostic.hintSign": "\uf7d5",
     "diagnostic.infoSign": "\uf129",
     "diagnostic.warningSign": "\uf12a",
-    "explorer.sources": [{"name":"file","expand":true}],
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.enableVimDevions": true,
     "explorer.file.autoReveal": false,
