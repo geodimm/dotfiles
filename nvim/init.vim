@@ -155,6 +155,9 @@ noremap! <F4> <Esc>:set relativenumber!<CR>gi
 " Sort lines alphabetically
 vnoremap <leader>s :sort<CR>
 
+" Copy with Ctrl+C in visual mode
+vnoremap <C-c> "+y<CR>
+
 " Allow pasting the same selection multiple times
 " 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again.
 xnoremap p pgvy
