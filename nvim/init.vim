@@ -322,6 +322,9 @@ omap ig <Plug>(coc-git-chunk-inner)
 xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
+
+" Open the list of modified git files
+nnoremap <silent> <space>g :<C-u>CocList --auto-preview gstatus<CR>
 " }}}
 " coc-terminal {{{
 
