@@ -10,6 +10,8 @@
 	default = simple
 [pull]
 	rebase = true
+[diff]
+	wsErrorHighlight = all
 [alias]
 	co = checkout
 	ls = ls-files --full-name -st
