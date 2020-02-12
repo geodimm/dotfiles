@@ -5,6 +5,7 @@ augroup myvimrc
   autocmd!
 augroup END
 " Plugins {{{
+
 call plug#begin('~/dotfiles/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -18,6 +19,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'urbainvaes/vim-tmux-pilot'
+Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-surround'
@@ -34,8 +36,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
+
 " }}}
+
 " General {{{
+
 " Python
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -135,7 +140,9 @@ autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabs
 " Don't leave space between joined lines
 set nojoinspaces
 " }}}
+
 " Mappings {{{
+
 " Save files
 nnoremap <leader>w :w<CR>
 vnoremap <leader>w <Esc>:w<CR>gv
@@ -214,11 +221,17 @@ noremap 0 ^
 " Remap Y to apply till EOL, just like D and C.
 noremap Y y$
 " }}}
+
 " Abbreviations {{{
+
 iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
+
 " }}}
+
 " Plugins settings {{{
+
 " vim-airline {{{
+
 function! GetForm3Status()
     let total = str2nr($AWS_EXPIRY, 10) - strftime("%s")
     let mins = total / 60
@@ -241,13 +254,28 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='nord'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
+
 " }}}
+
 " vim-devicons {{{
+
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:webdevicons_enable_airline_statusline = 0
+
 " }}}
+
+" vim-floaterm {{{
+
+let g:floaterm_width = 0.5
+let g:floaterm_height = 0.5
+let g:floaterm_keymap_toggle = '<leader>tt'
+let g:floaterm_position = 'center'
+
+" }}}
+
 " Pymode {{{
+
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
 let g:pymode_lint_unmodified = 1
@@ -255,8 +283,11 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 " C0111 - Missing docstrings
 " W0703 - Cathing too general exception
 let g:pymode_lint_ignore = [ "C0111", "W0703", ]
+
 " }}}
+
 " coc.nvim " {{{
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -301,10 +332,15 @@ endfunction
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " }}}
+
 " coc-explorer {{{
+
 noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
+
 " }}}
+
 " coc-git {{{
+
 " navigate chunks of current buffer
 nmap [c <Plug>(coc-git-prevchunk)
 nmap ]c <Plug>(coc-git-nextchunk)
@@ -326,14 +362,18 @@ xmap ag <Plug>(coc-git-chunk-outer)
 
 " Open the list of modified git files
 nnoremap <silent> <space>g :<C-u>CocList --auto-preview gstatus<CR>
+
 " }}}
+
 " coc-terminal {{{
 
 " Open/close the terminal buffer
 nmap <silent> <leader>tt <Plug>(coc-terminal-toggle)
 
 " }}}
+
 " vim-go {{{
+
 let g:go_def_mapping_enabled = 0
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
@@ -392,8 +432,11 @@ autocmd myvimrc FileType go nmap <buffer> <leader>gc <Plug>(go-coverage-toggle)
 autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_go_files()<CR>
 autocmd myvimrc FileType go nmap <buffer> <leader>gi <Plug>(go-imports)
 autocmd myvimrc FileType go nmap <buffer> <leader>b :<C-u>GoDebugBreakpoint<CR>
+
 " }}}
+
 " vista {{{
+
 let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = []
 let g:vista_fzf_preview = ['right:50%']
@@ -401,8 +444,11 @@ let g:vista_echo_cursor_strategy = 'floating_win'
 let g:vista_disable_statusline = 0
 
 noremap <F3> :<C-u>Vista!!<CR>
+
 " }}}
+
 " FZF settings {{{
+
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -430,7 +476,9 @@ command! -bang -nargs=* FZFGGrep
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>s :FZFGGrep<CR>
 nnoremap <leader>a :Ag<CR>
+
 " }}}
+
 " vimwiki {{{
 
 " Show raw markup
@@ -451,4 +499,5 @@ hi VimwikiHeader4 guifg=#88c0d0
 hi VimwikiHeader5 guifg=#b48ead
 hi VimwikiHeader6 guifg=#d8dee9
 " }}}
+
 " }}}
