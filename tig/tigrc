@@ -6,7 +6,7 @@ set main-view = line-number:no,interval=5 id:yes date:relative author:full commi
 # }}}
 
 # Pager-based views {{{
-set diff-view = line-number:yes,interval=5 text:yes,commit-title-overflow=yes
+set diff-view = line-number:no,interval=5 text:yes,commit-title-overflow=yes
 
 # }}}
 
