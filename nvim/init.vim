@@ -491,7 +491,7 @@ let g:vimwiki_global_ext = 0
 let g:vimwiki_table_mappings = 0
 
 " Configure auto-export to HTML for vimwiki files
-let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_export': 1}]
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_export': 1, 'auto_toc': 1}]
 hi VimwikiHeader1 guifg=#bf616a
 hi VimwikiHeader2 guifg=#a3be8c
 hi VimwikiHeader3 guifg=#ebcb8b
