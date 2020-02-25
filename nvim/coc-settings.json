@@ -8,7 +8,7 @@
     "diagnostic.infoSign": "\uf129",
     "diagnostic.warningSign": "\uf12a",
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.enableVimDevions": true,
+    "explorer.icon.enableVimDevicons": true,
     "explorer.file.autoReveal": false,
     "explorer.file.column.git.icon.modified": "\uf040",
     "explorer.file.column.git.icon.added": "\uf067",
