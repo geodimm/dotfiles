@@ -13,6 +13,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'srcery-colors/srcery-vim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -262,6 +264,30 @@ let g:airline_powerline_fonts = 1
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 let g:webdevicons_enable_airline_statusline = 0
+
+" }}}
+
+" lens.vim {{{
+
+" Disable animate
+let g:lens#animate = 0
+
+" Resize width
+let g:lens#width_resize_max = 120
+let g:lens#width_resize_min = 10
+
+" Disable lens for some windows
+let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
+
+" }}}
+
+" animate.vim {{{
+
+" Animation speed
+let g:animate#duration = 300.0
+
+" Anumation function
+let g:animate#easing_func = 'animate#ease_out_cubic'
 
 " }}}
 
