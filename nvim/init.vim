@@ -470,12 +470,52 @@ let g:fzf_colors =
 command! -bang -nargs=* FZFGGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
-  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+command! -bang -nargs=* FZFRGrep
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+function! FloatingFZF()
+    let rate = 0.75
+    let height = float2nr(&lines * rate)
+    let width = float2nr(&columns * rate)
+    let top = float2nr((&lines - height) / 2) - 1
+    let left = float2nr((&columns - width) / 2)
+    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
+
+    let top = '╭' . repeat('─', width - 2) . '╮'
+    let mid = '│' . repeat(' ', width - 2) . '│'
+    let bot = '╰' . repeat('─', width - 2) . '╯'
+    let lines = [top] + repeat([mid], height - 2) + [bot]
+
+    let s:b_buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:b_buf, 0, -1, v:true, lines)
+    call nvim_open_win(s:b_buf, v:true, opts)
+
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
+    let s:f_buf = nvim_create_buf(v:false, v:true)
+    call nvim_open_win(s:f_buf, v:true, opts)
+
+    setlocal nocursorcolumn
+    " execute 'set winblend=' . g:fzf_preview_floating_window_winblend
+
+    augroup fzf_preview_floating_window
+        autocmd WinLeave <buffer> silent! execute 'bwipeout! ' . s:f_buf . ' ' . s:b_buf
+    augroup END
+endfunction
 
 " Mappings
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>s :FZFGGrep<CR>
-nnoremap <leader>a :Ag<CR>
+nnoremap <leader>a :FZFRGrep<CR>
 
 " }}}
 
