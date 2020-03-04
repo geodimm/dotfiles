@@ -345,6 +345,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
+nmap <silent> <leader>ca <Plug>(coc-codeaction)
 
 " Use K to show documentation in preview window
 function! s:show_documentation()
@@ -385,9 +386,6 @@ omap ig <Plug>(coc-git-chunk-inner)
 xmap ig <Plug>(coc-git-chunk-inner)
 omap ag <Plug>(coc-git-chunk-outer)
 xmap ag <Plug>(coc-git-chunk-outer)
-
-" Open the list of modified git files
-nnoremap <silent> <space>g :<C-u>CocList --auto-preview gstatus<CR>
 
 " }}}
 
@@ -495,12 +493,12 @@ let g:fzf_colors =
 " - fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -bang -nargs=* FZFGGrep
   \ call fzf#vim#grep(
-  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   'git grep --line-number '.shellescape(<q-args>) . ' -- ":!vendor/*"', 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
 command! -bang -nargs=* FZFRGrep
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
@@ -531,7 +529,6 @@ function! FloatingFZF()
     call nvim_open_win(s:f_buf, v:true, opts)
 
     setlocal nocursorcolumn
-    " execute 'set winblend=' . g:fzf_preview_floating_window_winblend
 
     augroup fzf_preview_floating_window
         autocmd WinLeave <buffer> silent! execute 'bwipeout! ' . s:f_buf . ' ' . s:b_buf
@@ -539,9 +536,11 @@ function! FloatingFZF()
 endfunction
 
 " Mappings
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>s :FZFGGrep<CR>
-nnoremap <leader>a :FZFRGrep<CR>
+nnoremap <leader>ff :FZF<CR>
+nnoremap <leader>fg :GFiles<CR>
+nnoremap <leader>fm :GFiles?<CR>
+nnoremap <leader>fs :FZFGGrep<CR>
+nnoremap <leader>fa :FZFRGrep<CR>
 
 " }}}
 
