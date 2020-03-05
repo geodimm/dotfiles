@@ -32,6 +32,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
+Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
