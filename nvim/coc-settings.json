@@ -48,7 +48,7 @@
     "languageserver": {
         "terraform": {
             "command": "terraform-lsp",
-            "filetypes": ["tf"],
+            "filetypes": ["terraform", "tf"],
             "initializationOptions": {}
         }
     },
