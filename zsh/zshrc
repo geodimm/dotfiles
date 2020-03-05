@@ -104,7 +104,7 @@ test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
 # Golang
 export GOPATH="${HOME}/go"
-export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+export PATH="${PATH}:${HOME}/.bin:${HOME}/bin:/usr/local/go/bin:${GOPATH}/bin"
 
 # Node Version Manager
 export NVM_DIR="${HOME}/.nvm"
