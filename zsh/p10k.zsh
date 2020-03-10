@@ -750,6 +750,7 @@
       # '*test*'  TEST    # to match your needs. Customize them as needed.
       '*'       DEFAULT)
   # typeset -g POWERLEVEL9K_AWS_DEFAULT_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_AWS_SHOW_ON_COMMAND='f3|aws|terraform'
 
   #[ aws_eb_env: aws elastic beanstalk environment (https://aws.amazon.com/elasticbeanstalk/) ]#
   # AWS Elastic Beanstalk environment color.
@@ -860,7 +861,7 @@
   # Custom prefix.
   typeset -g POWERLEVEL9K_KUBECONTEXT_PREFIX='%246Fat '
 
-  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='kubectl|helm'
+  typeset -g POWERLEVEL9K_KUBECONTEXT_SHOW_ON_COMMAND='minikube|kubectl|helm'
 
   ###############################[ public_ip: public IP address ]###############################
   # Public IP color.
