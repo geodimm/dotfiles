@@ -12,6 +12,7 @@ GO_VERSION="${GO_VERSION:=1.13.4}"
 set -e
 
 packages=(
+    cmake
     curl
     exuberant-ctags
     htop
@@ -135,7 +136,7 @@ function configure_nvim () {
     curl -fLo "$(pwd)/nvim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     nvim +PlugInstall +qall
 
-    # CocInstall coc-explorer coc-terminal coc-go coc-python coc-java coc-sh  coc-lua coc-vimlsp coc-json coc-yaml coc-html coc-css coc-docker coc-marketplace
+    # CocInstall coc-explorer coc-terminal coc-go coc-python coc-java coc-sh coc-lua coc-vimlsp coc-json coc-yaml coc-html coc-css coc-docker coc-marketplace
 }
 
 function configure () {
