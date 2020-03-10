@@ -10,6 +10,7 @@ plugins=(
     docker
     git
     golang
+    helm
     kubectl
     npm
     nvm
