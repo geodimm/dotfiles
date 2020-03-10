@@ -7,9 +7,6 @@ ZSH_CUSTOM="${ZSH}/custom"
 
 BAT_VERSION="${BAT_VERSION:=0.12.1}"
 
-NVM="${HOME}/.nvm"
-NVM_VERSION="${NVM_VERSION:=0.34.0}"
-
 GO_VERSION="${GO_VERSION:=1.13.4}"
 
 set -e
@@ -66,25 +63,6 @@ function install_colorls () {
     gem install colorls
 }
 
-function install_nvm () {
-    test -f "${NVM}/nvm.sh" return
-    mkdir -p "${NVM}"
-    curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash
-}
-
-function install_rvm () {
-    is_installed rvm && return
-    gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    curl -sSL https://get.rvm.io | bash -s stable
-}
-
-function install_node {
-    is_installed node && return
-    # shellcheck source=/dev/null
-    test -f "${NVM}/nvm.sh" && source "${NVM}/nvm.sh"
-    nvm install node
-}
-
 function install_go () {
     if [[ "$(go version)" == *"${GO_VERSION}"* ]]; then return; fi
     curl -fLo "/tmp/go${GO_VERSION}.tar.gz" "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz"
@@ -97,10 +75,8 @@ function install_deps () {
     install_oh_my_zsh
     install_neovim
     install_bat
-    install_rvm
     install_colorls
     install_go
-    install_nvm
     install_node
 }
 

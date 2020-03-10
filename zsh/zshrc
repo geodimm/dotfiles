@@ -12,8 +12,6 @@ plugins=(
     golang
     helm
     kubectl
-    npm
-    nvm
     terraform
     tmux
     vi-mode
@@ -105,11 +103,7 @@ test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
 # Golang
 export GOPATH="${HOME}/go"
-export PATH="${PATH}:${HOME}/.bin:${HOME}/bin:/usr/local/go/bin:${GOPATH}/bin"
-
-# Node Version Manager
-export NVM_DIR="${HOME}/.nvm"
-test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
+export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
 
 # Extras
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
