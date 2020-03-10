@@ -55,7 +55,6 @@
       command_execution_time  # duration of the last command
       background_jobs         # presence of background jobs
       virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-      nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       go_version              # go version (https://golang.org)
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
