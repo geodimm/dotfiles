@@ -923,9 +923,9 @@
 
   function prompt_form3() {
       if (( ${+F3_ENVIRONMENT} && ${+AWS_EXPIRY} )); then
-          local total=$((${AWS_EXPIRY} - $(date +%s)))
-          local mins=$(($total / 60))
-          local secs=$(($total % 60))
+          local total=$((AWS_EXPIRY - $(date +%s)))
+          local mins=$((total / 60))
+          local secs=$((total % 60))
           local duration="${mins}m${secs}s"
           local color="$(_minutes_to_hex $mins)"
           if [[ $total -lt 0 ]]; then
