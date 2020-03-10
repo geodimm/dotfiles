@@ -58,8 +58,8 @@
       go_version              # go version (https://golang.org)
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-      form3
       kubecontext
+      form3
       ram                     # free RAM
       load                    # CPU load
       time                    # current time
