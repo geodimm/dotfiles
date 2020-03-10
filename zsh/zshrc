@@ -1,8 +1,11 @@
 export ZSH="${HOME}/.oh-my-zsh"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-CASE_SENSITIVE="true"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 plugins=(
     aws
@@ -21,9 +24,16 @@ plugins=(
     zsh-syntax-highlighting
 )
 
+# Set the zsh theme
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
 # User configuration
+
+# Uncomment the following line to use case-sensitive completion.
+CASE_SENSITIVE="true"
 
 # zsh-autosuggestions settings
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
@@ -31,12 +41,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
-# Fix Ctrl+<key>
-stty -ixon
-
 # Set the default umask
 umask 022
 
+# Apply sensisble zsh settings
 setopt ALWAYS_TO_END           # full completions move cursor to the end
 setopt AUTO_CD                 # `dirname` is equivalent to `cd dirname`
 setopt AUTO_PARAM_SLASH        # if completed parameter is a directory, add a trailing slash
@@ -58,16 +66,23 @@ setopt NO_FLOW_CONTROL         # disable start/stop characters in shell editor
 setopt PATH_DIRS               # perform path search even on command names with slashes
 setopt SHARE_HISTORY           # write and import history on every command
 setopt correct                 # Correct typos
+unsetopt FLOW_CONTROL          # Disable start/stop characters output (usually assigned to ^S/^Q) in the shell's editor.
 
-unset LSCOLORS
-export CLICOLOR=1
-export CLICOLOR_FORCE=1
+# Add more dirs to PATH
+if [[ ! "$PATH" == *:.* ]]; then
+    export PATH="${PATH}:${HOME}/.bin:."
+fi
 
-export PATH="${PATH}:${HOME}:."
+# Set the system-wide editor
 export EDITOR=nvim
-export XDG_CONFIG_HOME="${HOME}/.config"
-export REPOS=/repos
 
+# Set XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+# Set the GPG_TTY to the current TTY
+export GPG_TTY=$TTY
+
+# OSTYPE specific settings
 case "${OSTYPE}" in
     linux*)
         if (( $+commands[setxkbmap] )); then
@@ -77,9 +92,6 @@ case "${OSTYPE}" in
         ;;
     *) ;;
 esac
-
-set editing-mode vi
-set blink-matching-paren on
 
 # vi-mode extras
 # allow arrow keys to search history in insert mode
@@ -103,8 +115,9 @@ test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
 # Golang
 export GOPATH="${HOME}/go"
-export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
+    export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
+fi
 
 # Extras
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
-export GPG_TTY=$(tty)
