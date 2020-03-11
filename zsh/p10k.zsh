@@ -65,7 +65,7 @@
       time                    # current time
       # =========================[ Line #2 ]=========================
       newline
-      # public_ip             # public IP address
+      public_ip               # public IP address
       # proxy                 # system-wide http/https/ftp proxy
       # battery               # internal battery
       # example               # example user-defined segment (see prompt_example function below)
@@ -864,9 +864,10 @@
 
   ###############################[ public_ip: public IP address ]###############################
   # Public IP color.
-  typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND=94
+  typeset -g POWERLEVEL9K_PUBLIC_IP_FOREGROUND='#b48ead' # nord15
   # Custom icon.
   # typeset -g POWERLEVEL9K_PUBLIC_IP_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_PUBLIC_IP_SHOW_ON_COMMAND='f3|ip'
 
   ########################[ vpn_ip: virtual private network indicator ]#########################
   # VPN IP color.
