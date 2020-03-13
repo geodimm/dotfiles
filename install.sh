@@ -103,6 +103,7 @@ function configure_zsh () {
     chsh -s "$(type -P zsh)"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting" || true
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" || true
+    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM}/plugins/zsh-completions" || true
     git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k" || true
     ln -fs "$(pwd)/zsh/zshrc" "${HOME}/.zshrc"
     ln -fs "$(pwd)/zsh/zshenv" "${HOME}/.zshenv"
