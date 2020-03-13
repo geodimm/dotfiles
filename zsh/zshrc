@@ -20,6 +20,7 @@ plugins=(
     vi-mode
     web-search
     z
+    zsh-completions
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
