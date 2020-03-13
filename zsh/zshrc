@@ -16,6 +16,8 @@ plugins=(
     helm
     kubectl
     terraform
+    gradle
+    gradle-completion
     tmux
     vi-mode
     web-search
