@@ -13,7 +13,6 @@ plugins=(
     docker
     git
     golang
-    gradle
     gradle-completion
     helm
     kubectl
