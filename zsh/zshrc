@@ -13,18 +13,18 @@ plugins=(
     docker
     git
     golang
+    gradle
+    gradle-completion
     helm
     kubectl
     npm
     terraform
-    gradle
-    gradle-completion
     tmux
     vi-mode
     web-search
     z
-    zsh-completions
     zsh-autosuggestions
+    zsh-completions
     zsh-syntax-highlighting
 )
 
