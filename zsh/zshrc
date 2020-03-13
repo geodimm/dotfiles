@@ -15,6 +15,7 @@ plugins=(
     golang
     helm
     kubectl
+    npm
     terraform
     gradle
     gradle-completion
