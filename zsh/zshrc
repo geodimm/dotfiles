@@ -17,6 +17,8 @@ plugins=(
     helm
     kubectl
     npm
+    nvm
+    rvm
     terraform
     tmux
     vi-mode
@@ -63,7 +65,6 @@ setopt HIST_IGNORE_DUPS        # don't add consecutive dups to history
 setopt HIST_IGNORE_SPACE       # don't add commands starting with space to history
 setopt HIST_VERIFY             # if a command triggers history expansion, show it instead of running
 setopt INTERACTIVE_COMMENTS    # allow comments in command line
-setopt MENU_COMPLETE           # insert the first match immediately.
 setopt MULTIOS                 # allow multiple redirections for the same fd
 setopt NO_BG_NICE              # don't nice background jobs
 setopt NO_FLOW_CONTROL         # disable start/stop characters in shell editor
@@ -122,6 +123,14 @@ export GOPATH="${HOME}/go"
 if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
     export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
 fi
+
+# Node Version Manager
+export NVM_DIR="${HOME}/.nvm"
+test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
+
+# Ruby Version Manager
+export RVM_DIR="${HOME}/.rvm"
+test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm" 
 
 # Extras
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
