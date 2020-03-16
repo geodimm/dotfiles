@@ -130,7 +130,7 @@ test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
 
 # Ruby Version Manager
 export RVM_DIR="${HOME}/.rvm"
-test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm" 
+test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm"
 
 # Extras
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
