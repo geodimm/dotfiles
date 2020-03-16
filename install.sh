@@ -136,6 +136,7 @@ function configure_zsh () {
     git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" || true
     git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM}/plugins/zsh-completions" || true
     git clone https://github.com/gradle/gradle-completion "${ZSH_CUSTOM}/plugins/gradle-completion" || true
+    git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM}/plugins/fzf-tab" || true
     git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k" || true
     ln -fs "$(pwd)/zsh/zshrc" "${HOME}/.zshrc"
     ln -fs "$(pwd)/zsh/zshenv" "${HOME}/.zshenv"
