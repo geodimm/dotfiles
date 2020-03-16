@@ -15,6 +15,7 @@ plugins=(
     golang
     gradle-completion
     helm
+    httpie
     kubectl
     npm
     nvm
