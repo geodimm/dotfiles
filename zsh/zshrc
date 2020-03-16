@@ -28,6 +28,9 @@ plugins=(
     zsh-autosuggestions
     zsh-completions
     zsh-syntax-highlighting
+
+    # fzf-tab should be the last plugin to bind "^I"
+    fzf-tab
 )
 
 # Set the zsh theme
