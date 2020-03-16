@@ -57,7 +57,6 @@
       virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
       nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       rvm
-      go_version              # go version (https://golang.org)
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
       kubecontext
@@ -644,7 +643,7 @@
   typeset -g POWERLEVEL9K_NVM_FOREGROUND=70
   # Custom icon.
   # typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  typeset -g POWERLEVEL9K_NVM_SHOW_ON_COMMAND='node|npm'
+  typeset -g POWERLEVEL9K_NVM_SHOW_ON_COMMAND='node|npm|nvm'
 
   ############[ nodeenv: node.js environment (https://github.com/ekalinin/nodeenv) ]############
   # Nodeenv color.
