@@ -55,6 +55,7 @@
       command_execution_time  # duration of the last command
       background_jobs         # presence of background jobs
       virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+      go_version              # go version (https://golang.org)
       nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
       rvm
       terraform               # terraform workspace (https://www.terraform.io)
@@ -670,6 +671,7 @@
   typeset -g POWERLEVEL9K_GO_VERSION_PROJECT_ONLY=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_GO_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_GO_VERSION_SHOW_ON_COMMAND='go'
 
   #################[ rust_version: rustc version (https://www.rust-lang.org) ]##################
   # Rust version color.
