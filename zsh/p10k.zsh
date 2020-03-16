@@ -56,12 +56,13 @@
       background_jobs         # presence of background jobs
       virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
       go_version              # go version (https://golang.org)
+      java_version            # java version (https://www.java.com/)
       nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-      rvm
+      rvm                     # ruby version from rvm (https://rvm.io)
       terraform               # terraform workspace (https://www.terraform.io)
       aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-      kubecontext
-      form3
+      kubecontext             # current kubernetes context (https://kubernetes.io/)
+      form3                   # custom form3 dev segment
       ram                     # free RAM
       load                    # CPU load
       time                    # current time
@@ -699,6 +700,17 @@
   typeset -g POWERLEVEL9K_RBENV_PROMPT_ALWAYS_SHOW=false
   # Custom icon.
   # typeset -g POWERLEVEL9K_RBENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
+
+  ####################[ java_version: java version (https://www.java.com/) ]####################
+  # Java version color.
+  typeset -g POWERLEVEL9K_JAVA_VERSION_FOREGROUND='#5382a1' # java blue
+  # Show java version only when in a java project subdirectory.
+  typeset -g POWERLEVEL9K_JAVA_VERSION_PROJECT_ONLY=false
+  # Show brief version.
+  typeset -g POWERLEVEL9K_JAVA_VERSION_FULL=false
+  # Custom icon.
+  # typeset -g POWERLEVEL9K_JAVA_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_JAVA_VERSION_SHOW_ON_COMMAND='java|javac|gradle|gradlew'
 
   #######################[ rvm: ruby version from rvm (https://rvm.io) ]########################
   # Rvm color.
