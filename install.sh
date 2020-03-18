@@ -169,7 +169,7 @@ function configure_nvim () {
     ln -fs "$(pwd)/nvim" "${XDG_CONFIG_HOME}/nvim"
     curl -fLo "$(pwd)/nvim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     nvim +PlugInstall +qall
-    nvim +"silent CocInstall -sync coc-explorer coc-go coc-python coc-java coc-sh coc-lua coc-vimlsp coc-json coc-yaml coc-html coc-css coc-docker coc-marketplace" +qall
+    nvim +"silent CocInstall -sync coc-explorer coc-actions coc-floaterm coc-git coc-go coc-python coc-java coc-sh coc-lua coc-vimlsp coc-json coc-yaml coc-html coc-xml coc-css coc-docker coc-marketplace coc-snippets coc-markdownlint coc-emoji" +qall
 }
 
 function configure () {
