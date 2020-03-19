@@ -114,8 +114,13 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # FZF
-export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --preview='[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers,changes --theme=nord --color=always {} || head -100 {} || echo Preview not available) 2>/dev/null'"
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+
+# The preview command used by the fzf.vim/bin/preview.sh script
+export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --theme=nord --color=always --pager=never --line-range=$FIRST:$LAST --highlight-line=$CENTER "$FILE"'
+
+preview_cmd='(bat --style=numbers,changes --theme=nord --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=nord --color always --pager=never --language zsh) 2>/dev/null'
+export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --tiebreak=index --cycle --preview='${preview_cmd}'"
+export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
     --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
     --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
 '
