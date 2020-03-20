@@ -118,12 +118,26 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 # The preview command used by the fzf.vim/bin/preview.sh script
 export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --theme=nord --color=always --pager=never --line-range=$FIRST:$LAST --highlight-line=$CENTER "$FILE"'
 
-preview_cmd='(bat --style=numbers,changes --theme=nord --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=nord --color always --pager=never --language zsh) 2>/dev/null'
+# The default preview command used by fzf
+local preview_cmd='(bat --style=numbers,changes --theme=nord --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=nord --color always --pager=never --language zsh) 2>/dev/null'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --tiebreak=index --cycle --preview='${preview_cmd}'"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
     --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
     --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
 '
+
+# fzf-tab settings
+
+# (experimental, may change in the future)
+local extract="
+# trim input(what you select)
+in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
+# get ctxt for current completion(some thing before or after the current word)
+local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
+"
+
+# The preview command used by fzf-tab (show file or directory contents on completion)
+zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --style=numbers,changes --theme=nord --color=always --pager=never ${~ctxt[hpre]}$in || colorls --color=always --long -A --sort-dirs --git-status ${~ctxt[hpre]}$in) 2>/dev/null'
 
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
 

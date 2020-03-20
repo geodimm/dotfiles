@@ -11,10 +11,10 @@ function cmd_path () {
 
 # misc
 if cmd_path colorls ; then
-    LS_OPTS="-l --sd --gs"
+    LS_OPTS="--color=always --long --sort-dirs --git-status"
     alias ls="colorls ${LS_OPTS}"
-    alias lt="ls -tr"
-    alias la="ls -A"
+    alias lt="ls -t --reverse"
+    alias la="ls --almost-all"
 else
     LS_OPTS="--color=auto --group-directories-first"
     alias ls="ls ${LS_OPTS}"
