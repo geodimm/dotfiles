@@ -41,6 +41,9 @@ source "${ZSH}/oh-my-zsh.sh"
 
 # User configuration
 
+# Reload the completions
+autoload -U compinit && compinit
+
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
