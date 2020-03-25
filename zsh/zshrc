@@ -36,6 +36,12 @@ plugins=(
 # Set the zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# Use case-sensitive completion
+CASE_SENSITIVE="true"
+
+# Fix slow paste
+DISABLE_MAGIC_FUNCTIONS=true
+
 # Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
@@ -46,9 +52,6 @@ zstyle ':completion:*:*:make::' tag-order 'targets variables'
 
 # Reload the completions
 autoload -U compinit && compinit
-
-# Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
 
 # zsh-autosuggestions settings
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
