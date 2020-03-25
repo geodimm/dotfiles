@@ -118,9 +118,6 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # FZF
 
-# The preview command used by the fzf.vim/bin/preview.sh script
-export FZF_PREVIEW_COMMAND='bat --style=numbers,changes --theme=nord --color=always --pager=never --line-range=$FIRST:$LAST --highlight-line=$CENTER "$FILE"'
-
 # The default preview command used by fzf
 local preview_cmd='(bat --style=numbers,changes --theme=nord --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=nord --color always --pager=never --language zsh) 2>/dev/null'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --tiebreak=index --cycle --preview='${preview_cmd}'"

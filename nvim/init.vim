@@ -484,9 +484,10 @@ let g:vista_default_executive = 'coc'
 let g:vista_finder_alternative_executives = []
 let g:vista_fzf_preview = ['right:50%']
 let g:vista_echo_cursor_strategy = 'floating_win'
-let g:vista_disable_statusline = 0
 
+" Mappings
 noremap <F3> :<C-u>Vista!!<CR>
+nnoremap <leader>fv :<C-u>Vista finder<CR>
 
 " }}}
 
@@ -520,39 +521,7 @@ command! -bang -nargs=* FZFRGrep
   \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-function! FloatingFZF()
-    let rate = 0.75
-    let height = float2nr(&lines * rate)
-    let width = float2nr(&columns * rate)
-    let top = float2nr((&lines - height) / 2) - 1
-    let left = float2nr((&columns - width) / 2)
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = '╭' . repeat('─', width - 2) . '╮'
-    let mid = '│' . repeat(' ', width - 2) . '│'
-    let bot = '╰' . repeat('─', width - 2) . '╯'
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-
-    let s:b_buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:b_buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:b_buf, v:true, opts)
-
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    let s:f_buf = nvim_create_buf(v:false, v:true)
-    call nvim_open_win(s:f_buf, v:true, opts)
-
-    setlocal nocursorcolumn
-
-    augroup fzf_preview_floating_window
-        autocmd WinLeave <buffer> silent! execute 'bwipeout! ' . s:f_buf . ' ' . s:b_buf
-    augroup END
-endfunction
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 
 " Mappings
 nnoremap <leader>ff :FZF<CR>
