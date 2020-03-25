@@ -41,6 +41,9 @@ source "${ZSH}/oh-my-zsh.sh"
 
 # User configuration
 
+# Only display targets tag for make command completion
+zstyle ':completion:*:*:make::' tag-order 'targets variables'
+
 # Reload the completions
 autoload -U compinit && compinit
 
