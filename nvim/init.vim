@@ -18,6 +18,7 @@ Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'yuki-ycino/fzf-preview.vim'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'voldikss/vim-floaterm'
@@ -365,10 +366,6 @@ endfunction
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
@@ -486,11 +483,10 @@ let g:vista_echo_cursor_strategy = 'floating_win'
 
 " Mappings
 noremap <F3> :<C-u>Vista!!<CR>
-nnoremap <leader>fv :<C-u>Vista finder<CR>
 
 " }}}
 
-" FZF settings {{{
+" fzf settings {{{
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -520,14 +516,45 @@ command! -bang -nargs=* FZFRGrep
   \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.75, 'height': 0.75 } }
+
+" fzf-preview
+
+" floating window size ratio
+let g:fzf_preview_floating_window_rate = 0.75
+
+" floating window winblend value
+let g:fzf_preview_floating_window_winblend = 0
+
+" Commands used for fzf preview
+let g:fzf_preview_command = 'bat --color=always --theme=nord --style=grid {-1}'
+
+" Commands used for current file lines
+let g:fzf_preview_lines_command = 'bat --color=always --theme=nord --style=grid --plain'
+
+" Commands used for project grep
+let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --smart-case --follow --glob "!vendor/*"'
+
+" Use vim-devicons
+let g:fzf_preview_use_dev_icons = 1
 
 " Mappings
-nnoremap <leader>ff :FZF<CR>
-nnoremap <leader>fg :GFiles<CR>
-nnoremap <leader>fm :GFiles?<CR>
-nnoremap <leader>fs :FZFGGrep<CR>
-nnoremap <leader>fa :FZFRGrep<CR>
+nmap <Leader>f [fzf-p]
+xmap <Leader>f [fzf-p]
+
+nnoremap <silent> [fzf-p]f     :<C-u>FzfPreviewProjectFiles<CR>
+nnoremap <silent> [fzf-p]gf    :<C-u>FzfPreviewGitFiles<CR>
+nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatus<CR>
+nnoremap <silent> [fzf-p]gg    :<C-u>FZFGGrep<CR>
+nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'"<CR>
+nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
+nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffers<CR>
+nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffers<CR>
+nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumps<CR>
+nnoremap          [fzf-p]s     :<C-u>FzfPreviewProjectGrep -add-fzf-arg=--nth=3<Space>
+xnoremap          [fzf-p]s     "sy:FzfPreviewProjectGrep -add-fzf-arg=--nth=3<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"<CR>
+nnoremap <silent> [fzf-p]a     :<C-u>FZFRGrep<CR>
+nnoremap <silent> [fzf-p]v     :<C-u>Vista finder<CR>
 
 " }}}
 
