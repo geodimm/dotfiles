@@ -19,6 +19,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'yuki-ycino/fzf-preview.vim'
+Plug 'antoinemadec/coc-fzf'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'voldikss/vim-floaterm'
@@ -353,7 +354,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>rn <Plug>(coc-rename)
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
-nmap <silent> <leader>ca :<C-u>CocAction<CR>
 
 " Use K to show documentation in preview window
 function! s:show_documentation()
@@ -372,6 +372,19 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
+
+" }}}
+
+" coc-fzf {{{
+
+let g:coc_fzf_opts = ["--layout=reverse"]
+let g:coc_fzf_preview = "right:50%"
+
+nmap <Leader>c [coc-fzf-p]
+nmap <silent> [coc-fzf-p]l :<C-u>CocFzfList<CR>
+nmap <silent> [coc-fzf-p]a :<C-u>CocFzfList actions<CR>
+nmap <silent> [coc-fzf-p]c :<C-u>CocFzfList commands<CR>
+nmap <silent> [coc-fzf-p]d :<C-u>CocFzfList diagnostics --current-buf<CR>
 
 " }}}
 
@@ -545,6 +558,7 @@ xmap <Leader>f [fzf-p]
 nnoremap <silent> [fzf-p]f     :<C-u>FzfPreviewProjectFiles<CR>
 nnoremap <silent> [fzf-p]gf    :<C-u>FzfPreviewGitFiles<CR>
 nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatus<CR>
+nnoremap <silent> [fzf-p]gc    :<C-u>BCommits<CR>
 nnoremap <silent> [fzf-p]gg    :<C-u>FZFGGrep<CR>
 nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'"<CR>
 nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
