@@ -6,6 +6,7 @@
     "diagnostic.errorSign": "\uf00d",
     "diagnostic.hintSign": "\uf7d5",
     "diagnostic.infoSign": "\uf129",
+    "diagnostic.refreshOnInsertMode": true,
     "diagnostic.warningSign": "\uf12a",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.enableVimDevicons": true,
