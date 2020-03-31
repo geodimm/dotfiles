@@ -32,7 +32,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'fatih/vim-go', {'for': 'go', 'do': ':GoUpdateBinaries'}
+Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -443,7 +443,7 @@ let g:go_highlight_variable_assignments = 1
 let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
 let g:go_metalinter_autosave = 0
-let g:go_doc_popup_window = 1
+let g:go_doc_keywordprg_enabled = 0
 let g:go_term_mode = "split"
 let g:go_term_enabled = 1
 let g:go_term_close_on_exit = 0
