@@ -295,9 +295,6 @@ let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
 " Animation speed
 let g:animate#duration = 300.0
 
-" Anumation function
-let g:animate#easing_func = 'animate#ease_out_cubic'
-
 " }}}
 
 " vim-floaterm {{{
