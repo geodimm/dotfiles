@@ -13,12 +13,12 @@
 || `$HOME/.zshenv`
 || `$HOME/.oh-my-zsh/custom/aliases.zsh`
 || `$HOME/.oh-my-zsh/custom/p10k.zsh`
-|| `$HOME/.oh-my-zsh/plugins/zsh-autosuggestions`
-|| `$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting`
-|| `$HOME/.oh-my-zsh/plugins/zsh-completions`
-|| `$HOME/.oh-my-zsh/plugins/gradle-completion`
-|| `$HOME/.oh-my-zsh/plugins/fzf-tab`
-|| `$HOME/.oh-my-zsh/themes/powerlevel10k`
+|| `$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions`
+|| `$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting`
+|| `$HOME/.oh-my-zsh/custom/plugins/zsh-completions`
+|| `$HOME/.oh-my-zsh/custom/plugins/gradle-completion`
+|| `$HOME/.oh-my-zsh/custom/plugins/fzf-tab`
+|| `$HOME/.oh-my-zsh/custom/themes/powerlevel10k`
 **neovim**  | `$XDG_CONFIG_HOME/nvim`
 **git**  | `$HOME/.gitconfig`
 **tig**  | `$HOME/.tigrc`
