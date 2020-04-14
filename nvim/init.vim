@@ -415,13 +415,6 @@ xmap ag <Plug>(coc-git-chunk-outer)
 
 " }}}
 
-" coc-terminal {{{
-
-" Open/close the terminal buffer
-nmap <silent> <leader>tt <Plug>(coc-terminal-toggle)
-
-" }}}
-
 " vim-go {{{
 
 let g:go_def_mapping_enabled = 0
