@@ -33,6 +33,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'sebdah/vim-delve', {'for': 'go'}
 Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'AndrewRadev/splitjoin.vim'
@@ -442,45 +443,6 @@ let g:go_dispatch_enabled = 1
 let g:go_metalinter_autosave = 0
 let g:go_doc_keywordprg_enabled = 0
 let g:go_term_mode = "split"
-let g:go_term_enabled = 1
-let g:go_term_close_on_exit = 0
-let g:go_debug_windows = {'vars':'leftabove vnew','stack':'botright 10new'}
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-        call go#test#Test(0, 1)
-    elseif l:file =~# '^\f\+\.go$'
-        call go#cmd#Build(0)
-    endif
-endfunction
-
-" run :GoDebugStart or :GoDebugTest based on the go file
-function! s:debug_go_files()
-    let l:file = expand('%')
-    if l:file =~# '^\f\+_test\.go$'
-        let test = search('func \(Test\|Example\)', "bcnW")
-        if test == 0
-            echo "vim-go: [debug] no test found immediate to cursor"
-            return
-        end
-
-        let line = getline(test)
-        let name = split(split(line, " ")[1], "(")[0]
-        call go#debug#Start(1, "./...", "-test.run", name)
-    elseif l:file =~# '^\f\+\.go$'
-        call go#debug#Start(0)
-    endif
-endfunction
-
-autocmd myvimrc FileType go nmap <buffer> <leader>gr <Plug>(go-run)
-autocmd myvimrc FileType go nmap <buffer> <leader>gt <Plug>(go-test-func)
-autocmd myvimrc FileType go nmap <buffer> <leader>gb :<C-u>call <SID>build_go_files()<CR>
-autocmd myvimrc FileType go nmap <buffer> <leader>gc <Plug>(go-coverage-toggle)
-autocmd myvimrc FileType go nmap <buffer> <leader>gd :<C-u>call <SID>debug_go_files()<CR>
-autocmd myvimrc FileType go nmap <buffer> <leader>gi <Plug>(go-imports)
-autocmd myvimrc FileType go nmap <buffer> <leader>b :<C-u>GoDebugBreakpoint<CR>
 
 " }}}
 
