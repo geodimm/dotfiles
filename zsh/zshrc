@@ -51,7 +51,10 @@ source "${ZSH}/oh-my-zsh.sh"
 zstyle ':completion:*:*:make::' tag-order 'targets variables'
 
 # Reload the completions
-autoload -U compinit && compinit
+# autoload -U compinit && compinit
+if [ $commands[skaffold] ]; then
+    source <(skaffold completion zsh)
+fi
 
 # zsh-autosuggestions settings
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
