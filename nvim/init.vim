@@ -301,10 +301,12 @@ let g:animate#duration = 300.0
 
 " vim-floaterm {{{
 
-let g:floaterm_width = 0.5
-let g:floaterm_height = 0.5
+let g:floaterm_width = 0.75
+let g:floaterm_height = 0.75
 let g:floaterm_keymap_toggle = '<leader>tt'
 let g:floaterm_position = 'center'
+let g:floaterm_wintitle = v:false
+let g:floaterm_borderchars = ['─', '│', '─', '│', '╭', '╮', '╯', '╰']
 
 " }}}
 
