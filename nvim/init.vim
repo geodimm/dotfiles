@@ -10,6 +10,7 @@ call plug#begin('~/dotfiles/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'psliwka/vim-smoothie'
 Plug 'arcticicestudio/nord-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'camspiers/animate.vim'
