@@ -20,7 +20,7 @@ set -e
 packages=(
     cmake
     curl
-    exuberant-ctags
+    universal-ctags
     htop
     httpie
     jq
