@@ -37,6 +37,7 @@ Plug 'fatih/vim-go', {'for': 'go'}
 Plug 'sebdah/vim-delve', {'for': 'go'}
 Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
+Plug 'zinit-zsh/zinit-vim-syntax'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
@@ -504,7 +505,7 @@ let g:fzf_preview_lines_command = 'bat --color=always --theme=nord --style=grid 
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --smart-case --follow --glob "!vendor/*"'
 
 " Use vim-devicons
-let g:fzf_preview_use_dev_icons = 1
+let g:fzf_preview_use_dev_icons = 0
 
 " Mappings
 nmap <Leader>f [fzf-p]
@@ -520,7 +521,7 @@ nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add
 nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffers<CR>
 nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffers<CR>
 nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumps<CR>
-nnoremap          [fzf-p]s     :<C-u>FzfPreviewProjectGrep -add-fzf-arg=--nth=3<Space>
+nnoremap          [fzf-p]s     :<C-u>FzfPreviewProjectGrep -add-fzf-arg=--nth=3 ''<CR>
 xnoremap          [fzf-p]s     "sy:FzfPreviewProjectGrep -add-fzf-arg=--nth=3<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"<CR>
 nnoremap <silent> [fzf-p]a     :<C-u>FZFRGrep<CR>
 nnoremap <silent> [fzf-p]v     :<C-u>Vista finder<CR>
