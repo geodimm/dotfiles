@@ -79,15 +79,15 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Load plugins
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth"1"; zinit light romkatv/powerlevel10k
 zinit ice blockf; zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma/fast-syntax-highlighting
-zinit light zsh-users/zsh-history-substring-search
 zinit light agkozak/zsh-z
 zinit light Aloxaf/fzf-tab
 
 # Load oh-my-zsh plugins
+zinit snippet OMZL::history.zsh
 zinit snippet OMZP::aws
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZP::git
