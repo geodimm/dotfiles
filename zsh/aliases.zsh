@@ -21,6 +21,7 @@ else
     alias lt="ls -ltrh"
     alias la="ls -A"
 fi
+alias ll='ls'
 
 alias bat="bat --color=always --theme=nord"
 alias grepi="grep -i"
