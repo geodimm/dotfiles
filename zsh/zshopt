@@ -14,16 +14,6 @@ setopt PATH_DIRS               # perform path search even on command names with 
 setopt correct                 # Correct typos
 unsetopt FLOW_CONTROL          # Disable start/stop characters output (usually assigned to ^S/^Q) in the shell's editor.
 
-# History settings
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-setopt EXTENDED_HISTORY        # write timestamps to history
-setopt HIST_EXPIRE_DUPS_FIRST  # if history needs to be trimmed, evict dups first
-setopt HIST_FIND_NO_DUPS       # don't show dups when searching history
-setopt HIST_IGNORE_DUPS        # don't add consecutive dups to history
-setopt HIST_IGNORE_SPACE       # don't add commands starting with space to history
-setopt HIST_VERIFY             # if a command triggers history expansion, show it instead of running
-setopt SHARE_HISTORY           # write and import history on every command
-
 # Use case-sensitive completion
 CASE_SENSITIVE="true"
 
