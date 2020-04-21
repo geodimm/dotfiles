@@ -87,6 +87,7 @@ zinit light agkozak/zsh-z
 zinit light Aloxaf/fzf-tab
 
 # Load oh-my-zsh plugins
+zinit snippet OMZL::git.zsh
 zinit snippet OMZL::history.zsh
 zinit snippet OMZP::aws
 zinit snippet OMZP::colored-man-pages
