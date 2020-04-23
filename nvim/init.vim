@@ -496,10 +496,10 @@ let g:fzf_preview_floating_window_rate = 0.75
 let g:fzf_preview_floating_window_winblend = 0
 
 " Commands used for fzf preview
-let g:fzf_preview_command = 'bat --color=always --theme=nord --style=grid {-1}'
+let g:fzf_preview_command = 'bat --color=always --theme=Nord --style=grid {-1}'
 
 " Commands used for current file lines
-let g:fzf_preview_lines_command = 'bat --color=always --theme=nord --style=grid --plain'
+let g:fzf_preview_lines_command = 'bat --color=always --theme=Nord --style=grid --plain'
 
 " Commands used for project grep
 let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --smart-case --follow --glob "!vendor/*"'
