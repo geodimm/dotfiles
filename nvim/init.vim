@@ -497,7 +497,6 @@ nnoremap <silent> [fzf-p]gc    :<C-u>BCommits<CR>
 nnoremap <silent> [fzf-p]/     :<C-u>Lines<CR>
 nnoremap <silent> [fzf-p]*     :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
 nnoremap <silent> [fzf-p]b     :<C-u>Buffers<CR>
-nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffers<CR>
 nnoremap          [fzf-p]s     :<C-u>FZFGGrep<CR>
 xnoremap          [fzf-p]s     "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
 nnoremap <silent> [fzf-p]a     :<C-u>FZFRGrep<CR>
