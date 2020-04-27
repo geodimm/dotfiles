@@ -19,7 +19,6 @@ Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'yuki-ycino/fzf-preview.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'urbainvaes/vim-tmux-pilot'
@@ -487,42 +486,20 @@ command! -bang -nargs=* FZFRGrep
 
 let g:fzf_layout = { 'window': { 'width': 0.75, 'height': 0.75 } }
 
-" fzf-preview
-
-" floating window size ratio
-let g:fzf_preview_floating_window_rate = 0.75
-
-" floating window winblend value
-let g:fzf_preview_floating_window_winblend = 0
-
-" Commands used for fzf preview
-let g:fzf_preview_command = 'bat --color=always --theme=Nord --style=grid {-1}'
-
-" Commands used for current file lines
-let g:fzf_preview_lines_command = 'bat --color=always --theme=Nord --style=grid --plain'
-
-" Commands used for project grep
-let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --smart-case --follow --glob "!vendor/*"'
-
-" Use vim-devicons
-let g:fzf_preview_use_dev_icons = 0
-
 " Mappings
 nmap <Leader>f [fzf-p]
 xmap <Leader>f [fzf-p]
 
-nnoremap <silent> [fzf-p]f     :<C-u>FzfPreviewProjectFiles<CR>
-nnoremap <silent> [fzf-p]gf    :<C-u>FzfPreviewGitFiles<CR>
-nnoremap <silent> [fzf-p]gs    :<C-u>FzfPreviewGitStatus<CR>
+nnoremap <silent> [fzf-p]f     :<C-u>Files<CR>
+nnoremap <silent> [fzf-p]gf    :<C-u>GFiles<CR>
+nnoremap <silent> [fzf-p]gs    :<C-u>GFiles?<CR>
 nnoremap <silent> [fzf-p]gc    :<C-u>BCommits<CR>
-nnoremap <silent> [fzf-p]gg    :<C-u>FZFGGrep<CR>
-nnoremap <silent> [fzf-p]/     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'"<CR>
-nnoremap <silent> [fzf-p]*     :<C-u>FzfPreviewLines -add-fzf-arg=--no-sort -add-fzf-arg=--query="'<C-r>=expand('<cword>')<CR>"<CR>
-nnoremap <silent> [fzf-p]b     :<C-u>FzfPreviewBuffers<CR>
+nnoremap <silent> [fzf-p]/     :<C-u>Lines<CR>
+nnoremap <silent> [fzf-p]*     :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> [fzf-p]b     :<C-u>Buffers<CR>
 nnoremap <silent> [fzf-p]B     :<C-u>FzfPreviewAllBuffers<CR>
-nnoremap <silent> [fzf-p]<C-o> :<C-u>FzfPreviewJumps<CR>
-nnoremap          [fzf-p]s     :<C-u>FzfPreviewProjectGrep -add-fzf-arg=--nth=3 ''<CR>
-xnoremap          [fzf-p]s     "sy:FzfPreviewProjectGrep -add-fzf-arg=--nth=3<Space>-F<Space>"<C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR>"<CR>
+nnoremap          [fzf-p]s     :<C-u>FZFGGrep<CR>
+xnoremap          [fzf-p]s     "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
 nnoremap <silent> [fzf-p]a     :<C-u>FZFRGrep<CR>
 nnoremap <silent> [fzf-p]v     :<C-u>Vista finder<CR>
 
