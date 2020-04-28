@@ -17,7 +17,7 @@ Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'mattn/calendar-vim'
 Plug 'vimwiki/vimwiki'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'tmux-plugins/vim-tmux'
@@ -206,7 +206,7 @@ inoremap jj <Esc>
 nnoremap j gj
 nnoremap k gk
 
-"Easier navigation through split windows
+" Easier navigation through split windows
 nnoremap <C-j> <C-w><Down>
 nnoremap <C-k> <C-w><Up>
 nnoremap <C-l> <C-w><Right>

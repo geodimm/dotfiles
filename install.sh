@@ -12,6 +12,8 @@ NVM_VERSION="${NVM_VERSION:=0.34.0}"
 RVM_DIR="${HOME}/.rvm"
 RUBY_VERSION=2.6
 
+FZF_DIR="${HOME}/.fzf"
+
 GO_VERSION="${GO_VERSION:=1.14}"
 
 set -e
@@ -58,6 +60,12 @@ function install_zinit () {
     git clone https://github.com/zdharma/zinit "${ZINIT_DIR}/bin" || true
 }
 
+function install_fzf () {
+    test -d "${FZF_DIR}" && return
+    git clone --depth 1 https://github.com/junegunn/fzf.git "${FZF_DIR}"
+    "${FZF_DIR}/install"
+}
+
 function install_bat () {
     is_installed bat && return
     curl -fLo "/tmp/bat${BAT_VERSION}.deb" "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb"
@@ -102,6 +110,7 @@ function install_deps () {
     install_packages
     install_zinit
     install_neovim
+    install_fzf
     install_bat
     install_rvm
     install_ruby
