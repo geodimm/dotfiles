@@ -264,6 +264,7 @@ endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#coc_git = 1
 let g:airline_theme='nord'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
