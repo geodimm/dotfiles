@@ -421,6 +421,7 @@ xmap ag <Plug>(coc-git-chunk-outer)
 " vim-go {{{
 
 let g:go_def_mapping_enabled = 0
+let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
 let g:go_addtags_transform = "snakecase"
 let g:go_highlight_types = 1
