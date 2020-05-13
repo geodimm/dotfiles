@@ -32,7 +32,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'fatih/vim-go', {'for': ['go', 'gomod']}
 Plug 'sebdah/vim-delve', {'for': 'go'}
 Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
