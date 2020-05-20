@@ -14,7 +14,7 @@ RUBY_VERSION=2.6
 
 FZF_DIR="${HOME}/.fzf"
 
-GO_VERSION="${GO_VERSION:=1.14}"
+GO_VERSION="${GO_VERSION:=1.14.3}"
 
 set -e
 
