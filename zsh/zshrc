@@ -134,12 +134,18 @@ export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
 # fzf-tab settings
 local extract="
 # trim input(what you select)
-in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
+local in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
 # get ctxt for current completion(some thing before or after the current word)
 local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
+# real path
+local realpath=\${ctxt[IPREFIX]}\${ctxt[hpre]}\$in
+realpath=\${(Qe)~realpath}
 "
 
 # The preview command used by fzf-tab (show file or directory contents on completion)
-zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --style=numbers,changes --theme=Nord --color=always --pager=never ${~ctxt[hpre]}$in || colorls --color=always --long -A --sort-dirs --git-status ${~ctxt[hpre]}$in) 2>/dev/null'
+zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --style=numbers,changes --theme=Nord --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null'
+
+# Whether to automatically insert a space after the result.
+zstyle ':fzf-tab:*' insert-space false
 
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
