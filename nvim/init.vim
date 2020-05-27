@@ -423,8 +423,11 @@ let g:go_highlight_variable_assignments = 1
 let g:go_play_open_browser = 1
 let g:go_dispatch_enabled = 1
 let g:go_metalinter_autosave = 0
+let g:go_metalinter_autosave_enabled = []
+let g:go_metalinter_enabled = []
 let g:go_doc_keywordprg_enabled = 0
 let g:go_term_mode = "split"
+let g:go_rename_command = 'gopls'
 
 " }}}
 
