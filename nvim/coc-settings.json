@@ -56,7 +56,13 @@
     "go.goplsOptions": {
         "usePlaceholders": true,
         "completeUnimported": true,
-        "hoverKind": "FullDocumentation"
+        "deepCompletion": true,
+        "hoverKind": "FullDocumentation",
+        "staticcheck": true,
+        "analyses": {
+            "undeclaredname": true,
+            "unusedparams": true
+        }
     },
     "python.jediEnabled": false,
     "java.errors.incompleteClasspath.severity": "ignore",
