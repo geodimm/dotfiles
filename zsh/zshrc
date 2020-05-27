@@ -79,10 +79,16 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Load plugins
-zinit ice depth"1"; zinit light romkatv/powerlevel10k
-zinit ice blockf; zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma/fast-syntax-highlighting
+zinit ice depth"1" atload'!source ~/dotfiles/zsh/p10k.zsh' lucid nocd; zinit light romkatv/powerlevel10k
+
+zinit wait'!' lucid for \
+    atinit"zicompinit; zicdreplay" \
+        zdharma/fast-syntax-highlighting \
+    atload"_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    blockf atpull'zinit creinstall -q .' \
+        zinit light zsh-users/zsh-completions
+
 zinit light agkozak/zsh-z
 zinit light Aloxaf/fzf-tab
 
@@ -105,9 +111,6 @@ zinit snippet OMZP::vi-mode
 # zsh-autosuggestions settings
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
 
-# Set p10k prompt theme
-source ~/dotfiles/zsh/p10k.zsh
-
 # Only display targets tag for make command completion
 zstyle ':completion:*:*:make::' tag-order 'targets variables'
 
@@ -115,11 +118,6 @@ zstyle ':completion:*:*:make::' tag-order 'targets variables'
 if [ $commands[skaffold] ]; then
     source <(skaffold completion zsh)
 fi
-
-# Load autocompletions
-autoload -Uz compinit
-compinit
-zinit cdreplay -q
 
 # Configure FZF
 
