@@ -247,24 +247,6 @@ iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 
 " vim-airline {{{
 
-function! GetForm3Status()
-    let total = str2nr($AWS_EXPIRY, 10) - strftime("%s")
-    let mins = total / 60
-    let secs = total % 60
-    let duration = mins . "m" . secs . "s"
-    if total < 0
-        let duration = "EXPIRED"
-    endif
-    return "" . duration . "[" . $F3_ENVIRONMENT . "]"
-endfunction
-
-function! AirlineInit()
-    call airline#parts#define_function('form3', 'GetForm3Status')
-    call airline#parts#define_condition('form3', '$F3_ENVIRONMENT != "" && $AWS_EXPIRY != ""')
-    let g:airline_section_y = airline#section#create_right(['form3', 'ffenc'])
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#coc_git = 1
 let g:airline_theme='nord'
