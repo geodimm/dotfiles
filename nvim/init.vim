@@ -279,6 +279,7 @@ noremap <silent> <leader>? :call <SID>show_current_filename()<CR>
 " vim-airline {{{
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#hunks#coc_git = 1
 let g:airline_theme='nord'
 let g:airline_skip_empty_sections = 1
