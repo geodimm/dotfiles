@@ -2,7 +2,8 @@
 
 XDG_CONFIG_HOME="${HOME}/.config"
 
-ZINIT_DIR="${HOME}/.zinit"
+ZSH="${HOME}/.oh-my-zsh"
+ZSH_CUSTOM="${ZSH}/custom"
 
 BAT_VERSION="${BAT_VERSION:=0.14.0}"
 
@@ -55,10 +56,9 @@ function install_neovim () {
     sudo apt install -y neovim
 }
 
-function install_zinit () {
-    test -d "${ZINIT_DIR}/bin/zinit.zsh" && return
-    git clone https://github.com/zdharma/zinit "${ZINIT_DIR}/bin" || true
-}
+function install_oh_my_zsh () {
+    test -d "${ZSH}" && return
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 
 function install_fzf () {
     test -d "${FZF_DIR}" && return
@@ -108,7 +108,7 @@ function install_go () {
 
 function install_deps () {
     install_packages
-    install_zinit
+    install_oh_my_zsh
     install_neovim
     install_fzf
     install_bat
@@ -140,6 +140,13 @@ function configure_lua () {
 
 function configure_zsh () {
     chsh -s "$(type -P zsh)"
+    git clone https://github.com/zdharma/fast-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/fast-syntax-highlighting" || true
+    git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions" || true
+    git clone https://github.com/zsh-users/zsh-completions "${ZSH_CUSTOM}/plugins/zsh-completions" || true
+    git clone https://github.com/Aloxaf/fzf-tab "${ZSH_CUSTOM}/plugins/fzf-tab" || true
+    git clone https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM}/themes/powerlevel10k" || true
+    ln -fs "$(pwd)/zsh/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
+    ln -fs "$(pwd)/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
     ln -fs "$(pwd)/zsh/zshrc" "${HOME}/.zshrc"
     ln -fs "$(pwd)/zsh/zshenv" "${HOME}/.zshenv"
 }
