@@ -11,7 +11,7 @@ call plug#begin('~/dotfiles/nvim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'psliwka/vim-smoothie'
-Plug 'arcticicestudio/nord-vim'
+Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
@@ -100,7 +100,8 @@ if has("termguicolors")
 endif
 set background=dark
 try
-    colors nord
+    let g:gruvbox_contrast_dark = "medium"
+    colors gruvbox
 catch
 endtry
 
@@ -283,12 +284,23 @@ noremap <silent> <leader>? :call <SID>show_current_filename()<CR>
 
 " vim-airline {{{
 
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#hunks#coc_git = 1
-let g:airline_theme='nord'
+let g:airline_theme='gruvbox'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.dirty='?'
 
 " }}}
 
@@ -543,12 +555,12 @@ let g:vimwiki_table_mappings = 0
 
 " Configure auto-export to HTML for vimwiki files
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'auto_export': 1, 'auto_toc': 1}]
-hi VimwikiHeader1 guifg=#bf616a
-hi VimwikiHeader2 guifg=#a3be8c
-hi VimwikiHeader3 guifg=#ebcb8b
-hi VimwikiHeader4 guifg=#88c0d0
-hi VimwikiHeader5 guifg=#b48ead
-hi VimwikiHeader6 guifg=#d8dee9
+hi VimwikiHeader1 guifg=#fb4934
+hi VimwikiHeader2 guifg=#b8bb26
+hi VimwikiHeader3 guifg=#fabd2f
+hi VimwikiHeader4 guifg=#83a598
+hi VimwikiHeader5 guifg=#d3869b
+hi VimwikiHeader6 guifg=#8ec07c
 " }}}
 
 " }}}

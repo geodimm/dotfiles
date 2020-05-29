@@ -122,11 +122,11 @@ fi
 # Configure FZF
 
 # The default preview command used by fzf
-local preview_cmd='(bat --style=numbers,changes --theme=Nord --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=Nord --color always --pager=never --language zsh) 2>/dev/null'
+local preview_cmd='(bat --style=numbers,changes --theme=ansi-dark --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=ansi-dark --color always --pager=never --language zsh) 2>/dev/null'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --tiebreak=index --cycle --preview='${preview_cmd}'"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
-    --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
-    --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
+    --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+    --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
 '
 
 # fzf-tab settings
@@ -141,7 +141,7 @@ realpath=\${(Qe)~realpath}
 "
 
 # The preview command used by fzf-tab (show file or directory contents on completion)
-zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --style=numbers,changes --theme=Nord --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null'
+zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --style=numbers,changes --theme=ansi-dark --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null'
 
 # Whether to automatically insert a space after the result.
 zstyle ':fzf-tab:*' insert-space false
