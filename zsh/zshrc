@@ -1,3 +1,35 @@
+export ZSH="/home/georgi/.oh-my-zsh"
+
+plugins=(
+    aws
+    colored-man-pages
+    docker
+    fast-syntax-highlighting
+    git
+    golang
+    helm
+    httpie
+    kubectl
+    npm
+    nvm
+    rvm
+    terraform
+    tmux
+    vi-mode
+    z
+    zsh-autosuggestions
+    zsh-completions
+    fzf-tab # fzf-tab should be the last plugin to bind "^I"
+)
+
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Apply sensisble zsh settings
+source ~/dotfiles/zsh/zshopt
+
+# Load oh-my-zsh
+source "${ZSH}/oh-my-zsh.sh"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,9 +42,6 @@ export KEYTIMEOUT=1
 
 # Set the default umask
 umask 022
-
-# Apply sensisble zsh settings
-source ~/dotfiles/zsh/zshopt
 
 # Add more dirs to PATH
 if [[ ! "$PATH" == *:.* ]]; then
@@ -59,60 +88,11 @@ source ~/dotfiles/zsh/aliases.zsh
 # Load any extra settings
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
 
-### Added by Zinit's installer
-if [[ ! -f ${HOME}/.zinit/bin/zinit.zsh ]]; then
-    command mkdir -p "${HOME}/.zinit" && command chmod g-rwX "${HOME}/.zinit"
-    command git clone https://github.com/zdharma/zinit "${HOME}/.zinit/bin"
-fi
-
-source "${HOME}/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
-
-# Load plugins
-zinit ice depth"1" atload'!source ~/dotfiles/zsh/p10k.zsh' lucid nocd; zinit light romkatv/powerlevel10k
-
-zinit wait'!' lucid for \
-    atinit"zicompinit; zicdreplay" \
-        zdharma/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
-        zsh-users/zsh-autosuggestions \
-    blockf atpull'zinit creinstall -q .' \
-        zinit light zsh-users/zsh-completions
-
-zinit light agkozak/zsh-z
-zinit light Aloxaf/fzf-tab
-
-# Load oh-my-zsh plugins
-zinit snippet OMZL::git.zsh
-zinit snippet OMZL::history.zsh
-zinit snippet OMZP::aws
-zinit snippet OMZP::colored-man-pages
-zinit snippet OMZP::git
-zinit snippet OMZP::golang
-zinit snippet OMZP::helm
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::npm
-zinit snippet OMZP::nvm
-zinit snippet OMZP::rvm
-zinit snippet OMZP::terraform
-zinit snippet OMZP::tmux
-zinit snippet OMZP::vi-mode
-
-# zsh-autosuggestions settings
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=7"
-
 # Only display targets tag for make command completion
 zstyle ':completion:*:*:make::' tag-order 'targets variables'
+
+# Reload the completions (uncomment if zsh-completions don't work)
+# autoload -U compinit && compinit
 
 # Add skaffold autocompletions
 if [ $commands[skaffold] ]; then
