@@ -21,7 +21,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'tmux-plugins/vim-tmux'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vista.vim'
 Plug 'wellle/targets.vim'
