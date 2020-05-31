@@ -11,7 +11,6 @@ plugins=(
     httpie
     kubectl
     npm
-    nvm
     rvm
     terraform
     tmux
@@ -76,7 +75,6 @@ fi
 
 # Node Version Manager
 export NVM_DIR="${HOME}/.nvm"
-test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh"
 
 # Ruby Version Manager
 export RVM_DIR="${HOME}/.rvm"
