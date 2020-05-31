@@ -76,6 +76,14 @@ z() {
   cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')" || return
 }
 
+# lazy load nvm
+nvm() {
+    if ! cmd_path nvm; then
+        test -f  "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh";
+        nvm "$@"
+    fi
+}
+
 # convert minutes {0..60} to {red..green} in hex
 function _minutes_to_hex() {
     local num=$1
