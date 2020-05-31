@@ -45,7 +45,6 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    form3                   # custom form3 dev segment
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
@@ -59,6 +58,7 @@
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     public_ip               # public IP address
     vpn_ip                  # virtual private network indicator
+    form3                   # custom form3 dev segment
     time                    # current time
     # =========================[ Line #2 ]=========================
     newline
@@ -1449,10 +1449,10 @@
           local duration="${mins}m${secs}s"
           local color="$(_minutes_to_hex $mins)"
           if [[ $total -lt 0 ]]; then
-              duration="EXPIRED"
+              duration='ﮮ'
           fi
 
-          p10k segment -f ${color} -r -i EXECUTION_TIME_ICON -t "${duration} on ${F3_ENVIRONMENT}"
+          p10k segment -f ${color} -r -t "${duration} ${F3_ENVIRONMENT}"
       fi
   }
 
