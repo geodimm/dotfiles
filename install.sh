@@ -59,6 +59,7 @@ function install_neovim () {
 function install_oh_my_zsh () {
     test -d "${ZSH}" && return
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+}
 
 function install_fzf () {
     test -d "${FZF_DIR}" && return
