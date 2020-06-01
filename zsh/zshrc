@@ -97,10 +97,15 @@ if [ $commands[skaffold] ]; then
     source <(skaffold completion zsh)
 fi
 
+# Configure bat
+
+export BAT_STYLE="header,numbers,changes"
+export BAT_THEME="ansi-dark"
+
 # Configure FZF
 
 # The default preview command used by fzf
-local preview_cmd='(bat --style=numbers,changes --theme=ansi-dark --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=ansi-dark --color always --pager=never --language zsh) 2>/dev/null'
+local preview_cmd='(bat --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9] }## #}" -- {} | bat --style=plain --theme=ansi-dark --color always --pager=never --language zsh) 2>/dev/null'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort' --layout=reverse --tiebreak=index --cycle --preview='${preview_cmd}'"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
     --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
@@ -119,7 +124,7 @@ realpath=\${(Qe)~realpath}
 "
 
 # The preview command used by fzf-tab (show file or directory contents on completion)
-zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --style=numbers,changes --theme=ansi-dark --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null'
+zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null'
 
 # Whether to automatically insert a space after the result.
 zstyle ':fzf-tab:*' insert-space false
