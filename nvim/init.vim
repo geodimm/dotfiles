@@ -333,7 +333,7 @@ let g:animate#duration = 300.0
 
 " vim-floaterm {{{
 
-let g:floaterm_width = 0.75
+let g:floaterm_width = 0.90
 let g:floaterm_height = 0.75
 let g:floaterm_keymap_toggle = '<leader>tt'
 let g:floaterm_position = 'center'
@@ -519,7 +519,7 @@ command! -bang -nargs=* FZFRGrep
   \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.75, 'height': 0.75 } }
+let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75 } }
 
 " Mappings
 nmap <Leader>f [fzf-p]
