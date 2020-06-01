@@ -17,6 +17,8 @@
     "explorer.file.column.git.icon.renamed": "\uf45a",
     "explorer.file.column.git.icon.untracked": "\uf128",
     "explorer.file.column.git.icon.ignored": "\uf12a",
+    "git.addGBlameToVirtualText": true,
+    "git.splitWindowCommand": "below sp",
     "suggest.noselect": false,
     "suggest.snippetIndicator": " \ufb0c",
     "suggest.completionItemKindLabels": {
