@@ -36,6 +36,9 @@ source ~/dotfiles/zsh/zshopt
 # Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
+# Bind C+Space to accept the current suggestion
+bindkey '^ ' autosuggest-accept
+
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
