@@ -28,7 +28,6 @@ Plug 'wellle/targets.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -470,7 +469,6 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_variable_assignments = 1
 let g:go_play_open_browser = 1
-let g:go_dispatch_enabled = 1
 let g:go_metalinter_autosave = 0
 let g:go_metalinter_autosave_enabled = []
 let g:go_metalinter_enabled = []
