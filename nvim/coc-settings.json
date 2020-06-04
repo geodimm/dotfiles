@@ -8,6 +8,14 @@
     "diagnostic.infoSign": "\uf129",
     "diagnostic.refreshOnInsertMode": true,
     "diagnostic.warningSign": "\uf12a",
+    "explorer.floating.border.chars": [
+        "╭", "─", "╮", "│", "╯", "─", "╰", "│"
+    ],
+    "explorer.floating.border.title": "Explorer",
+    "explorer.floating.height": -16,
+    "explorer.floating.position": "center",
+    "explorer.floating.width": -26,
+    "explorer.position": "floating",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.enableVimDevicons": true,
     "explorer.file.autoReveal": false,
