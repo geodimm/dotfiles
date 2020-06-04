@@ -425,6 +425,9 @@ nmap <silent> [coc-fzf-p]d :<C-u>CocFzfList diagnostics --current-buf<CR>
 
 noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
 
+hi CocExplorerNormalFloatBorder guifg=#ebdbb2 guibg=#28282
+hi CocExplorerNormalFloat guibg=#282828
+
 " }}}
 
 " coc-git {{{
