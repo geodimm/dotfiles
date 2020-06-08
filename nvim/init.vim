@@ -305,7 +305,6 @@ let g:airline_symbols.dirty='?'
 
 " vim-devicons {{{
 
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 " }}}
