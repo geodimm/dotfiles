@@ -18,6 +18,7 @@
 	tree = log --graph --date=local --pretty=format:'%Cgreen%ad%Creset %Cred%h%Creset %an: %s %Creset %C(yellow)%d%Creset' --all
 	find = !git log -p -S
 	all = "!f() { ls -R -d */.git | sed s,/.git,, | xargs -t -P0 -I{} git -C {} $1; }; f"
+	latest = "!f() { git for-each-ref --color=always --sort=committerdate refs/remotes --format='%(color:bold green)%(committerdate:relative) %(HEAD)%(color:yellow)%(refname:short) %(color:blue)%(subject) %(color:magenta)%(authorname)%(color:reset)'; }; f"$1; }; f"
 [color]
 	branch = auto
 	diff = auto
