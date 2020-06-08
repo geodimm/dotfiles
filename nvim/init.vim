@@ -100,6 +100,7 @@ endif
 set background=dark
 try
     let g:gruvbox_contrast_dark = "medium"
+    let g:gruvbox_italic = 1
     colors gruvbox
 catch
 endtry
