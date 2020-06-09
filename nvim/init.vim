@@ -381,11 +381,11 @@ nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gt <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gt <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> <leader>cr <Plug>(coc-rename)
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
 
 " Use K to show documentation in preview window
@@ -413,11 +413,10 @@ omap af <Plug>(coc-funcobj-a)
 let g:coc_fzf_opts = ["--layout=reverse"]
 let g:coc_fzf_preview = "right:50%"
 
-nmap <Leader>c [coc-fzf-p]
-nmap <silent> [coc-fzf-p]l :<C-u>CocFzfList<CR>
-nmap <silent> [coc-fzf-p]a :<C-u>CocFzfList actions<CR>
-nmap <silent> [coc-fzf-p]c :<C-u>CocFzfList commands<CR>
-nmap <silent> [coc-fzf-p]d :<C-u>CocFzfList diagnostics --current-buf<CR>
+nmap <silent> fcl :<C-u>CocFzfList<CR>
+nmap <silent> fca :<C-u>CocFzfList actions<CR>
+nmap <silent> fcc :<C-u>CocFzfList commands<CR>
+nmap <silent> fcd :<C-u>CocFzfList diagnostics --current-buf<CR>
 
 " }}}
 
@@ -437,13 +436,13 @@ nmap [c <Plug>(coc-git-prevchunk)
 nmap ]c <Plug>(coc-git-nextchunk)
 
 " show chunk diff at current position
-nmap gm <Plug>(coc-git-chunkinfo)
+nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
 
 " stage current chunk
-nmap <silent> gs :<C-u>CocCommand git.chunkStage<CR>
+nmap <silent> <leader>gs :<C-u>CocCommand git.chunkStage<CR>
 
 " undo current chunk
-nmap <silent> gu :<C-u>CocCommand git.chunkUndo<CR>
+nmap <silent> <leader>gu :<C-u>CocCommand git.chunkUndo<CR>
 
 " create text object for git chunks
 omap ig <Plug>(coc-git-chunk-inner)
@@ -525,20 +524,17 @@ command! -bang -nargs=* FZFRGrep
 let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75 } }
 
 " Mappings
-nmap <Leader>f [fzf-p]
-xmap <Leader>f [fzf-p]
-
-nnoremap <silent> [fzf-p]f     :<C-u>Files<CR>
-nnoremap <silent> [fzf-p]gf    :<C-u>GFiles<CR>
-nnoremap <silent> [fzf-p]gs    :<C-u>GFiles?<CR>
-nnoremap <silent> [fzf-p]gc    :<C-u>BCommits<CR>
-nnoremap <silent> [fzf-p]/     :<C-u>Lines<CR>
-nnoremap <silent> [fzf-p]*     :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
-nnoremap <silent> [fzf-p]b     :<C-u>Buffers<CR>
-nnoremap          [fzf-p]s     :<C-u>FZFGGrep<CR>
-xnoremap          [fzf-p]s     "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
-nnoremap <silent> [fzf-p]a     :<C-u>FZFRGrep<CR>
-nnoremap <silent> [fzf-p]v     :<C-u>Vista finder<CR>
+nnoremap <silent> ff     :<C-u>Files<CR>
+nnoremap <silent> fgf    :<C-u>GFiles<CR>
+nnoremap <silent> fgs    :<C-u>GFiles?<CR>
+nnoremap <silent> fgc    :<C-u>BCommits<CR>
+nnoremap <silent> f/     :<C-u>Lines<CR>
+nnoremap <silent> f*     :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> fb     :<C-u>Buffers<CR>
+nnoremap <silent> fs     :<C-u>FZFGGrep<CR>
+xnoremap <silent> fs     "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
+nnoremap <silent> fa     :<C-u>FZFRGrep<CR>
+nnoremap <silent> fv     :<C-u>Vista finder<CR>
 
 " }}}
 
