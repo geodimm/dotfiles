@@ -12,7 +12,7 @@
     "explorer.floating.border.chars": [
         "╭", "─", "╮", "│", "╯", "─", "╰", "│"
     ],
-    "explorer.floating.border.title": "Explorer",
+    "explorer.floating.border.title": "",
     "explorer.floating.height": -16,
     "explorer.floating.position": "center",
     "explorer.floating.width": -26,
