@@ -37,10 +37,6 @@ Plug 'fatih/vim-go', {'for': ['go', 'gomod']}
 Plug 'sebdah/vim-delve', {'for': 'go'}
 Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
-Plug 'zinit-zsh/zinit-vim-syntax'
-Plug 'towolf/vim-helm'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
