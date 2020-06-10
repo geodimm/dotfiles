@@ -16,6 +16,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'mattn/calendar-vim'
+Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -87,6 +88,9 @@ set nobackup
 set noswapfile
 set nowritebackup
 
+" Enable persistent undo
+set undofile
+
 " Ignore these files
 set wildignore+=*.pyc,*_build/*,*/coverage/*
 
@@ -155,6 +159,7 @@ autocmd myvimrc FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabs
 
 " Don't leave space between joined lines
 set nojoinspaces
+
 " }}}
 
 " Mappings {{{
@@ -289,6 +294,13 @@ noremap <silent> <leader>? :call <SID>show_current_filename()<CR>
 "  }}}
 
 " Plugins settings {{{
+
+" undotree {{{
+
+nnoremap <leader>u :UndotreeToggle<CR>
+let g:undotree_SetFocusWhenToggle = 1
+
+" }}}
 
 " vim-airline {{{
 
