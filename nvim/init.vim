@@ -423,6 +423,14 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
+highlight link CocErrorSign GruvboxRedSign
+highlight link CocHintSign GruvboxPurpleSign
+highlight link CocInfoSign GruvboxAquaSign
+highlight link CocWarningSign GruvboxYellowSign
+highlight CocHintHighlight NONE NONE
+highlight CocInfoHighlight NONE NONE
+highlight CocWarningHighlight NONE NONE
+
 " }}}
 
 " coc-fzf {{{
