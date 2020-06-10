@@ -541,17 +541,17 @@ command! -bang -nargs=* FZFRGrep
 let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75 } }
 
 " Mappings
-nnoremap <silent> ff     :<C-u>Files<CR>
-nnoremap <silent> fgf    :<C-u>GFiles<CR>
-nnoremap <silent> fgs    :<C-u>GFiles?<CR>
-nnoremap <silent> fgc    :<C-u>BCommits<CR>
-nnoremap <silent> f/     :<C-u>Lines<CR>
-nnoremap <silent> f*     :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
-nnoremap <silent> fb     :<C-u>Buffers<CR>
-nnoremap <silent> fs     :<C-u>FZFGGrep<CR>
-xnoremap <silent> fs     "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
-nnoremap <silent> fa     :<C-u>FZFRGrep<CR>
-nnoremap <silent> fv     :<C-u>Vista finder<CR>
+nnoremap <silent> <leader>ff  :<C-u>Files<CR>
+nnoremap <silent> <leader>fgf :<C-u>GFiles<CR>
+nnoremap <silent> <leader>fgs :<C-u>GFiles?<CR>
+nnoremap <silent> <leader>fgc :<C-u>BCommits<CR>
+nnoremap <silent> <leader>f/  :<C-u>Lines<CR>
+nnoremap <silent> <leader>f*  :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
+nnoremap <silent> <leader>fb  :<C-u>Buffers<CR>
+nnoremap <silent> <leader>fs  :<C-u>FZFGGrep<CR>
+xnoremap <silent> <leader>fs  "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
+nnoremap <silent> <leader>fa  :<C-u>FZFRGrep<CR>
+nnoremap <silent> <leader>fv  :<C-u>Vista finder<CR>
 
 " }}}
 
