@@ -173,8 +173,8 @@ vnoremap <leader>q <Esc>:q<CR>gv
 nnoremap <silent> <leader><CR> :noh<CR>
 
 " Toggle relative numbers
-noremap <F4> :set relativenumber!<CR>
-noremap! <F4> <Esc>:set relativenumber!<CR>gi
+noremap <F5> :set relativenumber!<CR>
+noremap! <F5> <Esc>:set relativenumber!<CR>gi
 
 " Sort lines alphabetically
 vnoremap <leader>s :sort<CR>
@@ -189,6 +189,14 @@ xnoremap p pgvy
 " Go back to visual mode after reindenting
 vnoremap < <gv
 vnoremap > >gv
+
+" A quick way to move lines of text up or down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Use double spacebar tab to select the current line
 noremap <leader><leader> V
@@ -335,7 +343,7 @@ let g:animate#duration = 300.0
 
 let g:floaterm_width = 0.90
 let g:floaterm_height = 0.75
-let g:floaterm_keymap_toggle = '<leader>tt'
+let g:floaterm_keymap_toggle = '<F3>'
 let g:floaterm_position = 'center'
 let g:floaterm_wintitle = v:false
 let g:floaterm_borderchars = ['─', '│', '─', '│', '╭', '╮', '╯', '╰']
@@ -487,7 +495,7 @@ let g:vista_fzf_preview = ['right:50%']
 let g:vista_echo_cursor_strategy = 'floating_win'
 
 " Mappings
-noremap <F3> :<C-u>Vista!!<CR>
+noremap <F4> :<C-u>Vista!!<CR>
 
 " }}}
 
