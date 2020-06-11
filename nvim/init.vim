@@ -496,6 +496,9 @@ hi CocExplorerNormalFloat guibg=#282828
 nmap [c <Plug>(coc-git-prevchunk)
 nmap ]c <Plug>(coc-git-nextchunk)
 
+" show current commit
+nmap <silent> <leader>gc <Plug>(coc-git-commit)
+
 " show chunk diff at current position
 nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
 
