@@ -304,7 +304,7 @@ let g:startify_enable_special = 0
 let g:startify_lists = [
     \ { 'type': 'sessions',  'header': ['   Sessions'] },
     \ { 'type': 'files',     'header': ['   Files'] },
-    \ { 'type': 'dir',       'header': ['   Current Directory '. getcwd()] },
+    \ { 'type': 'dir',       'header': ['   Current Directory ('. getcwd() .')'] },
     \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
     \ ]
 
@@ -316,8 +316,10 @@ let g:startify_bookmarks = [
     \ ]
 
 highlight link StartifyPath GruvboxBlue
-highlight link StartifyFile GruvboxAqua
-highlight link StartifySection GruvboxPurple
+highlight link StartifySlash GruvboxBlue
+highlight link StartifyFile GruvboxAquaBold
+highlight link StartifyNumber GruvboxAquaBold
+highlight link StartifySection GruvboxPurpleBold
 
 " }}}
 
