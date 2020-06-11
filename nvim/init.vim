@@ -479,6 +479,12 @@ nmap <silent> <leader>fcy :<C-u>CocFzfList yank<CR>
 
 noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
 
+" }}}
+
+" coc-actions {{{
+
+noremap <silent> <leader>a :<C-u>CocCommand actions.open<CR>
+
 hi CocExplorerNormalFloatBorder guifg=#ebdbb2 guibg=#28282
 hi CocExplorerNormalFloat guibg=#282828
 
