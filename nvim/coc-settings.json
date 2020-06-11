@@ -8,6 +8,7 @@
     "diagnostic.infoSign": "\uf129",
     "diagnostic.refreshOnInsertMode": true,
     "diagnostic.warningSign": "\uf12a",
+    "diagnostic.enableHighlightLineNumber": false,
     "diagnostic.signOffset": 9999999,
     "explorer.floating.border.chars": [
         "╭", "─", "╮", "│", "╯", "─", "╰", "│"
