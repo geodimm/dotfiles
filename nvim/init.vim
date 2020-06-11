@@ -442,6 +442,7 @@ nmap <silent> fcl :<C-u>CocFzfList<CR>
 nmap <silent> fca :<C-u>CocFzfList actions<CR>
 nmap <silent> fcc :<C-u>CocFzfList commands<CR>
 nmap <silent> fcd :<C-u>CocFzfList diagnostics --current-buf<CR>
+nmap <silent> fcy :<C-u>CocFzfList yank<CR>
 
 " }}}
 
