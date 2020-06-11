@@ -30,6 +30,7 @@
     "git.addGBlameToVirtualText": true,
     "git.splitWindowCommand": "below sp",
     "git.signOffset": 9999998,
+    "git.showCommitInFloating": true,
     "suggest.noselect": false,
     "suggest.snippetIndicator": " \ufb0c",
     "suggest.completionItemKindLabels": {
