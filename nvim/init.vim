@@ -471,10 +471,10 @@ highlight link CocErrorSign GruvboxRedSign
 highlight link CocHintSign GruvboxPurpleSign
 highlight link CocInfoSign GruvboxAquaSign
 highlight link CocWarningSign GruvboxYellowSign
-highlight CocHintHighlight NONE NONE
-highlight CocInfoHighlight NONE NONE
-highlight CocWarningHighlight NONE NONE
-highlight CocErrorHighlight NONE NONE
+highlight CocHintHighlight gui=none
+highlight CocInfoHighlight gui=none
+highlight CocWarningHighlight gui=none
+highlight CocErrorHighlight gui=none
 
 " }}}
 
