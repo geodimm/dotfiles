@@ -383,10 +383,9 @@ let g:animate#duration = 300.0
 
 let g:floaterm_width = 0.90
 let g:floaterm_height = 0.75
-let g:floaterm_keymap_toggle = '<F3>'
+let g:floaterm_keymap_toggle = '<leader>tt'
 let g:floaterm_position = 'center'
 let g:floaterm_wintitle = v:false
-let g:floaterm_borderchars = ['─', '│', '─', '│', '╭', '╮', '╯', '╰']
 
 " }}}
 
@@ -479,7 +478,7 @@ nmap <silent> <leader>fcy :<C-u>CocFzfList yank<CR>
 
 " coc-explorer {{{
 
-noremap <silent> <F2> :<C-u>CocCommand explorer --toggle<CR>
+noremap <silent> <leader>fe :<C-u>CocCommand explorer --toggle<CR>
 
 " }}}
 
@@ -587,7 +586,7 @@ command! -bang -nargs=* FZFRGrep
   \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75 } }
+let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75, 'border': 'sharp', 'highlight': 'GruvboxFg0' } }
 
 " Mappings
 nnoremap <silent> <leader>ff  :<C-u>Files<CR>
