@@ -32,6 +32,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
+Plug 'unblevable/quick-scope'
 Plug 'rhysd/git-messenger.vim'
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'fatih/vim-go', {'for': ['go', 'gomod']}
@@ -327,6 +328,17 @@ highlight link StartifySection GruvboxPurpleBold
 
 nnoremap <leader>u :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle = 1
+
+" }}}
+
+" quickscope {{{
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_buftype_blacklist = ['terminal', 'nofile', 'coc-explorer']
+
+" Use highlight colours that are not in the Gruvbox colorscheme
+highlight QuickScopePrimary guifg='#83a598' gui=bold,underline
+highlight QuickScopeSecondary guifg='#d3869b' gui=bold,underline
 
 " }}}
 
