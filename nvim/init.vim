@@ -604,7 +604,6 @@ nnoremap <silent> <leader>f/  :<C-u>Lines<CR>
 nnoremap <silent> <leader>f*  :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
 nnoremap <silent> <leader>fb  :<C-u>Buffers<CR>
 nnoremap <silent> <leader>fs  :<C-u>FZFGGrep<CR>
-xnoremap <silent> <leader>fs  "sy:FZFGGrep <C-r>=substitute(substitute(@s, '\n', '', 'g'), '/', '\\/', 'g')<CR><CR>
 nnoremap <silent> <leader>fa  :<C-u>FZFRGrep<CR>
 nnoremap <silent> <leader>fv  :<C-u>Vista finder<CR>
 
