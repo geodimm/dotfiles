@@ -15,8 +15,6 @@ Plug 'psliwka/vim-smoothie'
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
 Plug 'ryanoasis/vim-devicons'
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
 Plug 'mattn/calendar-vim'
 Plug 'mbbill/undotree'
 Plug 'vimwiki/vimwiki'
@@ -228,6 +226,12 @@ nnoremap <C-k> <C-w><Up>
 nnoremap <C-l> <C-w><Right>
 nnoremap <C-h> <C-w><Left>
 
+" Use alt + hjkl to resize windows
+nnoremap <silent> <M-j> :resize -2<CR>
+nnoremap <silent> <M-k> :resize +2<CR>
+nnoremap <silent> <M-h> :vertical resize -10<CR>
+nnoremap <silent> <M-l> :vertical resize +10<CR>
+
 " We say 'NO' to arrow keys
 nnoremap <Up> <NOP>
 nnoremap <Down> <NOP>
@@ -370,27 +374,6 @@ let g:airline_symbols.dirty='?'
 " vim-devicons {{{
 
 let g:DevIconsEnableFoldersOpenClose = 1
-
-" }}}
-
-" lens.vim {{{
-
-" Disable animate
-let g:lens#animate = 0
-
-" Resize width
-let g:lens#width_resize_max = 120
-let g:lens#width_resize_min = 10
-
-" Disable lens for some windows
-let g:lens#disabled_filetypes = ['coc-explorer', 'fzf']
-
-" }}}
-
-" animate.vim {{{
-
-" Animation speed
-let g:animate#duration = 300.0
 
 " }}}
 
