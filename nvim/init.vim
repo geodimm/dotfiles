@@ -474,6 +474,7 @@ highlight link CocWarningSign GruvboxYellowSign
 highlight CocHintHighlight NONE NONE
 highlight CocInfoHighlight NONE NONE
 highlight CocWarningHighlight NONE NONE
+highlight CocErrorHighlight NONE NONE
 
 " }}}
 
