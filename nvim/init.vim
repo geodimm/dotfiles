@@ -41,6 +41,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'uiiaoo/java-syntax.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'pechorin/any-jump.vim'
 
 call plug#end()
 
@@ -333,7 +334,7 @@ let g:undotree_SetFocusWhenToggle = 1
 
 " }}}
 
-" quickscope {{{
+" quick-scope {{{
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 let g:qs_buftype_blacklist = ['terminal', 'nofile', 'coc-explorer']
@@ -412,6 +413,14 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 " C0111 - Missing docstrings
 " W0703 - Cathing too general exception
 let g:pymode_lint_ignore = [ "C0111", "W0703", ]
+
+" }}}
+
+" any-jump {{{
+
+let g:any_jump_window_width_ratio  = 0.90
+let g:any_jump_window_height_ratio = 0.75
+let g:any_jump_window_top_offset   = 8
 
 " }}}
 
