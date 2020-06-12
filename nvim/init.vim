@@ -322,6 +322,8 @@ highlight link StartifyFile GruvboxAquaBold
 highlight link StartifyNumber GruvboxAquaBold
 highlight link StartifySection GruvboxPurpleBold
 
+nnoremap <leader>p :Startify<CR>
+
 " }}}
 
 " undotree {{{
