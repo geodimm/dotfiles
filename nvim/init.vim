@@ -557,7 +557,7 @@ let g:vista_fzf_preview = ['right:50%']
 let g:vista_echo_cursor_strategy = 'floating_win'
 
 " Mappings
-noremap <F4> :<C-u>Vista!!<CR>
+noremap <silent> <leader>tv :<C-u>Vista!!<CR>
 
 " }}}
 
