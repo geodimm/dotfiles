@@ -73,7 +73,9 @@
         "staticcheck": true,
         "analyses": {
             "undeclaredname": true,
-            "unusedparams": true
+            "unusedparams": true,
+            "fillreturns": true,
+            "nonewvars": true
         }
     },
     "python.jediEnabled": false,
