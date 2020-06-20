@@ -127,7 +127,7 @@ realpath=\${(Qe)~realpath}
 "
 
 # The preview command used by fzf-tab (show file or directory contents on completion)
-zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null' --preview-window noborder
+zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --color=always --pager=never ${realpath} || colorls --color=always --long -A --sort-dirs --git-status ${realpath}) 2>/dev/null'
 
 # Whether to automatically insert a space after the result.
 zstyle ':fzf-tab:*' insert-space false
