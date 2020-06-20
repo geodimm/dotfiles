@@ -109,10 +109,7 @@ export BAT_STYLE="header,numbers,changes"
 export BAT_THEME="ansi-dark"
 
 # Configure FZF
-
-# The default preview command used by fzf
-local preview_cmd='(bat --color=always --pager=never {} || zsh -dfc "setopt extended_glob; echo - \${\${1#*[0-9]* }## #}" -- {} | bat --style=plain --color always --pager=never --language zsh) 2>/dev/null'
-export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,ctrl-p:toggle-preview' --layout=reverse --tiebreak=index --cycle --preview='${preview_cmd}' --preview-window noborder"
+export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,ctrl-p:toggle-preview' --layout=reverse --tiebreak=index --cycle --preview-window noborder"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
     --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
     --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
