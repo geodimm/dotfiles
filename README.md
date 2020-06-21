@@ -34,7 +34,7 @@ protocol support as VSCode
 
 ### Tmux
 
-The tmux status is centered with colour coded indicators for:
+The tmux status is centered and has colour coded indicators for:
 
 * client prefix ![#83a598](https://via.placeholder.com/15/83a598?text=+) `#83a598`
 * copy mode ![#fabd2f](https://via.placeholder.com/15/fabd2f?text=+) `#fabd2f`
