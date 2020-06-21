@@ -1,6 +1,6 @@
 # Georgi's dotfiles
 
-[![Build Status](https://travis-ci.com/georgijd/dotfiles.svg?branch=master)](https://travis-ci.com/georgijd/dotfiles)
+[![Build Status](https://img.shields.io/travis/com/georgijd/dotfiles.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/georgijd/dotfiles)
 
 ## Installation
 
