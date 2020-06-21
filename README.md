@@ -7,29 +7,10 @@
  don’t want or need. Don’t blindly use my settings unless you know what that
  entails. Use at your own risk!
 
-:exclamation: **Warning**: Installing these dotfiles will replace the
-following files/ directories:
-
-|| File
-------------- | -------------
-**tmux**  | `$HOME/.tmux.conf`
-**zsh**  | `$HOME/.zshrc`
-|| `$HOME/.zshenv`
-**neovim**  | `$XDG_CONFIG_HOME/nvim`
-**git**  | `$HOME/.gitconfig`
-**tig**  | `$HOME/.tigrc`
-**colorls**  | `$XDG_CONFIG_HOME/.colorls/dark_colors.yaml`
-
-> For more information refer to the [install.sh](./install.sh)
-
-### Using Git
+> For more information run `make help`
 
 ```bash
-git clone https://github.com/georgijd/dotfiles.git ~/dotfiles && cd ~/dotfiles && ./install.sh
-```
-
-### Git-free install
-
-```bash
-mkdir -p ~/dotfiles && curl -#L https://github.com/georgijd/dotfiles/tarball/master | tar -xzv -C ~/dotfiles --strip-components=1 && cd ~/dotfiles && ./install.sh
+git clone https://github.com/georgijd/dotfiles.git ~/dotfiles
+cd ~/dotfiles
+make
 ```
