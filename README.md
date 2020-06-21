@@ -45,7 +45,7 @@ The tmux status is centered with colour coded indicators for:
 
 ### Shell
 
-#### List directory contents with [colorls] including git status
+#### List directory contents and show git status for each entry with [colorls]
 
 ![Colorls](screenshots/colors-with-git-status.png)
 
@@ -53,11 +53,11 @@ The tmux status is centered with colour coded indicators for:
 
 ![FZF Ctrl+R](screenshots/fzf-ctrl-r.png)
 
-#### Autocompletion file preview [fzf] and [bat]
+#### Autocompletion file preview with [fzf] and [bat]
 
 ![FZF File Preview](screenshots/fzf-tab-file-preview.png)
 
-#### Autocompletion directory preview [fzf] and [colorls]
+#### Autocompletion directory preview with [fzf] and [colorls]
 
 ![FZF Directory Preview](screenshots/fzf-tab-directory-preview.png)
 
@@ -91,11 +91,11 @@ The tmux status is centered with colour coded indicators for:
 
 ![VIM Floaterm](screenshots/vim-floaterm.png)
 
-#### File fuzzy search with [fzf.vim]
+#### Fuzzy file search with [fzf.vim]
 
 ![VIM FZF Files](screenshots/vim-fzf-files.png)
 
-#### Git grep with [fzf.vim]
+#### Fuzzy git grep with [fzf.vim]
 
 ![VIM FZF Git Grep](screenshots/vim-fzf-git-grep.png)
 
@@ -110,11 +110,6 @@ The tmux status is centered with colour coded indicators for:
 [gruvbox]: https://github.com/morhetz/gruvbox "Gruvbox"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
-[tmux-copycat]: https://github.com/tmux-plugins/tmux-copycat "Tmux copycat"
-[tmux-open]: https://github.com/tmux-plugins/tmux-open "Tmux open"
-[tmux-sensible]: https://github.com/tmux-plugins/tmux-sensible "Tmux sensible"
-[tmux-yank]: https://github.com/tmux-plugins/tmux-yank "Tmux yank"
-[tpm]: https://github.com/tmux-plugins/tpm "Tmux Plugin Manager"
 [vim-floaterm]: https://github.com/voldikss/vim-floaterm "VIM Floaterm"
 [vim-startify]: https://github.com/mhinz/vim-startify "VIM Startify"
 [vista.vim]: https://github.com/liuchengxu/vista.vim "Vista Vim"
