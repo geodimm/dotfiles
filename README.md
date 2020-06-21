@@ -1,5 +1,7 @@
 # Georgi's dotfiles
 
+[![Build Status](https://travis-ci.com/georgijd/dotfiles.svg?branch=master)](https://travis-ci.com/georgijd/dotfiles)
+
 ## Installation
 
  :exclamation: **Warning:** If you want to give these dotfiles a try, you
