@@ -10,6 +10,7 @@ do_install() {
     local packages=(
         cmake
         curl
+        dconf-cli
         htop
         httpie
         jq
@@ -20,6 +21,8 @@ do_install() {
         tree
         units
         universal-ctags
+        uuid-runtime
+        wget
         xclip
     )
 
