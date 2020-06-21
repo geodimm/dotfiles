@@ -60,6 +60,13 @@ fzf-install: ## Install fzf
 .PHONY: fzf
 fzf: fzf-install ## fzf-install
 
+.PHONY: gnome-terminal-gruvbox-install
+gnome-terminal-gruvbox-install: ## Install the Gruvbox theme for gnome-terminal
+	@./scripts/gnome-terminal-gruvbox.sh install
+
+.PHONY: gnome-terminal-gruvbox
+gnome-terminal-gruvbox: gnome-terminal-gruvbox-install ## gnome-terminal-gruvbox-install
+
 .PHONY: zsh-install
 zsh-install: ## Install zsh
 	@./scripts/zsh.sh install
