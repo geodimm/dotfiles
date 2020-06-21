@@ -22,6 +22,8 @@ make
 * [gruvbox] Retro groove color scheme for Vim.
 * [ohmyzsh] Oh My Zsh is an open source, community-driven
 framework for managing your zsh configuration.
+* [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
+flexibility and out-of-the-box experience.
 * [fzf] A command-line fuzzy finder
 * [coc.nvim] Intellisense engine for Vim8 & Neovim, full language server
 protocol support as VSCode
@@ -107,6 +109,7 @@ The tmux status is centered with colour coded indicators for:
 [fzf]: https://github.com/junegunn/fzf "FZF"
 [gruvbox]: https://github.com/morhetz/gruvbox "Gruvbox"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
+[powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
 [tmux-copycat]: https://github.com/tmux-plugins/tmux-copycat "Tmux copycat"
 [tmux-open]: https://github.com/tmux-plugins/tmux-open "Tmux open"
 [tmux-sensible]: https://github.com/tmux-plugins/tmux-sensible "Tmux sensible"
