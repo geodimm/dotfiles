@@ -40,7 +40,5 @@
 	untracked = blue bold
 [http]
 	postBuffer = 1024288000
-[url "git@github.com:"]
-	insteadOf = https://github.com/
 [include]
 	path = ~/dotfiles/git/extras

@@ -2,6 +2,29 @@
 
 " coc.nvim {{{
 
+let g:coc_global_extensions = [
+    \'coc-marketplace',
+    \'coc-explorer',
+    \'coc-floaterm',
+    \'coc-yank',
+    \'coc-snippets',
+    \'coc-git',
+    \'coc-go',
+    \'coc-java',
+    \'coc-python',
+    \'coc-sh',
+    \'coc-vimlsp',
+    \'coc-lua',
+    \'coc-docker',
+    \'coc-json',
+    \'coc-yaml',
+    \'coc-xml',
+    \'coc-html',
+    \'coc-css',
+    \'coc-markdownlint',
+    \'coc-swagger'
+    \]
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
