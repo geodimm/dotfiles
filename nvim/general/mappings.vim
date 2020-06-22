@@ -3,8 +3,11 @@ let mapleader = "\<Space>"
 " Save files
 nnoremap <leader>w :w<CR>
 vnoremap <leader>w <Esc>:w<CR>gv
+
+" Quit vim
 nnoremap <leader>q :q<CR>
 vnoremap <leader>q <Esc>:q<CR>gv
+
 " Save with sudo
 cnoremap w!! %!sudo tee > /dev/null %
 
@@ -26,8 +29,6 @@ vnoremap < <gv
 vnoremap > >gv
 
 " A quick way to move lines of text up or down
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
@@ -80,4 +81,3 @@ iab todo <c-r>='TODO (Georgi Dimitrov):'<CR>
 cnoremap fx %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 " Formal JSON
 cnoremap fj %!python -m json.tool
-
