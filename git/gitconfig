@@ -1,11 +1,14 @@
 [user]
 	name = Georgi Dimitrov
 	email = georgi.dimitrov@form3.tech
+	signingkey = 430CD136C7D7A820
 [core]
 	editor = vim
 	mergeoptions = --no-edit
 	excludesFile = ~/dotfiles/git/gitignore
 	pager = less -F -X
+[commit]
+	gpgsign = true
 [push]
 	default = simple
 [pull]
