@@ -31,5 +31,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'pechorin/any-jump.vim'
 Plug 'liuchengxu/vim-which-key'
+Plug 'brooth/far.vim'
 
 call plug#end()
