@@ -81,3 +81,6 @@ iab todo <c-r>='TODO (Georgi Dimitrov):'<CR>
 cnoremap fx %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
 " Formal JSON
 cnoremap fj %!python -m json.tool
+
+" Close all buffers but the current one
+command! BufOnly silent! execute "%bd|e#|bd#"
