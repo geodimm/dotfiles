@@ -29,7 +29,6 @@
     "git.splitWindowCommand": "below sp",
     "git.signOffset": 8888888,
     "git.showCommitInFloating": true,
-    "suggest.noselect": false,
     "suggest.snippetIndicator": " \ufb0c",
     "suggest.completionItemKindLabels": {
         "function": "\uf794",
