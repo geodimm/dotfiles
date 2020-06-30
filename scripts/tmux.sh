@@ -23,7 +23,6 @@ do_configure() {
 
     info "[tmux][configure] Create symlinks"
     ln -fs "$(pwd)/tmux/tmux.conf" "${HOME}/.tmux.conf"
-    ln -fs "$(pwd)/tmux/tnew.sh" "${HOME}/tnew.sh"
 }
 
 main() {
