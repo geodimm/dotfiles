@@ -83,9 +83,6 @@ export NVM_DIR="${HOME}/.nvm"
 export RVM_DIR="${HOME}/.rvm"
 test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm"
 
-# tmux-pilot
-export PILOT_IGNORE="f3"
-
 # Load aliases
 source ~/dotfiles/zsh/aliases.zsh
 
