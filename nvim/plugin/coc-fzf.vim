@@ -1,5 +1,5 @@
-let g:coc_fzf_opts = ["--layout=reverse"]
-let g:coc_fzf_preview = "right:50%"
+let g:coc_fzf_opts = []
+let g:coc_fzf_preview = ""
 
 nmap <silent> <leader>fcl :<C-u>CocFzfList<CR>
 nmap <silent> <leader>fca :<C-u>CocFzfList actions<CR>
