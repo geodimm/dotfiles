@@ -28,5 +28,4 @@ source $HOME/dotfiles/nvim/plugin/undotree.vim
 source $HOME/dotfiles/nvim/plugin/vim-floaterm.vim
 source $HOME/dotfiles/nvim/plugin/vim-go.vim
 source $HOME/dotfiles/nvim/plugin/vim-startify.vim
-source $HOME/dotfiles/nvim/plugin/vimwiki.vim
 source $HOME/dotfiles/nvim/plugin/vista.vim
