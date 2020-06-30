@@ -50,7 +50,8 @@ let g:fzf_action = {
 nnoremap <silent> <leader>ff  :<C-u>Files<CR>
 nnoremap <silent> <leader>fgf :<C-u>GFiles<CR>
 nnoremap <silent> <leader>fgs :<C-u>GFiles?<CR>
-nnoremap <silent> <leader>fgc :<C-u>BCommits<CR>
+nnoremap <silent> <leader>fgb :<C-u>BCommits<CR>
+nnoremap <silent> <leader>fgc :<C-u>Commits<CR>
 nnoremap <silent> <leader>f/  :<C-u>Lines<CR>
 nnoremap <silent> <leader>f*  :<C-u>Lines <C-r>=expand('<cword>')<CR><CR>
 nnoremap <silent> <leader>fb  :<C-u>Buffers<CR>
