@@ -103,8 +103,9 @@ fi
 # Configure FZF
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,ctrl-p:toggle-preview,alt-a:select-all,alt-d:deselect-all' --layout=reverse --tiebreak=index --cycle --preview-window noborder"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
-    --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-    --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
+--color=dark
+--color=fg:7,bg:-1,hl:5,fg+:15,bg+:8,hl+:13
+--color=info:2,prompt:4,pointer:1,marker:3,spinner:4,header:4
 '
 
 # fzf-tab settings
