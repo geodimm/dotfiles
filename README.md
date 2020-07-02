@@ -36,10 +36,14 @@ protocol support as VSCode
 
 The tmux status is centered and has colour coded indicators for:
 
-* client prefix ![#83a598](https://via.placeholder.com/15/83a598?text=+) `#83a598`
-* copy mode ![#fabd2f](https://via.placeholder.com/15/fabd2f?text=+) `#fabd2f`
-* zoomed panes ![#b8bb26](https://via.placeholder.com/15/b8bb26?text=+) `#b8bb26`
-* synchronized panes ![#fb4934](https://via.placeholder.com/15/fb4934?text=+) `#fb4934`
+* client prefix ![colour012](https://via.placeholder.com/15/0000FF?text=+)
+`colour012 (Blue)`
+* copy mode ![colour003](https://via.placeholder.com/15/FFFF00?text=+)
+`colour003 (Yellow)`
+* zoomed panes ![colour002](https://via.placeholder.com/15/00FF00?text=+)
+`colour002 (Green)`
+* synchronized panes ![colour001](https://via.placeholder.com/15/FF0000?text=+)
+`colour001 (Red)`
 
 ![Tmux status bar](screenshots/tmux-status-bar.png)
 
