@@ -18,12 +18,23 @@ do_install() {
     sudo dpkg -i "${bat}"
 }
 
+do_configure() {
+    info "[bat] Configure"
+    info "[bat][configure] Create symlinks"
+    mkdir -p "${XDG_CONFIG_HOME}/bat"
+    ln -fs "$(pwd)/bat/config" "${XDG_CONFIG_HOME}/bat/config"
+}
+
 main() {
     command=$1
     case $command in
         "install")
             shift
             do_install "$@"
+            ;;
+        "configure")
+            shift
+            do_configure "$@"
             ;;
         *)
             error "$(basename "$0"): '$command' is not a valid command"

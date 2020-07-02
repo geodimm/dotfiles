@@ -39,8 +39,12 @@ tig: tig-install tig-configure ## tig-install tig-configure
 bat-install: ## Install bat
 	@./scripts/bat.sh install
 
+.PHONY: bat-configure
+bat-configure: ## Configure bat
+	@./scripts/bat.sh configure
+
 .PHONY: bat
-bat: bat-install ## bat-install
+bat: bat-install bat-configure ## bat-install bat-configure
 
 .PHONY: tmux-install
 tmux-install: ## Install tmux

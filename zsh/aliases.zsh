@@ -23,7 +23,6 @@ else
 fi
 alias ll='ls'
 
-alias bat="bat --color=always"
 alias grepi="grep -i"
 alias vim="vim -O"
 

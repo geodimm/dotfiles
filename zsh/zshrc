@@ -100,11 +100,6 @@ if [ $commands[skaffold] ]; then
     source <(skaffold completion zsh)
 fi
 
-# Configure bat
-
-export BAT_STYLE="header,numbers,changes"
-export BAT_THEME="base16"
-
 # Configure FZF
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,ctrl-p:toggle-preview,alt-a:select-all,alt-d:deselect-all' --layout=reverse --tiebreak=index --cycle --preview-window noborder"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
