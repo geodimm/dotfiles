@@ -94,8 +94,8 @@ highlight CocErrorHighlight gui=none
 " coc-explorer {{{
 
 noremap <silent> <leader>fe :<C-u>CocCommand explorer --toggle<CR>
-hi CocExplorerNormalFloatBorder guifg=#ebdbb2 guibg=#28282
-hi CocExplorerNormalFloat guibg=#282828
+hi CocExplorerNormalFloatBorder guifg=8 guibg=1
+hi CocExplorerNormalFloat guibg=1
 
 " }}}
 " coc-actions {{{
