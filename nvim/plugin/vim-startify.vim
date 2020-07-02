@@ -18,10 +18,4 @@ let g:startify_bookmarks = [
     \ { 'ez': '~/dotfiles/zsh/zshrc' },
     \ ]
 
-highlight link StartifyPath GruvboxBlue
-highlight link StartifySlash GruvboxBlue
-highlight link StartifyFile GruvboxAquaBold
-highlight link StartifyNumber GruvboxAquaBold
-highlight link StartifySection GruvboxPurpleBold
-
 nnoremap <leader>p :Startify<CR>
