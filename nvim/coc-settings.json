@@ -15,6 +15,7 @@
     "explorer.floating.height": -16,
     "explorer.floating.position": "center",
     "explorer.floating.width": -26,
+    "explorer.openAction.strategy": "sourceWindow",
     "explorer.position": "floating",
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.enableVimDevicons": false,
