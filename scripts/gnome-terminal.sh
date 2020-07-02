@@ -6,25 +6,18 @@ source "$(pwd)/scripts/util.sh"
 
 TERMINAL=gnome-terminal
 
-do_install() {
-    info "[gnome-terminal-gruvbox] Install"
+do_configure() {
+    info "[gnome-terminal] Configure"
     local installer="/tmp/gogh.sh"
     download_to "${installer}" https://raw.githubusercontent.com/Mayccoll/Gogh/master/gogh.sh
     chmod +x "${installer}"
-    echo "61 62" | TERMINAL="${TERMINAL}" bash -c "${installer}"
-}
-
-do_configure() {
-    true
+    # "Gruvbox Dark" "Gruvbox" "Nord" "One Dark"
+    echo "61 62 115 122" | TERMINAL="${TERMINAL}" bash -c "${installer}"
 }
 
 main() {
     command=$1
     case $command in
-        "install")
-            shift
-            do_install "$@"
-            ;;
         "configure")
             shift
             do_configure "$@"
