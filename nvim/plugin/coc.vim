@@ -65,6 +65,8 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nmap <silent> <leader>cr <Plug>(coc-rename)
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
+nmap <silent> <leader>ca <Plug>(coc-codeaction)
+nmap <silent> <leader>cl <Plug>(coc-codelens-action)
 
 " Use K to show documentation in preview window
 function! s:show_documentation()
