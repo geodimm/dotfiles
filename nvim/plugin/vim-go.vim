@@ -17,6 +17,7 @@ let g:go_metalinter_autosave_enabled = []
 let g:go_metalinter_enabled = []
 let g:go_doc_keywordprg_enabled = 0
 let g:go_term_mode = "split"
+let g:go_fmt_autosave = 0
 let g:go_fmt_command = "goimports"
 let g:go_rename_command = 'gopls'
 let g:go_def_mapping_enabled = 0
