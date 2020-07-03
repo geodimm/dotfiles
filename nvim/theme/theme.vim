@@ -10,7 +10,7 @@ set background=dark
 try
     let g:gruvbox_contrast_dark = "medium"
     let g:gruvbox_italic = 1
-    colors gruvbox
+    let g:onedark_terminal_italics = 1
+    colors onedark
 catch
 endtry
-
