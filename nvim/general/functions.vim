@@ -22,9 +22,11 @@ function! s:show_current_filename() abort
     " Set the floating window highlighting
     call setwinvar(win_id, '&winhl', 'Normal:PMenuSel')
 
+    setlocal colorcolumn=""
+
     noremap <buffer> <silent> y j^y$:close<CR>
     noremap <buffer> <silent> j :<C-U>close<CR>
     noremap <buffer> <silent> k :<C-U>close<CR>
     noremap <buffer> <silent> q :<C-U>close<CR>
 endfunction
-noremap <silent> <leader>? :call <SID>show_current_filename()<CR>
+noremap <silent> <leader>n :call <SID>show_current_filename()<CR>
