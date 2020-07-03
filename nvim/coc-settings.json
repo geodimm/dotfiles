@@ -68,6 +68,11 @@
         }
     },
     "go.goplsOptions": {
+        "codelens": {
+            "test": true,
+            "generate": true,
+            "upgrade.dependency": true
+        },
         "usePlaceholders": true,
         "completeUnimported": true,
         "deepCompletion": true,
