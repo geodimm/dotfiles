@@ -9,6 +9,8 @@ set signcolumn=yes         " Always show the signcolumn
 set number                 " Display line numbers
 set relativenumber         " Show the line number relative to the line with the cursor
 set colorcolumn=80         " Set the colored vertical column
+set listchars=tab:→\ ,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+set list
 
 " Toggle highlighting current line only in active splits
 augroup toggle_current_line_hl
