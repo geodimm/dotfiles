@@ -84,3 +84,6 @@ cnoremap fj %!python -m json.tool
 
 " Close all buffers but the current one
 command! BufOnly silent! execute "%bd|e#|bd#"
+
+" Print the sum of all numbers in the first column of the current buffer
+cnoremap sum %r!awk '{sum+=$1} END {print "Total: "sum}' %
