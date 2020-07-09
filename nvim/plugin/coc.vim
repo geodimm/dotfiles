@@ -87,10 +87,10 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
-highlight CocHintHighlight gui=none
-highlight CocInfoHighlight gui=none
-highlight CocWarningHighlight gui=none
-highlight CocErrorHighlight gui=none
+highlight CocHintHighlight gui=none cterm=none
+highlight CocInfoHighlight gui=none cterm=none
+highlight CocWarningHighlight gui=none cterm=none
+highlight CocErrorHighlight gui=none cterm=none
 
 "}}}
 
