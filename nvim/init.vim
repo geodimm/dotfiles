@@ -8,8 +8,8 @@
 " Base configuration
 source $HOME/dotfiles/nvim/general/vim-plug.vim
 source $HOME/dotfiles/nvim/general/settings.vim
-source $HOME/dotfiles/nvim/general/functions.vim
 source $HOME/dotfiles/nvim/general/mappings.vim
+source $HOME/dotfiles/nvim/general/functions.vim
 
 " Theme and settings
 source $HOME/dotfiles/nvim/theme/theme.vim
