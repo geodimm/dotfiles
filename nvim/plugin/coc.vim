@@ -118,7 +118,7 @@ nmap ]c <Plug>(coc-git-nextchunk)
 nmap <silent> <leader>gc <Plug>(coc-git-commit)
 
 " show chunk diff at current position
-nmap <silent> <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <silent> <leader>gg <Plug>(coc-git-chunkinfo)
 
 " stage current chunk
 nmap <silent> <leader>gs :<C-u>CocCommand git.chunkStage<CR>
