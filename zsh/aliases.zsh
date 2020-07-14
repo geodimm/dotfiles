@@ -60,6 +60,7 @@ def valueColour: {
     "message": "GREEN",
     "error": "RED",
     "syntax_errors": "RED",
+    "reason": "RED",
     "DEFAULT": "DEFAULT",
 };
 def coloured($text; $colour): if $colour == "DEFAULT" then $text else colours[$colour] + $text + colours.RESET end;
