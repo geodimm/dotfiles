@@ -15,6 +15,7 @@ let g:coc_global_extensions = [
     \'coc-sh',
     \'coc-vimlsp',
     \'coc-lua',
+    \'coc-tsserver',
     \'coc-docker',
     \'coc-json',
     \'coc-yaml',
