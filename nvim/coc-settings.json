@@ -1,7 +1,7 @@
 {
     "coc-actions.hideCursor": false,
     "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": ["go"],
+    "coc.preferences.formatOnSaveFiletypes": ["go", "yaml"],
     "coc.source.around.shortcut": "\uf016",
     "coc.source.buffer.shortcut": "\uf0c5",
     "coc.source.file.shortcut": "\uf471",
@@ -89,6 +89,8 @@
     "java.home": "/usr/lib/jvm/java-8-openjdk-amd64",
     "java.jdt.ls.vmargs": "-javaagent:/home/georgi/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.16/245b50f714bf89ed7659266ace12f9e509d13551/lombok-1.16.16.jar -Xbootclasspath/a:/home/georgi/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.16/245b50f714bf89ed7659266ace12f9e509d13551/lombok-1.16.16.jar",
     "java.errors.incompleteClasspath.severity": "ignore",
+    "yaml.format.enable": true,
+    "yaml.trace.server": "verbose",
     "yaml.schemas": {
         "https://json.schemastore.org/swagger-2.0": "/swagger.yaml",
         "https://json.schemastore.org/kustomization": "/kustomization.yaml"
