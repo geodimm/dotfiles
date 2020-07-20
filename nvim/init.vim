@@ -21,7 +21,6 @@ source $HOME/dotfiles/nvim/plugin/which-key.vim
 source $HOME/dotfiles/nvim/plugin/any-jump.vim
 source $HOME/dotfiles/nvim/plugin/coc.vim
 source $HOME/dotfiles/nvim/plugin/coc-fzf.vim
-source $HOME/dotfiles/nvim/plugin/far.vim
 source $HOME/dotfiles/nvim/plugin/fzf.vim
 source $HOME/dotfiles/nvim/plugin/quick-scope.vim
 source $HOME/dotfiles/nvim/plugin/undotree.vim
