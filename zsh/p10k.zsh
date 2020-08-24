@@ -76,7 +76,6 @@
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     public_ip               # public IP address
     vpn_ip                  # virtual private network indicator
-    form3                   # custom form3 dev segment
     time                    # current time
     # =========================[ Line #2 ]=========================
     newline
@@ -761,26 +760,6 @@
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
-
-  ####################################[ form3: f3 shell ]####################################
-  function prompt_form3() {
-      if (( ${+F3_ENVIRONMENT} && ${+AWS_EXPIRY} )); then
-          local total=$((AWS_EXPIRY - $(date +%s)))
-          local mins=$((total / 60))
-          local secs=$((total % 60))
-          local duration="${mins}m${secs}s"
-          local color="$(_minutes_to_hex $mins)"
-          if [[ $total -lt 0 ]]; then
-              duration='ﮮ'
-          fi
-
-          p10k segment -f ${color} -r -t "${duration} ${F3_ENVIRONMENT}"
-      fi
-  }
-
-  function instant_prompt_form3() {
-      prompt_form3
-  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
