@@ -16,6 +16,7 @@ let g:startify_bookmarks = [
     \ { 'ec': '~/dotfiles/nvim/coc-settings.json' },
     \ { 'et': '~/dotfiles/tmux/tmux.conf' },
     \ { 'ez': '~/dotfiles/zsh/zshrc' },
+    \ { 'ep': '~/dotfiles/zsh/p10k.zsh' },
     \ ]
 
 nnoremap <leader>p :Startify<CR>
