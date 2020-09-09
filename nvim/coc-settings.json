@@ -1,5 +1,7 @@
 {
     "coc-actions.hideCursor": false,
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.formatOnSaveFiletypes": ["go"],
     "coc.source.around.shortcut": "\uf016",
     "coc.source.buffer.shortcut": "\uf0c5",
     "coc.source.file.shortcut": "\uf471",

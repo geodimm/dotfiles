@@ -49,6 +49,12 @@ augroup coc_nvim_hl
     autocmd CursorHold * silent call CocActionAsync('highlight')
 augroup end
 
+" Organize imports on save
+augroup coc_nvim_organize_imports
+    autocmd!
+    autocmd BufWritePre *.go silent call CocAction('organizeImport')
+augroup end
+
 " Use `[d` and `]d` to navigate diagnostics
 nmap <silent> [d <Plug>(coc-diagnostic-prev)
 nmap <silent> ]d <Plug>(coc-diagnostic-next)
