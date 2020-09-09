@@ -67,7 +67,9 @@
             "initializationOptions": {}
         }
     },
+    "go.goplsPath": "/home/georgi/go/bin/gopls",
     "go.goplsOptions": {
+        "buildFlags": ["-tags=all,test_setup"],
         "codelens": {
             "test": true,
             "generate": true,
@@ -84,6 +86,9 @@
             "fillreturns": true,
             "nonewvars": true
         }
+    },
+    "go.tags": {
+        "skipUnexported": true
     },
     "python.jediEnabled": false,
     "java.home": "/usr/lib/jvm/java-8-openjdk-amd64",
