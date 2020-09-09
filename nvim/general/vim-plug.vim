@@ -11,7 +11,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'antoinemadec/coc-fzf'
+Plug 'antoinemadec/coc-fzf', {'branch': 'release'}
 Plug 'tmux-plugins/vim-tmux'
 Plug 'urbainvaes/vim-tmux-pilot'
 Plug 'voldikss/vim-floaterm'
