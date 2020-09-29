@@ -84,3 +84,19 @@ nvm() {
         nvm "$@"
     fi
 }
+
+# convert minutes {0..60} to {red..green} in hex
+function _minutes_to_hex() {
+    local num=$1
+    local min=0
+    local max=60
+    local middle=$(((min + max) / 2))
+    local scale=$((255.0 / (middle - min)))
+    if [[ $num -le $min ]]; then local num=$min; fi
+    if [[ $num -ge $max ]]; then local num=$max; fi
+    if [[ $num -le $middle ]]; then
+        printf "#ff%02x00\n" $(((num - min) * scale))
+    else
+        printf "#%02xff00\n" $((255 - ((num - middle) * scale)))
+    fi
+}
