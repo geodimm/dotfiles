@@ -49,6 +49,7 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    form3_shell             # f3 shell indicator
     vim_shell               # vim shell indicator (:sh)
     dir                     # current directory
     vcs                     # git status
@@ -760,6 +761,24 @@
   typeset -g POWERLEVEL9K_TIME_VISUAL_IDENTIFIER_EXPANSION=
   # Custom prefix.
   # typeset -g POWERLEVEL9K_TIME_PREFIX='%fat '
+
+  ####################################[ form3_shell: f3 shell indicator ]#######################
+  function prompt_form3_shell() {
+    if (( ${+F3_SESS} )); then
+      local total=$((F3_SESS_EXPIRY - $(date +%s)))
+      local mins=$((total / 60))
+      local color="$(_minutes_to_hex $mins)"
+      local text=$'\uf415'
+      if [ $mins -le 0 ]; then
+        text=$'\uf421'
+      fi
+      p10k segment -f ${color} -t ${text}
+    fi
+  }
+
+  function instant_prompt_form3_shell() {
+    prompt_form3_shell
+  }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
   # when accepting a command line. Supported values:
