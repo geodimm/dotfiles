@@ -11,6 +11,6 @@ try
     let g:gruvbox_contrast_dark = "medium"
     let g:gruvbox_italic = 1
     let g:onedark_terminal_italics = 1
-    colors onedark
+    colors gruvbox
 catch
 endtry
