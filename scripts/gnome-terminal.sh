@@ -4,15 +4,25 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
-TERMINAL=gnome-terminal
-
 do_configure() {
+    export TERMINAL=gnome-terminal
+    local install_dir="/tmp/gogh"
+
     info "[gnome-terminal] Configure"
-    local installer="/tmp/gogh.sh"
-    download_to "${installer}" https://raw.githubusercontent.com/Mayccoll/Gogh/master/gogh.sh
-    chmod +x "${installer}"
-    # "Gruvbox Dark" "Gruvbox" "Nord" "One Dark"
-    echo "61 62 115 122" | TERMINAL="${TERMINAL}" bash -c "${installer}"
+    rm -rf "$install_dir" && mkdir -p "$install_dir"
+    git clone https://github.com/Mayccoll/Gogh.git "$install_dir"
+
+    info "[gnome-terminal][configure] Gruvbox Dark"
+    "$install_dir/themes/gruvbox-dark.sh"
+
+    info "[gnome-terminal][configure] Gruvbox"
+    "$install_dir/themes/gruvbox.sh"
+
+    info "[gnome-terminal][configure] Nord"
+    "$install_dir/themes/nord.sh"
+
+    info "[gnome-terminal][configure] One Dark"
+    "$install_dir/themes/one-dark.sh"
 }
 
 main() {
