@@ -14,6 +14,7 @@ do_install() {
         htop
         httpie
         jq
+        moreutils
         ncurses-term
         python-dev
         python3-dev
