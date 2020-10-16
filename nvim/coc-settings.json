@@ -71,9 +71,10 @@
     "go.goplsOptions": {
         "buildFlags": ["-tags=all,test_setup"],
         "codelens": {
-            "test": true,
+            "tidy": true,
+            "vendor": true,
             "generate": true,
-            "upgrade.dependency": true
+            "upgrade_dependency": true
         },
         "usePlaceholders": true,
         "completeUnimported": true,
