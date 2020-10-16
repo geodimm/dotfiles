@@ -52,7 +52,8 @@ augroup end
 " Organize imports on save
 augroup coc_nvim_organize_imports
     autocmd!
-    autocmd BufWritePre *.go silent call CocAction('organizeImport')
+    autocmd BufWritePre *.go silent call CocAction('runCommand', 'editor.action.organizeImport')
+
 augroup end
 
 " Use `[d` and `]d` to navigate diagnostics
