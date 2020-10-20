@@ -23,6 +23,9 @@ do_configure() {
 
     info "[gnome-terminal][configure] One Dark"
     "$install_dir/themes/one-dark.sh"
+
+    info "[gnome-terminal][configure] Srcery"
+    "$install_dir/themes/srcery.sh"
 }
 
 main() {
