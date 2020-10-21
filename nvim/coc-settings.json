@@ -28,6 +28,7 @@
     "explorer.file.column.git.icon.renamed": "\uf45a",
     "explorer.file.column.git.icon.untracked": "\uf128",
     "explorer.file.column.git.icon.ignored": "\uf12a",
+    "explorer.file.showHiddenFiles": true,
     "git.addGBlameToVirtualText": true,
     "git.splitWindowCommand": "below sp",
     "git.signOffset": 8888888,
