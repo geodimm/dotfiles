@@ -6,6 +6,7 @@ let g:coc_global_extensions = [
     \'coc-marketplace',
     \'coc-explorer',
     \'coc-floaterm',
+    \'coc-floatinput',
     \'coc-yank',
     \'coc-snippets',
     \'coc-git',
@@ -72,15 +73,11 @@ nmap <silent> <leader>cl <Plug>(coc-codelens-action)
 nmap <silent> <leader>cs :CocSearch <c-r>=expand("<cword>")<CR><CR>
 
 " Use K to show documentation in preview window
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
-
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+set keywordprg=:call\ CocActionAsync('doHover')
+augroup coc_nvim_help
+    autocmd!
+    autocmd Filetype vim,help setlocal keywordprg=:help
+augroup end
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
