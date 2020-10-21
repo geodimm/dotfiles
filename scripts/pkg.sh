@@ -22,6 +22,7 @@ do_install() {
         tree
         units
         universal-ctags
+        unrar
         uuid-runtime
         wget
         xclip
