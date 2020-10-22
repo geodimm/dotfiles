@@ -78,9 +78,9 @@ iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 iab todo <c-r>='TODO (Georgi Dimitrov):'<CR>
 
 " Formal XML
-cnoremap fx %!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+command! FormatXML silent! execute '%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())'
 " Formal JSON
-cnoremap fj %!python -m json.tool
+command! FormatJSON silent! execute '%!python3 -m json.tool'
 
 " Close all buffers but the current one
 command! BufOnly silent! execute "%bd|e#|bd#"
