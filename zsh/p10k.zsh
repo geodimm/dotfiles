@@ -67,6 +67,7 @@
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
+    load                    # CPU load
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     go_version              # go version (https://golang.org)
@@ -501,21 +502,17 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_VIM_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ######[ midnight_commander: midnight commander shell (https://midnight-commander.org/) ]######
-  # Midnight Commander shell color.
-  typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_FOREGROUND=178
+  ######################################[ load: CPU load ]######################################
+  # Show average CPU load over this many last minutes. Valid values are 1, 5 and 15.
+  typeset -g POWERLEVEL9K_LOAD_WHICH=1
+  # Load color when load is under 50%.
+  typeset -g POWERLEVEL9K_LOAD_NORMAL_FOREGROUND=$lime
+  # Load color when load is between 50% and 70%.
+  typeset -g POWERLEVEL9K_LOAD_WARNING_FOREGROUND=$yellow
+  # Load color when load is over 70%.
+  typeset -g POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND=$red
   # Custom icon.
-  # typeset -g POWERLEVEL9K_MIDNIGHT_COMMANDER_VISUAL_IDENTIFIER_EXPANSION='⭐'
-
-  #[ nix_shell: nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html) ]##
-  # Nix shell color.
-  typeset -g POWERLEVEL9K_NIX_SHELL_FOREGROUND=74
-
-  # Tip: If you want to see just the icon without "pure" and "impure", uncomment the next line.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_CONTENT_EXPANSION=
-
-  # Custom icon.
-  # typeset -g POWERLEVEL9K_NIX_SHELL_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  # typeset -g POWERLEVEL9K_LOAD_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
   ###[ virtualenv: python virtual environment (https://docs.python.org/3/library/venv.html) ]###
   # Python virtual environment color.
