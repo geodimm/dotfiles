@@ -13,5 +13,10 @@ try
     let g:onedark_terminal_italics = 1
     let g:srcery_italic = 1
     colors srcery
+    let g:nord_bold = 1
+    let g:nord_italic = 1
+    let g:nord_italic_comments = 1
+    let g:nord_underline = 1
+    let g:nord_uniform_diff_background = 1
 catch
 endtry
