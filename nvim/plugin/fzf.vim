@@ -23,7 +23,7 @@ command! -bang -nargs=* FZFRGrep
   \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75, 'border': 'sharp', 'highlight': 'GruvboxFg0' } }
+let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.75, 'border': 'sharp', 'highlight': 'Normal' } }
 
 function! s:file_to_qf(key, val)
     let fname = fnameescape(a:val)
