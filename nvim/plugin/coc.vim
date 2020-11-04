@@ -21,9 +21,11 @@ let g:coc_global_extensions = [
     \'coc-json',
     \'coc-yaml',
     \'coc-xml',
+    \'coc-toml',
     \'coc-html',
     \'coc-css',
     \'coc-markdownlint',
+    \'coc-restclient',
     \'coc-swagger'
     \]
 
