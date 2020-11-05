@@ -8,8 +8,6 @@ DEBIAN_FRONTEND=noninteractive
 
 do_install() {
     local packages=(
-        automake
-        autotools-dev
         cmake
         curl
         dconf-cli
