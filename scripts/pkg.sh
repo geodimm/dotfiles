@@ -14,6 +14,7 @@ do_install() {
         htop
         httpie
         jq
+        libncursesw5-dev
         moreutils
         ncurses-term
         python-dev
