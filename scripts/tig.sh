@@ -4,14 +4,23 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
+TIG_VERSION="${TIG_VERSION:=master}"
+
 do_install() {
     if is_installed tig; then
         info "[tig] Already installed"
         return
     fi
 
+    local install_dir="/tmp/tig"
+
     info "[tig] Install"
-    sudo apt install -y tig
+    sudo rm -rf "$install_dir" && mkdir -p "$install_dir"
+    git clone --branch "${TIG_VERSION}" https://github.com/jonas/tig.git "$install_dir"
+    make -C "$install_dir" configure
+    (cd "$install_dir" && ./configure)
+    make -C "$install_dir"
+    sudo make -C "$install_dir" install
 }
 
 do_configure() {
