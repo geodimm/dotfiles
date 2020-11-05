@@ -14,4 +14,4 @@ let g:airline_right_alt_sep = ''
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.dirty='?'
+let g:airline_symbols.dirty='!'
