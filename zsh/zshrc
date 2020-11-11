@@ -101,6 +101,7 @@ if [ $commands[skaffold] ]; then
 fi
 
 # Configure FZF
+export FZF_DEFAULT_COMMAND='find -L'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,ctrl-p:toggle-preview,alt-a:select-all,alt-d:deselect-all' --layout=reverse --tiebreak=index --cycle --preview-window noborder"
 export FZF_DEFAULT_OPTS=${FZF_DEFAULT_OPTS}'
 --color=dark
