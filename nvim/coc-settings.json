@@ -1,7 +1,17 @@
 {
     "coc-actions.hideCursor": false,
     "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": ["go"],
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "go",
+        "html",
+        "java",
+        "javascript",
+        "json",
+        "markdown",
+        "python",
+        "yaml"
+    ],
     "coc.source.around.shortcut": "\uf016",
     "coc.source.buffer.shortcut": "\uf0c5",
     "coc.source.file.shortcut": "\uf471",
@@ -22,12 +32,12 @@
     "explorer.icon.enableNerdfont": true,
     "explorer.icon.enableVimDevicons": false,
     "explorer.file.autoReveal": true,
-    "explorer.file.column.git.icon.modified": "\uf040",
-    "explorer.file.column.git.icon.added": "\uf067",
-    "explorer.file.column.git.icon.deleted": "\uf068",
-    "explorer.file.column.git.icon.renamed": "\uf45a",
-    "explorer.file.column.git.icon.untracked": "\uf128",
-    "explorer.file.column.git.icon.ignored": "\uf12a",
+    "explorer.git.icon.status.modified": "\uf040",
+    "explorer.git.icon.status.added": "\uf067",
+    "explorer.git.icon.status.deleted": "\uf068",
+    "explorer.git.icon.status.renamed": "\uf45a",
+    "explorer.git.icon.status.untracked": "\uf128",
+    "explorer.git.icon.status.ignored": "\uf12a",
     "explorer.file.showHiddenFiles": true,
     "git.addGBlameToVirtualText": true,
     "git.splitWindowCommand": "below sp",
@@ -64,7 +74,10 @@
     "languageserver": {
         "terraform": {
             "command": "terraform-lsp",
-            "filetypes": ["terraform", "tf"],
+            "filetypes": [
+                "terraform",
+                "tf"
+            ],
             "initializationOptions": {}
         }
     },
@@ -77,6 +90,7 @@
             "generate": true,
             "upgrade_dependency": true
         },
+        "linksInHover": true,
         "usePlaceholders": true,
         "completeUnimported": true,
         "deepCompletion": true,
@@ -93,9 +107,25 @@
         "skipUnexported": true
     },
     "python.jediEnabled": false,
-    "java.home": "/usr/lib/jvm/java-8-openjdk-amd64",
-    "java.jdt.ls.vmargs": "-javaagent:/home/georgi/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.16/245b50f714bf89ed7659266ace12f9e509d13551/lombok-1.16.16.jar -Xbootclasspath/a:/home/georgi/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.16.16/245b50f714bf89ed7659266ace12f9e509d13551/lombok-1.16.16.jar",
     "java.errors.incompleteClasspath.severity": "ignore",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-1.8",
+            "path": "/usr/lib/jvm/java-8-openjdk-amd64"
+        },
+        {
+            "name": "JavaSE-11",
+            "path": "/usr/lib/jvm/java-11-openjdk-amd64",
+            "default": true
+        }
+    ],
+    "java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
+    "java.implementationsCodeLens.enabled": true,
+    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -javaagent:/usr/local/share/lombok/lombok.jar -Xbootclasspath/a:/usr/local/share/lombok.jar",
+    "java.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.enable": true,
+    "javascript.implementationsCodeLens.enable": true,
+    "xml.codeLens.enabled": true,
     "yaml.trace.server": "verbose",
     "yaml.schemas": {
         "https://json.schemastore.org/swagger-2.0": "/swagger.yaml",
