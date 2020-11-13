@@ -765,7 +765,7 @@
       local total=$((F3_SESS_EXPIRY - $(date +%s)))
       local mins=$((total / 60))
       local color="$(_minutes_to_hex $mins)"
-      local text=$'\uf415'
+      local text=$'\uf415 '${mins}m
       if [ $mins -le 0 ]; then
         text=$'\uf421'
       fi
