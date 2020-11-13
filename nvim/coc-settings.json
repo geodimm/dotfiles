@@ -88,7 +88,8 @@
             "tidy": true,
             "vendor": true,
             "generate": true,
-            "upgrade_dependency": true
+            "upgrade_dependency": true,
+            "gc_details": true
         },
         "linksInHover": true,
         "usePlaceholders": true,
