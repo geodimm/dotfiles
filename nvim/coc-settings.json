@@ -22,7 +22,7 @@
     "diagnostic.refreshOnInsertMode": true,
     "diagnostic.warningSign": "\uf12a",
     "diagnostic.enableHighlightLineNumber": false,
-    "diagnostic.signOffset": 9999999,
+    "diagnostic.signPriority": 9999999,
     "explorer.floating.border.title": "",
     "explorer.floating.height": -16,
     "explorer.floating.position": "center",
