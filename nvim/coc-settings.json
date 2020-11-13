@@ -127,6 +127,7 @@
     "java.saveActions.organizeImports": true,
     "javascript.referencesCodeLens.enable": true,
     "javascript.implementationsCodeLens.enable": true,
+    "sql.database": "postgresql",
     "xml.codeLens.enabled": true,
     "yaml.trace.server": "verbose",
     "yaml.schemas": {

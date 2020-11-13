@@ -24,6 +24,7 @@ let g:coc_global_extensions = [
     \'coc-toml',
     \'coc-html',
     \'coc-css',
+    \'coc-sql',
     \'coc-markdownlint',
     \'coc-restclient',
     \'coc-swagger'
