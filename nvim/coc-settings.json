@@ -107,6 +107,7 @@
     "go.tags": {
         "skipUnexported": true
     },
+    "python.linting.enabled": true,
     "python.jediEnabled": false,
     "java.errors.incompleteClasspath.severity": "ignore",
     "java.configuration.runtimes": [
