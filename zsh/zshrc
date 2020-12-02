@@ -63,8 +63,8 @@ export GPG_TTY=$TTY
 case "${OSTYPE}" in
     linux*)
         if (( $+commands[setxkbmap] )); then
-            setxkbmap -option ctrl:nocaps
-            setxkbmap -option altwin:swap_alt_win
+            setxkbmap -option caps:escape_shifted_capslock
+            setxkbmap -option altwin:swap_lalt_lwin
         fi
         ;;
     *) ;;
