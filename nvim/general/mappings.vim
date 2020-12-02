@@ -85,6 +85,3 @@ command! FormatJSON silent! execute '%!python3 -m json.tool'
 " Close all buffers but the current one
 command! BufOnly silent! execute "%bd|e#|bd#"
 noremap <leader>b :BufOnly<CR>
-
-" Print the sum of all numbers in the first column of the current buffer
-cnoremap sum %r!awk '{sum+=$1} END {print "Total: "sum}' %
