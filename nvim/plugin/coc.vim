@@ -87,8 +87,11 @@ highlight CocErrorHighlight gui=none cterm=none
 " coc-explorer {{{
 
 noremap <silent> <leader>fe :<C-u>CocCommand explorer --toggle<CR>
-hi CocExplorerNormalFloatBorder guifg=8 guibg=1
-hi CocExplorerNormalFloat guibg=1
+highlight CocExplorerNormalFloatBorder guifg=8 guibg=1
+highlight CocExplorerNormalFloat guibg=1
+highlight link CocExplorerGitPathChange GitGutterAdd
+highlight link CocExplorerGitContentChange GitGutterChange
+highlight link CocExplorerGitDeleted GitGutterDelete
 
 " }}}
 " coc-actions {{{
