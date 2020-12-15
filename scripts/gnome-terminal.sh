@@ -26,6 +26,9 @@ do_configure() {
 
     info "[gnome-terminal][configure] Srcery"
     "$install_dir/themes/srcery.sh"
+
+    info "[gnome-terminal][configure] Dracula"
+    "$install_dir/themes/dracula.sh"
 }
 
 main() {
