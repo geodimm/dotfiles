@@ -9,6 +9,7 @@
 	pager = less -F -X
 [commit]
 	gpgsign = true
+	template = ~/dotfiles/git/commit-template
 [push]
 	default = simple
 [pull]
