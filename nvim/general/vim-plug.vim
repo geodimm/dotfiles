@@ -3,7 +3,6 @@ call plug#begin('~/dotfiles/nvim/autoload/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'psliwka/vim-smoothie'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'srcery-colors/srcery-vim'
@@ -26,9 +25,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'unblevable/quick-scope'
 Plug 'rhysd/git-messenger.vim'
 Plug 'fatih/vim-go', {'for': ['go', 'gomod']}
-Plug 'sebdah/vim-delve', {'for': 'go'}
 Plug 'hashivim/vim-terraform'
-Plug 'uiiaoo/java-syntax.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'pechorin/any-jump.vim'
