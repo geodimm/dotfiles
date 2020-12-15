@@ -73,6 +73,9 @@ noremap 0 ^
 " Remap Y to apply till EOL, just like D and C.
 noremap Y y$
 
+" Remap ZX to quitall
+nnoremap ZX :qa<CR>
+
 " Abbreviations
 iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 iab todo <c-r>='TODO (Georgi Dimitrov):'<CR>
