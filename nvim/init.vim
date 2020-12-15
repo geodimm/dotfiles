@@ -10,11 +10,7 @@ source $HOME/dotfiles/nvim/general/vim-plug.vim
 source $HOME/dotfiles/nvim/general/settings.vim
 source $HOME/dotfiles/nvim/general/mappings.vim
 source $HOME/dotfiles/nvim/general/functions.vim
-
-" Theme and settings
-source $HOME/dotfiles/nvim/theme/theme.vim
-source $HOME/dotfiles/nvim/theme/vim-devicons.vim
-source $HOME/dotfiles/nvim/theme/vim-airline.vim
+source $HOME/dotfiles/nvim/general/theme.vim
 
 " Plugin settings
 source $HOME/dotfiles/nvim/plugin/which-key.vim
