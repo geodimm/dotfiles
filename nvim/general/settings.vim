@@ -51,7 +51,6 @@ set shiftwidth=4           " Number of spaces to use for autoindent
 set nojoinspaces           " Insert only one space with a join command
 set shortmess+=c           " Don't pass messages to |ins-completion-menu|
 set completeopt+=menuone   " Don't select the first completion item; show even if there's only one match
-set iskeyword+=-           " Treat dash separated words as a word text object
 
 " Global
 let g:python_host_prog = '/usr/bin/python2'
