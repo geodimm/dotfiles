@@ -91,6 +91,8 @@
             "upgrade_dependency": true,
             "gc_details": true
         },
+        "importShortcut": "Both",
+        "completionDocumentation": true,
         "linksInHover": true,
         "usePlaceholders": true,
         "completeUnimported": true,
