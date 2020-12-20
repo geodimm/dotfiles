@@ -9,6 +9,7 @@ set signcolumn=yes         " Always show the signcolumn
 set number                 " Display line numbers
 set relativenumber         " Show the line number relative to the line with the cursor
 set colorcolumn=80         " Set the colored vertical column
+set cmdheight=2            " Set the command-line height to 2
 set listchars=tab:→\ ,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 set list
 
