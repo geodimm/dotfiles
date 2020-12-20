@@ -3,11 +3,7 @@ call plug#begin('~/dotfiles/nvim/autoload/plugged')
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
-Plug 'srcery-colors/srcery-vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'sheerun/vim-polyglot'
 Plug 'ryanoasis/vim-devicons'
 Plug 'mbbill/undotree'
