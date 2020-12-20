@@ -43,6 +43,11 @@
     "git.splitWindowCommand": "below sp",
     "git.signOffset": 8888888,
     "git.showCommitInFloating": true,
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChange",
     "suggest.snippetIndicator": " \ufb0c",
     "suggest.completionItemKindLabels": {
         "function": "\uf794",
