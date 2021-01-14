@@ -41,7 +41,6 @@
     "explorer.file.showHiddenFiles": true,
     "git.addGBlameToVirtualText": true,
     "git.splitWindowCommand": "below sp",
-    "git.signOffset": 8888888,
     "git.showCommitInFloating": true,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
@@ -135,6 +134,12 @@
     "java.saveActions.organizeImports": true,
     "javascript.referencesCodeLens.enable": true,
     "javascript.implementationsCodeLens.enable": true,
+    "java.imports.gradle.wrapper.checksums": [
+        {
+            "sha256": "770bc556869264c4dca57e9c608f65c3d3653b6a35a0cb97ce7a3019db2d325a",
+            "allowed": true
+        }
+    ],
     "sql.database": "postgresql",
     "xml.codeLens.enabled": true,
     "yaml.trace.server": "verbose",
