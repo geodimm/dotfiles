@@ -16,7 +16,6 @@ do_configure() {
     "$install_dir/themes/one-dark.sh"
 
     info "[gnome-terminal][configure] Nord"
-    cp /repos/Gogh/themes/nord.sh "$install_dir/themes/nord.sh"
     "$install_dir/themes/nord.sh"
 }
 
