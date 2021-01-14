@@ -9,7 +9,12 @@ endif
 set background=dark
 try
     let g:onedark_terminal_italics = 1
-    colors onedark
+    let g:nord_bold = 1
+    let g:nord_italic = 1
+    let g:nord_italic_comments = 1
+    let g:nord_underline = 1
+    let g:nord_uniform_diff_background = 1
+    colors nord
 catch
 endtry
 
@@ -22,7 +27,7 @@ let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#hunks#coc_git = 1
-let g:airline_theme='onedark'
+let g:airline_theme='nord'
 let g:airline_skip_empty_sections = 1
 let g:airline_powerline_fonts = 1
 
