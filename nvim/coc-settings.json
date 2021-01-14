@@ -40,6 +40,7 @@
     "explorer.git.icon.status.ignored": "\uf12a",
     "explorer.file.showHiddenFiles": true,
     "git.addGBlameToVirtualText": true,
+    "git.signPriority": 999,
     "git.splitWindowCommand": "below sp",
     "git.showCommitInFloating": true,
     "git.addedSign.hlGroup": "GitGutterAdd",
