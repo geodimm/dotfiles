@@ -89,7 +89,7 @@
     "go.goplsPath": "/home/georgi/go/bin/gopls",
     "go.goplsOptions": {
         "buildFlags": ["-tags=all,test_setup"],
-        "codelens": {
+        "codelenses": {
             "tidy": true,
             "vendor": true,
             "generate": true,
@@ -100,8 +100,6 @@
         "completionDocumentation": true,
         "linksInHover": true,
         "usePlaceholders": true,
-        "completeUnimported": true,
-        "deepCompletion": true,
         "hoverKind": "FullDocumentation",
         "staticcheck": true,
         "analyses": {
