@@ -36,6 +36,9 @@ docker-clean() {
     docker rm -f $(docker ps -qa) && docker volume rm $(docker volume ls -q)
 }
 
+# aws
+alias aws="aws --no-cli-pager"
+
 # k8s
 jqp () {
     jq -rR '
