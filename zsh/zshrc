@@ -22,6 +22,7 @@ plugins=(
     terraform
     tmux
     vi-mode
+    you-should-use
     z
     zsh-autosuggestions
     zsh-completions
