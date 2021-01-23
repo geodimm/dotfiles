@@ -88,7 +88,9 @@
     },
     "go.goplsPath": "/home/georgi/go/bin/gopls",
     "go.goplsOptions": {
-        "buildFlags": ["-tags=all,test_setup"],
+        "buildFlags": [
+            "-tags=all,test_setup"
+        ],
         "codelenses": {
             "tidy": true,
             "vendor": true,
