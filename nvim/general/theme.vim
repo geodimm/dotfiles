@@ -1,10 +1,29 @@
 syntax on
 
-augroup color_overrides
-  autocmd!
-  autocmd ColorScheme * highlight ExtraWhiteSpace guifg=#EBCB8B ctermfg=3
-  autocmd BufNewFile,BufReadPost * match ExtraWhiteSpace /\s\+$/
-augroup END
+augroup customise_highlight_groups
+    autocmd!
+    " Highlight trailing whitespaces
+    autocmd ColorScheme * highlight link trailingWhiteSpace SpecialChar
+    autocmd BufNewFile,BufReadPost * match trailingWhiteSpace /\s\+$/
+
+    " Fix vim-floaterm border colours
+    autocmd ColorScheme * highlight FloatermBorder guifg=none ctermfg=none
+
+    " Disable special attributes for coc.nvim highlights
+    autocmd ColorScheme * highlight CocHintHighlight gui=none cterm=none
+    autocmd ColorScheme * highlight CocInfoHighlight gui=none cterm=none
+    autocmd ColorScheme * highlight CocWarningHighlight gui=none cterm=none
+    autocmd ColorScheme * highlight CocErrorHighlight gui=none cterm=none
+
+    " Override coc-explorer border
+    autocmd ColorScheme * highlight CocExplorerNormalFloatBorder guifg=8 guibg=1
+    " Override coc-explorer background
+    autocmd ColorScheme * highlight CocExplorerNormalFloat guibg=1
+    " Override coc-explorer file tree git status highlights
+    autocmd ColorScheme * highlight link CocExplorerGitPathChange GitGutterAdd
+    autocmd ColorScheme * highlight link CocExplorerGitContentChange GitGutterChange
+    autocmd ColorScheme * highlight link CocExplorerGitDeleted GitGutterDelete
+augroup end
 
 set t_Co=256
 if has("termguicolors")
