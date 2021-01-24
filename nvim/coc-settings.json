@@ -78,12 +78,16 @@
     },
     "languageserver": {
         "terraform": {
-            "command": "terraform-lsp",
+            "command": "terraform-ls",
+            "args": [
+                "serve"
+            ],
             "filetypes": [
                 "terraform",
                 "tf"
             ],
-            "initializationOptions": {}
+            "initializationOptions": {},
+            "settings": {}
         }
     },
     "go.goplsPath": "/home/georgi/go/bin/gopls",
