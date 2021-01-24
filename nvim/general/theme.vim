@@ -2,8 +2,8 @@ syntax on
 
 augroup color_overrides
   autocmd!
-  autocmd ColorScheme * highlight ExtraWhitespace guifg=#EBCB8B ctermfg=3
-  autocmd ColorScheme * match ExtraWhiteSpace /\s\+$/
+  autocmd ColorScheme * highlight ExtraWhiteSpace guifg=#EBCB8B ctermfg=3
+  autocmd BufNewFile,BufReadPost * match ExtraWhiteSpace /\s\+$/
 augroup END
 
 set t_Co=256
