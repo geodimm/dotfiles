@@ -78,10 +78,6 @@ xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
-highlight CocHintHighlight gui=none cterm=none
-highlight CocInfoHighlight gui=none cterm=none
-highlight CocWarningHighlight gui=none cterm=none
-highlight CocErrorHighlight gui=none cterm=none
 
 "}}}
 
@@ -90,11 +86,6 @@ highlight CocErrorHighlight gui=none cterm=none
 " coc-explorer {{{
 
 noremap <silent> <leader>fe :<C-u>CocCommand explorer --toggle<CR>
-highlight CocExplorerNormalFloatBorder guifg=8 guibg=1
-highlight CocExplorerNormalFloat guibg=1
-highlight link CocExplorerGitPathChange GitGutterAdd
-highlight link CocExplorerGitContentChange GitGutterChange
-highlight link CocExplorerGitDeleted GitGutterDelete
 
 " }}}
 " coc-actions {{{
