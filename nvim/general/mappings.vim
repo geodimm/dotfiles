@@ -79,6 +79,7 @@ nnoremap ZX :qa<CR>
 " Abbreviations
 iab cdate <c-r>=strftime("%Y-%m-%d")<CR>
 iab todo <c-r>='TODO (Georgi Dimitrov):'<CR>
+iab yls <c-r>='# yaml-language-server: $schema=https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.17.0-standalone-strict/all.json'<CR>
 
 " Formal XML
 command! FormatXML silent! execute '%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())'
