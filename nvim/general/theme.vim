@@ -1,5 +1,11 @@
 syntax on
 
+augroup color_overrides
+  autocmd!
+  autocmd ColorScheme * highlight ExtraWhitespace guifg=#EBCB8B ctermfg=3
+  autocmd ColorScheme * match ExtraWhiteSpace /\s\+$/
+augroup END
+
 set t_Co=256
 if has("termguicolors")
     set t_8f=\[[38;2;%lu;%lu;%lum
