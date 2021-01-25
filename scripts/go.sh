@@ -13,7 +13,7 @@ do_install() {
     fi
 
     info "[go] Install ${GO_VERSION}"
-    local go="/tmp/go${GO_VERSION}.tar.gz" 
+    local go="/tmp/go${GO_VERSION}.tar.gz"
     download_to "${go}" "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz"
     sudo rm -rf /usr/local/go
     sudo tar -C /usr/local -xzf "${go}"
