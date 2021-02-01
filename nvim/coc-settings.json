@@ -109,6 +109,7 @@
         "hoverKind": "FullDocumentation",
         "staticcheck": true,
         "analyses": {
+            "ST1003": false,
             "undeclaredname": true,
             "unusedparams": true,
             "fillreturns": true,
