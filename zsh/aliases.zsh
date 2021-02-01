@@ -39,6 +39,9 @@ docker-clean() {
 # aws
 alias aws="aws --no-cli-pager"
 
+# tldr
+alias tldr="tldr --theme=base16"
+
 # k8s
 jqp () {
     jq -rR '
