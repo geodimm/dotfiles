@@ -119,6 +119,10 @@
     "go.tags": {
         "skipUnexported": true
     },
+    "markdownlint.config": {
+        "line-length": false,
+        "line_length": false
+    },
     "python.linting.enabled": true,
     "python.jediEnabled": false,
     "java.errors.incompleteClasspath.severity": "ignore",
