@@ -4,7 +4,7 @@
 help: ## Display help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-all: pkg git tig bat tmux fzf zsh ohmyzsh rvm ruby colorls nvm node go lua neovim ## Install and configure everything (default)
+all: pkg git tig bat tmux fzf zsh ohmyzsh rvm ruby colorls nvm node go lua neovim jqp ## Install and configure everything (default)
 
 .PHONY: pkg-install
 pkg-install: ## Install Ubuntu packages
@@ -160,3 +160,10 @@ neovim-configure: ## Configure neovim
 
 .PHONY: neovim
 neovim: neovim-install neovim-configure ## neovim-install neovim-configure
+
+.PHONY: jqp-install
+jqp-install: ## Install jqp
+	@./scripts/jqp.sh install
+
+.PHONY: jqp
+jqp: jqp-install ## jqp-install
