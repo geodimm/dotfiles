@@ -42,40 +42,6 @@ alias aws="aws --no-cli-pager"
 # tldr
 alias tldr="tldr --theme=base16"
 
-# k8s
-jqp () {
-    jq -rR '
-def colours: {
-    "CYAN": "\u001b[36m",
-    "MAGENTA": "\u001b[35m",
-    "GREEN": "\u001b[32m",
-    "RED": "\u001b[31m",
-    "BLUE": "\u001b[34m",
-    "RESET": "\u001b[0m",
-};
-def fieldColour: "BLUE";
-def fieldPriority: {
-    "@timestamp": 1,
-    "level": 2,
-    "message": 3,
-    "DEFAULT": 9999,
-};
-def valueColour: {
-    "@timestamp": "CYAN",
-    "level": "MAGENTA",
-    "message": "GREEN",
-    "error": "RED",
-    "syntax_errors": "RED",
-    "reason": "RED",
-    "DEFAULT": "DEFAULT",
-};
-def coloured($text; $colour): if $colour == "DEFAULT" then $text else colours[$colour] + $text + colours.RESET end;
-def enrich_log_entries: map(.priority = (fieldPriority[.key] // fieldPriority.DEFAULT) | .colour = (valueColour[.key] // valueColour.DEFAULT));
-def build_log_lines: map([if .priority < fieldPriority.DEFAULT then empty else coloured(.key; fieldColour) end, coloured(.value|tostring; .colour)] | join("=")) | join(" ");
-
-. as $in | try (fromjson | to_entries | enrich_log_entries | sort_by(.priority) | build_log_lines) catch $in'
-}
-
 # z with fzf
 unalias z 2> /dev/null
 z() {
