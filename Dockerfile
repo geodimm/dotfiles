@@ -16,4 +16,6 @@ COPY --chown=test:test . /home/test/dotfiles
 
 ENV USER test
 
+ENV PATH="/home/test/bin:${PATH}"
+
 WORKDIR /home/test/dotfiles
