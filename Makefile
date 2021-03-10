@@ -4,7 +4,7 @@
 help: ## Display help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-all: pkg git tig bat tmux fzf zsh ohmyzsh rvm ruby colorls nvm node go lua neovim jqp ## Install and configure everything (default)
+all: pkg git tig bat tmux fzf zsh ohmyzsh rvm ruby colorls nvm node go lua tree-sitter neovim jqp ## Install and configure everything (default)
 
 .PHONY: pkg-install
 pkg-install: ## Install Ubuntu packages
@@ -167,3 +167,10 @@ jqp-install: ## Install jqp
 
 .PHONY: jqp
 jqp: jqp-install ## jqp-install
+
+.PHONY: tree-sitter-install
+tree-sitter-install: ## Install tree-sitter
+	@./scripts/tree-sitter.sh install
+
+.PHONY: tree-sitter
+tree-sitter: tree-sitter-install ## tree-sitter-install
