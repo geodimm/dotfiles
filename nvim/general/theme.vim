@@ -23,6 +23,9 @@ augroup customise_highlight_groups
     autocmd ColorScheme * highlight link CocExplorerGitPathChange GitGutterAdd
     autocmd ColorScheme * highlight link CocExplorerGitContentChange GitGutterChange
     autocmd ColorScheme * highlight link CocExplorerGitDeleted GitGutterDelete
+
+    source ~/dotfiles/nvim/plugin/treesitter/nord.vim
+    source ~/dotfiles/nvim/plugin/treesitter/onedark.vim
 augroup end
 
 set t_Co=256
