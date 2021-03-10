@@ -35,7 +35,7 @@ do_install() {
     if ! is_installed pip2; then
         info "[pkg][install] Install python2-pip"
         local installer=/tmp/get-pip.py
-        download_to "${installer}" https://bootstrap.pypa.io/2.7/get-pip.py
+        download_to "${installer}" https://bootstrap.pypa.io/pip/2.7/get-pip.py
         sudo python2 "${installer}"
     fi
 }
