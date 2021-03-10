@@ -1,4 +1,5 @@
 augroup patch_nord_colorscheme
+    autocmd!
     autocmd ColorScheme nord hi TSError guifg=#bf616a ctermfg=131 guibg=NONE ctermbg=NONE gui=underline cterm=underline
     autocmd ColorScheme nord hi TSPunctDelimiter guifg=#81a1c1 ctermfg=109 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     autocmd ColorScheme nord hi TSPunctBracket guifg=#eceff4 ctermfg=255 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE

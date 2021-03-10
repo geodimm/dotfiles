@@ -1,4 +1,5 @@
 augroup patch_onedark_colorscheme
+    autocmd!
     autocmd ColorScheme onedark hi TSError guifg=#f44747 ctermfg=203 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     autocmd ColorScheme onedark hi TSPunctDelimiter guifg=#abb2bf ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
     autocmd ColorScheme onedark hi TSPunctBracket guifg=#abb2bf ctermfg=249 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
