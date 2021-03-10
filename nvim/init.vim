@@ -24,3 +24,4 @@ source $HOME/dotfiles/nvim/plugin/vim-floaterm.vim
 source $HOME/dotfiles/nvim/plugin/vim-go.vim
 source $HOME/dotfiles/nvim/plugin/vim-startify.vim
 source $HOME/dotfiles/nvim/plugin/vista.vim
+source $HOME/dotfiles/nvim/plugin/nvim-treesitter.vim
