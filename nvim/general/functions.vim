@@ -1,4 +1,4 @@
-function! s:show_current_filename() abort
+function! ShowCurrentFileName() abort
     " Create a buffer and set the text
     let buf = nvim_create_buf(v:false, v:true)
     let fname = expand('%:p')
@@ -29,4 +29,11 @@ function! s:show_current_filename() abort
     noremap <buffer> <silent> k :<C-U>close<CR>
     noremap <buffer> <silent> q :<C-U>close<CR>
 endfunction
-noremap <silent> <leader>n :call <SID>show_current_filename()<CR>
+noremap <silent> <leader>n :call ShowCurrentFileName()<CR>
+
+function! PlugLoaded(name) abort
+    return (
+        \ has_key(g:plugs, a:name) &&
+        \ isdirectory(g:plugs[a:name].dir) &&
+        \ stridx(&rtp, g:plugs[a:name].dir) >= 0)
+endfunction
