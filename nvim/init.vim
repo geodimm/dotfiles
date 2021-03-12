@@ -18,7 +18,6 @@ source $HOME/dotfiles/nvim/plugin/any-jump.vim
 source $HOME/dotfiles/nvim/plugin/coc.vim
 source $HOME/dotfiles/nvim/plugin/coc-fzf.vim
 source $HOME/dotfiles/nvim/plugin/fzf.vim
-source $HOME/dotfiles/nvim/plugin/quick-scope.vim
 source $HOME/dotfiles/nvim/plugin/undotree.vim
 source $HOME/dotfiles/nvim/plugin/vim-floaterm.vim
 source $HOME/dotfiles/nvim/plugin/vim-go.vim
