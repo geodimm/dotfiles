@@ -7,7 +7,6 @@ let g:coc_global_extensions = [
     \'coc-explorer',
     \'coc-floaterm',
     \'coc-floatinput',
-    \'coc-yank',
     \'coc-snippets',
     \'coc-git',
     \'coc-go',
