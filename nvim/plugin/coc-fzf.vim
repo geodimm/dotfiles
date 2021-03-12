@@ -1,5 +1,5 @@
 let g:coc_fzf_opts = []
-let g:coc_fzf_preview = ""
+let g:coc_fzf_preview = "down:40%:border"
 
 nmap <silent> <leader>fcl :<C-u>CocFzfList<CR>
 nmap <silent> <leader>fca :<C-u>CocFzfList actions<CR>
