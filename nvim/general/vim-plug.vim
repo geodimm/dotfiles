@@ -22,7 +22,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 Plug 'godlygeek/tabular'  " required to format Markdown tables
-Plug 'unblevable/quick-scope'
 Plug 'rhysd/git-messenger.vim'
 Plug 'fatih/vim-go', {'for': ['go', 'gomod']}
 Plug 'hashivim/vim-terraform'
