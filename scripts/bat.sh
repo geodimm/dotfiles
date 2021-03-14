@@ -4,7 +4,7 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
-BAT_VERSION="${BAT_VERSION:=0.15.4}"
+BAT_VERSION="${BAT_VERSION:=0.18.0}"
 
 do_install() {
     if is_installed bat; then
