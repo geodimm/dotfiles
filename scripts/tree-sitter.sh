@@ -12,6 +12,7 @@ do_install() {
 
     info "[tree-sitter] Install"
     asset=$(curl --silent https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest | jq -r '.assets[] | select(.name | contains("linux")) | .url')
+    mkdir -p ~/bin
     curl --silent --location -H "Accept: application/octet-stream" "${asset}" | gunzip -c > ~/bin/tree-sitter
     chmod +x ~/bin/tree-sitter
 }
