@@ -8,6 +8,7 @@ set updatetime=100         " Faster CursorHold
 set signcolumn=yes         " Always show the signcolumn
 set number                 " Display line numbers
 set relativenumber         " Show the line number relative to the line with the cursor
+set nohlsearch             " Stop the highlighting for the 'hlsearch'
 set colorcolumn=80         " Set the colored vertical column
 set cmdheight=2            " Set the command-line height to 2
 set showbreak=↪\           " Show a symbol at the start of wrapped lines
