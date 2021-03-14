@@ -6,8 +6,8 @@
 " \_| \_/ \_/ |_|_| |_| |_|
 
 " Base configuration
-source $HOME/dotfiles/nvim/general/vim-plug.vim
-source $HOME/dotfiles/nvim/general/settings.vim
-source $HOME/dotfiles/nvim/general/mappings.vim
-source $HOME/dotfiles/nvim/general/functions.vim
-source $HOME/dotfiles/nvim/general/theme.vim
+source $HOME/dotfiles/nvim/vim-plug.vim
+source $HOME/dotfiles/nvim/custom/settings.vim
+source $HOME/dotfiles/nvim/custom/mappings.vim
+source $HOME/dotfiles/nvim/custom/functions.vim
+source $HOME/dotfiles/nvim/custom/theme.vim
