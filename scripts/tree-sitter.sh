@@ -4,8 +4,6 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
-NVM_DIR="${HOME}/.nvm"
-
 do_install() {
     if is_installed tree-sitter; then
         info "[tree-sitter] Already installed"
@@ -13,7 +11,9 @@ do_install() {
     fi
 
     info "[tree-sitter] Install"
-    source "${NVM_DIR}/nvm.sh" && npm install -g tree-sitter-cli
+    asset=$(curl --silent https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest | jq -r '.assets[] | select(.name | contains("linux")) | .url')
+    curl --silent --location -H "Accept: application/octet-stream" "${asset}" | gunzip -c > ~/bin/tree-sitter
+    chmod +x ~/bin/tree-sitter
 }
 
 main() {
