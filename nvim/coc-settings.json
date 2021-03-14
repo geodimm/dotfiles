@@ -15,6 +15,7 @@
     "coc.source.around.shortcut": "\uf016",
     "coc.source.buffer.shortcut": "\uf0c5",
     "coc.source.file.shortcut": "\uf471",
+    "coc.source.issues.shortcut": "\uf41b",
     "codeLens.enable": true,
     "diagnostic.errorSign": "\uf00d",
     "diagnostic.hintSign": "\uf7d5",
