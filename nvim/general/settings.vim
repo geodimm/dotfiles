@@ -56,5 +56,4 @@ set shortmess+=c           " Don't pass messages to |ins-completion-menu|
 set completeopt+=menuone   " Don't select the first completion item; show even if there's only one match
 
 " Global
-let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'

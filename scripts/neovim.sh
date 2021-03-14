@@ -32,7 +32,6 @@ do_configure() {
     sudo update-alternatives --set editor "$nvim_path"
 
     info "[neovim][configure] Install the neovim package for languages"
-    python2 -m pip install neovim --user
     python3 -m pip install neovim --user
     python3 -m pip install neovim-remote --user
     source "${RVM_DIR}/scripts/rvm" && gem install neovim

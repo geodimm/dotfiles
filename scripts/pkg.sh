@@ -16,7 +16,6 @@ do_install() {
         jq
         moreutils
         ncurses-term
-        python-dev
         python3-dev
         python3-pip
         tree
@@ -31,13 +30,6 @@ do_install() {
     info "[pkg] Install"
     sudo apt update
     sudo apt install -y "${packages[@]}"
-
-    if ! is_installed pip2; then
-        info "[pkg][install] Install python2-pip"
-        local installer=/tmp/get-pip.py
-        download_to "${installer}" https://bootstrap.pypa.io/pip/2.7/get-pip.py
-        sudo python2 "${installer}"
-    fi
 }
 
 main() {
