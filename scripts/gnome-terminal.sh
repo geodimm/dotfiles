@@ -17,6 +17,9 @@ do_configure() {
 
     info "[gnome-terminal][configure] Nord"
     "$install_dir/themes/nord.sh"
+
+    info "[gnome-terminal][configure] Gruvbox Dark"
+    "$install_dir/themes/gruvbox-dark.sh"
 }
 
 main() {

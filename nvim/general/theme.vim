@@ -39,6 +39,8 @@ try
     let g:nord_italic_comments = 1
     let g:nord_underline = 1
     let g:nord_uniform_diff_background = 1
+    let g:gruvbox_italic = 1
+    let g:gruvbox_sign_column = 'bg0'
     colors nord
 catch
 endtry
