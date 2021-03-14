@@ -8,6 +8,7 @@ let g:coc_global_extensions = [
     \'coc-floaterm',
     \'coc-floatinput',
     \'coc-snippets',
+    \'coc-calc',
     \'coc-git',
     \'coc-go',
     \'coc-java',
