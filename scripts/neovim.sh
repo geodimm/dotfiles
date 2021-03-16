@@ -46,7 +46,7 @@ do_configure() {
     download_to "${vimplug}" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     info "[neovim][configure] Install plugins"
-    nvim +PlugInstall +qall
+    nvim --headless +PlugInstall +qall
 }
 
 main() {
