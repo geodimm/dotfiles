@@ -5,7 +5,7 @@ set splitright             " Open splitpanes to the right
 set cursorline             " Highlight current line
 set noshowmode             " Don't show the current mode
 set updatetime=100         " Faster CursorHold
-set signcolumn=yes         " Always show the signcolumn
+set signcolumn=yes:2       " Always show the signcolumn (2 symbols)
 set number                 " Display line numbers
 set relativenumber         " Show the line number relative to the line with the cursor
 set nohlsearch             " Stop the highlighting for the 'hlsearch'
