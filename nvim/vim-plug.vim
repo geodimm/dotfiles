@@ -23,6 +23,11 @@ Plug 'pechorin/any-jump.vim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'liuchengxu/vim-which-key'
+
+" Try telescope.nvim
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " }}}
 
 " Tmux integration {{{
