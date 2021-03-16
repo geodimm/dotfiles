@@ -23,6 +23,28 @@ augroup customise_highlight_groups
     autocmd ColorScheme * highlight link CocExplorerGitPathChange GitGutterAdd
     autocmd ColorScheme * highlight link CocExplorerGitContentChange GitGutterChange
     autocmd ColorScheme * highlight link CocExplorerGitDeleted GitGutterDelete
+
+    " Patch onedark
+    autocmd ColorScheme onedark call onedark#set_highlight("DiffAdd", {"fg": onedark#GetColors().green})
+    autocmd ColorScheme onedark call onedark#set_highlight("DiffChange", {"fg": onedark#GetColors().yellow})
+    autocmd ColorScheme onedark call onedark#set_highlight("DiffDelete", {"fg": onedark#GetColors().red})
+    autocmd ColorScheme onedark call onedark#set_highlight("Identifier", {"fg": onedark#GetColors().cyan})
+    autocmd ColorScheme onedark call onedark#set_highlight("Keyword", {"fg": onedark#GetColors().purple})
+    autocmd ColorScheme onedark call onedark#extend_highlight("Keyword", {"gui": "bold"})
+    autocmd ColorScheme onedark call onedark#set_highlight("Constant", {"fg": onedark#GetColors().red})
+    autocmd ColorScheme onedark call onedark#extend_highlight("Constant", {"gui": "italic"})
+
+    autocmd ColorScheme onedark call onedark#set_highlight("goVarDefs", {"fg": onedark#GetColors().cyan})
+    autocmd ColorScheme onedark call onedark#set_highlight("goVarAssign", {"fg": onedark#GetColors().cyan})
+
+    autocmd ColorScheme onedark call onedark#set_highlight("CocHintSign", {"fg": onedark#GetColors().comment_grey})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocInfoSign", {"fg": onedark#GetColors().blue})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocWarningSign", {"fg": onedark#GetColors().yellow})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocErrorSign", {"fg": onedark#GetColors().red})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocHintHighlight", {"fg": onedark#GetColors().comment_grey})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocInfoHighlight", {"fg": onedark#GetColors().blue})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocWarningHighlight", {"fg": onedark#GetColors().yellow})
+    autocmd ColorScheme onedark call onedark#set_highlight("CocErrorHighlight", {"fg": onedark#GetColors().red})
 augroup end
 
 set t_Co=256
@@ -41,6 +63,6 @@ try
     let g:nord_uniform_diff_background = 1
     let g:gruvbox_italic = 1
     let g:gruvbox_sign_column = 'bg0'
-    colors nord
+    colors onedark
 catch
 endtry
