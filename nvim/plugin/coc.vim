@@ -57,10 +57,11 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gd <Plug>(coc-definition)
 nmap <silent> <leader>gt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
+nmap <silent> <leader>gr <Plug>(coc-references-used)
 nmap <silent> <leader>cr <Plug>(coc-rename)
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
 nmap <silent> <leader>ca <Plug>(coc-codeaction)
+xmap <silent> <leader>ca <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>cl <Plug>(coc-codelens-action)
 nmap <silent> <leader>cs :CocSearch <c-r>=expand("<cword>")<CR><CR>
 
@@ -77,6 +78,10 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ic <Plug>(coc-classobj-i)
+omap ac <Plug>(coc-classobj-a)
 
 
 "}}}
