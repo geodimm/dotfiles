@@ -45,6 +45,9 @@ augroup customise_highlight_groups
     autocmd ColorScheme onedark call onedark#set_highlight("CocInfoHighlight", {"fg": onedark#GetColors().blue})
     autocmd ColorScheme onedark call onedark#set_highlight("CocWarningHighlight", {"fg": onedark#GetColors().yellow})
     autocmd ColorScheme onedark call onedark#set_highlight("CocErrorHighlight", {"fg": onedark#GetColors().red})
+
+    " Reload the lualine theme
+    autocmd ColorScheme * source ~/dotfiles/nvim/plugin/lualine.vim
 augroup end
 
 set t_Co=256

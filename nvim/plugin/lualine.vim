@@ -1,6 +1,6 @@
 let g:lualine = {
     \'options': {
-    \  'theme': 'onedark',
+    \  'theme': g:colors_name,
     \  'section_separators': ['', ''],
     \  'component_separators': ['', ''],
     \  'icons_enabled': v:true,
