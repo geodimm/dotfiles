@@ -6,7 +6,6 @@ let g:coc_global_extensions = [
     \'coc-marketplace',
     \'coc-explorer',
     \'coc-floaterm',
-    \'coc-floatinput',
     \'coc-snippets',
     \'coc-calc',
     \'coc-git',
