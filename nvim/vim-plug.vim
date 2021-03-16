@@ -11,6 +11,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ryanoasis/vim-devicons'
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " }}}
 
 " IDE-like features {{{
