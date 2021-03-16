@@ -4,7 +4,7 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
-GO_VERSION="${GO_VERSION:=1.15.3}"
+GO_VERSION="${GO_VERSION:=1.16.2}"
 
 do_install() {
     if [[ "$(go version 2>/dev/null)" == *"${GO_VERSION}"* ]]; then
