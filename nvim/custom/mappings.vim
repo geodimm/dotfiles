@@ -44,6 +44,10 @@ nnoremap <silent> <leader>r :so $MYVIMRC<CR>
 " Exit insert mode with jj
 inoremap jj <Esc>
 
+" Go to the next line in editor for wrapped lines
+nnoremap <expr> j v:count == 0 ? 'gj' : "\<Esc>".v:count.'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : "\<Esc>".v:count.'k'
+
 " Easier navigation through split windows
 nnoremap <C-j> <C-w><Down>
 nnoremap <C-k> <C-w><Up>
