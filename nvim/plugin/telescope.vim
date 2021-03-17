@@ -58,6 +58,7 @@ EOF
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>f/ <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
 nnoremap <leader>f* <cmd>lua require('telescope.builtin').grep_string()<CR>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
 " nnoremap <leader>fa <cmd>lua require('telescope.builtin').grep_string({word_match = '--word-regexp', only_sort_text = true, search = ''})<CR>
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<CR>
 nnoremap <leader>fgf <cmd>lua require('telescope.builtin').git_files()<CR>
