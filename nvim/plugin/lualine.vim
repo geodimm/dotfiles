@@ -21,7 +21,7 @@ require'lualine'.setup{
       lualine_c = {{'filename', file_status = true}, {'diagnostics', sources = {'coc'}, padding = 0}},
       lualine_x = {'filetype'},
       lualine_y = {{'encoding', right_padding = 0}, 'fileformat'},
-      lualine_z = {{'progress', right_padding = 0}, 'location'},
+      lualine_z = {{'progress', right_padding = 0}, {'location', left_padding = 0}},
     },
     inactive_sections = {
       lualine_a = {},
@@ -29,7 +29,7 @@ require'lualine'.setup{
       lualine_c = {{'filename', file_status = true, full_path = true}},
       lualine_x = {'filetype'},
       lualine_y = {{'encoding', right_padding = 0}, 'fileformat'},
-      lualine_z = {{'progress', right_padding = 0}, 'location'},
+      lualine_z = {{'progress', right_padding = 0}, {'location', left_padding = 0}},
     },
     extensions = { 'fzf' },
 }
