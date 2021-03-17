@@ -13,8 +13,8 @@ require('telescope').setup{
       '--glob', '!vendor/*'
     },
     prompt_position = "bottom",
-    prompt_prefix = "> ",
-    selection_caret = "> ",
+    prompt_prefix = " ",
+    selection_caret = "❯ ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
