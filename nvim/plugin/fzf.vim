@@ -18,7 +18,7 @@ command! -bang -nargs=* FZFRGrep
   \   'rg --column --line-number --no-heading --color=always --smart-case --follow --glob "!vendor/*" '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
-let g:fzf_preview_window = ['right:50%:border', 'ctrl-p']
+let g:fzf_preview_window = ['right:50%:border:wrap', 'ctrl-p']
 let g:fzf_layout = { 'window': { 'width': 0.90, 'height': 0.90, 'border': 'sharp', 'highlight': 'Normal' } }
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
