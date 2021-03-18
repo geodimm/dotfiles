@@ -63,6 +63,7 @@ nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers({show_all_buff
 nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<CR>
 nnoremap <leader>fgf <cmd>lua require('telescope.builtin').git_files()<CR>
 nnoremap <leader>fgs <cmd>lua require('telescope.builtin').git_status()<CR>
-nnoremap <leader>fgb <cmd>lua require('telescope.builtin').git_bcommits()<CR>
+nnoremap <leader>fgb <cmd>lua require('telescope.builtin').git_branches()<CR>
+nnoremap <leader>fgh <cmd>lua require('telescope.builtin').git_bcommits()<CR>
 nnoremap <leader>fgc <cmd>lua require('telescope.builtin').git_commits()<CR>
 endif
