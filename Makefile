@@ -161,6 +161,17 @@ neovim-configure: ## Configure neovim
 .PHONY: neovim
 neovim: neovim-install neovim-configure ## neovim-install neovim-configure
 
+.PHONY: neovim-nightly-install
+neovim-nightly-install: ## Install neovim (nightly build)
+	@./scripts/neovim-nightly.sh install
+
+.PHONY: neovim-nightly-configure
+neovim-nightly-configure: ## Configure neovim (nightly build)
+	@./scripts/neovim-nightly.sh configure
+
+.PHONY: neovim-nightly
+neovim-nightly: neovim-nightly-install neovim-nightly-configure ## neovim-nighty-install neovim-nightly-configure
+
 .PHONY: jqp-install
 jqp-install: ## Install jqp
 	@./scripts/jqp.sh install
