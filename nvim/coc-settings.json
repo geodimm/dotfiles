@@ -126,6 +126,7 @@
     "python.linting.enabled": true,
     "python.jediEnabled": false,
     "java.errors.incompleteClasspath.severity": "ignore",
+    "java.format.enabled": false,
     "java.configuration.runtimes": [
         {
             "name": "JavaSE-1.8",
