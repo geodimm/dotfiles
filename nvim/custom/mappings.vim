@@ -28,6 +28,9 @@ xnoremap p pgvy
 vnoremap < <gv
 vnoremap > >gv
 
+" Remap gf to open first file on line
+nnoremap gf ^f/gf
+
 " A quick way to move lines of text up or down
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
