@@ -24,6 +24,7 @@ do_install() {
         units
         universal-ctags
         unrar
+        unzip
         uuid-runtime
         wget
         xclip
