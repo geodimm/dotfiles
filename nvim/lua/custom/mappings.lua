@@ -18,7 +18,7 @@ vim.api.nvim_set_keymap('n', '<leader><CR>', ':noh<CR>', { noremap = true, silen
 vim.api.nvim_set_keymap('v', '<leader>s', ':sort<CR>', { noremap = true })
 
 -- Copy with Ctrl+C in visual mode
-vim.api.nvim_set_keymap('v', '<C-c>', '+y<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<C-c>', '"+y<CR>', { noremap = true })
 
 -- Allow pasting the same selection multiple times
 -- 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again.
