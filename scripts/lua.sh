@@ -4,22 +4,46 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
+LUA_VERSION="${LUA_VERSION:=5.3.5}"
+LUAROCKS_VERSION="${LUAROCKS_VERSION:=3.3.1}"
+
 do_install() {
-    if is_installed lua; then
-        info "[lua] Already installed"
+    if [[ "$(lua -v 2>/dev/null)" == *"${LUA_VERSION}"* ]]; then
+        info "[lua] ${LUA_VERSION} already installed"
         return
     fi
 
-    info "Installing lua"
-    sudo apt install -y luarocks
+    info "[lua] Install"
+    local lua="lua-${LUA_VERSION}"
+    local target="/tmp/${lua}.tar.gz"
+    cd /tmp
+    download_to "${target}" http://www.lua.org/ftp/${lua}.tar.gz
+    tar -xzf "${target}"
+    cd "${lua}"
+    make linux test
+    sudo make install
+
+    if [[ "$(luarocks --version 2>/dev/null)" == *"${LUAROCKS_VERSION}"* ]]; then
+        info "[luarocks] ${LUAROCKS_VERSION} already installed"
+        return
+    fi
+
+    info "[luarocks] Install"
+    local luarocks="luarocks-${LUAROCKS_VERSION}"
+    local target="/tmp/${luarocks}.tar.gz"
+    download_to "${target}" http://www.luarocks.org/releases/${luarocks}.tar.gz
+    cd /tmp
+    tar -xzf "${target}"
+    cd "${luarocks}"
+    ./configure --with-lua-include=/usr/local/include
+    make
+    sudo make install
 }
 
 do_configure() {
     info "[lua] Configure"
     info "[lua][configure] Install modules"
-    sudo luarocks install --server=http://luarocks.org/dev lua-lsp
-    sudo luarocks install luacheck
-    sudo luarocks install Formatter
+    sudo luarocks install --server=https://luarocks.org/dev luaformatter
 }
 
 main() {
