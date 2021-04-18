@@ -1,5 +1,3 @@
-if PlugLoaded('lualine.nvim')
-lua <<EOF
 function trunc10(s)
     local result = string.sub(s, 0, 10)
     if string.len(s) > 10 then
@@ -33,5 +31,3 @@ require'lualine'.setup{
     },
     extensions = { 'fzf' },
 }
-EOF
-endif

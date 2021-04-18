@@ -1,5 +1,3 @@
-if PlugLoaded('telescope.nvim')
-lua <<EOF
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
@@ -53,17 +51,15 @@ require('telescope').setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   }
 }
-EOF
 
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
-nnoremap <leader>f/ <cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>
-nnoremap <leader>f* <cmd>lua require('telescope.builtin').grep_string()<CR>
-nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers({show_all_buffers = true, sort_lastused = true})<CR>
-" nnoremap <leader>fa <cmd>lua require('telescope.builtin').grep_string({word_match = '--word-regexp', only_sort_text = true, search = ''})<CR>
-nnoremap <leader>fm <cmd>lua require('telescope.builtin').keymaps()<CR>
-nnoremap <leader>fgf <cmd>lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader>fgs <cmd>lua require('telescope.builtin').git_status()<CR>
-nnoremap <leader>fgb <cmd>lua require('telescope.builtin').git_branches()<CR>
-nnoremap <leader>fgh <cmd>lua require('telescope.builtin').git_bcommits()<CR>
-nnoremap <leader>fgc <cmd>lua require('telescope.builtin').git_commits()<CR>
-endif
+vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>f/', '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>f*', '<cmd>lua require("telescope.builtin").grep_string()<CR>', { noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers({show_all_buffers = true, sort_lastused = true})<CR>', { noremap = true})
+-- vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>lua require('telescope.builtin').grep_string({word_match = '--word-regexp', only_sort_text = true, search = ''})<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fm', '<cmd>lua require("telescope.builtin").keymaps()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fgf', '<cmd>lua require("telescope.builtin").git_files()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fgs', '<cmd>lua require("telescope.builtin").git_status()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fgb', '<cmd>lua require("telescope.builtin").git_branches()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fgh', '<cmd>lua require("telescope.builtin").git_bcommits()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fgc', '<cmd>lua require("telescope.builtin").git_commits()<CR>', { noremap = true })
