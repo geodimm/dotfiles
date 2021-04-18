@@ -29,6 +29,7 @@ do_install() {
     fi
 
     info "[luarocks] Install"
+    export BUILD_TESTS=FALSE
     local luarocks="luarocks-${LUAROCKS_VERSION}"
     local target="/tmp/${luarocks}.tar.gz"
     download_to "${target}" http://www.luarocks.org/releases/${luarocks}.tar.gz
