@@ -41,10 +41,6 @@ do_configure() {
     rm -f "${XDG_CONFIG_HOME}/nvim"
     ln -fs "$(pwd)/nvim" "${XDG_CONFIG_HOME}/nvim"
 
-    info "[neovim][configure] Install vim-plug plugin manager"
-    local vimplug="$(pwd)/nvim/autoload/plug.vim"
-    download_to "${vimplug}" https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
     info "[neovim][configure] Install plugins"
     nvim --headless +PackerInstall +qall
 }
