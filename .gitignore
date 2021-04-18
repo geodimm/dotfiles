@@ -1,6 +1,7 @@
 nvim/autoload/
 nvim/ftplugin/
 nvim/.netrwhist
+nvim/plugin/packer_compiled.vim
 zsh/extras
 git/extras
 git/commit-template
