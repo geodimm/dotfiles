@@ -1,5 +1,6 @@
-syntax on
-
+vim.o.syntax = "on"
+vim.api.nvim_exec(
+[[
 augroup customise_highlight_groups
     autocmd!
     " Highlight trailing whitespaces
@@ -47,25 +48,25 @@ augroup customise_highlight_groups
     autocmd ColorScheme onedark call onedark#set_highlight("CocErrorHighlight", {"fg": onedark#GetColors().red})
 
     " Reload the lualine theme
-    autocmd ColorScheme * source ~/dotfiles/nvim/plugin/lualine.vim
+    autocmd ColorScheme * luafile ~/dotfiles/nvim/lua/plugin/lualine.lua
 augroup end
+]],
+false)
 
-set t_Co=256
-if has("termguicolors")
-    set t_8f=\[[38;2;%lu;%lu;%lum
-    set t_8b=\[[48;2;%lu;%lu;%lum
-    set termguicolors
-endif
-set background=dark
-try
-    let g:onedark_terminal_italics = 1
-    let g:nord_bold = 1
-    let g:nord_italic = 1
-    let g:nord_italic_comments = 1
-    let g:nord_underline = 1
-    let g:nord_uniform_diff_background = 1
-    let g:gruvbox_italic = 1
-    let g:gruvbox_sign_column = 'bg0'
-    colors onedark
-catch
-endtry
+vim.o.t_Co = '256'
+if vim.fn.has("termguicolors") == 1 then
+    vim.o.t_8f = '[[38;2;%lu;%lu;%lum'
+    vim.o.t_8b = '[[48;2;%lu;%lu;%lum'
+    vim.o.termguicolors = true
+end
+
+vim.o.background = 'dark'
+vim.g.onedark_terminal_italics = 1
+vim.g.nord_bold = 1
+vim.g.nord_italic = 1
+vim.g.nord_italic_comments = 1
+vim.g.nord_underline = 1
+vim.g.nord_uniform_diff_background = 1
+vim.g.gruvbox_italic = 1
+vim.g.gruvbox_sign_column = 'bg0'
+vim.cmd[[colorscheme onedark]]
