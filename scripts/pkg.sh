@@ -8,12 +8,14 @@ DEBIAN_FRONTEND=noninteractive
 
 do_install() {
     local packages=(
+        build-essential
         cmake
         curl
         dconf-cli
         htop
         httpie
         jq
+        libreadline-dev
         moreutils
         ncurses-term
         python3-dev
