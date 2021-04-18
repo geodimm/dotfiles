@@ -151,6 +151,9 @@
             "allowed": true
         }
     ],
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
     "sql.database": "postgresql",
     "xml.codeLens.enabled": true,
     "yaml.trace.server": "verbose",
