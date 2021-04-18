@@ -1,6 +1,5 @@
 vim.o.syntax = "on"
-vim.api.nvim_exec(
-[[
+vim.api.nvim_exec([[
 augroup customise_highlight_groups
     autocmd!
     " Highlight trailing whitespaces
@@ -50,8 +49,7 @@ augroup customise_highlight_groups
     " Reload the lualine theme
     autocmd ColorScheme * luafile ~/dotfiles/nvim/lua/plugin/lualine.lua
 augroup end
-]],
-false)
+]], false)
 
 vim.o.t_Co = '256'
 if vim.fn.has("termguicolors") == 1 then
@@ -69,4 +67,4 @@ vim.g.nord_underline = 1
 vim.g.nord_uniform_diff_background = 1
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_sign_column = 'bg0'
-vim.cmd[[colorscheme onedark]]
+vim.cmd [[colorscheme onedark]]
