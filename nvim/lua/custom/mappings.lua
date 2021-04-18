@@ -48,7 +48,7 @@ vim.api.nvim_set_keymap('n', '<leader>et',
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ez', ':vsplit ~/dotfiles/zsh/zshrc<CR>',
                         {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>r', ':so $MYVIMRC<CR>',
+vim.api.nvim_set_keymap('n', '<leader>r', ':luafile $MYVIMRC<CR>',
                         {noremap = true, silent = true})
 
 -- Exit insert mode with jj
