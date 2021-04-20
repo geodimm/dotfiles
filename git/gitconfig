@@ -1,15 +1,13 @@
 # vim: filetype=gitconfig
 [user]
 	name = Georgi Dimitrov
-	email = georgi.dimitrov@form3.tech
-	signingkey = 430CD136C7D7A820
+	email = georgijd92@gmail.com
 [core]
 	editor = vim
 	mergeoptions = --no-edit
 	excludesFile = ~/dotfiles/git/gitignore
 	pager = less -F -X
 [commit]
-	gpgsign = true
 	template = ~/dotfiles/git/commit-template
 [push]
 	default = simple
