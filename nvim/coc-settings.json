@@ -140,14 +140,14 @@
     ],
     "java.home": "/usr/lib/jvm/java-11-openjdk-amd64",
     "java.implementationsCodeLens.enabled": true,
-    "java.jdt.ls.vmargs": "-Dfile.encoding=UTF-8 -javaagent:/usr/local/share/lombok/lombok.jar -Xbootclasspath/a:/usr/local/share/lombok.jar",
+    "java.jdt.ls.vmargs": "-noverify -Xmx2G -XX:+UseG1GC -XX:+UseStringDeduplication -Dfile.encoding=UTF-8 -javaagent:/usr/local/share/lombok/lombok.jar -Xbootclasspath/a:/usr/local/share/lombok.jar",
     "java.referencesCodeLens.enabled": true,
     "java.saveActions.organizeImports": true,
     "javascript.referencesCodeLens.enable": true,
     "javascript.implementationsCodeLens.enable": true,
     "java.imports.gradle.wrapper.checksums": [
         {
-            "sha256": "770bc556869264c4dca57e9c608f65c3d3653b6a35a0cb97ce7a3019db2d325a",
+            "sha256": "e996d452d2645e70c01c11143ca2d3742734a28da2bf61f25c82bdc288c9e637",
             "allowed": true
         }
     ],
