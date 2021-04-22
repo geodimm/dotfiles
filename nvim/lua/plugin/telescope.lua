@@ -42,6 +42,8 @@ require('telescope').setup {
     }
 }
 
+require('telescope').load_extension('fzy_native')
+
 vim.api.nvim_set_keymap('n', '<leader>ff',
                         '<cmd>lua require("telescope.builtin").find_files()<CR>',
                         {noremap = true})
@@ -54,7 +56,9 @@ vim.api.nvim_set_keymap('n', '<leader>f*',
 vim.api.nvim_set_keymap('n', '<leader>fb',
                         '<cmd>lua require("telescope.builtin").buffers({show_all_buffers = true, sort_lastused = true})<CR>',
                         {noremap = true})
--- vim.api.nvim_set_keymap('n', '<leader>fa', '<cmd>lua require('telescope.builtin').grep_string({word_match = '--word-regexp', only_sort_text = true, search = ''})<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fa',
+                        '<cmd>lua require("telescope.builtin").grep_string({word_match = "--word-regexp", only_sort_text = true, search = ""})<CR>',
+                        {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fm',
                         '<cmd>lua require("telescope.builtin").keymaps()<CR>',
                         {noremap = true})
