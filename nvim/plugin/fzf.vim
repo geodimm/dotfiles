@@ -26,4 +26,4 @@ let g:fzf_action = {
   \ 'ctrl-v': 'vsplit',
   \ }
 
-nnoremap <silent> <leader>fa  :<C-u>FZFRGrep<CR>
+" nnoremap <silent> <leader>fa  :<C-u>FZFRGrep<CR>
