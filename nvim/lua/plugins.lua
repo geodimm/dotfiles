@@ -43,6 +43,10 @@ require('packer').startup(function()
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
     }
+    use {
+        'nvim-telescope/telescope-fzy-native.nvim',
+        requires = {'nvim-telescope/telescope.nvim'}
+    }
     -- }}}
 
     -- Tmux integration {{{
