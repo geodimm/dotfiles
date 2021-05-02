@@ -12,7 +12,7 @@ let g:startify_lists = [
     \ ]
 
 let g:startify_bookmarks = [
-    \ { 'ev': '~/dotfiles/nvim/init.vim' },
+    \ { 'ev': '~/dotfiles/nvim/lua/plugins.lua' },
     \ { 'ec': '~/dotfiles/nvim/coc-settings.json' },
     \ { 'et': '~/dotfiles/tmux/tmux.conf' },
     \ { 'ez': '~/dotfiles/zsh/zshrc' },
