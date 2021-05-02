@@ -38,7 +38,7 @@ require('packer').startup(function()
     use 'pechorin/any-jump.vim'
     use 'rhysd/git-messenger.vim'
     use 'tpope/vim-fugitive'
-    use 'liuchengxu/vim-which-key'
+    use 'folke/which-key.nvim'
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
