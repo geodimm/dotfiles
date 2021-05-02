@@ -24,7 +24,12 @@ augroup customise_highlight_groups
     autocmd ColorScheme * highlight link CocExplorerGitContentChange GitGutterChange
     autocmd ColorScheme * highlight link CocExplorerGitDeleted GitGutterDelete
 
+    " Override which-key background
+    autocmd ColorScheme * highlight WhichKeyFloat guibg=1
+
     " Patch onedark
+    autocmd ColorScheme onedark call onedark#set_highlight("VertSplit", {"fg": onedark#GetColors().white})
+
     autocmd ColorScheme onedark call onedark#set_highlight("DiffAdd", {"fg": onedark#GetColors().green})
     autocmd ColorScheme onedark call onedark#set_highlight("DiffChange", {"fg": onedark#GetColors().yellow})
     autocmd ColorScheme onedark call onedark#set_highlight("DiffDelete", {"fg": onedark#GetColors().red})
