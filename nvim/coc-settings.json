@@ -149,6 +149,10 @@
         {
             "sha256": "e996d452d2645e70c01c11143ca2d3742734a28da2bf61f25c82bdc288c9e637",
             "allowed": true
+        },
+        {
+            "sha256": "770bc556869264c4dca57e9c608f65c3d3653b6a35a0cb97ce7a3019db2d325a",
+            "allowed":true
         }
     ],
     "Lua.diagnostics.globals": [
