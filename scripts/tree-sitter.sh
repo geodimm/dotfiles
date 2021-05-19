@@ -11,7 +11,8 @@ do_install() {
     fi
 
     info "[tree-sitter] Install"
-    asset=$(curl --silent https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest | jq -r '.assets[] | select(.name | contains("linux")) | .url')
+    asset=$(curl --silent https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url')
+    if [[ -z $asset ]]; then warn "Cannot find a release. Please try again later."; exit 0; fi;
     mkdir -p ~/bin
     curl --silent --location -H "Accept: application/octet-stream" "${asset}" | gunzip -c > ~/bin/tree-sitter
     chmod +x ~/bin/tree-sitter
