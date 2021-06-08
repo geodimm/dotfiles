@@ -51,15 +51,13 @@ augroup customise_highlight_groups
     autocmd ColorScheme onedark call onedark#set_highlight("CocWarningHighlight", {"fg": onedark#GetColors().yellow})
     autocmd ColorScheme onedark call onedark#set_highlight("CocErrorHighlight", {"fg": onedark#GetColors().red})
 
-    " Reload the lualine theme
-    autocmd ColorScheme * luafile ~/dotfiles/nvim/lua/plugin/lualine.lua
 augroup end
 ]], false)
 
-vim.o.t_Co = '256'
+vim.go.t_Co = '256'
 if vim.fn.has("termguicolors") == 1 then
-    vim.o.t_8f = '[[38;2;%lu;%lu;%lum'
-    vim.o.t_8b = '[[48;2;%lu;%lu;%lum'
+    vim.go.t_8f = '[[38;2;%lu;%lu;%lum'
+    vim.go.t_8b = '[[48;2;%lu;%lu;%lum'
     vim.o.termguicolors = true
 end
 
