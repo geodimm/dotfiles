@@ -1,4 +1,4 @@
-vim.o.syntax = "on"
+vim.opt.syntax = "on"
 vim.api.nvim_exec([[
 augroup customise_highlight_groups
     autocmd!
@@ -54,14 +54,13 @@ augroup customise_highlight_groups
 augroup end
 ]], false)
 
-vim.go.t_Co = '256'
 if vim.fn.has("termguicolors") == 1 then
     vim.go.t_8f = '[[38;2;%lu;%lu;%lum'
     vim.go.t_8b = '[[48;2;%lu;%lu;%lum'
-    vim.o.termguicolors = true
+    vim.opt.termguicolors = true
 end
 
-vim.o.background = 'dark'
+vim.opt.background = 'dark'
 vim.g.onedark_terminal_italics = 1
 vim.g.nord_bold = 1
 vim.g.nord_italic = 1
