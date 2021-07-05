@@ -4,7 +4,6 @@ require('telescope').setup {
             'rg', '--color=never', '--no-heading', '--with-filename',
             '--line-number', '--column', '--smart-case', '--glob', '!vendor/*'
         },
-        prompt_position = "bottom",
         prompt_prefix = " ",
         selection_caret = "❯ ",
         entry_prefix = "  ",
@@ -15,7 +14,7 @@ require('telescope').setup {
         prompt_title = '',
         results_title = '',
         preview_title = '',
-        layout_defaults = {
+        layout_config = {
             horizontal = {mirror = false},
             vertical = {mirror = true}
         },
@@ -24,10 +23,6 @@ require('telescope').setup {
         generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
         shorten_path = true,
         winblend = 0,
-        width = 0.9,
-        preview_cutoff = 120,
-        results_height = 1,
-        results_width = 0.8,
         border = {},
         borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
         color_devicons = true,
