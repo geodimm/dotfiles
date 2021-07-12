@@ -63,6 +63,7 @@ nmap <silent> <leader>ca <Plug>(coc-codeaction)
 xmap <silent> <leader>ca <Plug>(coc-codeaction-selected)
 nmap <silent> <leader>cl <Plug>(coc-codelens-action)
 nmap <silent> <leader>cs :CocSearch <c-r>=expand("<cword>")<CR><CR>
+vmap <silent> <leader>cs y:<C-u>CocSearch <C-r>"<CR><CR>
 
 " Use K to show documentation in preview window
 set keywordprg=:call\ CocActionAsync('doHover')
