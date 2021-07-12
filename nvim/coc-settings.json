@@ -31,8 +31,8 @@
     "explorer.openAction.strategy": "sourceWindow",
     "explorer.position": "floating",
     "explorer.icon.enableNerdfont": true,
-    "explorer.icon.enableVimDevicons": false,
-    "explorer.file.autoReveal": true,
+    "explorer.icon.source": "nvim-web-devicons",
+    "explorer.file.reveal.auto": true,
     "explorer.file.showHiddenFiles": true,
     "explorer.git.icon.status.modified": "\uf040",
     "explorer.git.icon.status.added": "\uf067",
@@ -152,7 +152,7 @@
         },
         {
             "sha256": "770bc556869264c4dca57e9c608f65c3d3653b6a35a0cb97ce7a3019db2d325a",
-            "allowed":true
+            "allowed": true
         }
     ],
     "Lua.diagnostics.globals": [
