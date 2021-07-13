@@ -23,7 +23,6 @@ require('telescope').setup {
         borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
         color_devicons = true,
         use_less = true,
-        path_display = {shorten_path = true},
         set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
         file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
         grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
@@ -34,6 +33,9 @@ require('telescope').setup {
     },
     extensions = {
         lsp_handlers = {
+            location = {telescope = {path_display = {"shorten"}}},
+            symbol = {telescope = {path_display = {"shorten"}}},
+            call_hierarchy = {telescope = {path_display = {"shorten"}}},
             code_action = {
                 telescope = require('telescope.themes').get_dropdown({})
             }
@@ -57,7 +59,7 @@ vim.api.nvim_set_keymap('n', '<leader>fb',
                         '<cmd>lua require("telescope.builtin").buffers({show_all_buffers = true, sort_lastused = true})<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fa',
-                        '<cmd>lua require("telescope.builtin").live_grep()<CR>',
+                        '<cmd>lua require("telescope.builtin").live_grep({path_display={"shorten"}})<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fm',
                         '<cmd>lua require("telescope.builtin").keymaps()<CR>',
