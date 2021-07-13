@@ -31,15 +31,19 @@ require('packer').startup({
         -- }}}
 
         -- IDE-like features {{{
+        use 'kyazdani42/nvim-tree.lua'
         use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end}
         use 'junegunn/fzf.vim'
         use 'voldikss/vim-floaterm'
         use 'liuchengxu/vista.vim'
-        use 'pechorin/any-jump.vim'
         use 'airblade/vim-gitgutter'
         use 'rhysd/git-messenger.vim'
         use 'tpope/vim-fugitive'
         use 'folke/which-key.nvim'
+        use {
+            'windwp/nvim-spectre',
+            requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+        }
         use {
             'nvim-telescope/telescope.nvim',
             requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
@@ -52,7 +56,6 @@ require('packer').startup({
             'gbrlsnchs/telescope-lsp-handlers.nvim',
             requires = {'nvim-telescope/telescope.nvim'}
         }
-        use 'kyazdani42/nvim-tree.lua'
         -- }}}
 
         -- Tmux integration {{{
@@ -102,3 +105,4 @@ require('plugin/nvim-treesitter')
 require('plugin/telescope')
 require('plugin/which-key')
 require('plugin/nvim-tree')
+require('plugin/nvim-spectre')
