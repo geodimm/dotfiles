@@ -11,6 +11,7 @@ vim.g.nvim_tree_follow = 1
 vim.g.nvim_tree_auto_ignore_ft = {'startify'}
 vim.g.nvim_tree_width = 50
 vim.g.nvim_tree_git_hl = 1
+vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_bindings = {
     {key = {"<CR>", "l", "o", "<2-LeftMouse>"}, cb = tree_cb("edit")},
     {key = "h", cb = ':lua NvimTreeCloseParent()<CR>'}
