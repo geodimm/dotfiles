@@ -12,8 +12,8 @@ require('telescope').setup {
         sorting_strategy = "descending",
         layout_strategy = "flex",
         layout_config = {
-            horizontal = {mirror = false},
-            vertical = {mirror = true}
+            horizontal = {mirror = false, preview_width = 0.4},
+            vertical = {mirror = true, preview_height = 0.4}
         },
         file_sorter = require'telescope.sorters'.get_fuzzy_file,
         file_ignore_patterns = {},
@@ -31,10 +31,18 @@ require('telescope').setup {
 
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+    },
+    extensions = {
+        lsp_handlers = {
+            code_action = {
+                telescope = require('telescope.themes').get_dropdown({})
+            }
+        }
     }
 }
 
 require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('lsp_handlers')
 
 vim.api.nvim_set_keymap('n', '<leader>ff',
                         '<cmd>lua require("telescope.builtin").find_files()<CR>',
