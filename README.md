@@ -25,7 +25,6 @@ framework for managing your zsh configuration.
 * [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
 flexibility and out-of-the-box experience.
 * [fzf] A command-line fuzzy finder
-protocol support as VSCode
 * [bat] A cat(1) clone with wings.
 * [colorls] A Ruby gem that beautifies the terminal's ls command,
 
