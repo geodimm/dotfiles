@@ -1,1 +1,1 @@
-nnoremap <leader>gu <Plug>(GitGutterUndoHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
