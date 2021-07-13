@@ -114,7 +114,7 @@ end
 -- Define LSP configuration settings for languages
 local lsp_config = {
     go = {
-        cmd = {"/home/georgi/go/bin/gopls", "-remote=auto"},
+        cmd = {vim.fn.expand("$HOME/go/bin/gopls"), "-remote=auto"},
         settings = {
             gopls = {
                 buildFlags = {"-tags=all,test_setup"},
@@ -165,12 +165,16 @@ local lsp_config = {
         }
     },
     java = {
-        cmd = {"/home/georgi/.local/share/nvim/lspinstall/java/jdtls.sh"},
+        cmd = {
+            vim.fn.expand("$HOME/.local/share/nvim/lspinstall/java/jdtls.sh")
+        },
         cmd_env = {
-            JAR = "/home/georgi/.local/share/nvim/lspinstall/java/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.300.v20210617-0451.jar",
-            GRADLE_HOME = "/home/georgi/gradle",
             JAVA_HOME = "/usr/lib/jvm/java-11-openjdk-amd64",
-            JDTLS_CONFIG = "/home/georgi/.local/share/nvim/lspinstall/java/config_linux"
+            GRADLE_HOME = vim.fn.expand("$HOME/gradle"),
+            JAR = vim.fn.expand(
+                "$HOME/.local/share/nvim/lspinstall/java/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.300.v20210617-0451.jar"),
+            JDTLS_CONFIG = vim.fn.expand(
+                "$HOME/.local/share/nvim/lspinstall/java/config_linux")
         }
     }
 }
