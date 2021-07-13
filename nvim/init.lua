@@ -54,6 +54,7 @@ require('packer').startup({
             'gbrlsnchs/telescope-lsp-handlers.nvim',
             requires = {'nvim-telescope/telescope.nvim'}
         }
+        use 'kosayoda/nvim-lightbulb'
         -- }}}
 
         -- Tmux integration {{{
@@ -106,3 +107,4 @@ require('plugin/which-key')
 require('plugin/nvim-tree')
 require('plugin/nvim-spectre')
 require('plugin/gitsigns')
+require('plugin/nvim-lightbulb')
