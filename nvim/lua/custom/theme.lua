@@ -27,6 +27,9 @@ augroup customise_highlight_groups
     " Override which-key background
     autocmd ColorScheme * highlight WhichKeyFloat guibg=1
 
+    " Patch nvim-tree
+    autocmd ColorScheme * highlight link NvimTreeGitDirty GitGutterChange
+
     " Patch onedark
     autocmd ColorScheme onedark call onedark#set_highlight("VertSplit", {"fg": onedark#GetColors().white})
 
