@@ -2,43 +2,48 @@
 local lspinstall = require 'lspinstall'
 local lspconfig = require 'lspconfig'
 
+local completion_item_kind = {
+    Text = '',
+    Method = '',
+    Function = '',
+    Constructor = '',
+    Field = '',
+    Variable = '',
+    Class = '',
+    Interface = 'ﰮ',
+    Module = '',
+    Property = '',
+    Unit = '',
+    Value = '',
+    Enum = '',
+    Keyword = '',
+    Snippet = '﬌',
+    Color = '',
+    File = '',
+    Reference = '',
+    Folder = '',
+    EnumMember = '',
+    Constant = '',
+    Struct = '',
+    Event = '',
+    Operator = 'ﬦ',
+    TypeParameter = ''
+}
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-    vim.lsp.protocol.CompletionItemKind =
-        {
-            '', -- Text
-            '', -- Method
-            '', -- Function
-            '', -- Constructor
-            '', -- Field
-            '', -- Variable
-            '', -- Class
-            'ﰮ', -- Interface
-            '', -- Module
-            '', -- Property
-            '', -- Unit
-            '', -- Value
-            '', -- Enum
-            '', -- Keyword
-            '﬌', -- Snippet
-            '', -- Color
-            '', -- File
-            '', -- Reference
-            '', -- Folder
-            '', -- EnumMember
-            '', -- Constant
-            '', -- Struct
-            '', -- Event
-            'ﬦ', -- Operator
-            '' -- TypeParameter
-        }
-
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
+
     local function buf_set_option(...)
         vim.api.nvim_buf_set_option(bufnr, ...)
+    end
+
+    local kinds = vim.lsp.protocol.CompletionItemKind
+    for i, kind in ipairs(kinds) do
+        kinds[i] = completion_item_kind[kind] or kind
     end
 
     -- Enable completion triggered by <c-x><c-o>
