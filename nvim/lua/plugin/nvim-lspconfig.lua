@@ -46,12 +46,13 @@ local on_attach = function(client, bufnr)
         kinds[i] = completion_item_kind[kind] or kind
     end
 
+    vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(vim.lsp.handlers.hover, {border = 'single'})
+    vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'single'})
+
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Enable completion
-    require'completion'.on_attach(client, bufnr)
-    buf_set_keymap('i', '<c-n>', '<Plug>(completion_trigger)', {})
 
     -- Mappings.
     local opts = {noremap = true, silent = true}
@@ -171,6 +172,8 @@ local lsp_config = {
 local function create_config(server)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
+    capabilities.textDocument.completion.completionItem.resolveSupport =
+        {properties = {'documentation', 'detail', 'additionalTextEdits'}}
     local config = {
         -- enable snippet support
         capabilities = capabilities,
