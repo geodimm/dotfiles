@@ -84,7 +84,7 @@ The tmux status is centered and has colour coded indicators for:
 [colorls]: https://github.com/athityakumar/colorls "Colorls"
 [fzf.vim]: https://github.com/junegunn/fzf.vim "FZF Vim"
 [fzf]: https://github.com/junegunn/fzf "FZF"
-[onedark]: https://github.com/joshdick/onedark.vim "OneDark"
+[onedark]: https://github.com/navarasu/onedark.nvim "OneDark"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
 [vim-floaterm]: https://github.com/voldikss/vim-floaterm "VIM Floaterm"

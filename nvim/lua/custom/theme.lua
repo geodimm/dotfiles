@@ -8,26 +8,12 @@ augroup customise_highlight_groups
 
     " Fix vim-floaterm border colours
     autocmd ColorScheme * highlight FloatermBorder guifg=none ctermfg=none
-
     " Override which-key background
     autocmd ColorScheme * highlight WhichKeyFloat guibg=1
 
     " Patch nvim-tree
-    autocmd ColorScheme * highlight link NvimTreeGitDirty GitGutterChange
-
-    " Patch onedark
-
-    autocmd ColorScheme onedark call onedark#set_highlight("DiffAdd", {"fg": onedark#GetColors().green})
-    autocmd ColorScheme onedark call onedark#set_highlight("DiffChange", {"fg": onedark#GetColors().yellow})
-    autocmd ColorScheme onedark call onedark#set_highlight("DiffDelete", {"fg": onedark#GetColors().red})
-    autocmd ColorScheme onedark call onedark#set_highlight("Identifier", {"fg": onedark#GetColors().cyan})
-    autocmd ColorScheme onedark call onedark#set_highlight("Keyword", {"fg": onedark#GetColors().purple})
-    autocmd ColorScheme onedark call onedark#extend_highlight("Keyword", {"gui": "bold"})
-    autocmd ColorScheme onedark call onedark#set_highlight("Constant", {"fg": onedark#GetColors().red})
-    autocmd ColorScheme onedark call onedark#extend_highlight("Constant", {"gui": "italic"})
-
-    autocmd ColorScheme onedark call onedark#set_highlight("goVarDefs", {"fg": onedark#GetColors().cyan})
-    autocmd ColorScheme onedark call onedark#set_highlight("goVarAssign", {"fg": onedark#GetColors().cyan})
+    autocmd ColorScheme * highlight NvimTreeNormal guibg=none
+    autocmd ColorScheme * highlight NvimTreeEndOfBuffer guibg=none
 augroup end
 ]], false)
 
@@ -46,4 +32,6 @@ vim.g.nord_underline = 1
 vim.g.nord_uniform_diff_background = 1
 vim.g.gruvbox_italic = 1
 vim.g.gruvbox_sign_column = 'bg0'
+vim.g.disable_toggle_style = 1
+vim.g.onedark_style = 'dark'
 vim.cmd [[colorscheme onedark]]

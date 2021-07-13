@@ -6,7 +6,7 @@ end
 
 require'lualine'.setup {
     options = {
-        theme = vim.g.colors_name,
+        theme = 'onedark',
         section_separators = {'', ''},
         component_separators = {'', ''},
         icons_enabled = true
@@ -14,8 +14,13 @@ require'lualine'.setup {
     sections = {
         lualine_a = {{'mode', upper = true}},
         lualine_b = {
-            {'diff', right_padding = 0},
-            {'branch', icon = '', format = Trunc10}
+            {
+                'diff',
+                right_padding = 0,
+                color_added = require('onedark.colors').green,
+                color_modified = require('onedark.colors').yellow,
+                color_removed = require('onedark.colors').red
+            }, {'branch', icon = '', format = Trunc10}
         },
         lualine_c = {
             {'filename', file_status = true},
@@ -37,5 +42,5 @@ require'lualine'.setup {
             {'progress', right_padding = 0}, {'location', left_padding = 0}
         }
     },
-    extensions = {'fzf', 'nvim-tree'}
+    extensions = {'fzf', 'nvim-tree', 'fugitive'}
 }
