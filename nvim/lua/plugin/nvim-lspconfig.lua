@@ -106,7 +106,7 @@ end
 -- Define LSP configuration settings for languages
 local lsp_config = {
     go = {
-        cmd = {"/home/georgi/go/bin/gopls", "server"},
+        cmd = {"/home/georgi/go/bin/gopls", "-remote=auto"},
         settings = {
             gopls = {
                 buildFlags = {"-tags=all,test_setup"},
