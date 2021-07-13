@@ -32,10 +32,7 @@ require('packer').startup({
 
         -- IDE-like features {{{
         use 'kyazdani42/nvim-tree.lua'
-        use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end}
-        use 'junegunn/fzf.vim'
         use 'voldikss/vim-floaterm'
-        use 'liuchengxu/vista.vim'
         use 'airblade/vim-gitgutter'
         use 'rhysd/git-messenger.vim'
         use 'tpope/vim-fugitive'
