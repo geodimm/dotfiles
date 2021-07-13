@@ -24,7 +24,7 @@ require('packer').startup({
         use 'hoob3rt/lualine.nvim'
         use 'gruvbox-community/gruvbox'
         use 'arcticicestudio/nord-vim'
-        use 'joshdick/onedark.vim'
+        use {'joshdick/onedark.vim', branch = "main"}
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
         use 'kyazdani42/nvim-web-devicons'
         use {'RRethy/vim-hexokinase', run = 'make hexokinase'}
