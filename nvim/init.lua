@@ -36,6 +36,7 @@ require('packer').startup({
         use 'voldikss/vim-floaterm'
         use 'liuchengxu/vista.vim'
         use 'pechorin/any-jump.vim'
+        use 'airblade/vim-gitgutter'
         use 'rhysd/git-messenger.vim'
         use 'tpope/vim-fugitive'
         use 'folke/which-key.nvim'
@@ -45,6 +46,10 @@ require('packer').startup({
         }
         use {
             'nvim-telescope/telescope-fzy-native.nvim',
+            requires = {'nvim-telescope/telescope.nvim'}
+        }
+        use {
+            'gbrlsnchs/telescope-lsp-handlers.nvim',
             requires = {'nvim-telescope/telescope.nvim'}
         }
         use 'kyazdani42/nvim-tree.lua'
@@ -64,11 +69,12 @@ require('packer').startup({
         -- }}}
 
         -- " Languages/LSP {{{
+        use {'neovim/nvim-lspconfig'}
+        use {'kabouzeid/nvim-lspinstall'}
+        use {'nvim-lua/completion-nvim'}
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
         use {'andrejlevkovitch/vim-lua-format', ft = {'lua'}}
         use 'hashivim/vim-terraform'
-        use {'neoclide/coc.nvim', branch = 'release'}
-        use {'antoinemadec/coc-fzf', branch = 'release'}
         use 'godlygeek/tabular' -- required to format Markdown tables
         use {
             'iamcco/markdown-preview.nvim',
@@ -89,6 +95,7 @@ require('custom/settings')
 require('custom/mappings')
 require('custom/theme')
 
+require('plugin/nvim-lspconfig')
 require('plugin/lualine')
 require('plugin/nvim-bufferline')
 require('plugin/nvim-treesitter')
