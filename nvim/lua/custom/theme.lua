@@ -16,7 +16,6 @@ augroup customise_highlight_groups
     autocmd ColorScheme * highlight link NvimTreeGitDirty GitGutterChange
 
     " Patch onedark
-    autocmd ColorScheme onedark call onedark#set_highlight("VertSplit", {"fg": onedark#GetColors().white})
 
     autocmd ColorScheme onedark call onedark#set_highlight("DiffAdd", {"fg": onedark#GetColors().green})
     autocmd ColorScheme onedark call onedark#set_highlight("DiffChange", {"fg": onedark#GetColors().yellow})
