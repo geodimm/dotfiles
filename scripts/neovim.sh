@@ -14,7 +14,7 @@ do_install() {
     fi
 
     info "[neovim] Install"
-    sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    sudo add-apt-repository ppa:neovim-ppa/stable -y
     sudo apt update
     sudo apt install -y neovim
 }
