@@ -74,7 +74,7 @@ require('packer').startup({
         -- " Languages/LSP {{{
         use {'neovim/nvim-lspconfig'}
         use {'kabouzeid/nvim-lspinstall'}
-        use {'nvim-lua/completion-nvim'}
+        use {'hrsh7th/nvim-compe'}
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
         use {'andrejlevkovitch/vim-lua-format', ft = {'lua'}}
         use 'hashivim/vim-terraform'
@@ -99,6 +99,7 @@ require('custom/mappings')
 require('custom/theme')
 
 require('plugin/nvim-lspconfig')
+require('plugin/nvim-compe')
 require('plugin/lualine')
 require('plugin/nvim-bufferline')
 require('plugin/nvim-treesitter')
