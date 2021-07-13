@@ -7,13 +7,7 @@ augroup customise_highlight_groups
     autocmd BufNewFile,BufReadPost * match trailingWhiteSpace /\s\+$/
 
     " Fix vim-floaterm border colours
-    autocmd ColorScheme * highlight FloatermBorder guifg=none ctermfg=none
-    " Override which-key background
-    autocmd ColorScheme * highlight WhichKeyFloat guibg=1
-
-    " Patch nvim-tree
-    autocmd ColorScheme * highlight NvimTreeNormal guibg=none
-    autocmd ColorScheme * highlight NvimTreeEndOfBuffer guibg=none
+    autocmd ColorScheme * highlight link FloatermBorder FloatBorder
 augroup end
 ]], false)
 
@@ -34,4 +28,6 @@ vim.g.gruvbox_italic = 1
 vim.g.gruvbox_sign_column = 'bg0'
 vim.g.disable_toggle_style = 1
 vim.g.onedark_style = 'dark'
-vim.cmd [[colorscheme onedark]]
+vim.g.tokyonight_dark_sidebar = false
+vim.g.tokyonight_dark_float = false
+vim.cmd [[colorscheme tokyonight]]

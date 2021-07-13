@@ -4,9 +4,11 @@ function Trunc10(s)
     return result
 end
 
+local diff_colours = require("tokyonight.colors").setup()
+
 require'lualine'.setup {
     options = {
-        theme = 'onedark',
+        theme = 'tokyonight',
         section_separators = {'', ''},
         component_separators = {'', ''},
         icons_enabled = true
@@ -17,9 +19,9 @@ require'lualine'.setup {
             {
                 'diff',
                 right_padding = 0,
-                color_added = require('onedark.colors').green,
-                color_modified = require('onedark.colors').yellow,
-                color_removed = require('onedark.colors').red
+                color_added = diff_colours.green,
+                color_modified = diff_colours.yellow,
+                color_removed = diff_colours.red
             }, {'branch', icon = '', format = Trunc10}
         },
         lualine_c = {
