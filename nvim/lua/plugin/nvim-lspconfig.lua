@@ -2,6 +2,13 @@
 local lspinstall = require 'lspinstall'
 local lspconfig = require 'lspconfig'
 
+vim.api.nvim_exec([[
+augroup lsp_formatting
+    autocmd!
+    autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+    augroup end
+]], false)
+
 local completion_item_kind = {
     Text = '',
     Method = '',
