@@ -19,7 +19,7 @@ require'lualine'.setup {
         },
         lualine_c = {
             {'filename', file_status = true},
-            {'diagnostics', sources = {'coc'}, padding = 0}
+            {'diagnostics', sources = {'nvim_lsp'}, padding = 0}
         },
         lualine_x = {'filetype'},
         lualine_y = {{'encoding', right_padding = 0}, 'fileformat'},
@@ -37,5 +37,5 @@ require'lualine'.setup {
             {'progress', right_padding = 0}, {'location', left_padding = 0}
         }
     },
-    extensions = {'fzf'}
+    extensions = {'fzf', 'nvim-tree'}
 }

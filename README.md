@@ -25,7 +25,6 @@ framework for managing your zsh configuration.
 * [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
 flexibility and out-of-the-box experience.
 * [fzf] A command-line fuzzy finder
-* [coc.nvim] Intellisense engine for Vim8 & Neovim, full language server
 protocol support as VSCode
 * [bat] A cat(1) clone with wings.
 * [colorls] A Ruby gem that beautifies the terminal's ls command,
@@ -71,43 +70,17 @@ The tmux status is centered and has colour coded indicators for:
 
 ![VIM Startify](screenshots/vim-startify.png)
 
-#### LSP diagnostics with [coc.nvim]
-
-![VIM LSP Diagnostics](screenshots/vim-cocnvim-diagnostics.png)
-
-#### Autocompletion with [coc.nvim]
-
-![VIM LSP Autocompletion](screenshots/vim-cocnvim-autocompletion-with-docs.png)
-
-#### Symbol Documentation with [coc.nvim]
-
-![VIM LSP Documentation](screenshots/vim-cocnvim-hover-doc.png)
-
 #### LSP symbols and tags with [fzf.vim] and [vista.vim]
 
 ![VIM Vista](screenshots/vim-vista.png)
-
-#### File explorer with [coc.nvim] and [coc-explorer]
-
-![VIM Coc Explorer](screenshots/vim-coc-explorer.png)
 
 #### Terminal with [vim-floaterm]
 
 ![VIM Floaterm](screenshots/vim-floaterm.png)
 
-#### Fuzzy file search with [fzf.vim]
-
-![VIM FZF Files](screenshots/vim-fzf-files.png)
-
-#### Fuzzy git grep with [fzf.vim]
-
-![VIM FZF Git Grep](screenshots/vim-fzf-git-grep.png)
-
 ### And much more
 
 [bat]: https://github.com/sharkdp/bat "Bat"
-[coc-explorer]: https://github.com/weirongxu/coc-explorer "Coc Explorer"
-[coc.nvim]: https://github.com/neoclide/coc.nvim "Conquer of Completion"
 [colorls]: https://github.com/athityakumar/colorls "Colorls"
 [fzf.vim]: https://github.com/junegunn/fzf.vim "FZF Vim"
 [fzf]: https://github.com/junegunn/fzf "FZF"
