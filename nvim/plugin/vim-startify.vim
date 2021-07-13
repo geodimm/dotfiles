@@ -19,3 +19,5 @@ let g:startify_bookmarks = [
     \ ]
 
 nnoremap <leader>p :Startify<CR>
+
+let g:startify_session_before_save = [ 'silent! NvimTreeClose' ]
