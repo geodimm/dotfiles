@@ -70,10 +70,6 @@ The tmux status is centered and has colour coded indicators for:
 
 ![VIM Startify](screenshots/vim-startify.png)
 
-#### LSP symbols and tags with [fzf.vim] and [vista.vim]
-
-![VIM Vista](screenshots/vim-vista.png)
-
 #### Terminal with [vim-floaterm]
 
 ![VIM Floaterm](screenshots/vim-floaterm.png)
@@ -89,4 +85,3 @@ The tmux status is centered and has colour coded indicators for:
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
 [vim-floaterm]: https://github.com/voldikss/vim-floaterm "VIM Floaterm"
 [vim-startify]: https://github.com/mhinz/vim-startify "VIM Startify"
-[vista.vim]: https://github.com/liuchengxu/vista.vim "Vista Vim"
