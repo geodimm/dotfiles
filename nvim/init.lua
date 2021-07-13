@@ -33,10 +33,11 @@ require('packer').startup({
         -- IDE-like features {{{
         use 'kyazdani42/nvim-tree.lua'
         use 'voldikss/vim-floaterm'
-        use 'airblade/vim-gitgutter'
         use 'rhysd/git-messenger.vim'
         use 'tpope/vim-fugitive'
         use 'folke/which-key.nvim'
+        use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+
         use {
             'windwp/nvim-spectre',
             requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
@@ -104,3 +105,4 @@ require('plugin/telescope')
 require('plugin/which-key')
 require('plugin/nvim-tree')
 require('plugin/nvim-spectre')
+require('plugin/gitsigns')
