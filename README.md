@@ -19,7 +19,6 @@ make
 
 ## Useful Links
 
-* [onedark] A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.
 * [ohmyzsh] Oh My Zsh is an open source, community-driven
 framework for managing your zsh configuration.
 * [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
@@ -79,7 +78,6 @@ The tmux status is centered and has colour coded indicators for:
 [colorls]: https://github.com/athityakumar/colorls "Colorls"
 [fzf.vim]: https://github.com/junegunn/fzf.vim "FZF Vim"
 [fzf]: https://github.com/junegunn/fzf "FZF"
-[onedark]: https://github.com/navarasu/onedark.nvim "OneDark"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
 [vim-floaterm]: https://github.com/voldikss/vim-floaterm "VIM Floaterm"
