@@ -90,7 +90,7 @@ omap ac <Plug>(coc-classobj-a)
 
 " coc-explorer {{{
 
-noremap <silent> <leader>fe :<C-u>CocCommand explorer --toggle<CR>
+" noremap <silent> <leader>fe :<C-u>CocCommand explorer --toggle<CR>
 
 " }}}
 " coc-actions {{{
