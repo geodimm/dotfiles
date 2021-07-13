@@ -93,18 +93,6 @@ require('packer').startup({
     }
 })
 
-require('custom/settings')
-require('custom/mappings')
-require('custom/theme')
-
-require('plugin/nvim-lspconfig')
-require('plugin/nvim-compe')
-require('plugin/lualine')
-require('plugin/nvim-bufferline')
-require('plugin/nvim-treesitter')
-require('plugin/telescope')
-require('plugin/which-key')
-require('plugin/nvim-tree')
-require('plugin/nvim-spectre')
-require('plugin/gitsigns')
-require('plugin/nvim-lightbulb')
+require('config/settings')
+require('config/mappings')
+require('config/theme')
