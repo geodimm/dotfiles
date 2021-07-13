@@ -1,4 +1,7 @@
 -- LspInstall go lua bash json yaml dockerfile html terraform python java
+local lspinstall = require 'lspinstall'
+local lspconfig = require 'lspconfig'
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -65,7 +68,7 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
                    opts)
-    buf_set_keymap('x', '<leader>ca',
+    buf_set_keymap('v', '<leader>ca',
                    '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
                    opts)
@@ -180,19 +183,18 @@ end
 
 -- Configure lsp-install and lspconfig
 local function setup_servers()
-    require'lspinstall'.setup()
-
-    local servers = require'lspinstall'.installed_servers()
+    lspinstall.setup()
+    local servers = lspinstall.installed_servers()
     for _, server in pairs(servers) do
         local config = create_config(server)
-        require'lspconfig'[server].setup(config)
+        lspconfig[server].setup(config)
     end
 end
 
 setup_servers()
 
 -- automatically setup servers again after `:LspInstall <server>`
-require'lspinstall'.post_install_hook = function()
+lspinstall.post_install_hook = function()
     setup_servers() -- makes sure the new server is setup in lspconfig
     vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
