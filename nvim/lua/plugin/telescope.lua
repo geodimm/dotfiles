@@ -49,7 +49,7 @@ vim.api.nvim_set_keymap('n', '<leader>fb',
                         '<cmd>lua require("telescope.builtin").buffers({show_all_buffers = true, sort_lastused = true})<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fa',
-                        '<cmd>lua require("telescope.builtin").grep_string({word_match = "--word-regexp", only_sort_text = true, search = ""})<CR>',
+                        '<cmd>lua require("telescope.builtin").live_grep()<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fm',
                         '<cmd>lua require("telescope.builtin").keymaps()<CR>',
