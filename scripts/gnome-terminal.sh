@@ -20,6 +20,9 @@ do_configure() {
 
     info "[gnome-terminal][configure] Gruvbox Dark"
     "$install_dir/themes/gruvbox-dark.sh"
+
+    info "[gnome-terminal][configure] Tokyo Night Storm"
+    "$install_dir/themes/tokyo-night-storm.sh"
 }
 
 main() {
