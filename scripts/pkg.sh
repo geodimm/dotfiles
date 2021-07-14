@@ -2,50 +2,51 @@
 
 set -e
 
+# shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-DEBIAN_FRONTEND=noninteractive
-
 do_install() {
-    local packages=(
-        build-essential
-        cmake
-        curl
-        dconf-cli
-        htop
-        httpie
-        jq
-        libreadline-dev
-        moreutils
-        ncurses-term
-        python3-dev
-        python3-pip
-        tree
-        units
-        universal-ctags
-        unrar
-        unzip
-        uuid-runtime
-        wget
-        xclip
-    )
+	local packages=(
+		build-essential
+		cmake
+		curl
+		dconf-cli
+		htop
+		httpie
+		jq
+		libreadline-dev
+		moreutils
+		ncurses-term
+		python3-dev
+		python3-pip
+		shellcheck
+		tree
+		units
+		universal-ctags
+		unrar
+		unzip
+		uuid-runtime
+		wget
+		xclip
+	)
 
-    info "[pkg] Install"
-    sudo apt update
-    sudo apt install -y "${packages[@]}"
+	info "[pkg] Install"
+	export DEBIAN_FRONTEND=noninteractive
+	sudo apt update
+	sudo apt install -y "${packages[@]}"
 }
 
 main() {
-    command=$1
-    case $command in
-        "install")
-            shift
-            do_install "$@"
-            ;;
-        *)
-            error "$(basename "$0"): '$command' is not a valid command"
-            ;;
-    esac
+	command=$1
+	case $command in
+	"install")
+		shift
+		do_install "$@"
+		;;
+	*)
+		error "$(basename "$0"): '$command' is not a valid command"
+		;;
+	esac
 }
 
 main "$@"

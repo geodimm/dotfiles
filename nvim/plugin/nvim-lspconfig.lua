@@ -4,7 +4,7 @@ local lspconfig = require 'lspconfig'
 vim.api.nvim_exec([[
 augroup lsp_formatting
     autocmd!
-    autocmd BufWritePre *.go lua vim.lsp.buf.formatting()
+    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash lua vim.lsp.buf.formatting_seq_sync()
     augroup end
 ]], false)
 
@@ -175,6 +175,71 @@ local lsp_config = {
             JDTLS_CONFIG = vim.fn.expand(
                 "$HOME/.local/share/nvim/lspinstall/java/config_linux")
         }
+    },
+    diagnosticls = {
+        init_options = {
+            linters = {
+                ["golangci-lint"] = {
+                    command = "golangci-lint",
+                    args = {"run", "--out-format", "json"},
+                    rootPatterns = {".git", "go.mod"},
+                    sourceName = "golangci-lint",
+                    debounce = 100,
+                    parseJson = {
+                        sourceName = "Pos.Filename",
+                        sourceNameFilter = true,
+                        errorsRoot = "Issues",
+                        line = "Pos.Line",
+                        column = "Pos.Column",
+                        message = "${Text} [${FromLinter}]"
+                    }
+                },
+                shellcheck = {
+                    command = "shellcheck",
+                    args = {"-x", "--format", "json", "-"},
+                    sourceName = "shellcheck",
+                    debounce = 100,
+                    parseJson = {
+                        line = "line",
+                        column = "column",
+                        endLine = "endLine",
+                        endColumn = "endColumn",
+                        message = "${message} [${code}]",
+                        security = "level"
+                    }
+                },
+                markdownlint = {
+                    command = "markdownlint",
+                    args = {"--stdin"},
+                    sourceName = "markdownlint",
+                    isStderr = true,
+                    debounce = 100,
+                    offsetLine = 0,
+                    offsetColumn = 0,
+                    formatLines = 1,
+                    formatPattern = {
+                        "^.*?:\\s?(\\d+)(:(\\d+)?)?\\s(MD\\d{3}\\/[A-Za-z0-9-/]+)\\s(.*)$",
+                        {line = 1, column = 3, message = {4}}
+                    }
+                }
+            },
+            filetypes = {
+                go = {"golangci-lint"},
+                sh = {"shellcheck"},
+                markdown = {"markdownlint"}
+            },
+            formatters = {
+                ["lua-format"] = {command = "lua-format", args = {"-i"}},
+                terraform = {command = "terraform", args = {"fmt", "-"}},
+                shfmt = {command = "shfmt", args = {"-"}}
+            },
+            formatFiletypes = {
+                lua = {"lua-format"},
+                terraform = {"terraform"},
+                sh = {"shfmt"}
+            }
+        },
+        filetypes = {"go", "lua", "sh", "markdown", "terraform"}
     }
 }
 
