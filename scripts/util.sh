@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-export XDG_CONFIG_HOME="${HOME}/.config"
+# shellcheck disable=2034
+XDG_CONFIG_HOME="${HOME}/.config"
 
 info() {
 	printf "\033[36m%s\033[0m\n" "$*" >&2
