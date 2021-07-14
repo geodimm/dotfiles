@@ -76,7 +76,6 @@ require('packer').startup({
         use {'kabouzeid/nvim-lspinstall'}
         use {'hrsh7th/nvim-compe'}
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
-        use {'andrejlevkovitch/vim-lua-format', ft = {'lua'}}
         use 'hashivim/vim-terraform'
         use 'godlygeek/tabular' -- required to format Markdown tables
         use {
