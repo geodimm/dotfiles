@@ -143,12 +143,8 @@ go: go-install ## go-install
 lua-install: ## Install luarocks
 	@./scripts/lua.sh install
 
-.PHONY: lua-configure
-lua-configure: ## Configure lua
-	@./scripts/lua.sh configure
-
 .PHONY: lua
-lua: lua-install lua-configure ## lua-install lua-configure
+lua: lua-install ## lua-install
 
 .PHONY: neovim-install
 neovim-install: ## Install neovim
