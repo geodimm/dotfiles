@@ -53,9 +53,9 @@ do_configure() {
 	info "[neovim][configure][deps] luaformatter"
 	sudo luarocks install --server=https://luarocks.org/dev luaformatter
 	info "[neovim][configure][deps] shfmt"
-	go install mvdan.cc/sh/v3/cmd/shfmt@latest
+	/usr/local/go/bin/go install mvdan.cc/sh/v3/cmd/shfmt@latest
 	info "[neovim][configure][deps] golangci-lint"
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	/usr/local/go/bin/go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 }
 
 main() {
