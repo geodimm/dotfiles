@@ -1,4 +1,3 @@
--- LspInstall go lua bash json yaml dockerfile html terraform python java
 local lspinstall = require 'lspinstall'
 local lspconfig = require 'lspconfig'
 
@@ -203,8 +202,20 @@ end
 -- Configure lsp-install and lspconfig
 local function setup_servers()
     lspinstall.setup()
-    local servers = lspinstall.installed_servers()
-    for _, server in pairs(servers) do
+
+    local required_servers = {
+        "go", "lua", "bash", "json", "yaml", "dockerfile", "html", "terraform",
+        "python", "java"
+    }
+    local installed_servers = require'lspinstall'.installed_servers()
+    for _, server in pairs(required_servers) do
+        if not vim.tbl_contains(installed_servers, server) then
+            lspinstall.install_server(server)
+        end
+    end
+
+    installed_servers = require'lspinstall'.installed_servers()
+    for _, server in pairs(installed_servers) do
         local config = create_config(server)
         lspconfig[server].setup(config)
     end
