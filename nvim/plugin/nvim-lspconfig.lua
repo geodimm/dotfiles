@@ -70,8 +70,12 @@ local on_attach = function(client, bufnr)
                    opts)
     buf_set_keymap('n', '<leader>gt',
                    '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<leader>gi',
+    buf_set_keymap('n', '<leader>gI',
                    '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<leader>gi',
+                   '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
+    buf_set_keymap('n', '<leader>go',
+                   '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
     buf_set_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>',
                    opts)
     buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -86,7 +90,7 @@ local on_attach = function(client, bufnr)
                    opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
                    opts)
-    buf_set_keymap('n', '<leader>ll',
+    buf_set_keymap('n', '<leader>cl',
                    '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
     -- Set some keybinds conditional on server capabilities
@@ -97,6 +101,31 @@ local on_attach = function(client, bufnr)
         buf_set_keymap("n", "<leader>cf",
                        "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
+
+    local wk = require("which-key")
+    wk.register({
+        K = "Documentation",
+        ["<leader>g"] = {
+            D = "Declaration",
+            I = "Implementation",
+            d = "Definition",
+            i = "Incoming calls",
+            o = "Outgoing calls",
+            r = "References",
+            t = "Type definition"
+        },
+        ["<leader>c"] = {
+            a = "Code actions",
+            f = "Format",
+            l = "Populate location list",
+            r = "Rename"
+        },
+        ["<leader>k"] = "Signature help",
+        ["]d"] = {"Next diagnostic"},
+        ["[d"] = {"Previous diagnostic"}
+    }, {buffer = bufnr})
+    wk.register({["<leader>c"] = {a = "Code actions"}},
+                {mode = "v", buffer = bufnr})
 
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then

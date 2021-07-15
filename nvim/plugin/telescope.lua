@@ -80,3 +80,24 @@ vim.api.nvim_set_keymap('n', '<leader>fgh',
 vim.api.nvim_set_keymap('n', '<leader>fgc',
                         '<cmd>lua require("telescope.builtin").git_commits()<CR>',
                         {noremap = true})
+
+require("which-key").register({
+    ["<leader>f"] = {
+        ['*'] = "Word under cursor",
+        ['/'] = "Current file",
+        a = "Fuzzy search",
+        b = "Buffers",
+        f = "Files",
+        m = "Keymaps",
+        t = "Open Telescope"
+
+    },
+    ["<leader>fg"] = {
+        name = "+git",
+        b = "Branches",
+        c = "Commits",
+        f = "Files",
+        h = "Buffer commits",
+        s = "Status"
+    }
+})

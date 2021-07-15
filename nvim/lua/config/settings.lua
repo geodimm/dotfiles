@@ -54,6 +54,7 @@ vim.opt.colorcolumn = "80" -- Set the colored vertical column
 vim.opt.cmdheight = 2 -- Set the command-line height to 2
 vim.opt.showbreak = "↪ " -- Show a symbol at the start of wrapped lines
 vim.opt.completeopt = {"menuone", "noinsert", "noselect"}
+vim.opt.showmode = false
 
 -- List chars {{{1
 vim.opt.list = true -- Show special characters

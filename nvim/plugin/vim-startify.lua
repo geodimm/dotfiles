@@ -18,6 +18,8 @@ vim.g.startify_bookmarks = {
     {ez = '~/dotfiles/zsh/zshrc'}, {ep = '~/dotfiles/zsh/p10k.zsh'}
 }
 
+vim.g.startify_session_before_save = {'silent! NvimTreeClose'}
+
 vim.api.nvim_set_keymap('n', '<leader>p', ':Startify<CR>', {noremap = true})
 
-vim.g.startify_session_before_save = {'silent! NvimTreeClose'}
+require("which-key").register({["<leader>p"] = "Open Startify"})

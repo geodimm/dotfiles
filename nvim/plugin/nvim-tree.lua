@@ -19,5 +19,10 @@ vim.g.nvim_tree_bindings = {
 
 vim.api.nvim_set_keymap('n', '<leader>fe', ':NvimTreeToggle<CR>',
                         {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>fs', ':NvimTreeFindFile<CR>',
+vim.api.nvim_set_keymap('n', '<leader>fl', ':NvimTreeFindFile<CR>',
                         {noremap = true})
+
+require("which-key").register({
+    ["<leader>fl"] = {"Locate file in explorer"},
+    ["<leader>fe"] = {"Open file explorer"}
+})
