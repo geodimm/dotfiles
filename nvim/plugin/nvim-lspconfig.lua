@@ -106,6 +106,7 @@ local on_attach = function(client, bufnr)
     wk.register({
         K = "Documentation",
         ["<leader>g"] = {
+            name = "+goto",
             D = "Declaration",
             I = "Implementation",
             d = "Definition",
@@ -115,6 +116,7 @@ local on_attach = function(client, bufnr)
             t = "Type definition"
         },
         ["<leader>c"] = {
+            name = "+lsp",
             a = "Code actions",
             f = "Format",
             l = "Populate location list",
