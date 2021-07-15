@@ -5,9 +5,6 @@ augroup customise_highlight_groups
     " Highlight trailing whitespaces
     autocmd ColorScheme * highlight link trailingWhiteSpace SpecialChar
     autocmd BufNewFile,BufReadPost * match trailingWhiteSpace /\s\+$/
-
-    " Fix vim-floaterm border colours
-    autocmd ColorScheme * highlight link FloatermBorder FloatBorder
 augroup end
 ]], false)
 
