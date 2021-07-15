@@ -32,7 +32,7 @@ require('packer').startup({
 
         -- IDE-like features {{{1
         use 'kyazdani42/nvim-tree.lua'
-        use 'voldikss/vim-floaterm'
+        use {"akinsho/nvim-toggleterm.lua"}
         use 'rhysd/git-messenger.vim'
         use 'tpope/vim-fugitive'
         use 'folke/which-key.nvim'
