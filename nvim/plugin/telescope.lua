@@ -46,6 +46,7 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('lsp_handlers')
 
+vim.api.nvim_set_keymap('n', '<leader>ft', ':Telescope<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>ff',
                         '<cmd>lua require("telescope.builtin").find_files()<CR>',
                         {noremap = true})
