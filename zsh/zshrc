@@ -1,3 +1,5 @@
+# vim: foldmethod=marker
+# Oh-My-Zsh {{{1
 export ZSH="/home/$USER/.oh-my-zsh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -37,6 +39,7 @@ source ~/dotfiles/zsh/zshopt
 # Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
+# ZSH {{{1
 # Bind C+Space to accept the current suggestion
 bindkey '^ ' autosuggest-accept
 
@@ -46,6 +49,18 @@ export KEYTIMEOUT=1
 # Set the default umask
 umask 022
 
+# OSTYPE specific settings
+case "${OSTYPE}" in
+    linux*)
+        if (( $+commands[setxkbmap] )); then
+            setxkbmap -option caps:escape_shifted_capslock
+            setxkbmap -option altwin:swap_lalt_lwin
+        fi
+        ;;
+    *) ;;
+esac
+
+# Environment variables {{{2
 # Add more dirs to PATH
 if [[ ! "$PATH" == *:.* ]]; then
     export PATH="${PATH}:${HOME}/.bin:."
@@ -60,37 +75,28 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # Set the GPG_TTY to the current TTY
 export GPG_TTY=$TTY
 
-# OSTYPE specific settings
-case "${OSTYPE}" in
-    linux*)
-        if (( $+commands[setxkbmap] )); then
-            setxkbmap -option caps:escape_shifted_capslock
-            setxkbmap -option altwin:swap_lalt_lwin
-        fi
-        ;;
-    *) ;;
-esac
-
 # Golang
 export GOPATH="${HOME}/go"
 if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
     export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
 fi
 
-# Node Version Manager
+# Node Version Manager {{{2
 export NVM_DIR="${HOME}/.nvm"
 test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh";
 
-# Ruby Version Manager
+# Ruby Version Manager {{{2
 export RVM_DIR="${HOME}/.rvm"
 test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm"
 
+# Source files {{{2
 # Load aliases
 source ~/dotfiles/zsh/aliases.zsh
 
 # Load any extra settings
 test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
 
+# Completion {{{2
 # Only display targets tag for make command completion
 zstyle ':completion:*:*:make::' tag-order 'targets variables'
 
@@ -102,7 +108,7 @@ if [ $commands[skaffold] ]; then
     source <(skaffold completion zsh)
 fi
 
-# Configure FZF
+# FZF {{{1
 export FZF_DEFAULT_COMMAND='find -L'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,?:toggle-preview,alt-a:select-all,alt-d:deselect-all' --tiebreak=index --cycle --preview-window right:50%:border:wrap"
 export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=dark,fg:7,bg:-1,hl:5,fg+:15,bg+:8,hl+:13,info:2,prompt:4,pointer:1,marker:3,spinner:4,header:4"
@@ -126,3 +132,5 @@ zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --color=always
 zstyle ':fzf-tab:*' insert-space false
 
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
+
+# }}}

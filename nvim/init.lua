@@ -17,7 +17,7 @@ augroup end
 local use = require('packer').use
 require('packer').startup({
     function()
-        -- Vanity {{{
+        -- Vanity {{{1
         use 'wbthomason/packer.nvim'
         use 'mhinz/vim-startify'
         use 'akinsho/nvim-bufferline.lua'
@@ -29,9 +29,8 @@ require('packer').startup({
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
         use 'kyazdani42/nvim-web-devicons'
         use {'RRethy/vim-hexokinase', run = 'make hexokinase'}
-        -- }}}
 
-        -- IDE-like features {{{
+        -- IDE-like features {{{1
         use 'kyazdani42/nvim-tree.lua'
         use 'voldikss/vim-floaterm'
         use 'rhysd/git-messenger.vim'
@@ -56,22 +55,19 @@ require('packer').startup({
             requires = {'nvim-telescope/telescope.nvim'}
         }
         use 'kosayoda/nvim-lightbulb'
-        -- }}}
 
-        -- Tmux integration {{{
+        -- Tmux integration {{{1
         use 'tmux-plugins/vim-tmux'
         use 'urbainvaes/vim-tmux-pilot'
-        -- }}}
 
-        -- Text editing features {{{
+        -- Text editing features {{{1
         use 'mbbill/undotree'
         use 'wellle/targets.vim'
         use 'tpope/vim-surround'
         use 'tpope/vim-commentary'
         use 'tpope/vim-repeat'
-        -- }}}
 
-        -- " Languages/LSP {{{
+        -- " Languages/LSP {{{1
         use {'neovim/nvim-lspconfig'}
         use {'kabouzeid/nvim-lspinstall'}
         use {'hrsh7th/nvim-compe'}
