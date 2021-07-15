@@ -37,9 +37,6 @@ vim.api.nvim_set_keymap('n', 'gf', '^f/gf', {noremap = true})
 vim.api.nvim_set_keymap('v', '<A-j>', ":m '>+1<CR>gv=gv", {noremap = true})
 vim.api.nvim_set_keymap('v', '<A-k>', ":m '<-2<CR>gv=gv", {noremap = true})
 
--- Use double spacebar tab to select the current line
-vim.api.nvim_set_keymap('', '<leader><leader>', 'V', {noremap = true})
-
 -- Quickly edit dotfiles
 vim.api.nvim_set_keymap('n', '<leader>ev', ':vsplit $MYVIMRC<CR>',
                         {noremap = true, silent = true})
@@ -47,8 +44,6 @@ vim.api.nvim_set_keymap('n', '<leader>et',
                         ':vsplit ~/dotfiles/tmux/tmux.conf<CR>',
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ez', ':vsplit ~/dotfiles/zsh/zshrc<CR>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>r', ':luafile $MYVIMRC<CR>',
                         {noremap = true, silent = true})
 
 -- Exit insert mode with jj
@@ -77,12 +72,6 @@ vim.api.nvim_set_keymap('n', '<M-h>', ':vertical resize -10<CR>',
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<M-l>', ':vertical resize +10<CR>',
                         {noremap = true, silent = true})
-
--- Useful mappings for managing tabs
-vim.api.nvim_set_keymap('n', '<leader>tn', ':tabnew<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>to', ':tabonly<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>tc', ':tabclose<cr>', {noremap = true})
-vim.api.nvim_set_keymap('n', '<leader>tm', ':tabmove', {noremap = true})
 
 -- Remap 0 to go to first non-blank character of the line
 vim.api.nvim_set_keymap('', '0', '^', {noremap = true})
