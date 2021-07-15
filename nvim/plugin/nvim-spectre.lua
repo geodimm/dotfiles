@@ -20,3 +20,15 @@ require('spectre').setup({
         }
     }
 })
+
+local wk = require("which-key")
+wk.register({
+    ["<leader>s"] = {
+        name = "+spectre",
+        f = "Search in current file",
+        r = "Search and replace",
+        w = "Search for word under cursor"
+    }
+})
+wk.register({["<leader>s"] = {name = "+spectre", w = "Search for selection"}},
+            {mode = "v"})

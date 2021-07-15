@@ -7,6 +7,7 @@ require("toggleterm").setup {
         end
     end,
     open_mapping = [[<leader>tt]],
+    insert_mappings = false,
     shade_terminals = false,
     persist_size = false,
     direction = 'float',
@@ -21,3 +22,11 @@ local lazygit = Terminal:new({cmd = "lazygit", hidden = true})
 function TT_lazygit_toggle() lazygit:toggle() end
 vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua TT_lazygit_toggle()<CR>",
                         {noremap = true, silent = true})
+
+require("which-key").register({
+    ["<leader>t"] = {
+        name = "+toggeterm",
+        t = "Open terminal",
+        l = "Open lazygit"
+    }
+})
