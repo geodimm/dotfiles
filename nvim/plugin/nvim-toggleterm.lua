@@ -9,7 +9,7 @@ require("toggleterm").setup {
     open_mapping = [[<leader>tt]],
     shade_terminals = false,
     persist_size = false,
-    direction = 'horizontal',
+    direction = 'float',
     close_on_exit = true,
     shell = vim.o.shell,
     float_opts = {border = 'single', winblend = 10}
