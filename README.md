@@ -68,9 +68,9 @@ The tmux status is centered and has colour coded indicators for:
 
 ![VIM Startify](screenshots/vim-startify.png)
 
-#### Terminal with [vim-floaterm]
+#### Terminal with [nvim-toggleterm.lua]
 
-![VIM Floaterm](screenshots/vim-floaterm.png)
+![NVIM Toggleterm](screenshots/vim-floaterm.png)
 
 ### And much more
 
@@ -80,5 +80,5 @@ The tmux status is centered and has colour coded indicators for:
 [fzf]: https://github.com/junegunn/fzf "FZF"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
-[vim-floaterm]: https://github.com/voldikss/vim-floaterm "VIM Floaterm"
+[nvim-toggleterm.lua]: https://github.com/akinsho/nvim-toggleterm.lua "NVIM Toggleterm"
 [vim-startify]: https://github.com/mhinz/vim-startify "VIM Startify"
