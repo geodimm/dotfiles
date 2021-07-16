@@ -36,6 +36,13 @@ local completion_item_kind = {
     TypeParameter = ''
 }
 
+local lsp_icons = {
+    Hint = "",
+    Information = "",
+    Warning = "",
+    Error = ""
+}
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -51,11 +58,6 @@ local on_attach = function(client, bufnr)
     for i, kind in ipairs(kinds) do
         kinds[i] = completion_item_kind[kind] or kind
     end
-
-    vim.lsp.handlers["textDocument/hover"] =
-        vim.lsp.with(vim.lsp.handlers.hover, {border = 'single'})
-    vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'single'})
 
     -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -133,9 +135,9 @@ local on_attach = function(client, bufnr)
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
         augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            autocmd! * <buffer>
+            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
             ]], false)
     end
@@ -222,7 +224,7 @@ local lsp_config = {
                         errorsRoot = "Issues",
                         line = "Pos.Line",
                         column = "Pos.Column",
-                        message = "${Text} [${FromLinter}]"
+                        message = "${FromLinter}: ${Text}"
                     }
                 },
                 shellcheck = {
@@ -317,7 +319,52 @@ local function setup_servers()
     end
 end
 
+local function customise_ui()
+    -- Update the sign icons
+    for type, icon in pairs(lsp_icons) do
+        local hl = "LspDiagnosticsSign" .. type
+        vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = ""})
+    end
+
+    -- Set borders to floating windows
+    vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(vim.lsp.handlers.hover, {border = 'single'})
+    vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'single'})
+
+    -- Show diagnostics source
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        function(_, _, params, client_id, _)
+            local config = {
+                underline = true,
+                virtual_text = {prefix = "■ ", spacing = 4},
+                signs = true,
+                update_in_insert = false
+            }
+            local uri = params.uri
+            local bufnr = vim.uri_to_bufnr(uri)
+            if not bufnr then return end
+
+            local diagnostics = params.diagnostics
+            for i, v in ipairs(diagnostics) do
+                if v.source and string.find(v.source, "/") then
+                    diagnostics[i].message = v.message
+                else
+                    diagnostics[i].message =
+                        string.format("%s: %s", v.source:gsub('%.', ''),
+                                      v.message)
+                end
+            end
+
+            vim.lsp.diagnostic.save(diagnostics, bufnr, client_id)
+            if not vim.api.nvim_buf_is_loaded(bufnr) then return end
+
+            vim.lsp.diagnostic.display(diagnostics, bufnr, client_id, config)
+        end
+end
+
 setup_servers()
+customise_ui()
 
 -- automatically setup servers again after `:LspInstall <server>`
 lspinstall.post_install_hook = function()
