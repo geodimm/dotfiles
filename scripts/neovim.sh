@@ -56,6 +56,7 @@ do_configure() {
 	/usr/local/go/bin/go install mvdan.cc/sh/v3/cmd/shfmt@latest
 	info "[neovim][configure][deps] golangci-lint"
 	/usr/local/go/bin/go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+	ln -fs "$(pwd)/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
 }
 
 main() {
