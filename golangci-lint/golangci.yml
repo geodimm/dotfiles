@@ -1,0 +1,26 @@
+linters:
+  disable-all: true
+  enable:
+    # default
+    - deadcode
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - varcheck
+    # non-default
+    - asciicheck
+    - bodyclose
+    - depguard
+    - dogsled
+    - exhaustive
+    - exportloopref
+    - goconst
+    - godot
+    - nestif
+    - nolintlint
+    - prealloc
