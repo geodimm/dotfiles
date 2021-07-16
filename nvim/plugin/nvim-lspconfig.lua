@@ -286,7 +286,15 @@ local function create_config(server)
         -- enable snippet support
         capabilities = capabilities,
         -- map buffer local keybindings when the language server attaches
-        on_attach = on_attach
+        on_attach = on_attach,
+        -- modify virtual text
+        handlers = {
+            ["textDocument/publishDiagnostics"] = vim.lsp.with(
+                vim.lsp.diagnostic.on_publish_diagnostics, {
+                    -- Disable virtual_text
+                    virtual_text = {prefix = " ", spacing = 4}
+                })
+        }
     }
 
     local language_config = lsp_config[server]
