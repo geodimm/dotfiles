@@ -263,16 +263,11 @@ local lsp_config = {
             },
             formatters = {
                 ["lua-format"] = {command = "lua-format", args = {"-i"}},
-                terraform = {command = "terraform", args = {"fmt", "-"}},
                 shfmt = {command = "shfmt", args = {"-"}}
             },
-            formatFiletypes = {
-                lua = {"lua-format"},
-                terraform = {"terraform"},
-                sh = {"shfmt"}
-            }
+            formatFiletypes = {lua = {"lua-format"}, sh = {"shfmt"}}
         },
-        filetypes = {"go", "lua", "sh", "markdown", "terraform"}
+        filetypes = {"go", "lua", "sh", "markdown"}
     }
 }
 
