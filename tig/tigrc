@@ -1,5 +1,8 @@
 # vim: foldmethod=marker
 
+# Colour settings {{{1
+color cursor black white
+
 # View settings {{{1
 set main-view = line-number:no,interval=5 id:yes date:relative author:full commit-title:yes,graph,refs,overflow=50
 
