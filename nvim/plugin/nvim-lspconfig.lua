@@ -4,7 +4,7 @@ local lspconfig = require 'lspconfig'
 vim.api.nvim_exec([[
 augroup lsp_formatting
     autocmd!
-    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash lua vim.lsp.buf.formatting_seq_sync()
+    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash,*.yaml,*.yml lua vim.lsp.buf.formatting_seq_sync()
     augroup end
 ]], false)
 
@@ -207,6 +207,30 @@ local lsp_config = {
                 "$HOME/.local/share/nvim/lspinstall/java/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.300.v20210617-0451.jar"),
             JDTLS_CONFIG = vim.fn.expand(
                 "$HOME/.local/share/nvim/lspinstall/java/config_linux")
+        }
+    },
+    yaml = {
+        settings = {
+            yaml = {
+                hover = true,
+                completion = true,
+                format = {enable = true},
+                validate = true,
+                schemas = {
+                    ["https://json.schemastore.org/golangci-lint.json"] = "*golangci.y*ml",
+                    ["https://json.schemastore.org/kustomization.json"] = "/*kustomization.y*ml",
+                    ["https://json.schemastore.org/swagger-2.0.json"] = "/*swagger.y*ml",
+                    ["https://json.schemastore.org/travis.json"] = "/*travis.y*ml",
+                    ["https://json.schemastore.org/yamllint.json"] = "/*yamllint.y*ml",
+                    -- ["https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/master/syntaxes/helm.tmLanguage.json"] = "templates/**/*.y*ml",
+                    ["https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta12.json"] = "/*skaffold.y*ml",
+                    kubernetes = "kubernetes/**/*.y*ml"
+                },
+                schemaStore = {
+                    url = "https://www.schemastore.org/json",
+                    enable = true
+                }
+            }
         }
     },
     diagnosticls = {
