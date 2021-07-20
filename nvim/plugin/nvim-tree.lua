@@ -3,7 +3,7 @@ local lib = require "nvim-tree.lib"
 
 function NvimTreeCloseParent() lib.parent_node(lib.get_node_at_cursor(), true) end
 
-vim.g.nvim_tree_auto_close = 1
+vim.g.nvim_tree_auto_close = 0
 vim.g.nvim_tree_disable_netrw = 0
 vim.g.nvim_tree_hijack_netrw = 0
 vim.g.nvim_tree_update_cwd = 0
