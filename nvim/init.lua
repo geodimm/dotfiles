@@ -73,6 +73,7 @@ require('packer').startup({
         use {'hrsh7th/nvim-compe'}
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
         use 'hashivim/vim-terraform'
+        use 'towolf/vim-helm'
         use 'godlygeek/tabular' -- required to format Markdown tables
         use {
             'iamcco/markdown-preview.nvim',
