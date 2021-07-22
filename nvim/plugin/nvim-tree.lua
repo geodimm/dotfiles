@@ -7,6 +7,7 @@ vim.g.nvim_tree_auto_ignore_ft = {'startify'}
 vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_lsp_diagnostics = 1
+vim.g.nvim_tree_special_files = {}
 vim.g.nvim_tree_bindings = {
     {
         key = {"<CR>", "l", "o", "<2-LeftMouse>"},
