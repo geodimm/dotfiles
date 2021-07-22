@@ -17,6 +17,30 @@ vim.g.nvim_tree_bindings = {
         cb = ":lua lib = require('nvim-tree.lib');lib.parent_node(lib.get_node_at_cursor(), true)<CR>"
     }
 }
+vim.g.nvim_tree_icons = {
+    default = '',
+    symlink = '',
+    git = {
+        unstaged = "✗",
+        staged = "✓",
+        unmerged = "",
+        renamed = "➜",
+        untracked = "★",
+        deleted = ""
+    },
+    folder = {
+        arrow_open = "",
+        arrow_closed = "",
+        default = "",
+        open = "",
+        empty = "",
+        empty_open = "",
+        symlink = "",
+        symlink_open = ""
+    },
+    lsp = require('config.icons').lsp
+}
+
 vim.api.nvim_set_keymap('n', '<leader>fe', ':NvimTreeToggle<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fl', ':NvimTreeFindFile<CR>',
