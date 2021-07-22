@@ -1,4 +1,8 @@
-require('telescope').setup {
+local telescope = require('telescope')
+local sorters = require('telescope.sorters')
+local previewers = require('telescope.previewers')
+local themes = require('telescope.themes')
+telescope.setup({
     defaults = {
         vimgrep_arguments = {
             'rg', '--color=never', '--no-heading', '--with-filename',
@@ -15,36 +19,34 @@ require('telescope').setup {
             horizontal = {mirror = false, preview_width = 0.4},
             vertical = {mirror = true, preview_height = 0.4}
         },
-        file_sorter = require'telescope.sorters'.get_fuzzy_file,
+        file_sorter = sorters.get_fuzzy_file,
         file_ignore_patterns = {},
-        generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
+        generic_sorter = sorters.get_generic_fuzzy_sorter,
         winblend = 0,
         border = {},
         borderchars = {'─', '│', '─', '│', '┌', '┐', '┘', '└'},
         color_devicons = true,
         use_less = true,
         set_env = {['COLORTERM'] = 'truecolor'}, -- default = nil,
-        file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-        grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-        qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+        file_previewer = previewers.vim_buffer_cat.new,
+        grep_previewer = previewers.vim_buffer_vimgrep.new,
+        qflist_previewer = previewers.vim_buffer_qflist.new,
 
         -- Developer configurations: Not meant for general override
-        buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+        buffer_previewer_maker = previewers.buffer_previewer_maker
     },
     extensions = {
         lsp_handlers = {
             location = {telescope = {path_display = {"shorten"}}},
             symbol = {telescope = {path_display = {"shorten"}}},
             call_hierarchy = {telescope = {path_display = {"shorten"}}},
-            code_action = {
-                telescope = require('telescope.themes').get_dropdown({})
-            }
+            code_action = {telescope = themes.get_dropdown({})}
         }
     }
-}
+})
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('lsp_handlers')
+telescope.load_extension('fzy_native')
+telescope.load_extension('lsp_handlers')
 
 vim.api.nvim_set_keymap('n', '<leader>ft', ':Telescope<CR>', {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>ff',
@@ -81,7 +83,7 @@ vim.api.nvim_set_keymap('n', '<leader>fgc',
                         '<cmd>lua require("telescope.builtin").git_commits()<CR>',
                         {noremap = true})
 
-require("which-key").register({
+require('which-key').register({
     ["<leader>f"] = {
         ['*'] = "Word under cursor",
         ['/'] = "Current file",

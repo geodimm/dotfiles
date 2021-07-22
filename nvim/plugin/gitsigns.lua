@@ -1,4 +1,4 @@
-require('gitsigns').setup {
+require('gitsigns').setup({
     signs = {
         add = {text = '▌'},
         change = {text = '▌'},
@@ -21,9 +21,9 @@ require('gitsigns').setup {
         end
         return {{'   ' .. text, 'GitSignsCurrentLineBlame'}}
     end
-}
+})
 
-local wk = require("which-key")
+local wk = require('which-key')
 wk.register({
     ["]c"] = {"Next hunk"},
     ["[c"] = {"Previous hunk"},

@@ -22,4 +22,4 @@ vim.g.startify_session_before_save = {'silent! NvimTreeClose'}
 
 vim.api.nvim_set_keymap('n', '<leader>p', ':Startify<CR>', {noremap = true})
 
-require("which-key").register({["<leader>p"] = "Open Startify"})
+require('which-key').register({["<leader>p"] = "Open Startify"})

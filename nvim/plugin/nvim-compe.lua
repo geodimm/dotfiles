@@ -1,4 +1,4 @@
-require'compe'.setup {
+require('compe').setup({
     enabled = true,
     autocomplete = true,
     debug = false,
@@ -30,7 +30,7 @@ require'compe'.setup {
         ultisnips = true,
         luasnip = true
     }
-}
+})
 
 local opts = {silent = true, expr = true, noremap = true}
 vim.api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', opts)
