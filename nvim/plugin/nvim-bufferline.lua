@@ -1,10 +1,4 @@
-local lsp_icons = {
-    hint = "",
-    info = "",
-    warning = "",
-    error = "",
-    other = ""
-}
+local lsp_icons = require('config.icons').lsp
 
 require('bufferline').setup({
     options = {
