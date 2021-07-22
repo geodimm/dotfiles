@@ -1,6 +1,12 @@
-local lsp_icons = {hint = "", info = "", warning = "", error = ""}
+local lsp_icons = {
+    hint = "",
+    info = "",
+    warning = "",
+    error = "",
+    other = ""
+}
 
-require'bufferline'.setup {
+require('bufferline').setup({
     options = {
         diagnostics = 'nvim_lsp',
         max_name_length = 20,
@@ -8,14 +14,14 @@ require'bufferline'.setup {
             return " " .. lsp_icons[level] .. " " .. count
         end
     }
-}
+})
 
 vim.api.nvim_set_keymap('n', '[b', ':BufferLineCyclePrev<CR>',
                         {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', ']b', ':BufferLineCycleNext<CR>',
                         {noremap = true, silent = true})
 
-require("which-key").register({
+require('which-key').register({
     ["[b"] = {"Previous buffer"},
     ["]b"] = {"Next buffer"}
 })

@@ -103,7 +103,8 @@ command! BufOnly silent! execute "%bd|e#|bd#"
     ]], false)
 vim.api.nvim_set_keymap('', '<leader>b', ':BufOnly<CR>', {noremap = true})
 
-require("which-key").register({
+local wk = require('which-key')
+wk.register({
     ["<C-f>"] = "Open file under cursor",
     ["<C-h>"] = "Move left",
     ["<C-j>"] = "Move down",
@@ -126,7 +127,7 @@ require("which-key").register({
     },
     Y = "Yank til end of line"
 })
-require("which-key").register({
+wk.register({
     ["<leader>S"] = "Sort selected lines",
     ["<leader>w"] = "Save",
     ["<leader>q"] = "Close/Quit"
