@@ -36,13 +36,6 @@ local completion_item_kind = {
     TypeParameter = ''
 }
 
-local lsp_icons = {
-    Hint = "",
-    Information = "",
-    Warning = "",
-    Error = ""
-}
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -347,8 +340,9 @@ local function setup_servers()
 end
 
 local function customise_ui()
+    local lspconfig_icons = require('config.icons').lspconfig
     -- Update the sign icons
-    for type, icon in pairs(lsp_icons) do
+    for type, icon in pairs(lspconfig_icons) do
         local hl = "LspDiagnosticsSign" .. type
         vim.fn.sign_define(hl, {text = icon, texthl = hl, numhl = ""})
     end
