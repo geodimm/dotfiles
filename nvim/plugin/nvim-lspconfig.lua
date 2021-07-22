@@ -1,5 +1,5 @@
-local lspinstall = require 'lspinstall'
-local lspconfig = require 'lspconfig'
+local lspinstall = require('lspinstall')
+local lspconfig = require('lspconfig')
 
 vim.api.nvim_exec([[
 augroup lsp_formatting
@@ -104,7 +104,7 @@ local on_attach = function(client, bufnr)
                        "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
     end
 
-    local wk = require("which-key")
+    local wk = require('which-key')
     wk.register({
         K = "Documentation",
         ["<leader>g"] = {

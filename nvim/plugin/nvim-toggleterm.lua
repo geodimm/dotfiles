@@ -1,4 +1,4 @@
-require("toggleterm").setup {
+require('toggleterm').setup({
     size = function(term)
         if term.direction == "horizontal" then
             return vim.o.lines * 0.25
@@ -14,7 +14,7 @@ require("toggleterm").setup {
     close_on_exit = true,
     shell = vim.o.shell,
     float_opts = {border = 'single', winblend = 10}
-}
+})
 
 local Terminal = require('toggleterm.terminal').Terminal
 
@@ -23,7 +23,7 @@ function TT_lazygit_toggle() lazygit:toggle() end
 vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua TT_lazygit_toggle()<CR>",
                         {noremap = true, silent = true})
 
-require("which-key").register({
+require('which-key').register({
     ["<leader>t"] = {
         name = "+toggeterm",
         t = "Open terminal",

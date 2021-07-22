@@ -4,9 +4,9 @@ function Trunc10(s)
     return result
 end
 
-local diff_colours = require("tokyonight.colors").setup()
+local diff_colours = require('tokyonight.colors').setup()
 
-require'lualine'.setup {
+require('lualine').setup({
     options = {
         theme = 'tokyonight',
         section_separators = {'', ''},
@@ -45,4 +45,4 @@ require'lualine'.setup {
         }
     },
     extensions = {'fzf', 'nvim-tree', 'fugitive'}
-}
+})
