@@ -75,6 +75,7 @@ require('packer').startup({
         use 'hashivim/vim-terraform'
         use 'towolf/vim-helm'
         use 'bfrg/vim-jq'
+        use 'Joorem/vim-haproxy'
         use 'godlygeek/tabular' -- required to format Markdown tables
         use {
             'iamcco/markdown-preview.nvim',
