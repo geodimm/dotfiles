@@ -4,7 +4,7 @@ local lspconfig = require('lspconfig')
 vim.api.nvim_exec([[
 augroup lsp_formatting
     autocmd!
-    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash,*.yaml,*.yml lua vim.lsp.buf.formatting_seq_sync()
+    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash,*.js,*.yaml,*.yml,*.html lua vim.lsp.buf.formatting_seq_sync()
     augroup end
 ]], false)
 
@@ -323,7 +323,7 @@ local function setup_servers()
 
     local required_servers = {
         "go", "lua", "bash", "json", "yaml", "dockerfile", "html", "terraform",
-        "python", "java"
+        "python", "java", "deno"
     }
     local installed_servers = lspinstall.installed_servers()
     for _, server in pairs(required_servers) do
