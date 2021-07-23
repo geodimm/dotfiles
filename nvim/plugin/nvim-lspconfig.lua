@@ -4,7 +4,7 @@ local lspconfig = require('lspconfig')
 vim.api.nvim_exec([[
 augroup lsp_formatting
     autocmd!
-    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash,*.js,*.yaml,*.yml,*.html lua vim.lsp.buf.formatting_seq_sync()
+    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash,*.js,*.yaml,*.yml,*.json,*.html lua vim.lsp.buf.formatting_seq_sync()
     augroup end
 ]], false)
 
@@ -207,6 +207,7 @@ local lsp_config = {
             }
         }
     },
+    json = {settings = {json = {format = {enable = true}}}},
     diagnosticls = {
         init_options = {
             linters = {
