@@ -167,28 +167,9 @@ local lsp_config = {
             tags = {skipUnexported = true}
         }
     },
-    lua = {
-        settings = {
-            Lua = {
-                runtime = {
-                    -- LuaJIT in the case of Neovim
-                    version = 'LuaJIT',
-                    path = vim.split(package.path, ';')
-                },
-                diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = {'vim'}
-                },
-                workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = {
-                        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true
-                    }
-                }
-            }
-        }
-    },
+    lua = require('lua-dev').setup({
+        lspconfig = {settings = {Lua = {diagnostics = {globals = {"use"}}}}}
+    }),
     java = {
         cmd = {
             vim.fn.expand("$HOME/.local/share/nvim/lspinstall/java/jdtls.sh")
