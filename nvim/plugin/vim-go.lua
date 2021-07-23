@@ -1,4 +1,5 @@
 vim.g.go_auto_type_info = 1
+vim.g.go_fold_enable = {'block', 'import', 'varconst', 'package_comment'}
 vim.g.go_addtags_transform = "snakecase"
 vim.g.go_highlight_types = 1
 vim.g.go_highlight_fields = 1
