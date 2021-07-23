@@ -47,6 +47,7 @@ vim.opt.foldlevelstart = 99 -- Always start editing with no folds closed
 -- Display {{{1
 vim.opt.confirm = true -- Raise a dialog when an operation has to be confirmed
 vim.opt.cursorline = true -- Highlight current line
+vim.opt.foldcolumn = "auto"
 vim.opt.signcolumn = "yes:2" -- Always show the signcolumn (2 symbols)
 vim.opt.number = true -- Display line numbers
 vim.opt.relativenumber = true -- Show the line number relative to the line with the cursor
