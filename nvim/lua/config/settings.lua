@@ -42,7 +42,7 @@ vim.opt.diffopt = vim.opt.diffopt + {
 -- Folds {{{1
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevelstart = 99 -- Always start editing with no folds closed
+vim.opt.foldlevelstart = 20 -- Always start editing with no folds closed
 
 -- Display {{{1
 vim.opt.confirm = true -- Raise a dialog when an operation has to be confirmed
