@@ -196,9 +196,7 @@ local lsp_config = {
                     ["https://json.schemastore.org/swagger-2.0.json"] = "/*swagger.y*ml",
                     ["https://json.schemastore.org/travis.json"] = "/*travis.y*ml",
                     ["https://json.schemastore.org/yamllint.json"] = "/*yamllint.y*ml",
-                    -- ["https://raw.githubusercontent.com/Azure/vscode-kubernetes-tools/master/syntaxes/helm.tmLanguage.json"] = "templates/**/*.y*ml",
-                    ["https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta12.json"] = "/*skaffold.y*ml",
-                    kubernetes = "kubernetes/**/*.y*ml"
+                    ["https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta12.json"] = "/*skaffold.y*ml"
                 },
                 schemaStore = {
                     url = "https://www.schemastore.org/json",
