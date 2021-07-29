@@ -19,6 +19,7 @@ do_configure() {
 	info "[git] Configure"
 	info "[git][configure] Create symlinks"
 	ln -fs "$(pwd)/git/gitconfig" "${HOME}/.gitconfig"
+	touch "$(pwd)/git/commit-template"
 }
 
 main() {
