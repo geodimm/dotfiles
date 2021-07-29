@@ -19,6 +19,7 @@ do_install() {
 		ncurses-term
 		python3-dev
 		python3-pip
+		ripgrep
 		shellcheck
 		tree
 		units
