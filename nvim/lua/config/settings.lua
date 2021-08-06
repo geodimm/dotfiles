@@ -119,4 +119,12 @@ augroup gitcommit_filetype_settings
     autocmd FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2 colorcolumn=+1 colorcolumn+=51
 augroup end
 ]], false)
+
+-- Enable spelling in Markdown files
+vim.api.nvim_exec([[
+augroup markdown_filetype_settings
+    autocmd!
+    autocmd FileType markdown setlocal spell
+augroup end
+]], false)
 --- }}}
