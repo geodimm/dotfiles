@@ -25,7 +25,7 @@ vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua TT_lazygit_toggle()<CR>",
 
 require('which-key').register({
     ["<leader>t"] = {
-        name = "+toggeterm",
+        name = "+toggleterm",
         t = "Open terminal",
         l = "Open lazygit"
     }
