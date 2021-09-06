@@ -44,5 +44,5 @@ require('lualine').setup({
             {'progress', right_padding = 0}, {'location', left_padding = 0}
         }
     },
-    extensions = {'fzf', 'nvim-tree', 'fugitive'}
+    extensions = {'fzf', 'nvim-tree', 'fugitive', 'quickfix'}
 })
