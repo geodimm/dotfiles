@@ -13,7 +13,7 @@ require('toggleterm').setup({
     direction = 'float',
     close_on_exit = true,
     shell = vim.o.shell,
-    float_opts = {border = 'single', winblend = 10}
+    float_opts = {border = 'single', winblend = 0}
 })
 
 local Terminal = require('toggleterm.terminal').Terminal
