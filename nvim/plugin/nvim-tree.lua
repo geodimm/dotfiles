@@ -1,24 +1,6 @@
-vim.g.nvim_tree_auto_close = 0
-vim.g.nvim_tree_disable_netrw = 0
-vim.g.nvim_tree_hijack_netrw = 0
-vim.g.nvim_tree_update_cwd = 0
 vim.g.nvim_tree_respect_buf_cwd = 1
-vim.g.nvim_tree_follow = 1
-vim.g.nvim_tree_auto_ignore_ft = {'startify'}
-vim.g.nvim_tree_width = 40
 vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_lsp_diagnostics = 1
-vim.g.nvim_tree_special_files = {}
 vim.g.nvim_tree_add_trailing = 1
-vim.g.nvim_tree_bindings = {
-    {
-        key = {"<CR>", "l", "o", "<2-LeftMouse>"},
-        cb = ":lua require('nvim-tree').on_keypress('edit')<CR>"
-    }, {
-        key = "h",
-        cb = ":lua lib = require('nvim-tree.lib');lib.parent_node(lib.get_node_at_cursor(), true)<CR>"
-    }
-}
 vim.g.nvim_tree_icons = {
     default = '',
     symlink = '',
@@ -39,8 +21,7 @@ vim.g.nvim_tree_icons = {
         empty_open = "",
         symlink = "",
         symlink_open = ""
-    },
-    lsp = require('config.icons').lsp
+    }
 }
 
 vim.api.nvim_set_keymap('n', '<leader>fe', ':NvimTreeToggle<CR>',
@@ -52,3 +33,34 @@ require("which-key").register({
     ["<leader>fl"] = {"Locate file in explorer"},
     ["<leader>fe"] = {"Open file explorer"}
 })
+
+require("nvim-tree").setup {
+    disable_netrw = false,
+    hijack_netrw = false,
+    open_on_setup = false,
+    ignore_ft_on_setup = {'startify'},
+    auto_close = true,
+    open_on_tab = false,
+    hijack_cursor = false,
+    update_cwd = false,
+    diagnostics = {enable = true, icons = require('config.icons').lsp},
+    update_focused_file = {enable = false, update_cwd = false, ignore_list = {}},
+    system_open = {cmd = nil, args = {}},
+    view = {
+        width = 40,
+        side = 'left',
+        auto_resize = false,
+        mappings = {
+            custom_only = false,
+            list = {
+                {
+                    key = {"<CR>", "l", "o", "<2-LeftMouse>"},
+                    cb = ":lua require('nvim-tree').on_keypress('edit')<CR>"
+                }, {
+                    key = "h",
+                    cb = ":lua lib = require('nvim-tree.lib');lib.parent_node(lib.get_node_at_cursor(), true)<CR>"
+                }
+            }
+        }
+    }
+}
