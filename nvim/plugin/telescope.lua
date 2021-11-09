@@ -31,6 +31,7 @@ telescope.setup({
         file_previewer = previewers.vim_buffer_cat.new,
         grep_previewer = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
+        dynamic_preview_title = true,
 
         -- Developer configurations: Not meant for general override
         buffer_previewer_maker = previewers.buffer_previewer_maker
@@ -41,11 +42,17 @@ telescope.setup({
             symbol = {telescope = {path_display = {"shorten"}}},
             call_hierarchy = {telescope = {path_display = {"shorten"}}},
             code_action = {telescope = themes.get_dropdown({})}
+        },
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case"
         }
     }
 })
 
-telescope.load_extension('fzy_native')
+telescope.load_extension('fzf')
 telescope.load_extension('lsp_handlers')
 
 vim.api.nvim_set_keymap('n', '<leader>ft', ':Telescope<CR>', {noremap = true})
