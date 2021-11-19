@@ -1,5 +1,4 @@
-local lspinstall = require('lspinstall')
-local lspconfig = require('lspconfig')
+local lspinstaller = require('nvim-lsp-installer')
 
 vim.api.nvim_exec([[
 augroup lsp_formatting
@@ -138,7 +137,7 @@ end
 
 -- Define LSP configuration settings for languages
 local lsp_config = {
-    go = {
+    gopls = {
         cmd = {vim.fn.expand("$HOME/go/bin/gopls"), "-remote=auto"},
         settings = {
             gopls = {
@@ -167,23 +166,22 @@ local lsp_config = {
             tags = {skipUnexported = true}
         }
     },
-    lua = require('lua-dev').setup({
-        lspconfig = {settings = {Lua = {diagnostics = {globals = {"use"}}}}}
-    }),
-    java = {
-        cmd = {
-            vim.fn.expand("$HOME/.local/share/nvim/lspinstall/java/jdtls.sh")
-        },
+    sumneko_lua = require('lua-dev').setup(
+        {lspconfig = {settings = {Lua = {diagnostics = {globals = {"use"}}}}}}),
+    jdtls = {
+        -- cmd = {
+        --     vim.fn.expand("$HOME/.local/share/nvim/lsp_servers/jdtls/jdtls.sh")
+        -- },
         cmd_env = {
             JAVA_HOME = "/usr/lib/jvm/java-11-openjdk-amd64",
             GRADLE_HOME = vim.fn.expand("$HOME/gradle"),
             JAR = vim.fn.expand(
-                "$HOME/.local/share/nvim/lspinstall/java/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.300.v20210617-0451.jar"),
+                "$HOME/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.400.v20211116-1129.jar"),
             JDTLS_CONFIG = vim.fn.expand(
-                "$HOME/.local/share/nvim/lspinstall/java/config_linux")
+                "$HOME/.local/share/nvim/lsp_servers/jdtls/config_linux")
         }
     },
-    yaml = {
+    yamlls = {
         settings = {
             yaml = {
                 hover = true,
@@ -205,7 +203,7 @@ local lsp_config = {
             }
         }
     },
-    json = {settings = {json = {format = {enable = true}}}},
+    jsonls = {settings = {json = {format = {enable = true}}}},
     diagnosticls = {
         init_options = {
             linters = {
@@ -289,7 +287,7 @@ local function create_config(server)
         }
     }
 
-    local language_config = lsp_config[server]
+    local language_config = lsp_config[server.name]
     if language_config ~= nil then
         for k, v in pairs(language_config) do config[k] = v end
     end
@@ -297,26 +295,29 @@ local function create_config(server)
     return config
 end
 
--- Configure lsp-install and lspconfig
+-- Configure nvim-lsp-installer and lspconfig
 local function setup_servers()
-    lspinstall.setup()
 
     local required_servers = {
-        "go", "lua", "bash", "json", "yaml", "dockerfile", "html", "terraform",
-        "python", "java", "deno"
+        "gopls", "sumneko_lua", "bashls", "jsonls", "yamlls", "dockerls",
+        "html", "terraformls", "pyright", "jdtls", "denols", "diagnosticls"
     }
-    local installed_servers = lspinstall.installed_servers()
-    for _, server in pairs(required_servers) do
-        if not vim.tbl_contains(installed_servers, server) then
-            lspinstall.install_server(server)
+
+    for _, name in pairs(required_servers) do
+        local ok, server = lspinstaller.get_server(name)
+        if ok then
+            if not server:is_installed() then
+                print("Installing " .. name)
+                server:install()
+            end
         end
     end
 
-    installed_servers = lspinstall.installed_servers()
-    for _, server in pairs(installed_servers) do
+    lspinstaller.on_server_ready(function(server)
         local config = create_config(server)
-        lspconfig[server].setup(config)
-    end
+        server:setup(config)
+        vim.cmd([[ do User LspAttachBuffers ]])
+    end)
 end
 
 local function customise_ui()
@@ -336,9 +337,3 @@ end
 
 setup_servers()
 customise_ui()
-
--- automatically setup servers again after `:LspInstall <server>`
-lspinstall.post_install_hook = function()
-    setup_servers() -- makes sure the new server is setup in lspconfig
-    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
