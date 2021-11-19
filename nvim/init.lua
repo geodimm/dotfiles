@@ -70,7 +70,7 @@ require('packer').startup({
 
         -- " Languages/LSP {{{1
         use {'neovim/nvim-lspconfig'}
-        use {'kabouzeid/nvim-lspinstall'}
+        use {'williamboman/nvim-lsp-installer'}
         use {'hrsh7th/nvim-compe'}
         use "folke/lua-dev.nvim"
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
