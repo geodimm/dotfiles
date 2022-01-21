@@ -16,17 +16,14 @@ require('toggleterm').setup({
     float_opts = {border = 'single', winblend = 0}
 })
 
-local Terminal = require('toggleterm.terminal').Terminal
+function _G.set_terminal_keymaps()
+    local opts = {noremap = true}
+    vim.api
+        .nvim_buf_set_keymap(0, 't', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
+end
 
-local lazygit = Terminal:new({cmd = "lazygit", hidden = true})
-function TT_lazygit_toggle() lazygit:toggle() end
-vim.api.nvim_set_keymap("n", "<leader>tl", "<cmd>lua TT_lazygit_toggle()<CR>",
-                        {noremap = true, silent = true})
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 require('which-key').register({
-    ["<leader>t"] = {
-        name = "+toggleterm",
-        t = "Open terminal",
-        l = "Open lazygit"
-    }
+    ["<leader>t"] = {name = "+toggleterm", t = "Open terminal"}
 })
