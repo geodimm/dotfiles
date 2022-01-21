@@ -2,7 +2,7 @@ vim.api.nvim_set_keymap('n', '<leader>sr',
                         '<cmd>lua require("spectre").open()<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>sw',
-                        '<cmd>:lua require("spectre").open({search_text = vim.fn.expand("<cword>")})<CR>',
+                        '<cmd>:lua require("spectre").open_visual({select_word=true})<CR>',
                         {noremap = true})
 vim.api.nvim_set_keymap('v', '<leader>sw',
                         ':lua require("spectre").open_visual()<CR>',
