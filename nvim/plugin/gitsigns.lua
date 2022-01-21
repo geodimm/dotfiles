@@ -6,6 +6,8 @@ require('gitsigns').setup({
         topdelete = {text = '▌'},
         changedelete = {text = '▌'}
     },
+    use_internal_diff = true,
+    word_diff = true,
     current_line_blame = true,
     current_line_blame_opts = {delay = 0},
     current_line_blame_formatter = function(name, blame_info)
