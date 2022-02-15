@@ -71,7 +71,17 @@ require('packer').startup({
         -- " Languages/LSP {{{1
         use {'neovim/nvim-lspconfig'}
         use {'williamboman/nvim-lsp-installer'}
-        use {'hrsh7th/nvim-compe'}
+        -- use {'hrsh7th/nvim-compe'}
+        -- Autocompletion {{{2
+        use 'hrsh7th/nvim-cmp'
+        use 'hrsh7th/cmp-nvim-lsp'
+        use 'L3MON4D3/LuaSnip'
+        use {
+            'saadparwaiz1/cmp_luasnip',
+            requires = {'hrsh7th/nvim-cmp', 'L3MON4D3/LuaSnip'}
+        }
+        use "rafamadriz/friendly-snippets"
+        -- }}}
         use "folke/lua-dev.nvim"
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
         use 'hashivim/vim-terraform'
