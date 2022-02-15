@@ -81,6 +81,7 @@ require('packer').startup({
             requires = {'hrsh7th/nvim-cmp', 'L3MON4D3/LuaSnip'}
         }
         use "rafamadriz/friendly-snippets"
+        use "onsails/lspkind-nvim"
         -- }}}
         use "folke/lua-dev.nvim"
         use {'fatih/vim-go', ft = {'go', 'gomod'}}
