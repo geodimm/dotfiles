@@ -27,6 +27,7 @@ require('packer').startup({
         use 'navarasu/onedark.nvim'
         use 'folke/tokyonight.nvim'
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+        use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'kyazdani42/nvim-web-devicons'
         use {'RRethy/vim-hexokinase', run = 'make hexokinase'}
 
@@ -63,7 +64,6 @@ require('packer').startup({
 
         -- Text editing features {{{1
         use 'mbbill/undotree'
-        use 'wellle/targets.vim'
         use 'tpope/vim-surround'
         use 'tpope/vim-commentary'
         use 'tpope/vim-repeat'
