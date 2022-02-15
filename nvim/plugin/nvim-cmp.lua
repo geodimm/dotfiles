@@ -1,4 +1,5 @@
 local luasnip = require('luasnip')
+local lspkind = require('lspkind')
 local cmp = require('cmp')
 
 cmp.setup {
@@ -32,6 +33,13 @@ cmp.setup {
                 fallback()
             end
         end
+    },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = 'symbol_text',
+            maxwidth = 50,
+            before = function(_, vim_item) return vim_item end
+        })
     },
     sources = {{name = 'nvim_lsp'}, {name = 'luasnip'}}
 }
