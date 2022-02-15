@@ -14,6 +14,14 @@ setopt PATH_DIRS               # perform path search even on command names with 
 setopt correct                 # Correct typos
 unsetopt FLOW_CONTROL          # Disable start/stop characters output (usually assigned to ^S/^Q) in the shell's editor.
 
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+
+
 # Use case-sensitive completion
 CASE_SENSITIVE="true"
 

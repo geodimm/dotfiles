@@ -33,11 +33,11 @@ plugins=(
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Apply sensisble zsh settings
-source ~/dotfiles/zsh/zshopt
-
 # Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
+
+# Apply sensisble zsh settings
+source ~/dotfiles/zsh/zshopt
 
 # ZSH {{{1
 # Bind C+Space to accept the current suggestion
