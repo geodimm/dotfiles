@@ -71,7 +71,7 @@ require('packer').startup({
         -- " Languages/LSP {{{1
         use {'neovim/nvim-lspconfig'}
         use {'williamboman/nvim-lsp-installer'}
-        -- use {'hrsh7th/nvim-compe'}
+
         -- Autocompletion {{{2
         use 'hrsh7th/nvim-cmp'
         use 'hrsh7th/cmp-nvim-lsp'
@@ -90,6 +90,7 @@ require('packer').startup({
         use 'bfrg/vim-jq'
         use 'Joorem/vim-haproxy'
         use 'godlygeek/tabular' -- required to format Markdown tables
+        use 'mracos/mermaid.vim'
         use {
             'iamcco/markdown-preview.nvim',
             run = function() vim.fn['mkdp#util#install']() end
