@@ -5,14 +5,16 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
+JQP_VERSION="${JQP_VERSION:=v0.0.3}"
+
 do_install() {
-	if is_installed jqp; then
-		info "[jqp] Already installed"
+	if [[ "$(jqp -V 2>/dev/null)" == *"${JQP_VERSION}"* ]]; then
+		info "[jqp] ${JQP_VERSION} already installed"
 		return
 	fi
 
 	info "[jqp] Install"
-	curl -s "https://raw.githubusercontent.com/georgijd/jqp/main/scripts/install.sh" | bash
+	curl -s "https://raw.githubusercontent.com/georgijd/jqp/${JQP_VERSION}/scripts/install.sh" | bash
 }
 
 main() {
