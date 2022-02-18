@@ -53,13 +53,8 @@ require("nvim-tree").setup {
         mappings = {
             custom_only = false,
             list = {
-                {
-                    key = {"<CR>", "l", "o", "<2-LeftMouse>"},
-                    cb = ":lua require('nvim-tree').on_keypress('edit')<CR>"
-                }, {
-                    key = "h",
-                    cb = ":lua lib = require('nvim-tree.lib');lib.parent_node(lib.get_node_at_cursor(), true)<CR>"
-                }
+                {key = {"<CR>", "l", "o", "<2-LeftMouse>"}, action = "edit"},
+                {key = "h", action = "close_node"}
             }
         }
     }
