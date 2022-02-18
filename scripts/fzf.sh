@@ -9,7 +9,8 @@ FZF_DIR="${HOME}/.fzf"
 
 do_install() {
 	if is_installed fzf; then
-		info "[fzf] Already installed"
+		info "[fzf] Already installed. Updating..."
+		cd "${FZF_DIR}" && git pull && ./install --bin
 		return
 	fi
 
