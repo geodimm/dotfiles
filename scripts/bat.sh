@@ -5,10 +5,10 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-BAT_VERSION="${BAT_VERSION:=0.18.0}"
+BAT_VERSION="${BAT_VERSION:=0.19.0}"
 
 do_install() {
-	if is_installed bat; then
+	if [[ "$(bat --version 2>/dev/null)" == *"${BAT_VERSION}"* ]]; then
 		info "[bat] ${BAT_VERSION} already installed"
 		return
 	fi
