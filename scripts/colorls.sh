@@ -9,7 +9,9 @@ RVM_DIR="${HOME}/.rvm"
 
 do_install() {
 	if is_installed colorls; then
-		info "[colorls] Already installed"
+		info "[colorls] Already installed. Updating..."
+		# shellcheck source=../../.rvm/scripts/rvm
+		source "${RVM_DIR}/scripts/rvm" && gem update colorls
 		return
 	fi
 
