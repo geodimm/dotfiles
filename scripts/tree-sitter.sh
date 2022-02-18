@@ -5,14 +5,18 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
+TS_VERSION="${TS_VERSION:=0.20.4}"
+
 do_install() {
-	if is_installed tree-sitter; then
-		info "[tree-sitter] Already installed"
+	if [[ "$(tree-sitter --version 2>/dev/null)" == *"${TS_VERSION}"* ]]; then
+		info "[tree-sitter] ${TS_VERSION} already installed"
 		return
 	fi
 
 	info "[tree-sitter] Install"
-	asset=$(curl --silent https://api.github.com/repos/tree-sitter/tree-sitter/releases/latest | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url')
+	asset=$(
+		curl --silent "https://api.github.com/repos/tree-sitter/tree-sitter/releases/tags/v${TS_VERSION}" | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url'
+	)
 	if [[ -z $asset ]]; then
 		warn "Cannot find a release. Please try again later."
 		exit 0
