@@ -26,6 +26,7 @@ require('packer').startup({
         use 'arcticicestudio/nord-vim'
         use 'navarasu/onedark.nvim'
         use 'folke/tokyonight.nvim'
+        use 'Mofiqul/vscode.nvim'
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'kyazdani42/nvim-web-devicons'

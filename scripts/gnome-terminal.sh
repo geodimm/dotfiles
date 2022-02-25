@@ -24,6 +24,9 @@ do_configure() {
 
 	info "[gnome-terminal][configure] Tokyo Night Storm"
 	"$install_dir/themes/tokyo-night-storm.sh"
+
+	info "[gnome-terminal][configure] VS Code Dark+"
+	"$install_dir/themes/vs-code-dark-plus.sh"
 }
 
 main() {
