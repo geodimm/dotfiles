@@ -6,7 +6,14 @@ require('bufferline').setup({
         max_name_length = 20,
         diagnostics_indicator = function(count, level)
             return " " .. lsp_icons[level] .. " " .. count
-        end
+        end,
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                text_align = "center"
+            }
+        }
     }
 })
 
