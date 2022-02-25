@@ -24,4 +24,7 @@ vim.g.disable_toggle_style = 1
 vim.g.onedark_style = 'dark'
 vim.g.tokyonight_dark_sidebar = false
 vim.g.tokyonight_dark_float = false
+vim.g.vscode_style = 'dark'
+vim.g.vscode_italic_comment = 1
+vim.g.vscode_disable_nvimtree_bg = true
 vim.cmd [[colorscheme tokyonight]]
