@@ -50,6 +50,7 @@ do_configure() {
 	npm install -g yarn
 	info "[neovim][configure][deps] markdownlint-cli"
 	npm install -g markdownlint-cli
+	ln -fs "$(pwd)/markdownlint/markdownlint.yaml" "${HOME}/.markdownlint.yaml"
 	info "[neovim][configure][deps] luaformatter"
 	sudo luarocks install --server=https://luarocks.org/dev luaformatter
 	info "[neovim][configure][deps] shfmt"
