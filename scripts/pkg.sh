@@ -11,7 +11,6 @@ do_install() {
 		cmake
 		curl
 		dconf-cli
-		gnome-tweaks
 		htop
 		httpie
 		jq
