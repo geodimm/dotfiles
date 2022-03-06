@@ -5,6 +5,9 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
+# Font: MesloLGL Nerd Font Mono
+# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/L/Regular/complete
+
 do_configure() {
 	export TERMINAL=gnome-terminal
 	local install_dir="/tmp/gogh"
