@@ -205,7 +205,10 @@ local lsp_config = {
                 },
                 markdownlint = {
                     command = "markdownlint",
-                    args = {"--stdin"},
+                    args = {
+                        "--stdin", "--config",
+                        vim.fn.expand("$HOME/.markdownlint.yaml")
+                    },
                     sourceName = "markdownlint",
                     isStderr = true,
                     debounce = 100,
