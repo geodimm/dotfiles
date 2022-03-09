@@ -12,7 +12,7 @@ do_configure() {
 	sudo install -d -m 0755 -o "${USER}" -g "${USER}" /repos
 
 	info "[system] Create Java workspace directory"
-	install -d -m 0755 -o "${USER}" -g "${USER}" "$HOME/workspace"
+	install -d -m 0755 -o "${USER}" -g "${USER}" "$HOME/java/workspace"
 
 	# Font: MesloLGL Nerd Font Mono
 	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/L/Regular/complete
