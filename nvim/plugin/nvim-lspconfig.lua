@@ -131,9 +131,8 @@ local lsp_config = {
             tags = {skipUnexported = true}
         }
     },
-    sumneko_lua = require('lua-dev').setup({
-        lspconfig = {settings = {Lua = {diagnostics = {globals = {"use"}}}}}
-    }),
+    sumneko_lua = require('lua-dev').setup(
+        {lspconfig = {settings = {Lua = {diagnostics = {globals = {"use"}}}}}}),
     jdtls = {
         -- cmd = {
         --     vim.fn.expand("$HOME/.local/share/nvim/lsp_servers/jdtls/jdtls.sh")
@@ -208,7 +207,8 @@ local lsp_config = {
                     command = "markdownlint",
                     args = {
                         "--stdin", "--config",
-                        vim.fn.expand("$HOME/.markdownlint.yaml")
+                        vim.fn.expand(
+                            "$HOME/dotfiles/markdownlint/markdownlint.yaml")
                     },
                     sourceName = "markdownlint",
                     isStderr = true,
@@ -242,9 +242,8 @@ local function create_config(server)
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = {'documentation', 'detail', 'additionalTextEdits'}
-    }
+    capabilities.textDocument.completion.completionItem.resolveSupport =
+        {properties = {'documentation', 'detail', 'additionalTextEdits'}}
     local config = {
         -- enable snippet support
         capabilities = capabilities,
@@ -252,13 +251,11 @@ local function create_config(server)
         on_attach = on_attach,
         -- modify virtual text
         handlers = {
-            ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp
-                                                                   .diagnostic
-                                                                   .on_publish_diagnostics,
-                                                               {
-                -- Disable virtual_text
-                virtual_text = {prefix = " ", spacing = 4}
-            })
+            ["textDocument/publishDiagnostics"] = vim.lsp.with(
+                vim.lsp.diagnostic.on_publish_diagnostics, {
+                    -- Disable virtual_text
+                    virtual_text = {prefix = " ", spacing = 4}
+                })
         }
     }
 
@@ -304,9 +301,8 @@ local function customise_ui()
     end
 
     -- Set borders to floating windows
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-                                                 vim.lsp.handlers.hover,
-                                                 {border = 'single'})
+    vim.lsp.handlers["textDocument/hover"] =
+        vim.lsp.with(vim.lsp.handlers.hover, {border = 'single'})
     vim.lsp.handlers["textDocument/signatureHelp"] =
         vim.lsp.with(vim.lsp.handlers.signature_help, {border = 'single'})
 end
