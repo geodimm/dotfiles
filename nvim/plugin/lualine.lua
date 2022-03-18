@@ -11,7 +11,8 @@ require('lualine').setup({
         theme = 'tokyonight',
         section_separators = {'', ''},
         component_separators = {'', ''},
-        icons_enabled = true
+        icons_enabled = true,
+        globalstatus = true
     },
     sections = {
         lualine_a = {{'mode', upper = true}},
