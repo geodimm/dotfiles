@@ -9,7 +9,7 @@ do_configure() {
 	info "[tmux] Configure"
 	info "[tmux][configure] Download tpm plugin manager"
 	if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
-		git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+		git clone --quiet https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
 	fi
 
 	info "[tmux][configure] Create config file symlink"

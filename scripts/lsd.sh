@@ -5,11 +5,18 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
+LSD_VERSION="${LSD_VERSION:=0.21.0}"
+
 do_install() {
+	if [[ "$(lsd --version 2>/dev/null)" == *"${LSD_VERSION}"* ]]; then
+		info "[lsd] ${LSD_VERSION} already installed"
+		return
+	fi
+
 	info "[lsd] Install"
-	# shellcheck source=../../.cargo/env
-	source "${HOME}/.cargo/env"
-	cargo install lsd
+	local lsd=/tmp/lsd.deb
+	download_to "${lsd}" "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/lsd_${LSD_VERSION}_amd64.deb"
+	sudo dpkg -i "${lsd}"
 }
 
 main() {

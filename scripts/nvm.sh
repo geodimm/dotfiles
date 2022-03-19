@@ -16,7 +16,7 @@ do_install() {
 
 	info "[nvm] Install ${NVM_VERSION}"
 	mkdir -p "${NVM_DIR}"
-	curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash
+	curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash
 }
 
 main() {

@@ -15,7 +15,7 @@ do_configure() {
 	info "[gnome-terminal] Configure"
 	info "[gnome-terminal][configure] Configure themes"
 	rm -rf "$install_dir" && mkdir -p "$install_dir"
-	git clone https://github.com/Mayccoll/Gogh.git "$install_dir"
+	git clone --quiet https://github.com/Mayccoll/Gogh.git "$install_dir"
 
 	info "[gnome-terminal][configure][themes] One Dark"
 	"$install_dir/themes/one-dark.sh"

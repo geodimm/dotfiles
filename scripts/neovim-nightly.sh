@@ -7,17 +7,18 @@ source "$(pwd)/scripts/util.sh"
 
 do_install() {
 	info "[neovim-nightly] Install"
+	local nvim_path="${HOME}/bin/nvim"
 	asset=$(curl --silent https://api.github.com/repos/neovim/neovim/releases/tags/nightly | jq -r '.assets // [] | .[] | select(.name | endswith("nvim.appimage")) | .url')
-	if [[ -z $asset ]]; then
+	if [[ -z ${asset} ]]; then
 		warn "Cannot find a nightly release. Please try again later."
 		exit 0
 	fi
-	curl --silent --location -H "Accept: application/octet-stream" "${asset}" >~/bin/nvim
-	chmod +x ~/bin/nvim
+	download_to "${asset}" "${nvim_path}"
+	chmod +x "${nvim_path}"
 
 	info "[neovim-nightly][install] Create symlinks to override the stable version"
-	ln -sf ~/bin/nvim ~/bin/vi
-	ln -sf ~/bin/nvim ~/bin/vim
+	ln -sf "${nvim_path}" "${HOME}/bin/vi"
+	ln -sf "${nvim_path}" "${HOME}/bin/vim"
 }
 
 main() {

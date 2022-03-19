@@ -31,7 +31,7 @@ do_configure() {
 	)
 	for path in "${!plugins[@]}"; do
 		if [[ ! -d "${ZSH_CUSTOM}/$path" ]]; then
-			git clone "${plugins[$path]}" "${ZSH_CUSTOM}/$path"
+			git clone --quiet "${plugins[$path]}" "${ZSH_CUSTOM}/$path"
 		fi
 	done
 

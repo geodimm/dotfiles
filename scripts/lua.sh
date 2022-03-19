@@ -17,8 +17,8 @@ do_install() {
 	info "[lua] Install"
 	local lua="lua-${LUA_VERSION}"
 	local target="/tmp/${lua}.tar.gz"
+	download_to "${target}" "http://www.lua.org/ftp/${lua}.tar.gz"
 	cd /tmp
-	download_to "${target}" http://www.lua.org/ftp/${lua}.tar.gz
 	tar -xzf "${target}"
 	cd "${lua}"
 	make linux test
@@ -32,7 +32,7 @@ do_install() {
 	info "[luarocks] Install"
 	local luarocks="luarocks-${LUAROCKS_VERSION}"
 	local target="/tmp/${luarocks}.tar.gz"
-	download_to "${target}" http://www.luarocks.org/releases/${luarocks}.tar.gz
+	download_to "${target}" "http://www.luarocks.org/releases/${luarocks}.tar.gz"
 	cd /tmp
 	tar -xzf "${target}"
 	cd "${luarocks}"
