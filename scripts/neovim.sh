@@ -45,7 +45,7 @@ do_configure() {
 	info "[neovim][configure][linters] hadolint"
 	asset=$(curl --silent "https://api.github.com/repos/hadolint/hadolint/releases/latest" | jq -r '.assets // [] | .[] | select(.name | startswith("hadolint-Linux")) | .url')
 	local hadolint="${HOME}/bin/hadolint"
-	download_to "${hadolint}" "${asset}"
+	download "${asset}" "${hadolint}"
 	chmod +x "${hadolint}"
 
 	info "[neovim][configure][linters] shfmt"

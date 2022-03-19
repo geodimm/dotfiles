@@ -13,7 +13,7 @@ do_install() {
 		warn "Cannot find a nightly release. Please try again later."
 		exit 0
 	fi
-	download_to "${asset}" "${nvim_path}"
+	download "${asset}" "${nvim_path}"
 	chmod +x "${nvim_path}"
 
 	info "[neovim-nightly][install] Create symlinks to override the stable version"

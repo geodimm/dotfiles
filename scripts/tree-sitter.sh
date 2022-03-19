@@ -19,9 +19,8 @@ do_install() {
 		warn "Cannot find a release. Please try again later."
 		exit 0
 	fi
-	asset="https://api.github.com/repos/tree-sitter/tree-sitter/releases/assets/58406191"
 	local treesitter="${HOME}/bin/tree-sitter"
-	download_to "" "${asset}" | gunzip -c >"${treesitter}"
+	download "${asset}" "" | gunzip -c >"${treesitter}"
 	chmod +x "${treesitter}"
 }
 
