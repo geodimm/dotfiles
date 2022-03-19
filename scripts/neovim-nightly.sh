@@ -14,11 +14,8 @@ do_install() {
 	fi
 	curl --silent --location -H "Accept: application/octet-stream" "${asset}" >~/bin/nvim
 	chmod +x ~/bin/nvim
-}
 
-do_configure() {
-	info "[neovim-nightly] Configure"
-	info "[neovim-nightly][configure] Create symlinks"
+	info "[neovim-nightly][install] Create symlinks to override the stable version"
 	ln -sf ~/bin/nvim ~/bin/vi
 	ln -sf ~/bin/nvim ~/bin/vim
 }
@@ -29,10 +26,6 @@ main() {
 	"install")
 		shift
 		do_install "$@"
-		;;
-	"configure")
-		shift
-		do_configure "$@"
 		;;
 	*)
 		error "$(basename "$0"): '$command' is not a valid command"
