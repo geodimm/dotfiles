@@ -33,6 +33,12 @@ plugins=(
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# Use case-sensitive completion
+CASE_SENSITIVE="true"
+
+# Fix slow paste
+DISABLE_MAGIC_FUNCTIONS=true
+
 # Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
 
