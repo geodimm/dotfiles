@@ -50,6 +50,9 @@ do_configure() {
 	npm install -g yarn
 	info "[neovim][configure][deps] markdownlint-cli"
 	npm install -g markdownlint-cli
+	info "[neovim][configure][deps] hadolint"
+	asset=$(curl --silent "https://api.github.com/repos/hadolint/hadolint/releases/latest" | jq -r '.assets // [] | .[] | select(.name | startswith("hadolint-Linux")) | .url')
+	curl --silent --location -H "Accept: application/octet-stream" "${asset}" --output "$HOME/bin/hadolint" && chmod +x "$HOME/bin/hadolint"
 	info "[neovim][configure][deps] luaformatter"
 	sudo luarocks install --server=https://luarocks.org/dev luaformatter
 	info "[neovim][configure][deps] shfmt"
