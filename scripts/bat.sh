@@ -5,7 +5,7 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-BAT_VERSION="${BAT_VERSION:=0.19.0}"
+BAT_VERSION="${BAT_VERSION:=0.20.0}"
 
 do_install() {
 	if [[ "$(bat --version 2>/dev/null)" == *"${BAT_VERSION}"* ]]; then

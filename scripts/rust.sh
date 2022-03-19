@@ -12,7 +12,7 @@ do_install() {
 	fi
 
 	info "[rust] Install"
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+	curl --silent --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 }
 
 main() {
