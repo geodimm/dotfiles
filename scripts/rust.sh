@@ -5,19 +5,14 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-RVM_DIR="${HOME}/.rvm"
-RUBY_VERSION=2.6
-
 do_install() {
-	# shellcheck source=../../.rvm/scripts/rvm
-	source "${RVM_DIR}/scripts/rvm"
-	if [[ "$(rvm list | grep ${RUBY_VERSION})" != "" ]]; then
-		info "[ruby] ${RUBY_VERSION} already installed"
+	if is_installed rustc; then
+		info "[rust] Already installed"
 		return
 	fi
 
-	info "[ruby] Install ${RUBY_VERSION}"
-	rvm install "${RUBY_VERSION}"
+	info "[rust] Install"
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 }
 
 main() {

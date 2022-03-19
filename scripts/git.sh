@@ -5,30 +5,18 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-do_install() {
-	if is_installed git; then
-		info "[git] Already installed"
-		return
-	fi
-
-	info "[git] Install"
-	sudo apt install -y git
-}
-
 do_configure() {
 	info "[git] Configure"
-	info "[git][configure] Create symlinks"
+	info "[git][configure] Create config file symlink"
 	ln -fs "$(pwd)/git/gitconfig" "${HOME}/.gitconfig"
+
+	info "[git][configure] Create a commit-template file"
 	touch "$(pwd)/git/commit-template"
 }
 
 main() {
 	command=$1
 	case $command in
-	"install")
-		shift
-		do_install "$@"
-		;;
 	"configure")
 		shift
 		do_configure "$@"

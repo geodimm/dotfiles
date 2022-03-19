@@ -5,29 +5,15 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-do_install() {
-	if is_installed tig; then
-		info "[tig] Already installed"
-		return
-	fi
-
-	info "[tig] Install"
-	sudo apt install -y tig
-}
-
 do_configure() {
 	info "[tig] Configure"
-	info "[tig][configure] Create symlinks"
+	info "[tig][configure] Create config file symlink"
 	ln -fs "$(pwd)/tig/tigrc" "${HOME}/.tigrc"
 }
 
 main() {
 	command=$1
 	case $command in
-	"install")
-		shift
-		do_install "$@"
-		;;
 	"configure")
 		shift
 		do_configure "$@"

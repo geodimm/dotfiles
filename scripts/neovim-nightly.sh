@@ -12,7 +12,6 @@ do_install() {
 		warn "Cannot find a nightly release. Please try again later."
 		exit 0
 	fi
-	mkdir -p ~/bin
 	curl --silent --location -H "Accept: application/octet-stream" "${asset}" >~/bin/nvim
 	chmod +x ~/bin/nvim
 }

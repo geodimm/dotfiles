@@ -1,10 +1,15 @@
 FROM ubuntu:focal
 
-RUN apt update && apt -y install \
-    git \
-    cmake \
-    software-properties-common \
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update\
+    && apt-get --no-install-recommends -y install \
     sudo \
+    build-essential \
+    software-properties-common \
+    && apt-add-repository -y ppa:git-core/ppa \
+    && apt-get update \
+    && apt-get --no-install-recommends -y install git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "Set disable_coredump false" >> /etc/sudo.conf

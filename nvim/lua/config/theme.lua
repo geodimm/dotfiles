@@ -1,12 +1,15 @@
-vim.opt.syntax = "on"
-vim.api.nvim_exec([[
+vim.opt.syntax = 'on'
+vim.api.nvim_exec(
+  [[
 augroup customise_highlight_groups
     autocmd!
     " Highlight trailing whitespaces
     autocmd ColorScheme * highlight link trailingWhiteSpace SpecialChar
     autocmd BufNewFile,BufReadPost * match trailingWhiteSpace /\s\+$/
 augroup end
-]], false)
+]],
+  false
+)
 
 vim.opt.termguicolors = true
 vim.go.t_8f = '[[38;2;%lu;%lu;%lum'
@@ -27,4 +30,4 @@ vim.g.tokyonight_dark_float = false
 vim.g.vscode_style = 'dark'
 vim.g.vscode_italic_comment = 1
 vim.g.vscode_disable_nvimtree_bg = true
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd([[colorscheme tokyonight]])

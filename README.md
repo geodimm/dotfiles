@@ -1,6 +1,6 @@
 # Georgi's dotfiles
 
-[![Build Status](https://img.shields.io/travis/com/georgijd/dotfiles.svg?style=for-the-badge&logo=travis)](https://travis-ci.com/georgijd/dotfiles)
+[![Build Status](https://github.com/georgijd/dotfiles/actions/workflows/test.yaml/badge.svg)](https://github.com/georgijd/dotfiles/actions/workflows/test.yaml)
 
 ## How to install
 
@@ -19,13 +19,13 @@ make
 
 ## Useful Links
 
-* [ohmyzsh] Oh My Zsh is an open source, community-driven
+- [ohmyzsh] Oh My Zsh is an open source, community-driven
 framework for managing your zsh configuration.
-* [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
-flexibility and out-of-the-box experience.
-* [fzf] A command-line fuzzy finder
-* [bat] A cat(1) clone with wings.
-* [colorls] A Ruby gem that beautifies the terminal's ls command,
+- [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
+-lexibility and out-of-the-box experience.
+- [fzf] A command-line fuzzy finder
+- [bat] A cat(1) clone with wings.
+- [lsd] The next gen ls command
 
 ## Screenshots
 
@@ -33,22 +33,18 @@ flexibility and out-of-the-box experience.
 
 The tmux status is centered and has colour coded indicators for:
 
-* client prefix ![colour012](https://via.placeholder.com/15/0000FF?text=+)
+- client prefix ![colour012](https://via.placeholder.com/15/0000FF?text=+)
 `colour012 (Blue)`
-* copy mode ![colour003](https://via.placeholder.com/15/FFFF00?text=+)
+- copy mode ![colour003](https://via.placeholder.com/15/FFFF00?text=+)
 `colour003 (Yellow)`
-* zoomed panes ![colour002](https://via.placeholder.com/15/00FF00?text=+)
+- zoomed panes ![colour002](https://via.placeholder.com/15/00FF00?text=+)
 `colour002 (Green)`
-* synchronized panes ![colour001](https://via.placeholder.com/15/FF0000?text=+)
+- synchronized panes ![colour001](https://via.placeholder.com/15/FF0000?text=+)
 `colour001 (Red)`
 
 ![Tmux status bar](screenshots/tmux-status-bar.png)
 
 ### Shell
-
-#### List directory contents and show git status for each entry with [colorls]
-
-![Colorls](screenshots/colors-with-git-status.png)
 
 #### Command history search with [fzf]
 
@@ -58,7 +54,7 @@ The tmux status is centered and has colour coded indicators for:
 
 ![FZF File Preview](screenshots/fzf-tab-file-preview.png)
 
-#### Autocompletion directory preview with [fzf] and [colorls]
+#### Autocompletion directory preview with [fzf] and [lsd]
 
 ![FZF Directory Preview](screenshots/fzf-tab-directory-preview.png)
 
@@ -75,7 +71,7 @@ The tmux status is centered and has colour coded indicators for:
 ### And much more
 
 [bat]: https://github.com/sharkdp/bat "Bat"
-[colorls]: https://github.com/athityakumar/colorls "Colorls"
+[lsd]: https://github.com/Peltoche/lsd "lsd"
 [fzf.vim]: https://github.com/junegunn/fzf.vim "FZF Vim"
 [fzf]: https://github.com/junegunn/fzf "FZF"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
