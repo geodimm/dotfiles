@@ -7,6 +7,8 @@ source "$(pwd)/scripts/util.sh"
 
 do_install() {
 	info "[lsd] Install"
+	# shellcheck source=../../.cargo/env
+	source "${HOME}/.cargo/env"
 	cargo install lsd
 }
 
