@@ -22,7 +22,7 @@ do_configure() {
 	info "[ohmyzsh] Configure"
 	info "[ohmyzsh][configure] Download plugins"
 	declare -A plugins=(
-		["plugins/fast-syntax-highlighting"]="https://github.com/zdharma/fast-syntax-highlighting"
+		["plugins/fast-syntax-highlighting"]="https://github.com/z-shell/fast-syntax-highlighting"
 		["plugins/zsh-autosuggestions"]="https://github.com/zsh-users/zsh-autosuggestions"
 		["plugins/zsh-completions"]="https://github.com/zsh-users/zsh-completions"
 		["plugins/fzf-tab"]="https://github.com/Aloxaf/fzf-tab"
