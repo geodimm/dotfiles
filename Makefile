@@ -1,6 +1,7 @@
 include test.mk
 
 .DEFAULT_GOAL := all
+.PHONY: git
 
 all: system git languages terminal tools neovim ## Install and configure everything (default)
 help: ## Display help

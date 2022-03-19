@@ -23,5 +23,9 @@ is_installed() {
 download_to() {
 	local path=$1
 	local url=$2
-	curl --retry-connrefused --retry 5 --create-dirs -fsLo "${path}" "${url}"
+	local opts=(--silent --fail --retry-connrefused --retry 5 --location -H "Accept: application/octet-stream")
+	if [ -n "${path}" ]; then
+		opts+=(--create-dirs --output "${path}")
+	fi
+	curl "${opts[@]}" "${url}"
 }

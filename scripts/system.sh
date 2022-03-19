@@ -43,8 +43,8 @@ do_install() {
 	export DEBIAN_FRONTEND=noninteractive
 	sudo apt-add-repository -y ppa:git-core/ppa
 	sudo apt-add-repository -y ppa:neovim-ppa/stable
-	sudo apt-get update
-	sudo apt-get install -y "${packages[@]}"
+	sudo apt-get update -q
+	sudo apt-get install -q -y "${packages[@]}"
 }
 
 do_configure() {
@@ -67,11 +67,11 @@ do_configure() {
 	info "[system][configure] Install patched fonts"
 	local install_dir="/tmp/nerd-fonts"
 	rm -rf "${install_dir}" && mkdir -p "${install_dir}"
-	git clone --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"
+	git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"
 	cd "${install_dir}"
 	git sparse-checkout add patched-fonts/Meslo/L/Regular
 	find . -type f -name '*.ttf' ! -name '*Windows*' -exec cp "{}" "${FONTS_DIR}" \;
-	sudo fc-cache -f -v
+	sudo fc-cache -f
 }
 
 main() {
