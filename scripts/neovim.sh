@@ -5,20 +5,7 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-RVM_DIR="${HOME}/.rvm"
 NVM_DIR="${HOME}/.nvm"
-
-do_install() {
-	if is_installed nvim; then
-		info "[neovim] Already installed"
-		return
-	fi
-
-	info "[neovim] Install"
-	sudo add-apt-repository ppa:neovim-ppa/stable -y
-	sudo apt update
-	sudo apt install -y neovim
-}
 
 do_configure() {
 	info "[neovim] Configure"
@@ -33,31 +20,37 @@ do_configure() {
 	sudo update-alternatives --set editor "$nvim_path"
 
 	info "[neovim][configure] Create symlinks"
-	rm -f "${XDG_CONFIG_HOME}/nvim"
+	rm -rf "${XDG_CONFIG_HOME}/nvim"
+	mkdir -p "${XDG_CONFIG_HOME}"
 	ln -fs "$(pwd)/nvim" "${XDG_CONFIG_HOME}/nvim"
 
 	info "[neovim][configure] Install the neovim package for languages"
+	info "[neovim][configure][languages] Python"
 	python3 -m pip install neovim neovim-remote --user
-	# shellcheck source=../../.rvm/scripts/rvm
-	source "${RVM_DIR}/scripts/rvm" && gem install neovim
+
+	info "[neovim][configure][languages] Node.js"
 	# shellcheck source=../../.nvm/nvm.sh
 	source "${NVM_DIR}/nvm.sh" && npm install -g neovim
 
 	info "[neovim][configure] Install dependencies for LSP"
+	info "[neovim][configure][dependencies] yarn"
 	# shellcheck source=../../.nvm/nvm.sh
 	source "${NVM_DIR}/nvm.sh"
-	info "[neovim][configure][deps] yarn"
 	npm install -g yarn
-	info "[neovim][configure][deps] markdownlint-cli"
+
+	info "[neovim][configure] Install linters for LSP"
+
+	info "[neovim][configure][linters] markdownlint-cli"
 	npm install -g markdownlint-cli
-	info "[neovim][configure][deps] hadolint"
+
+	info "[neovim][configure][linters] hadolint"
 	asset=$(curl --silent "https://api.github.com/repos/hadolint/hadolint/releases/latest" | jq -r '.assets // [] | .[] | select(.name | startswith("hadolint-Linux")) | .url')
 	curl --silent --location -H "Accept: application/octet-stream" "${asset}" --output "$HOME/bin/hadolint" && chmod +x "$HOME/bin/hadolint"
-	info "[neovim][configure][deps] luaformatter"
-	sudo luarocks install --server=https://luarocks.org/dev luaformatter
-	info "[neovim][configure][deps] shfmt"
+
+	info "[neovim][configure][linters] shfmt"
 	/usr/local/go/bin/go install mvdan.cc/sh/v3/cmd/shfmt@latest
-	info "[neovim][configure][deps] golangci-lint"
+
+	info "[neovim][configure][linters] golangci-lint"
 	/usr/local/go/bin/go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 	ln -fs "$(pwd)/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
 }
@@ -65,10 +58,6 @@ do_configure() {
 main() {
 	command=$1
 	case $command in
-	"install")
-		shift
-		do_install "$@"
-		;;
 	"configure")
 		shift
 		do_configure "$@"

@@ -21,7 +21,7 @@ do_install() {
 
 do_configure() {
 	info "[bat] Configure"
-	info "[bat][configure] Create symlinks"
+	info "[bat][configure] Create config file symlink"
 	mkdir -p "${XDG_CONFIG_HOME}/bat"
 	ln -fs "$(pwd)/bat/config" "${XDG_CONFIG_HOME}/bat/config"
 }
