@@ -15,7 +15,7 @@ do_install() {
 
 	info "[lsd] Install"
 	local lsd=/tmp/lsd.deb
-	download_to "${lsd}" "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/lsd_${LSD_VERSION}_amd64.deb"
+	download "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/lsd_${LSD_VERSION}_amd64.deb" "${lsd}"
 	sudo dpkg -i "${lsd}"
 }
 

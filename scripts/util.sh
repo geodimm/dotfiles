@@ -20,12 +20,12 @@ is_installed() {
 	type -P "$1" >/dev/null 2>&1
 }
 
-download_to() {
-	local path=$1
-	local url=$2
+download() {
+	local src=$1
+	local dest=$2
 	local opts=(--silent --fail --retry-connrefused --retry 5 --location -H "Accept: application/octet-stream")
-	if [ -n "${path}" ]; then
-		opts+=(--create-dirs --output "${path}")
+	if [ -n "${dest}" ]; then
+		opts+=(--create-dirs --output "${dest}")
 	fi
-	curl "${opts[@]}" "${url}"
+	curl "${opts[@]}" "${src}"
 }
