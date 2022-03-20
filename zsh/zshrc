@@ -116,21 +116,30 @@ export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=dark,fg:7,bg:-1,hl:5,fg+:15
 export FZF_CTRL_R_OPTS="--layout=reverse --preview-window hidden"
 
 # fzf-tab settings
-local extract="
-# trim input(what you select)
-local in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
-# get ctxt for current completion(some thing before or after the current word)
-local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
-# real path
-local realpath=\${ctxt[IPREFIX]}\${ctxt[hpre]}\$in
-realpath=\${(Qe)~realpath}
-"
-
-# The preview command used by fzf-tab (show file or directory contents on completion)
-zstyle ':fzf-tab:complete:*:*' extra-opts --preview=$extract'(bat --color=always --pager=never ${realpath} || lsd --color=always --long -A --group-dirs=first ${realpath}) 2>/dev/null'
+#
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# switch group using `,` and `.`
+zstyle ':fzf-tab:*' switch-group ',' '.'
+# remove prefix
+zstyle ':fzf-tab:*' prefix ''
 
 # Whether to automatically insert a space after the result.
 zstyle ':fzf-tab:*' insert-space false
+
+# The preview command used by fzf-tab (show file or directory contents on completion)
+zstyle ':fzf-tab:complete:*:*' fzf-preview '(bat --color=always --pager=never ${realpath} || lsd --color=always --long -A --group-dirs=first ${realpath}) 2>/dev/null'
+
+# give a preview of commandline arguments when completing `kill`
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+
+# show systemd unit status
+zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+
+# environment variable
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
 
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
