@@ -43,8 +43,8 @@ do_install() {
 	export DEBIAN_FRONTEND=noninteractive
 	sudo apt-add-repository -y ppa:git-core/ppa
 	sudo apt-add-repository -y ppa:neovim-ppa/stable
-	sudo apt-get update -q
-	sudo apt-get install -q -y "${packages[@]}"
+	sudo apt-get update -qq
+	sudo apt-get install -qq -y "${packages[@]}"
 }
 
 do_configure() {
