@@ -20,7 +20,6 @@ plugins=(
     httpie
     kubectl
     npm
-    rvm
     terraform
     tmux
     vi-mode
@@ -90,10 +89,6 @@ fi
 # Node Version Manager {{{2
 export NVM_DIR="${HOME}/.nvm"
 test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh";
-
-# Ruby Version Manager {{{2
-export RVM_DIR="${HOME}/.rvm"
-test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm"
 
 # Source files {{{2
 # Load aliases
