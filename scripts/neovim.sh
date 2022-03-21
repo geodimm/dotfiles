@@ -48,6 +48,16 @@ do_configure() {
 	download "${asset}" "${hadolint}"
 	chmod +x "${hadolint}"
 
+	info "[neovim][configure][linters] stylua"
+	asset=$(curl --silent "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest" | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url')
+	if [[ -z $asset ]]; then
+		warn "Cannot find a release. Please try again later."
+	else
+		local stylua="${HOME}/bin/stylua"
+		download "${asset}" "" | gunzip -c >"${stylua}"
+		chmod +x "${stylua}"
+	fi
+
 	info "[neovim][configure][linters] shfmt"
 	/usr/local/go/bin/go install mvdan.cc/sh/v3/cmd/shfmt@latest
 
