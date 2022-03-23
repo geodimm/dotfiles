@@ -21,8 +21,6 @@ do_install() {
 	(
 		cd /tmp
 		tar -xzf "${target}"
-	)
-	(
 		cd "${lua}"
 		make linux test
 		sudo make install
@@ -40,8 +38,6 @@ do_install() {
 	(
 		cd /tmp
 		tar -xzf "${target}"
-	)
-	(
 		cd "${luarocks}"
 		./configure --with-lua-include=/usr/local/include
 		make
