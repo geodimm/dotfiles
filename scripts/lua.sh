@@ -18,11 +18,15 @@ do_install() {
 	local lua="lua-${LUA_VERSION}"
 	local target="/tmp/${lua}.tar.gz"
 	download "http://www.lua.org/ftp/${lua}.tar.gz" "${target}"
-	cd /tmp
-	tar -xzf "${target}"
-	cd "${lua}"
-	make linux test
-	sudo make install
+	(
+		cd /tmp
+		tar -xzf "${target}"
+	)
+	(
+		cd "${lua}"
+		make linux test
+		sudo make install
+	)
 
 	if [[ "$(luarocks --version 2>/dev/null)" == *"${LUAROCKS_VERSION}"* ]]; then
 		info "[luarocks] ${LUAROCKS_VERSION} already installed"
@@ -33,12 +37,16 @@ do_install() {
 	local luarocks="luarocks-${LUAROCKS_VERSION}"
 	local target="/tmp/${luarocks}.tar.gz"
 	download "http://www.luarocks.org/releases/${luarocks}.tar.gz" "${target}"
-	cd /tmp
-	tar -xzf "${target}"
-	cd "${luarocks}"
-	./configure --with-lua-include=/usr/local/include
-	make
-	sudo make install
+	(
+		cd /tmp
+		tar -xzf "${target}"
+	)
+	(
+		cd "${luarocks}"
+		./configure --with-lua-include=/usr/local/include
+		make
+		sudo make install
+	)
 }
 
 main() {
