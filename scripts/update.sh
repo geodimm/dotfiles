@@ -28,6 +28,9 @@ system() {
 
 nvim() {
 	local funcname="${FUNCNAME[0]}"
+	info "[${funcname}] Update neovim"
+	make -C ~/dotfiles neovim-nightly
+
 	info "[${funcname}] Update plugins"
 	vim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
