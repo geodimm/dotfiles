@@ -14,7 +14,7 @@ if cmd_path lsd; then
     LS_OPTS="--color=always --long --group-dirs first"
     alias ls="lsd ${LS_OPTS}"
     alias lt="ls -t --reverse"
-    alias la="ls --almost-all"
+    alias la="ls -a"
 else
     LS_OPTS="--color=auto --group-directories-first"
     alias ls="ls ${LS_OPTS}"
