@@ -34,7 +34,7 @@ alias gu="git stash && git pull && git stash pop || true"
 
 # docker
 docker-clean() {
-    docker rm -f $(docker ps -qa) && docker volume rm $(docker volume ls -q)
+    docker container prune -f && docker volume prune -f && docker network prune -f
 }
 
 # aws
