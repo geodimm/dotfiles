@@ -27,6 +27,7 @@ do_configure() {
 		["plugins/zsh-completions"]="https://github.com/zsh-users/zsh-completions"
 		["plugins/fzf-tab"]="https://github.com/Aloxaf/fzf-tab"
 		["plugins/you-should-use"]="https://github.com/MichaelAquilina/zsh-you-should-use"
+		["plugins/zsh-nvm"]="https://github.com/lukechilds/zsh-nvm"
 		["themes/powerlevel10k"]="https://github.com/romkatv/powerlevel10k"
 	)
 	for path in "${!plugins[@]}"; do
