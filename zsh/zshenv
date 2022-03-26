@@ -1,7 +1,32 @@
-if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
-    source "${VIRTUAL_ENV}/bin/activate"
+#!/usr/bin/env zsh
+# vim: set filetype=zsh
+
+# Add more dirs to PATH
+if [[ ! "${PATH}" == *:.* ]]; then
+    export PATH="${PATH}:${HOME}/.bin:."
 fi
 
-if [[ -f "${HOME}/.cargo/env" ]]; then
-    source "${HOME}/.cargo/env"
+# Golang
+export GOPATH="${HOME}/go"
+if [[ ! "${PATH}" == */usr/local/go/bin* ]]; then
+    export PATH="${PATH}:/usr/local/go/bin"
 fi
+
+if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
+    export PATH="${PATH}:${GOPATH}/bin"
+fi
+
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
+
+# Set the system-wide editor
+export EDITOR=nvim
+
+# Set XDG_CONFIG_HOME
+export XDG_CONFIG_HOME="${HOME}/.config"
+
+# Set the GPG_TTY to the current TTY
+export GPG_TTY=${TTY}
+
+# Rust
+test -f "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
