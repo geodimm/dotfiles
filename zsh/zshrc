@@ -44,6 +44,7 @@ DISABLE_MAGIC_FUNCTIONS=true
 
 # Enable Node Version Manager lazy load
 export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
 # }}}
 
 # Load oh-my-zsh
