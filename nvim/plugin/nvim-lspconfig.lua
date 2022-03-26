@@ -134,7 +134,7 @@ local lsp_config = {
       JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64',
       GRADLE_HOME = vim.fn.expand('$HOME/gradle'),
       JAR = vim.fn.expand(
-        '$HOME/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.400.v20211116-1129.jar'
+        '$HOME/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.400.*.jar'
       ),
       JDTLS_CONFIG = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/config_linux'),
       WORKSPACE = vim.fn.expand('$HOME/java/workspace'),
