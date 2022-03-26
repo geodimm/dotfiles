@@ -27,9 +27,13 @@ plugins=(
     z
     zsh-autosuggestions
     zsh-completions
+    zsh-nvm
     fzf-tab # fzf-tab should be the last plugin to bind "^I"
 )
 
+# Settings that must be applid before loading Oh-My-Zsh {{{2
+
+# Set the theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Use case-sensitive completion
@@ -38,13 +42,18 @@ CASE_SENSITIVE="true"
 # Fix slow paste
 DISABLE_MAGIC_FUNCTIONS=true
 
+# Enable Node Version Manager lazy load
+export NVM_LAZY_LOAD=true
+# }}}
+
 # Load oh-my-zsh
 source "${ZSH}/oh-my-zsh.sh"
+
+# ZSH {{{1
 
 # Apply sensisble zsh settings
 source ~/dotfiles/zsh/zshopt
 
-# ZSH {{{1
 # Bind C+Space to accept the current suggestion
 bindkey '^ ' autosuggest-accept
 
@@ -85,11 +94,6 @@ export GOPATH="${HOME}/go"
 if [[ ! "$PATH" == */usr/local/go/bin* ]]; then
     export PATH="${PATH}:/usr/local/go/bin:${GOPATH}/bin"
 fi
-
-# Node Version Manager {{{2
-export NVM_DIR="${HOME}/.nvm"
-test -f "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh";
-
 # Source files {{{2
 # Load aliases
 source ~/dotfiles/zsh/aliases.zsh
