@@ -21,7 +21,7 @@ require('packer').startup({
     -- Vanity {{{1
     use('wbthomason/packer.nvim')
     use('mhinz/vim-startify')
-    use({'akinsho/nvim-bufferline.lua', branch='main'})
+    use({ 'akinsho/nvim-bufferline.lua', branch = 'main' })
     use('hoob3rt/lualine.nvim')
     use('gruvbox-community/gruvbox')
     use('arcticicestudio/nord-vim')
@@ -35,7 +35,7 @@ require('packer').startup({
 
     -- IDE-like features {{{1
     use('kyazdani42/nvim-tree.lua')
-    use({ 'akinsho/nvim-toggleterm.lua', branch='main' })
+    use({ 'akinsho/nvim-toggleterm.lua', branch = 'main' })
     use('rhysd/git-messenger.vim')
     use('tpope/vim-fugitive')
     use('folke/which-key.nvim')
