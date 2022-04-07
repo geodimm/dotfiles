@@ -43,10 +43,14 @@ do_configure() {
 	npm install --quiet -g markdownlint-cli
 
 	info "[neovim][configure][linters] hadolint"
-	asset=$(curl --silent "https://api.github.com/repos/hadolint/hadolint/releases/latest" | jq -r '.assets // [] | .[] | select(.name | startswith("hadolint-Linux")) | .url')
-	local hadolint="${HOME}/bin/hadolint"
-	download "${asset}" "${hadolint}"
-	chmod +x "${hadolint}"
+	asset=$(curl --silent "https://api.github.com/repos/hadolint/hadolint/releases/latest" | jq -r '.assets // [] | .[] | select(.name | startswith("hadolint-Linux-x86_64")) | .url')
+	if [[ -z $asset ]]; then
+		warn "Cannot find a release. Please try again later."
+	else
+		local hadolint="${HOME}/bin/hadolint"
+		download "${asset}" "${hadolint}"
+		chmod +x "${hadolint}"
+	fi
 
 	info "[neovim][configure][linters] stylua"
 	asset=$(curl --silent "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest" | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url')
