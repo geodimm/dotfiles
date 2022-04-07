@@ -3,8 +3,13 @@
 
 # Add more dirs to PATH
 if [[ ! "${PATH}" == *:.* ]]; then
-    export PATH="${PATH}:${HOME}/.bin:."
+    export PATH="${PATH}:."
 fi
+for dir in bin .bin; do
+    if [[ ! "${PATH}" == *${HOME}/${dir}* ]]; then
+        export PATH="${HOME}/${dir}:${PATH}"
+    fi
+done
 
 # Golang
 export GOPATH="${HOME}/go"
