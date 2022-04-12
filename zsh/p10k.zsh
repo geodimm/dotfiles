@@ -49,6 +49,7 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
+    context                 # user@hostname
     form3_shell             # f3 shell indicator
     vim_shell               # vim shell indicator (:sh)
     dir                     # current directory
@@ -170,6 +171,11 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
   # No line introducer if prompt_char is the first segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
+
+  ##################################[ context: user@hostname ]##################################
+  # Don't show context unless running with privileges or in SSH.
+  # Tip: Remove the next line to always show context.
+  typeset -g POWERLEVEL9K_CONTEXT_{DEFAULT,SUDO}_{CONTENT,VISUAL_IDENTIFIER}_EXPANSION=
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
