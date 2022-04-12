@@ -24,3 +24,7 @@ linters:
     - nestif
     - nolintlint
     - prealloc
+linters-settings:
+  govet:
+      enable:
+        - fieldalignment
