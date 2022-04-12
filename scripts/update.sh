@@ -17,13 +17,13 @@ system() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update packages"
 	sudo apt-get update -qq
-	sudo apt-get upgrade -qq
+	sudo apt-get upgrade
 
 	info "[${funcname}] Remove unused packages"
-	sudo apt-get autoclean -qq
+	sudo apt-get autoclean
 
 	info "[${funcname}] Erase old downloaded archive files"
-	sudo apt-get autoremove -qq
+	sudo apt-get autoremove
 }
 
 nvim() {
