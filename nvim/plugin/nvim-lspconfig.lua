@@ -153,7 +153,14 @@ local lsp_config = {
     },
   },
   sumneko_lua = require('lua-dev').setup({
-    lspconfig = { settings = { Lua = { diagnostics = { globals = { 'use' } } } } },
+    lspconfig = {
+      settings = {
+        Lua = {
+          diagnostics = { globals = { 'use' } },
+          workspace = { maxPreload = 10000, preloadFileSize = 10000, checkThirdParty = false },
+        },
+      },
+    },
   }),
   jdtls = {
     -- cmd = {
