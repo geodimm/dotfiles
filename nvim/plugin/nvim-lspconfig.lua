@@ -109,6 +109,7 @@ local lsp_config = {
           generate = true,
           upgrade_dependency = true,
           gc_details = true,
+          test = true,
         },
         analyses = {
           ST1003 = false,
@@ -116,7 +117,7 @@ local lsp_config = {
           unusedparams = true,
           fillreturns = true,
           nonewvars = true,
-          fieldalignment = false,
+          fieldalignment = true,
           shadow = true,
           useany = true,
           nilness = true,
