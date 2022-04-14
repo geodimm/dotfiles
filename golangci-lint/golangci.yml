@@ -26,5 +26,5 @@ linters:
     - prealloc
 linters-settings:
   govet:
-      enable:
-        - fieldalignment
+    enable:
+      - fieldalignment
