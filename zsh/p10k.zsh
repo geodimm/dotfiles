@@ -755,7 +755,7 @@
 
   ####################################[ form3_shell: f3 shell indicator ]#######################
   function prompt_form3_shell() {
-    if (( ${+F3_SESS} )); then
+    if (( ${+F3_SESS_EXPIRY} )); then
       local total=$((F3_SESS_EXPIRY - $(date +%s)))
       local mins=$((total / 60))
       local color="$(_minutes_to_hex $mins)"
