@@ -1,15 +1,19 @@
 vim.opt.syntax = 'on'
-vim.api.nvim_exec(
-  [[
-augroup customise_highlight_groups
-    autocmd!
-    " Highlight trailing whitespaces
-    autocmd ColorScheme * highlight link trailingWhiteSpace SpecialChar
-    autocmd BufNewFile,BufReadPost * match trailingWhiteSpace /\s\+$/
-augroup end
-]],
-  false
-)
+vim.api.nvim_create_augroup('customise_highlight_groups', { clear = true })
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = 'customise_highlight_groups',
+  pattern = '*',
+  callback = function()
+    vim.cmd(':highlight link trailingWhiteSpace SpecialChar')
+  end,
+})
+vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPost' }, {
+  group = 'customise_highlight_groups',
+  pattern = '*',
+  callback = function()
+    vim.cmd(':match trailingWhiteSpace /s+$/')
+  end,
+})
 
 vim.opt.termguicolors = true
 vim.go.t_8f = '[[38;2;%lu;%lu;%lum'

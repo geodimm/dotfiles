@@ -109,36 +109,39 @@ vim.g.python3_host_prog = '/usr/bin/python3'
 
 -- Augroups {{{1
 -- Toggle highlighting current line only in active splits
-vim.api.nvim_exec(
-  [[
-augroup toggle_current_line_hl
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave *                      setlocal nocursorline
-augroup end
-]],
-  false
-)
+vim.api.nvim_create_augroup('toggle_current_line_hl', { clear = true })
+vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter' }, {
+  group = 'toggle_current_line_hl',
+  pattern = '*',
+  callback = function()
+    vim.cmd(':setlocal cursorline')
+  end,
+})
+vim.api.nvim_create_autocmd('VimLeave', {
+  group = 'toggle_current_line_hl',
+  pattern = '*',
+  callback = function()
+    vim.cmd(':setlocal nocursorline')
+  end,
+})
 
 -- Wrap lines to 72 characters in git commit messages and use 2 spaces for tab
-vim.api.nvim_exec(
-  [[
-augroup gitcommit_filetype_settings
-    autocmd!
-    autocmd FileType gitcommit setlocal spell textwidth=72 shiftwidth=2 tabstop=2 colorcolumn=+1 colorcolumn+=51
-augroup end
-]],
-  false
-)
+vim.api.nvim_create_augroup('gitcommit_filetype_settings', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'gitcommit_filetype_settings',
+  pattern = 'gitcommit',
+  callback = function()
+    vim.cmd(':setlocal spell textwidth=72 shiftwidth=2 tabstop=2 colorcolumn=+1 colorcolumn+=51')
+  end,
+})
 
 -- Enable spelling in Markdown files
-vim.api.nvim_exec(
-  [[
-augroup markdown_filetype_settings
-    autocmd!
-    autocmd FileType markdown setlocal spell
-augroup end
-]],
-  false
-)
+vim.api.nvim_create_augroup('markdown_filetype_settings', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'markdown_filetype_settings',
+  pattern = 'markdown',
+  callback = function()
+    vim.cmd(':setlocal spell')
+  end,
+})
 --- }}}

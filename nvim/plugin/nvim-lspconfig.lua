@@ -1,14 +1,13 @@
 local lspinstaller = require('nvim-lsp-installer')
 
-vim.api.nvim_exec(
-  [[
-augroup lsp_formatting
-    autocmd!
-    autocmd BufWritePre *.go,*.lua,*.tf,*.sh,*.bash,*.js,*.yaml,*.yml,*.json,*.html lua vim.lsp.buf.formatting_seq_sync()
-    augroup end
-]],
-  false
-)
+vim.api.nvim_create_augroup('lsp_formatting', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = 'lsp_formatting',
+  pattern = { '*.c', '*.h', '*.go', '*.lua', '*.tf', '*.sh', '*.bash', '*.js', '*.yaml', '*.yml', '*.json', '*.html' },
+  callback = function()
+    vim.lsp.buf.formatting_seq_sync()
+  end,
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -79,16 +78,21 @@ local on_attach = function(client, bufnr)
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec(
-      [[
-        augroup lsp_document_highlight
-            autocmd! * <buffer>
-            autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        augroup END
-            ]],
-      false
-    )
+    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
+    vim.api.nvim_create_autocmd('CursorHold', {
+      group = 'lsp_document_highlight',
+      pattern = '<buffer>',
+      callback = function()
+        vim.lsp.buf.document_highlight()
+      end,
+    })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      group = 'lsp_document_highlight',
+      pattern = '<buffer>',
+      callback = function()
+        vim.lsp.buf.clear_references()
+      end,
+    })
   end
 end
 
