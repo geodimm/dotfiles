@@ -5,17 +5,18 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
-vim.api.nvim_exec(
-  [[
-augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-augroup end
-]],
-  false
-)
+local packer = require('packer')
+local use = packer.use
 
-local use = require('packer').use
+vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  group = 'Packer',
+  pattern = 'init.lua',
+  callback = function()
+    packer.compile()
+  end,
+})
+
 require('packer').startup({
   function()
     -- Vanity {{{1
