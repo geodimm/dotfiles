@@ -10,6 +10,7 @@ source "${HOME}/dotfiles/scripts/util.sh"
 main() {
 	system
 	nvim
+	gopls
 	omz
 }
 
@@ -33,6 +34,12 @@ nvim() {
 
 	info "[${funcname}] Update plugins"
 	vim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+}
+
+gopls() {
+	local funcname="${FUNCNAME[0]}"
+	info "[${funcname}] Update gopls"
+	go install golang.org/x/tools/gopls@latest
 }
 
 omz() {
