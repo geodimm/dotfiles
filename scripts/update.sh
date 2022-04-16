@@ -7,14 +7,14 @@ set -o pipefail # don't hide errors within pipes
 # shellcheck source=./util.sh
 source "${HOME}/dotfiles/scripts/util.sh"
 
-main() {
+function main() {
 	system
 	nvim
 	gopls
 	omz
 }
 
-system() {
+function system() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update packages"
 	sudo apt-get update -qq
@@ -27,7 +27,7 @@ system() {
 	sudo apt-get autoremove -y
 }
 
-nvim() {
+function nvim() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update neovim"
 	make -C ~/dotfiles neovim-nightly
@@ -36,13 +36,13 @@ nvim() {
 	vim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
-gopls() {
+function gopls() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update gopls"
 	go install golang.org/x/tools/gopls@latest
 }
 
-omz() {
+function omz() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update"
 	zsh -c 'source ${HOME}/.zshrc && omz update && exit'
