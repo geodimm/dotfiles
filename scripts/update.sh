@@ -16,8 +16,10 @@ function main() {
 
 function system() {
 	local funcname="${FUNCNAME[0]}"
-	info "[${funcname}] Update packages"
+	info "[${funcname}] Retrieve new lists of packages"
 	sudo apt-get update -qq
+
+	info "[${funcname}] Upgrade packages"
 	sudo apt-get upgrade -y
 
 	info "[${funcname}] Remove unused packages"
