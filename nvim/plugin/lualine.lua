@@ -1,3 +1,5 @@
+local config = require('config/theme')
+
 function Trunc10(s)
   local result = string.sub(s, 0, 10)
   if string.len(s) > 10 then
@@ -6,11 +8,9 @@ function Trunc10(s)
   return result
 end
 
-local diff_colours = require('tokyonight.colors').setup()
-
 require('lualine').setup({
   options = {
-    theme = 'tokyonight',
+    theme = config.theme,
     section_separators = { '', '' },
     component_separators = { '', '' },
     icons_enabled = true,
@@ -22,9 +22,9 @@ require('lualine').setup({
       {
         'diff',
         right_padding = 0,
-        color_added = diff_colours.green,
-        color_modified = diff_colours.yellow,
-        color_removed = diff_colours.red,
+        color_added = 'green',
+        color_modified = 'yellow',
+        color_removed = 'red',
       },
       { 'branch', icon = '', format = Trunc10 },
     },
