@@ -114,4 +114,4 @@ require('packer').startup({
 
 require('config/settings')
 require('config/mappings')
-require('config/theme')
+require('config/theme').setup()
