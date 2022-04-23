@@ -72,6 +72,10 @@ packer.startup({
       requires = { 'nvim-telescope/telescope.nvim' },
     })
     use('kosayoda/nvim-lightbulb')
+    use({
+      'folke/trouble.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+    })
 
     -- Tmux integration {{{1
     use('tmux-plugins/vim-tmux')
