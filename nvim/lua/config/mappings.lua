@@ -99,12 +99,12 @@ command! BufOnly silent! execute "%bd|e#|bd#"
 )
 vim.api.nvim_set_keymap('', '<leader>b', ':BufOnly<CR>', { noremap = true })
 
-local status_ok, which_key = pcall(require, 'which-key')
+local status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
 end
 
-which_key.register({
+wk.register({
   ['<C-f>'] = 'Open file under cursor',
   ['<C-h>'] = 'Move left',
   ['<C-j>'] = 'Move down',
@@ -127,7 +127,7 @@ which_key.register({
   },
   Y = 'Yank til end of line',
 })
-which_key.register({
+wk.register({
   ['<leader>S'] = 'Sort selected lines',
   ['<leader>w'] = 'Save',
   ['<leader>q'] = 'Close/Quit',

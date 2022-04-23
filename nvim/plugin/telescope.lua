@@ -1,9 +1,9 @@
-local telescope, which_key, status_ok
+local telescope, wk, status_ok
 status_ok, telescope = pcall(require, 'telescope')
 if not status_ok then
   return
 end
-status_ok, which_key = pcall(require, 'which-key')
+status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
 end
@@ -125,7 +125,7 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
-which_key.register({
+wk.register({
   ['<leader>f'] = {
     ['*'] = 'Word under cursor',
     ['/'] = 'Current file',

@@ -21,9 +21,9 @@ vim.g.startify_session_before_save = { 'silent! NvimTreeClose' }
 
 vim.api.nvim_set_keymap('n', '<leader>p', ':Startify<CR>', { noremap = true })
 
-local status_ok, which_key = pcall(require, 'which-key')
+local status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
 end
 
-which_key.register({ ['<leader>p'] = 'Open Startify' })
+wk.register({ ['<leader>p'] = 'Open Startify' })
