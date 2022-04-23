@@ -1,16 +1,11 @@
-local config = require('config/theme')
-
-function Trunc10(s)
-  local result = string.sub(s, 0, 10)
-  if string.len(s) > 10 then
-    result = result .. '…'
-  end
-  return result
+local status_ok, lualine = pcall(require, 'lualine')
+if not status_ok then
+  return
 end
 
-require('lualine').setup({
+lualine.setup({
   options = {
-    theme = config.theme,
+    theme = require('config.theme').theme,
     section_separators = { '', '' },
     component_separators = { '', '' },
     icons_enabled = true,
@@ -26,7 +21,17 @@ require('lualine').setup({
         color_modified = 'yellow',
         color_removed = 'red',
       },
-      { 'branch', icon = '', format = Trunc10 },
+      {
+        'branch',
+        icon = '',
+        format = function(s)
+          local result = string.sub(s, 0, 10)
+          if string.len(s) > 10 then
+            result = result .. '…'
+          end
+          return result
+        end,
+      },
     },
     lualine_c = {
       { 'filename', file_status = true },

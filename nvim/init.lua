@@ -1,24 +1,36 @@
 -- vim: foldmethod=marker
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local packer_bootstrap = false
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.api.nvim_command('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
+  vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
+  packer_bootstrap = vim.fn.system({
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path,
+  })
 end
 
-local packer = require('packer')
-local use = packer.use
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, 'packer')
+if not status_ok then
+  return
+end
 
-vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_augroup('packer_on_save', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
-  group = 'Packer',
+  group = 'packer_on_save',
   pattern = 'init.lua',
   callback = function()
     packer.compile()
   end,
 })
 
-require('packer').startup({
-  function()
+packer.startup({
+  function(use)
     -- Vanity {{{1
     use('wbthomason/packer.nvim')
     use('mhinz/vim-startify')
@@ -102,6 +114,12 @@ require('packer').startup({
       end,
     })
     -- }}}
+
+    -- Automatically set up your configuration after cloning packer.nvim
+    -- Put this at the end after all plugins
+    if packer_bootstrap then
+      packer.sync()
+    end
   end,
   config = {
     display = {
@@ -112,6 +130,6 @@ require('packer').startup({
   },
 })
 
-require('config/settings')
-require('config/mappings')
-require('config/theme').setup()
+require('config.settings')
+require('config.mappings')
+require('config.theme').setup()

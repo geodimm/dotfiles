@@ -1,4 +1,14 @@
-require('toggleterm').setup({
+local toggleterm, wk, status_ok
+status_ok, toggleterm = pcall(require, 'toggleterm')
+if not status_ok then
+  return
+end
+status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
+toggleterm.setup({
   size = function(term)
     if term.direction == 'horizontal' then
       return vim.o.lines * 0.25
@@ -23,6 +33,6 @@ end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-require('which-key').register({
+wk.register({
   ['<leader>t'] = { name = '+toggleterm', t = 'Open terminal' },
 })

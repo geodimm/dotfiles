@@ -1,6 +1,16 @@
+local bufferline, wk, status_ok
+status_ok, bufferline = pcall(require, 'bufferline')
+if not status_ok then
+  return
+end
+status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
 local lsp_icons = require('config.icons').lsp
 
-require('bufferline').setup({
+bufferline.setup({
   options = {
     diagnostics = 'nvim_lsp',
     max_name_length = 20,
@@ -20,7 +30,7 @@ require('bufferline').setup({
 vim.api.nvim_set_keymap('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
-require('which-key').register({
+wk.register({
   ['[b'] = { 'Previous buffer' },
   [']b'] = { 'Next buffer' },
 })
