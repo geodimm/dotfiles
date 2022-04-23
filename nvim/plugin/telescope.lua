@@ -3,6 +3,10 @@ status_ok, telescope = pcall(require, 'telescope')
 if not status_ok then
   return
 end
+status_ok, _ = pcall(require, 'trouble')
+if not status_ok then
+  return
+end
 status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
@@ -11,6 +15,7 @@ end
 local sorters = require('telescope.sorters')
 local previewers = require('telescope.previewers')
 local themes = require('telescope.themes')
+local trouble = require('trouble.providers.telescope')
 
 telescope.setup({
   defaults = {
@@ -49,6 +54,10 @@ telescope.setup({
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
     dynamic_preview_title = true,
+    mappings = {
+      i = { ['<C-r>'] = trouble.open_with_trouble },
+      n = { ['<C-r>'] = trouble.open_with_trouble },
+    },
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = previewers.buffer_previewer_maker,
