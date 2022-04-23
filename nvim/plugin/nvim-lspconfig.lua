@@ -173,6 +173,7 @@ local lsp_config = {
         Lua = {
           diagnostics = { globals = { 'use' } },
           workspace = { maxPreload = 10000, preloadFileSize = 10000, checkThirdParty = false },
+          format = { enable = false },
         },
       },
     },
