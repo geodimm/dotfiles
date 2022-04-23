@@ -13,6 +13,7 @@ do_install() {
 		cmake
 		curl
 		dconf-cli
+		fd-find
 		fontconfig
 		git
 		htop
