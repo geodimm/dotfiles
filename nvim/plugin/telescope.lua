@@ -1,7 +1,17 @@
-local telescope = require('telescope')
+local telescope, which_key, status_ok
+status_ok, telescope = pcall(require, 'telescope')
+if not status_ok then
+  return
+end
+status_ok, which_key = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
 local sorters = require('telescope.sorters')
 local previewers = require('telescope.previewers')
 local themes = require('telescope.themes')
+
 telescope.setup({
   defaults = {
     vimgrep_arguments = {
@@ -115,7 +125,7 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
-require('which-key').register({
+which_key.register({
   ['<leader>f'] = {
     ['*'] = 'Word under cursor',
     ['/'] = 'Current file',

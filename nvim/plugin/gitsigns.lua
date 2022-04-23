@@ -1,4 +1,14 @@
-require('gitsigns').setup({
+local gitsigns, wk, status_ok
+status_ok, gitsigns = pcall(require, 'gitsigns')
+if not status_ok then
+  return
+end
+status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
+gitsigns.setup({
   signs = {
     add = { text = '▌' },
     change = { text = '▌' },
@@ -57,7 +67,6 @@ require('gitsigns').setup({
   end,
 })
 
-local wk = require('which-key')
 wk.register({
   [']c'] = { 'Next hunk' },
   ['[c'] = { 'Previous hunk' },
