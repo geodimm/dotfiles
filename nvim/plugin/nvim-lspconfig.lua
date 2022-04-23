@@ -1,4 +1,20 @@
-local lspinstaller = require('nvim-lsp-installer')
+local lspinstaller, wk, lua_dev, cmp_nvim_lsp, status_ok
+status_ok, lspinstaller = pcall(require, 'nvim-lsp-installer')
+if not status_ok then
+  return
+end
+status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+status_ok, lua_dev = pcall(require, 'lua-dev')
+if not status_ok then
+  return
+end
+status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if not status_ok then
+  return
+end
 
 local function org_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()
@@ -69,7 +85,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>cf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
 
-  local wk = require('which-key')
   wk.register({
     K = 'Documentation',
     ['<leader>g'] = {
@@ -152,7 +167,7 @@ local lsp_config = {
       tags = { skipUnexported = true },
     },
   },
-  sumneko_lua = require('lua-dev').setup({
+  sumneko_lua = lua_dev.setup({
     lspconfig = {
       settings = {
         Lua = {
@@ -293,7 +308,7 @@ local lsp_config = {
 -- Create config that activates keymaps and enables snippet support
 local function create_config(server)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
   capabilities.textDocument.completion.completionItem.snippetSupport = true
   capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = { 'documentation', 'detail', 'additionalTextEdits' },

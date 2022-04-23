@@ -1,5 +1,37 @@
-require('nvim-treesitter.configs').setup({
-  ensure_installed = 'all',
+local status_ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+if not status_ok then
+    return
+end
+
+treesitter_configs.setup({
+  ensure_installed = {
+    'bash',
+    'css',
+    'dockerfile',
+    'go',
+    'gomod',
+    'gowork',
+    'hcl',
+    'help',
+    'html',
+    'http',
+    'java',
+    'javascript',
+    'json',
+    'json5',
+    'jsonc',
+    'lua',
+    'make',
+    'markdown',
+    'python',
+    'regex',
+    'ruby',
+    'rust',
+    'scss',
+    'toml',
+    'vim',
+    'yaml',
+  },
   highlight = { enable = true },
   incremental_selection = {
     enable = true,

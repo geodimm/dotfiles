@@ -38,7 +38,7 @@ local setup = function()
   vim.g.vscode_style = 'dark'
   vim.g.vscode_italic_comment = 1
   vim.g.vscode_disable_nvimtree_bg = true
-  vim.cmd('colorscheme ' .. theme)
+  pcall(vim.cmd, 'colorscheme ' .. theme)
 end
 
 M.theme = theme

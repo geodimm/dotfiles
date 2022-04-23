@@ -1,3 +1,23 @@
+local spectre, wk, status_ok
+status_ok, spectre = pcall(require, 'spectre')
+if not status_ok then
+  return
+end
+status_ok, wk = pcall(require, 'which-key')
+if not status_ok then
+  return
+end
+
+spectre.setup({
+  mapping = {
+    ['send_to_qf'] = {
+      map = '<M-q>',
+      cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+      desc = 'send all item to quickfix',
+    },
+  },
+})
+
 vim.api.nvim_set_keymap('n', '<leader>sr', '<cmd>lua require("spectre").open()<CR>', { noremap = true })
 vim.api.nvim_set_keymap(
   'n',
@@ -8,17 +28,6 @@ vim.api.nvim_set_keymap(
 vim.api.nvim_set_keymap('v', '<leader>sw', ':lua require("spectre").open_visual()<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>sf', '<cmd>:lua require("spectre").open_file_search()<CR>', { noremap = true })
 
-require('spectre').setup({
-  mapping = {
-    ['send_to_qf'] = {
-      map = '<M-q>',
-      cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-      desc = 'send all item to quickfix',
-    },
-  },
-})
-
-local wk = require('which-key')
 wk.register({
   ['<leader>s'] = {
     name = '+spectre',
