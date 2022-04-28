@@ -1,11 +1,17 @@
 local nvim_tree, wk, status_ok
 status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
-    return
+  return
 end
 status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
-    return
+  return
+end
+
+function table.removeKey(table, key)
+  local element = table[key]
+  table[key] = nil
+  return table
 end
 
 vim.g.nvim_tree_respect_buf_cwd = 1
@@ -20,37 +26,12 @@ nvim_tree.setup({
   open_on_tab = false,
   hijack_cursor = false,
   update_cwd = false,
-  diagnostics = { enable = true, icons = require('config.icons').lsp },
+  diagnostics = { enable = true, icons = table.removeKey(require('config.icons').lsp, 'other') },
   update_focused_file = { enable = false, update_cwd = false, ignore_list = {} },
   system_open = { cmd = nil, args = {} },
-  renderer = {
-    icons = {
-      default = '',
-      symlink = '',
-      git = {
-        unstaged = '✗',
-        staged = '✓',
-        unmerged = '',
-        renamed = '➜',
-        untracked = '★',
-        deleted = '',
-      },
-      folder = {
-        arrow_open = '',
-        arrow_closed = '',
-        default = '',
-        open = '',
-        empty = '',
-        empty_open = '',
-        symlink = '',
-        symlink_open = '',
-      },
-    },
-  },
   view = {
     width = 40,
     side = 'left',
-    auto_resize = false,
     mappings = {
       custom_only = false,
       list = {
