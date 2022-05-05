@@ -79,9 +79,9 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     buf_set_keymap('n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>', opts)
-  elseif client.resolved_capabilities.document_range_formatting then
+  elseif client.server_capabilities.document_range_formatting then
     buf_set_keymap('n', '<leader>cf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
   end
 
@@ -111,7 +111,7 @@ local on_attach = function(client, bufnr)
   wk.register({ ['<leader>c'] = { a = 'Code actions' } }, { mode = 'v', buffer = bufnr })
 
   -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
+  if client.server_capabilities.document_highlight then
     vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
     vim.api.nvim_create_autocmd('CursorHold', {
       group = 'lsp_document_highlight',
