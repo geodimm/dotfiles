@@ -1,13 +1,13 @@
-local lspinstaller, wk, lua_dev, cmp_nvim_lsp, status_ok
+local lspinstaller, lspconfig, wk, cmp_nvim_lsp, status_ok
 status_ok, lspinstaller = pcall(require, 'nvim-lsp-installer')
 if not status_ok then
   return
 end
-status_ok, wk = pcall(require, 'which-key')
+status_ok, lspconfig = pcall(require, 'lspconfig')
 if not status_ok then
   return
 end
-status_ok, lua_dev = pcall(require, 'lua-dev')
+status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
 end
@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   group = 'lsp_formatting',
   pattern = { '*.c', '*.h', '*.go', '*.lua', '*.tf', '*.sh', '*.bash', '*.js', '*.yaml', '*.yml', '*.json', '*.html' },
   callback = function(args)
-    vim.lsp.buf.formatting_seq_sync()
+    vim.lsp.buf.format()
     local goSuffix = '.go'
     if args.match:sub(-string.len(goSuffix)) == goSuffix then
       org_imports(3000)
@@ -47,43 +47,29 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
+  -- local function buf_set_option(...)
+  --   vim.api.nvim_buf_set_option(bufnr, ...)
+  -- end
 
-  local function buf_set_option(...)
-    vim.api.nvim_buf_set_option(bufnr, ...)
-  end
+  -- -- Enable completion triggered by <c-x><c-o>
+  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Enable completion triggered by <c-x><c-o>
-  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  local opts = { noremap = true, silent = true }
-
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  buf_set_keymap('n', '<leader>gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', '<leader>gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  buf_set_keymap('n', '<leader>gI', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<leader>gi', '<cmd>lua vim.lsp.buf.incoming_calls()<CR>', opts)
-  buf_set_keymap('n', '<leader>go', '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>', opts)
-  buf_set_keymap('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', '<leader>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  buf_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-  buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<leader>cl', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
-
-  -- Set some keybinds conditional on server capabilities
-  if client.server_capabilities.document_formatting then
-    buf_set_keymap('n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting_seq_sync()<CR>', opts)
-  elseif client.server_capabilities.document_range_formatting then
-    buf_set_keymap('n', '<leader>cf', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
-  end
+  local opts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
+  vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
+  vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, opts)
+  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, opts)
+  vim.keymap.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, opts)
+  vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, opts)
+  vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, opts)
 
   wk.register({
     K = 'Documentation',
@@ -131,179 +117,198 @@ local on_attach = function(client, bufnr)
 end
 
 -- Define LSP configuration settings for languages
-local lsp_config = {
-  gopls = {
-    cmd = { vim.fn.expand('$HOME/go/bin/gopls'), '-remote=auto' },
-    settings = {
-      gopls = {
-        buildFlags = { '-tags=all,test_setup' },
-        codelenses = {
-          tidy = true,
-          vendor = true,
-          generate = true,
-          upgrade_dependency = true,
-          gc_details = true,
-          test = true,
+local build_lsp_config = {
+  gopls = function()
+    return {
+      cmd = { vim.fn.expand('$HOME/go/bin/gopls', nil, nil), '-remote=auto' },
+      settings = {
+        gopls = {
+          buildFlags = { '-tags=all,test_setup' },
+          codelenses = {
+            tidy = true,
+            vendor = true,
+            generate = true,
+            upgrade_dependency = true,
+            gc_details = true,
+            test = true,
+          },
+          analyses = {
+            ST1003 = false,
+            undeclaredname = true,
+            unusedparams = true,
+            fillreturns = true,
+            nonewvars = true,
+            fieldalignment = false,
+            shadow = true,
+            useany = true,
+            nilness = true,
+            unusedwrite = true,
+          },
+          staticcheck = true,
+          importShortcut = 'Both',
+          completionDocumentation = true,
+          linksInHover = true,
+          usePlaceholders = true,
+          hoverKind = 'FullDocumentation',
         },
-        analyses = {
-          ST1003 = false,
-          undeclaredname = true,
-          unusedparams = true,
-          fillreturns = true,
-          nonewvars = true,
-          fieldalignment = false,
-          shadow = true,
-          useany = true,
-          nilness = true,
-          unusedwrite = true,
-        },
-        staticcheck = true,
-        importShortcut = 'Both',
-        completionDocumentation = true,
-        linksInHover = true,
-        usePlaceholders = true,
-        hoverKind = 'FullDocumentation',
+        tags = { skipUnexported = true },
       },
-      tags = { skipUnexported = true },
-    },
-  },
-  sumneko_lua = lua_dev.setup({
-    lspconfig = {
+    }
+  end,
+  sumneko_lua = function()
+    local runtime_path = vim.split(package.path, ';')
+    table.insert(runtime_path, 'lua/?.lua')
+    table.insert(runtime_path, 'lua/?/init.lua')
+    return {
       settings = {
         Lua = {
-          diagnostics = { globals = { 'use' } },
-          workspace = { maxPreload = 10000, preloadFileSize = 10000, checkThirdParty = false },
+          runtime = {
+            version = 'LuaJIT',
+            path = runtime_path,
+          },
+          completion = { callSnippet = 'Both' },
+          diagnostics = { globals = { 'vim' } },
+          workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
           format = { enable = false },
+          telemetry = { enable = false },
         },
       },
-    },
-  }),
-  jdtls = {
-    -- cmd = {
-    --     vim.fn.expand("$HOME/.local/share/nvim/lsp_servers/jdtls/jdtls.sh")
-    -- },
-    cmd_env = {
-      JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64',
-      GRADLE_HOME = vim.fn.expand('$HOME/gradle'),
-      JAR = vim.fn.expand(
-        '$HOME/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.400.*.jar'
-      ),
-      JDTLS_CONFIG = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/config_linux'),
-      WORKSPACE = vim.fn.expand('$HOME/java/workspace'),
-    },
-  },
-  yamlls = {
-    settings = {
-      yaml = {
-        hover = true,
-        completion = true,
-        format = { enable = true },
-        validate = true,
-        schemas = {
-          ['https://json.schemastore.org/golangci-lint.json'] = '*golangci.y*ml',
-          ['https://json.schemastore.org/kustomization.json'] = '/*kustomization.y*ml',
-          ['https://json.schemastore.org/swagger-2.0.json'] = '/*swagger.y*ml',
-          ['https://json.schemastore.org/travis.json'] = '/*travis.y*ml',
-          ['https://json.schemastore.org/yamllint.json'] = '/*yamllint.y*ml',
-          ['https://json.schemastore.org/markdownlint.json'] = '/*.markdownlint.y*ml',
-          ['https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta12.json'] = '/*skaffold.y*ml',
-        },
-        schemaStore = {
-          url = 'https://www.schemastore.org/json',
-          enable = true,
-        },
+    }
+  end,
+  jdtls = function()
+    return {
+      -- cmd = {
+      --     vim.fn.expand("$HOME/.local/share/nvim/lsp_servers/jdtls/jdtls.sh")
+      -- },
+      cmd_env = {
+        JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64',
+        GRADLE_HOME = vim.fn.expand('$HOME/gradle', nil, nil),
+        JAR = vim.fn.expand(
+          '$HOME/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.400.*.jar'
+        ),
+        JDTLS_CONFIG = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/config_linux', nil, nil),
+        WORKSPACE = vim.fn.expand('$HOME/java/workspace', nil, nil),
       },
-    },
-  },
-  jsonls = { settings = { json = { format = { enable = true } } } },
-  diagnosticls = {
-    init_options = {
-      linters = {
-        ['golangci-lint'] = {
-          command = 'golangci-lint',
-          args = { 'run', '--out-format', 'json' },
-          rootPatterns = { '.git', 'go.mod' },
-          sourceName = 'golangci-lint',
-          debounce = 100,
-          parseJson = {
-            sourceName = 'Pos.Filename',
-            sourceNameFilter = true,
-            errorsRoot = 'Issues',
-            line = 'Pos.Line',
-            column = 'Pos.Column',
-            message = '${FromLinter}: ${Text}',
+    }
+  end,
+  yamlls = function()
+    return {
+      settings = {
+        yaml = {
+          hover = true,
+          completion = true,
+          format = { enable = true },
+          validate = true,
+          schemas = {
+            ['https://json.schemastore.org/golangci-lint.json'] = '*golangci.y*ml',
+            ['https://json.schemastore.org/kustomization.json'] = '/*kustomization.y*ml',
+            ['https://json.schemastore.org/swagger-2.0.json'] = '/*swagger.y*ml',
+            ['https://json.schemastore.org/travis.json'] = '/*travis.y*ml',
+            ['https://json.schemastore.org/yamllint.json'] = '/*yamllint.y*ml',
+            ['https://json.schemastore.org/markdownlint.json'] = '/*.markdownlint.y*ml',
+            ['https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta12.json'] = '/*skaffold.y*ml',
           },
-        },
-        shellcheck = {
-          command = 'shellcheck',
-          args = { '-x', '--format', 'json', '-' },
-          sourceName = 'shellcheck',
-          debounce = 100,
-          parseJson = {
-            line = 'line',
-            column = 'column',
-            endLine = 'endLine',
-            endColumn = 'endColumn',
-            message = '${message} [${code}]',
-            security = 'level',
-          },
-        },
-        markdownlint = {
-          command = 'markdownlint',
-          args = {
-            '--stdin',
-            '--config',
-            vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
-          },
-          sourceName = 'markdownlint',
-          isStderr = true,
-          debounce = 100,
-          offsetLine = 0,
-          offsetColumn = 0,
-          formatLines = 1,
-          formatPattern = {
-            '^.*?:\\s?(\\d+)(:(\\d+)?)?\\s(MD\\d{3}\\/[A-Za-z0-9-/]+)\\s(.*)$',
-            { line = 1, column = 3, message = { 4 } },
-          },
-        },
-        hadolint = {
-          command = 'hadolint',
-          args = { '--format', 'json', '-' },
-          sourceName = 'hadolint',
-          parseJson = {
-            line = 'line',
-            column = 'column',
-            message = '${message} [${code}]',
-            security = 'level',
-          },
-          securities = {
-            error = 'error',
-            warning = 'warning',
-            info = 'info',
-            style = 'hint',
+          schemaStore = {
+            url = 'https://www.schemastore.org/json',
+            enable = true,
           },
         },
       },
-      filetypes = {
-        go = { 'golangci-lint' },
-        sh = { 'shellcheck' },
-        markdown = { 'markdownlint' },
-        dockerfile = { 'hadolint' },
-      },
-      formatters = {
-        stylua = {
-          sourceName = 'stylua',
-          command = vim.fn.expand('$HOME/bin/stylua'),
-          args = { '--color', 'Never', '-' },
-          requiredFiles = { 'stylua.toml', '.stylua.toml' },
-          rootPatterns = { 'stylua.toml', '.stylua.toml' },
+    }
+  end,
+  jsonls = function()
+    return { settings = { json = { format = { enable = true } } } }
+  end,
+  diagnosticls = function()
+    return {
+      init_options = {
+        linters = {
+          ['golangci-lint'] = {
+            command = 'golangci-lint',
+            args = { 'run', '--out-format', 'json' },
+            rootPatterns = { '.git', 'go.mod' },
+            sourceName = 'golangci-lint',
+            debounce = 100,
+            parseJson = {
+              sourceName = 'Pos.Filename',
+              sourceNameFilter = true,
+              errorsRoot = 'Issues',
+              line = 'Pos.Line',
+              column = 'Pos.Column',
+              message = '${FromLinter}: ${Text}',
+            },
+          },
+          shellcheck = {
+            command = 'shellcheck',
+            args = { '-x', '--format', 'json', '-' },
+            sourceName = 'shellcheck',
+            debounce = 100,
+            parseJson = {
+              line = 'line',
+              column = 'column',
+              endLine = 'endLine',
+              endColumn = 'endColumn',
+              message = '${message} [${code}]',
+              security = 'level',
+            },
+          },
+          markdownlint = {
+            command = 'markdownlint',
+            args = {
+              '--stdin',
+              '--config',
+              vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+            },
+            sourceName = 'markdownlint',
+            isStderr = true,
+            debounce = 100,
+            offsetLine = 0,
+            offsetColumn = 0,
+            formatLines = 1,
+            formatPattern = {
+              '^.*?:\\s?(\\d+)(:(\\d+)?)?\\s(MD\\d{3}\\/[A-Za-z0-9-/]+)\\s(.*)$',
+              { line = 1, column = 3, message = { 4 } },
+            },
+          },
+          hadolint = {
+            command = 'hadolint',
+            args = { '--format', 'json', '-' },
+            sourceName = 'hadolint',
+            parseJson = {
+              line = 'line',
+              column = 'column',
+              message = '${message} [${code}]',
+              security = 'level',
+            },
+            securities = {
+              error = 'error',
+              warning = 'warning',
+              info = 'info',
+              style = 'hint',
+            },
+          },
         },
-        shfmt = { command = 'shfmt', args = { '-' } },
+        filetypes = {
+          go = { 'golangci-lint' },
+          sh = { 'shellcheck' },
+          markdown = { 'markdownlint' },
+          dockerfile = { 'hadolint' },
+        },
+        formatters = {
+          stylua = {
+            sourceName = 'stylua',
+            command = vim.fn.expand('$HOME/bin/stylua', nil, nil),
+            args = { '--color', 'Never', '-' },
+            requiredFiles = { 'stylua.toml', '.stylua.toml' },
+            rootPatterns = { 'stylua.toml', '.stylua.toml' },
+          },
+          shfmt = { command = 'shfmt', args = { '-' } },
+        },
+        formatFiletypes = { lua = { 'stylua' }, sh = { 'shfmt' } },
       },
-      formatFiletypes = { lua = { 'stylua' }, sh = { 'shfmt' } },
-    },
-    filetypes = { 'go', 'lua', 'sh', 'markdown', 'dockerfile' },
-  },
+      filetypes = { 'go', 'lua', 'sh', 'markdown', 'dockerfile' },
+    }
+  end,
 }
 
 -- Create config that activates keymaps and enables snippet support
@@ -314,28 +319,23 @@ local function create_config(server)
   capabilities.textDocument.completion.completionItem.resolveSupport = {
     properties = { 'documentation', 'detail', 'additionalTextEdits' },
   }
-  local config = {
-    -- enable snippet support
+
+  local opts = {
     capabilities = capabilities,
-    -- map buffer local keybindings when the language server attaches
     on_attach = on_attach,
     -- modify virtual text
     handlers = {
       ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- Disable virtual_text
         virtual_text = { prefix = ' ', spacing = 4 },
       }),
     },
   }
 
-  local language_config = lsp_config[server.name]
-  if language_config ~= nil then
-    for k, v in pairs(language_config) do
-      config[k] = v
-    end
+  if build_lsp_config[server.name] then
+    opts = vim.tbl_deep_extend('force', opts, build_lsp_config[server.name]())
   end
 
-  return config
+  return opts
 end
 
 -- Configure nvim-lsp-installer and lspconfig
@@ -354,22 +354,21 @@ local function setup_servers()
     'denols',
     'diagnosticls',
   }
+  lspinstaller.setup({
+    ensure_installed = required_servers,
+    ui = {
+      icons = {
+        server_installed = '✓',
+        server_pending = '➜',
+        server_uninstalled = '✗',
+      },
+    },
+  })
 
-  for _, name in pairs(required_servers) do
-    local ok, server = lspinstaller.get_server(name)
-    if ok then
-      if not server:is_installed() then
-        print('Installing ' .. name)
-        server:install()
-      end
-    end
-  end
-
-  lspinstaller.on_server_ready(function(server)
+  for _, server in ipairs(lspinstaller.get_installed_servers()) do
     local config = create_config(server)
-    server:setup(config)
-    vim.cmd([[ do User LspAttachBuffers ]])
-  end)
+    lspconfig[server.name].setup(config)
+  end
 end
 
 local function customise_ui()

@@ -2,7 +2,7 @@
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 local packer_bootstrap = false
 
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+if vim.fn.empty(vim.fn.glob(install_path, nil, nil, nil)) > 0 then
   vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
   packer_bootstrap = vim.fn.system({
     'git',
@@ -82,7 +82,6 @@ packer.startup({
     use('urbainvaes/vim-tmux-pilot')
 
     -- Text editing features {{{1
-    use('mbbill/undotree')
     use('tpope/vim-surround')
     use('tpope/vim-commentary')
     use('tpope/vim-repeat')
@@ -102,7 +101,6 @@ packer.startup({
     use('rafamadriz/friendly-snippets')
     use('onsails/lspkind-nvim')
     -- }}}
-    use('folke/lua-dev.nvim')
     use({ 'fatih/vim-go', ft = { 'go', 'gomod' } })
     use('hashivim/vim-terraform')
     use('towolf/vim-helm')
