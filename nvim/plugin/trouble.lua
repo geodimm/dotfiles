@@ -1,9 +1,10 @@
-vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>Trouble<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xd', '<cmd>Trouble document_diagnostics<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xl', '<cmd>Trouble loclist<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>xq', '<cmd>Trouble quickfix<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gR', '<cmd>Trouble lsp_references<CR>', { silent = true, noremap = true })
+local opts = { silent = true, noremap = true }
+vim.keymap.set('n', '<leader>xx', '<cmd>Trouble<CR>', opts)
+vim.keymap.set('n', '<leader>xw', '<cmd>Trouble workspace_diagnostics<CR>', opts)
+vim.keymap.set('n', '<leader>xd', '<cmd>Trouble document_diagnostics<CR>', opts)
+vim.keymap.set('n', '<leader>xl', '<cmd>Trouble loclist<CR>', opts)
+vim.keymap.set('n', '<leader>xq', '<cmd>Trouble quickfix<CR>', opts)
+vim.keymap.set('n', '<leader>gR', '<cmd>Trouble lsp_references<CR>', opts)
 
 local status_ok, trouble, wk
 status_ok, trouble = pcall(require, 'trouble')

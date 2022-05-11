@@ -81,58 +81,23 @@ telescope.setup({
 telescope.load_extension('fzf')
 telescope.load_extension('lsp_handlers')
 
-vim.api.nvim_set_keymap('n', '<leader>ft', ':Telescope<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<CR>', { noremap = true })
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>f/',
-  '<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>f*',
-  '<cmd>lua require("telescope.builtin").grep_string()<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fb',
-  '<cmd>lua require("telescope.builtin").buffers({show_all_buffers = true, sort_lastused = true})<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fa',
-  '<cmd>lua require("telescope.builtin").live_grep({path_display={"shorten"}})<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap('n', '<leader>fm', '<cmd>lua require("telescope.builtin").keymaps()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fgf', '<cmd>lua require("telescope.builtin").git_files()<CR>', { noremap = true })
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fgs',
-  '<cmd>lua require("telescope.builtin").git_status()<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fgb',
-  '<cmd>lua require("telescope.builtin").git_branches()<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fgh',
-  '<cmd>lua require("telescope.builtin").git_bcommits()<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>fgc',
-  '<cmd>lua require("telescope.builtin").git_commits()<CR>',
-  { noremap = true }
-)
+local opts = { silent = true, noremap = true }
+vim.keymap.set('n', '<leader>ft', ':Telescope<CR>', opts)
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, opts)
+vim.keymap.set('n', '<leader>f/', require('telescope.builtin').current_buffer_fuzzy_find, opts)
+vim.keymap.set('n', '<leader>f*', require('telescope.builtin').grep_string, opts)
+vim.keymap.set('n', '<leader>fb', function()
+  require('telescope.builtin').buffers({ show_all_buffers = true, sort_lastused = true })
+end, opts)
+vim.keymap.set('n', '<leader>fa', function()
+  require('telescope.builtin').live_grep({ path_display = { 'shorten' } })
+end, opts)
+vim.keymap.set('n', '<leader>fm', require('telescope.builtin').keymaps, opts)
+vim.keymap.set('n', '<leader>fgf', require('telescope.builtin').git_files, opts)
+vim.keymap.set('n', '<leader>fgs', require('telescope.builtin').git_status, opts)
+vim.keymap.set('n', '<leader>fgb', require('telescope.builtin').git_branches, opts)
+vim.keymap.set('n', '<leader>fgh', require('telescope.builtin').git_bcommits, opts)
+vim.keymap.set('n', '<leader>fgc', require('telescope.builtin').git_commits, opts)
 
 wk.register({
   ['<leader>f'] = {

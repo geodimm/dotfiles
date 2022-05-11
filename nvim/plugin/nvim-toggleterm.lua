@@ -27,8 +27,8 @@ toggleterm.setup({
 })
 
 function _G.set_terminal_keymaps()
-  local opts = { noremap = true }
-  vim.api.nvim_buf_set_keymap(0, 't', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
+  local opts = { noremap = true, buffer = 0 }
+  vim.keymap.set('t', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
 end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

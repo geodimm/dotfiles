@@ -27,8 +27,8 @@ bufferline.setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
 wk.register({
   ['[b'] = { 'Previous buffer' },
