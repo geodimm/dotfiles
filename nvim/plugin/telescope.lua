@@ -12,6 +12,7 @@ if not status_ok then
   return
 end
 
+local builtin = require('telescope.builtin')
 local sorters = require('telescope.sorters')
 local previewers = require('telescope.previewers')
 local themes = require('telescope.themes')
@@ -83,21 +84,21 @@ telescope.load_extension('lsp_handlers')
 
 local opts = { silent = true, noremap = true }
 vim.keymap.set('n', '<leader>ft', ':Telescope<CR>', opts)
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, opts)
-vim.keymap.set('n', '<leader>f/', require('telescope.builtin').current_buffer_fuzzy_find, opts)
-vim.keymap.set('n', '<leader>f*', require('telescope.builtin').grep_string, opts)
+vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
+vim.keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, opts)
+vim.keymap.set('n', '<leader>f*', builtin.grep_string, opts)
 vim.keymap.set('n', '<leader>fb', function()
-  require('telescope.builtin').buffers({ show_all_buffers = true, sort_lastused = true })
+  builtin.buffers({ show_all_buffers = true, sort_lastused = true })
 end, opts)
 vim.keymap.set('n', '<leader>fa', function()
-  require('telescope.builtin').live_grep({ path_display = { 'shorten' } })
+  builtin.live_grep({ path_display = { 'shorten' } })
 end, opts)
-vim.keymap.set('n', '<leader>fm', require('telescope.builtin').keymaps, opts)
-vim.keymap.set('n', '<leader>fgf', require('telescope.builtin').git_files, opts)
-vim.keymap.set('n', '<leader>fgs', require('telescope.builtin').git_status, opts)
-vim.keymap.set('n', '<leader>fgb', require('telescope.builtin').git_branches, opts)
-vim.keymap.set('n', '<leader>fgh', require('telescope.builtin').git_bcommits, opts)
-vim.keymap.set('n', '<leader>fgc', require('telescope.builtin').git_commits, opts)
+vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
+vim.keymap.set('n', '<leader>fgf', builtin.git_files, opts)
+vim.keymap.set('n', '<leader>fgs', builtin.git_status, opts)
+vim.keymap.set('n', '<leader>fgb', builtin.git_branches, opts)
+vim.keymap.set('n', '<leader>fgh', builtin.git_bcommits, opts)
+vim.keymap.set('n', '<leader>fgc', builtin.git_commits, opts)
 
 wk.register({
   ['<leader>f'] = {
