@@ -9,7 +9,6 @@ if not status_ok then
 end
 
 function table.removeKey(table, key)
-  local element = table[key]
   table[key] = nil
   return table
 end
@@ -42,8 +41,9 @@ nvim_tree.setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<leader>fe', ':NvimTreeToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fl', ':NvimTreeFindFile<CR>', { noremap = true })
+local opts = { silent = true, noremap = true }
+vim.keymap.set('n', '<leader>fe', ':NvimTreeToggle<CR>', opts)
+vim.keymap.set('n', '<leader>fl', ':NvimTreeFindFile<CR>', opts)
 
 wk.register({
   ['<leader>fl'] = { 'Locate file in explorer' },

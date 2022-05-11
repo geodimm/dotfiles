@@ -19,7 +19,8 @@ vim.g.startify_bookmarks = {
 
 vim.g.startify_session_before_save = { 'silent! NvimTreeClose' }
 
-vim.api.nvim_set_keymap('n', '<leader>p', ':Startify<CR>', { noremap = true })
+local opts = { silent = true, noremap = true }
+vim.keymap.set('n', '<leader>p', ':Startify<CR>', opts)
 
 local status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
