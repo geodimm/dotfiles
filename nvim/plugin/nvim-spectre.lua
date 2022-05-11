@@ -18,15 +18,13 @@ spectre.setup({
   },
 })
 
-vim.api.nvim_set_keymap('n', '<leader>sr', '<cmd>lua require("spectre").open()<CR>', { noremap = true })
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>sw',
-  '<cmd>:lua require("spectre").open_visual({select_word=true})<CR>',
-  { noremap = true }
-)
-vim.api.nvim_set_keymap('v', '<leader>sw', ':lua require("spectre").open_visual()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sf', '<cmd>:lua require("spectre").open_file_search()<CR>', { noremap = true })
+local opts = { silent = true, noremap = true }
+vim.keymap.set('n', '<leader>sr', spectre.open, opts)
+vim.keymap.set('n', '<leader>sw', function()
+  spectre.open_visual({ select_word = true })
+end, opts)
+vim.keymap.set('v', '<leader>sw', spectre.open_visual, opts)
+vim.keymap.set('n', '<leader>sf', spectre.open_file_search, opts)
 
 wk.register({
   ['<leader>s'] = {
