@@ -51,6 +51,7 @@
     # =========================[ Line #1 ]=========================
     context                 # user@hostname
     form3_shell             # f3 shell indicator
+    shell_level             # show the subshell level - SHLVL
     vim_shell               # vim shell indicator (:sh)
     dir                     # current directory
     vcs                     # git status
@@ -769,6 +770,25 @@
 
   function instant_prompt_form3_shell() {
     prompt_form3_shell
+  }
+
+  ####################################[ shell_level : show the subshell level - SHLVL ]#######################
+  function prompt_shell_level() {
+    local color="fuchsia"
+    local one=0xf8a3
+    local nine_plus=0xf8be
+    local code="${one}"
+
+    (( code = one + (SHLVL - 1) * 3 ))
+    code=$(( code > nine_plus ? nine_plus : code ))
+
+    local icon=$(printf '%b' "\U$(printf '%x' "$code")")
+
+    p10k segment -f ${color} -i ${icon}
+  }
+
+  function instant_prompt_shel_level() {
+    prompt_shell_level
   }
 
   # Transient prompt works similarly to the builtin transient_rprompt option. It trims down prompt
