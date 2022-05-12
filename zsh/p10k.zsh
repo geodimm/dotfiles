@@ -773,6 +773,9 @@
   }
 
   ####################################[ shell_level : show the subshell level - SHLVL ]#######################
+
+  typeset -g POWERLEVEL9K_SHELL_LEVEL_SHOW_ONE=false
+
   function prompt_shell_level() {
     local color="fuchsia"
     local one=0xf8a3
@@ -781,6 +784,8 @@
 
     (( code = one + (SHLVL - 1) * 3 ))
     code=$(( code > nine_plus ? nine_plus : code ))
+
+    [[ ${code} -eq ${one} && "${POWERLEVEL9K_SHELL_LEVEL_SHOW_ONE}" = false ]] && return
 
     local icon=$(printf '%b' "\U$(printf '%x' "$code")")
 
