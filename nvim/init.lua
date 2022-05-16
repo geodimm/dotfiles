@@ -95,6 +95,7 @@ packer.startup({
     use('hrsh7th/cmp-nvim-lsp')
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-path')
+    use({ 'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim' })
     use('L3MON4D3/LuaSnip')
     use({
       'saadparwaiz1/cmp_luasnip',
