@@ -37,7 +37,7 @@ packer.startup({
     use({ 'akinsho/nvim-bufferline.lua', branch = 'main' })
     use('hoob3rt/lualine.nvim')
     use('gruvbox-community/gruvbox')
-    use('arcticicestudio/nord-vim')
+    use({ 'arcticicestudio/nord-vim', branch = 'main' })
     use('navarasu/onedark.nvim')
     use('folke/tokyonight.nvim')
     use('Mofiqul/vscode.nvim')
@@ -93,6 +93,8 @@ packer.startup({
     -- Autocompletion {{{2
     use('hrsh7th/nvim-cmp')
     use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-path')
     use('L3MON4D3/LuaSnip')
     use({
       'saadparwaiz1/cmp_luasnip',
