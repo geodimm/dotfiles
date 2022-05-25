@@ -35,19 +35,16 @@ linters:
     - bodyclose
     - depguard
     - dogsled
-    - exhaustive
     - exportloopref
     - goconst
     - godot
     - gofmt
     - gofumpt
     - goimports
-    - gomnd
     - lll
     - nestif
     - nolintlint
     - prealloc
-    - wsl
   linters-settings:
     govet:
       disable:
