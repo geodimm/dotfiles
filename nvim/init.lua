@@ -93,6 +93,7 @@ packer.startup({
     -- Autocompletion {{{2
     use('hrsh7th/nvim-cmp')
     use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-nvim-lsp-signature-help')
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-path')
     use({ 'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim' })

@@ -47,12 +47,8 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- local function buf_set_option(...)
-  --   vim.api.nvim_buf_set_option(bufnr, ...)
-  -- end
-
-  -- -- Enable completion triggered by <c-x><c-o>
-  -- buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   local opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
@@ -128,6 +124,7 @@ local build_lsp_config = {
             tidy = true,
             vendor = true,
             generate = true,
+            regenerate_cgo = true,
             upgrade_dependency = true,
             gc_details = true,
             test = true,
@@ -144,6 +141,7 @@ local build_lsp_config = {
             nilness = true,
             unusedwrite = true,
           },
+          gofumpt = true,
           staticcheck = true,
           importShortcut = 'Both',
           completionDocumentation = true,
