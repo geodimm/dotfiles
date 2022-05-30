@@ -147,6 +147,7 @@ local build_lsp_config = {
           completionDocumentation = true,
           linksInHover = true,
           usePlaceholders = true,
+          experimentalPostfixCompletions = true,
           hoverKind = 'FullDocumentation',
         },
         tags = { skipUnexported = true },
