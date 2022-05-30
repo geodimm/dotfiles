@@ -71,7 +71,6 @@ packer.startup({
       'gbrlsnchs/telescope-lsp-handlers.nvim',
       requires = { 'nvim-telescope/telescope.nvim' },
     })
-    use('kosayoda/nvim-lightbulb')
     use({
       'folke/trouble.nvim',
       requires = { 'kyazdani42/nvim-web-devicons' },
@@ -90,6 +89,7 @@ packer.startup({
     use({ 'neovim/nvim-lspconfig' })
     use({ 'williamboman/nvim-lsp-installer' })
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } })
+    use('kosayoda/nvim-lightbulb')
 
     -- Autocompletion {{{2
     use('hrsh7th/nvim-cmp')
