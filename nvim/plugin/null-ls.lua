@@ -1,0 +1,45 @@
+local null_ls, status_ok
+status_ok, null_ls = pcall(require, 'null-ls')
+if not status_ok then
+  return
+end
+
+null_ls.setup({
+  sources = {
+    -- diagnostics
+    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.diagnostics.hadolint,
+    null_ls.builtins.diagnostics.jsonlint,
+    null_ls.builtins.diagnostics.markdownlint.with({
+      extra_args = {
+        '--config',
+        vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+      },
+    }),
+    null_ls.builtins.diagnostics.shellcheck,
+
+    -- formatting
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.jq,
+    null_ls.builtins.formatting.shfmt,
+    null_ls.builtins.formatting.markdownlint,
+    null_ls.builtins.formatting.markdownlint.with({
+      extra_args = {
+        '--config',
+        vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+      },
+    }),
+
+    -- completion
+    null_ls.builtins.completion.spell,
+    null_ls.builtins.completion.luasnip,
+
+    -- code actions
+    null_ls.builtins.code_actions.refactoring,
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.code_actions.shellcheck,
+
+    -- hover
+    null_ls.builtins.hover.dictionary,
+  },
+})
