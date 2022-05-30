@@ -89,6 +89,7 @@ packer.startup({
     -- " Languages/LSP {{{1
     use({ 'neovim/nvim-lspconfig' })
     use({ 'williamboman/nvim-lsp-installer' })
+    use({ 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } })
 
     -- Autocompletion {{{2
     use('hrsh7th/nvim-cmp')

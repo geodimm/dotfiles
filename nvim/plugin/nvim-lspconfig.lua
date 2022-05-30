@@ -34,7 +34,21 @@ end
 vim.api.nvim_create_augroup('lsp_formatting', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = 'lsp_formatting',
-  pattern = { '*.c', '*.h', '*.go', '*.lua', '*.tf', '*.sh', '*.bash', '*.js', '*.yaml', '*.yml', '*.json', '*.html' },
+  pattern = {
+    '*.c',
+    '*.h',
+    '*.go',
+    '*.lua',
+    '*.tf',
+    '*.sh',
+    '*.bash',
+    '*.js',
+    '*.yaml',
+    '*.yml',
+    '*.json',
+    '*.html',
+    '*.md',
+  },
   callback = function(args)
     vim.lsp.buf.format()
     local goSuffix = '.go'
@@ -218,96 +232,6 @@ local build_lsp_config = {
   jsonls = function()
     return { settings = { json = { format = { enable = true } } } }
   end,
-  diagnosticls = function()
-    return {
-      init_options = {
-        linters = {
-          ['golangci-lint'] = {
-            command = 'golangci-lint',
-            args = { 'run', '--out-format', 'json' },
-            rootPatterns = { '.git', 'go.mod' },
-            sourceName = 'golangci-lint',
-            debounce = 100,
-            parseJson = {
-              sourceName = 'Pos.Filename',
-              sourceNameFilter = true,
-              errorsRoot = 'Issues',
-              line = 'Pos.Line',
-              column = 'Pos.Column',
-              message = '${FromLinter}: ${Text}',
-            },
-          },
-          shellcheck = {
-            command = 'shellcheck',
-            args = { '-x', '--format', 'json', '-' },
-            sourceName = 'shellcheck',
-            debounce = 100,
-            parseJson = {
-              line = 'line',
-              column = 'column',
-              endLine = 'endLine',
-              endColumn = 'endColumn',
-              message = '${message} [${code}]',
-              security = 'level',
-            },
-          },
-          markdownlint = {
-            command = 'markdownlint',
-            args = {
-              '--stdin',
-              '--config',
-              vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
-            },
-            sourceName = 'markdownlint',
-            isStderr = true,
-            debounce = 100,
-            offsetLine = 0,
-            offsetColumn = 0,
-            formatLines = 1,
-            formatPattern = {
-              '^.*?:\\s?(\\d+)(:(\\d+)?)?\\s(MD\\d{3}\\/[A-Za-z0-9-/]+)\\s(.*)$',
-              { line = 1, column = 3, message = { 4 } },
-            },
-          },
-          hadolint = {
-            command = 'hadolint',
-            args = { '--format', 'json', '-' },
-            sourceName = 'hadolint',
-            parseJson = {
-              line = 'line',
-              column = 'column',
-              message = '${message} [${code}]',
-              security = 'level',
-            },
-            securities = {
-              error = 'error',
-              warning = 'warning',
-              info = 'info',
-              style = 'hint',
-            },
-          },
-        },
-        filetypes = {
-          go = { 'golangci-lint' },
-          sh = { 'shellcheck' },
-          markdown = { 'markdownlint' },
-          dockerfile = { 'hadolint' },
-        },
-        formatters = {
-          stylua = {
-            sourceName = 'stylua',
-            command = vim.fn.expand('$HOME/bin/stylua', nil, nil),
-            args = { '--color', 'Never', '-' },
-            requiredFiles = { 'stylua.toml', '.stylua.toml' },
-            rootPatterns = { 'stylua.toml', '.stylua.toml' },
-          },
-          shfmt = { command = 'shfmt', args = { '-' } },
-        },
-        formatFiletypes = { lua = { 'stylua' }, sh = { 'shfmt' } },
-      },
-      filetypes = { 'go', 'lua', 'sh', 'markdown', 'dockerfile' },
-    }
-  end,
 }
 
 -- Create config that activates keymaps and enables snippet support
@@ -351,7 +275,6 @@ local function setup_servers()
     'pyright',
     'jdtls',
     'denols',
-    'diagnosticls',
   }
   lspinstaller.setup({
     ensure_installed = required_servers,
