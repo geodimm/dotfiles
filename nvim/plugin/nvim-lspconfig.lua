@@ -16,7 +16,7 @@ if not status_ok then
   return
 end
 
-local function org_imports(wait_ms)
+local org_imports = function(wait_ms)
   local params = vim.lsp.util.make_range_params()
   params.context = { only = { 'source.organizeImports' } }
   local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
@@ -235,7 +235,7 @@ local build_lsp_config = {
 }
 
 -- Create config that activates keymaps and enables snippet support
-local function create_config(server)
+local create_config = function(server)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -262,7 +262,7 @@ local function create_config(server)
 end
 
 -- Configure nvim-lsp-installer and lspconfig
-local function setup_servers()
+local setup_servers = function()
   local required_servers = {
     'gopls',
     'sumneko_lua',
@@ -293,7 +293,7 @@ local function setup_servers()
   end
 end
 
-local function customise_ui()
+local customise_ui = function()
   local lspconfig_icons = require('config.icons').lspconfig
   -- Update the sign icons
   for type, icon in pairs(lspconfig_icons) do
