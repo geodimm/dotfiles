@@ -13,10 +13,6 @@ function table.removeKey(table, key)
   return table
 end
 
-vim.g.nvim_tree_respect_buf_cwd = 1
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_add_trailing = 1
-
 nvim_tree.setup({
   disable_netrw = false,
   hijack_netrw = false,
@@ -28,6 +24,11 @@ nvim_tree.setup({
   diagnostics = { enable = true, icons = table.removeKey(require('config.icons').lsp, 'other') },
   update_focused_file = { enable = false, update_cwd = false, ignore_list = {} },
   system_open = { cmd = nil, args = {} },
+  respect_buf_cwd = true,
+  renderer = {
+    add_trailing = true,
+    highlight_git = true,
+  },
   view = {
     width = 40,
     side = 'left',
