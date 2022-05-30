@@ -16,6 +16,12 @@ toggleterm.setup({
       return vim.o.columns * 0.3
     end
   end,
+  highlights = {
+    FloatBorder = {
+      guifg = require('config.theme').get_color('FloatBorder', 'fg#'),
+      guibg = '',
+    },
+  },
   open_mapping = [[<leader>tt]],
   insert_mappings = false,
   shade_terminals = false,
@@ -23,7 +29,7 @@ toggleterm.setup({
   direction = 'float',
   close_on_exit = true,
   shell = vim.o.shell,
-  float_opts = { border = 'single', winblend = 0 },
+  float_opts = { border = 'curved', winblend = 0 },
 })
 
 function _G.set_terminal_keymaps()
