@@ -41,6 +41,11 @@ local setup = function()
   pcall(vim.cmd, 'colorscheme ' .. theme)
 end
 
+local get_color = function(group, attr)
+  return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
+end
+
 M.theme = theme
 M.setup = setup
+M.get_color = get_color
 return M
