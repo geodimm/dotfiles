@@ -5,9 +5,13 @@ if not status_ok then
 end
 
 null_ls.setup({
+  debug = true,
+  diagnostics_format = '#{m} (#{s})',
   sources = {
     -- diagnostics
-    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.diagnostics.golangci_lint.with({
+      extra_args = { '--config', vim.fn.expand('$HOME/dotfiles/golangci-lint/golangci.yml', nil, nil) },
+    }),
     null_ls.builtins.diagnostics.hadolint,
     null_ls.builtins.diagnostics.jsonlint,
     null_ls.builtins.diagnostics.markdownlint.with({
