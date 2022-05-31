@@ -171,38 +171,29 @@ local build_lsp_config = {
     }
   end,
   sumneko_lua = function()
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, 'lua/?.lua')
-    table.insert(runtime_path, 'lua/?/init.lua')
     return {
       settings = {
         Lua = {
           runtime = {
             version = 'LuaJIT',
-            path = runtime_path,
           },
           completion = { callSnippet = 'Both' },
           diagnostics = { globals = { 'vim' } },
           workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
           format = { enable = false },
-          telemetry = { enable = false },
         },
       },
     }
   end,
   jdtls = function()
+    local jdtls_home = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/')
+    local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
     return {
-      -- cmd = {
-      --     vim.fn.expand("$HOME/.local/share/nvim/lsp_servers/jdtls/jdtls.sh")
-      -- },
       cmd_env = {
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64',
         GRADLE_HOME = vim.fn.expand('$HOME/gradle', nil, nil),
-        JAR = vim.fn.expand(
-          '$HOME/.local/share/nvim/lsp_servers/jdtls/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.2.400.*.jar'
-        ),
-        JDTLS_CONFIG = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/config_linux', nil, nil),
-        WORKSPACE = vim.fn.expand('$HOME/java/workspace', nil, nil),
+        JDTLS_HOME = jdtls_home,
+        WORKSPACE = vim.fn.expand('$HOME/java/workspace') .. project_name,
       },
     }
   end,
