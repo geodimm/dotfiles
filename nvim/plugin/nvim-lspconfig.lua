@@ -191,7 +191,7 @@ local build_lsp_config = {
         JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64',
         GRADLE_HOME = vim.fn.expand('$HOME/gradle', nil, nil),
         JDTLS_HOME = jdtls_home,
-        WORKSPACE = vim.fn.expand('$HOME/java/workspace') .. project_name,
+        WORKSPACE = vim.fn.expand('$HOME/java/workspace/') .. project_name,
       },
     }
   end,
