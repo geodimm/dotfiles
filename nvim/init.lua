@@ -76,6 +76,13 @@ packer.startup({
       'folke/trouble.nvim',
       requires = { 'kyazdani42/nvim-web-devicons' },
     })
+    use({
+      'ThePrimeagen/refactoring.nvim',
+      requires = {
+        { 'nvim-lua/plenary.nvim' },
+        { 'nvim-treesitter/nvim-treesitter' },
+      },
+    })
 
     -- Tmux integration {{{1
     use('tmux-plugins/vim-tmux')
