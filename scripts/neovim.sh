@@ -38,8 +38,13 @@ do_configure() {
 	npm install --quiet -g yarn
 
 	info "[neovim][configure] Install linters for LSP"
+	do_update_linters
+}
 
+do_update_linters() {
 	info "[neovim][configure][linters] markdownlint-cli"
+	# shellcheck source=../../.nvm/nvm.sh
+	source "${NVM_DIR}/nvm.sh"
 	npm install --quiet -g markdownlint-cli
 
 	info "[neovim][configure][linters] hadolint"
@@ -76,6 +81,10 @@ main() {
 	"configure")
 		shift
 		do_configure "$@"
+		;;
+	"update_linters")
+		shift
+		do_update_linters "$@"
 		;;
 	*)
 		error "$(basename "$0"): '$command' is not a valid command"
