@@ -99,39 +99,36 @@ command! BufOnly silent! execute "%bd|e#|bd#"
 )
 vim.keymap.set('n', '<leader>b', ':BufOnly<CR>', { noremap = true })
 
-require('utils.whichkey').register(
-  {
-    mappings = {
-      ['<C-f>'] = 'Open file under cursor',
-      ['<C-h>'] = 'Move left',
-      ['<C-j>'] = 'Move down',
-      ['<C-k>'] = 'Move up',
-      ['<C-l>'] = 'Move right',
-      ['<C-\\>'] = 'Switch to last window',
-      ['<M-h>'] = 'Shrink window horizontally',
-      ['<M-j>'] = 'Shrink window vertically',
-      ['<M-k>'] = 'Expand window vertically',
-      ['<M-l>'] = 'Expand window horizontally',
-      ['<leader><CR>'] = 'Disable highlighting',
-      ['<leader>w'] = 'Save',
-      ['<leader>q'] = 'Close/Quit',
-      ['<leader>b'] = 'Close all other buffers',
-      ['<leader>e'] = {
-        name = '+vsplit',
-        v = 'init.lua',
-        t = 'tmux.conf',
-        z = 'zshrc',
-      },
-      Y = 'Yank til end of line',
+require('utils.whichkey').register({
+  mappings = {
+    ['<C-f>'] = 'Open file under cursor',
+    ['<C-h>'] = 'Move left',
+    ['<C-j>'] = 'Move down',
+    ['<C-k>'] = 'Move up',
+    ['<C-l>'] = 'Move right',
+    ['<C-\\>'] = 'Switch to last window',
+    ['<M-h>'] = 'Shrink window horizontally',
+    ['<M-j>'] = 'Shrink window vertically',
+    ['<M-k>'] = 'Expand window vertically',
+    ['<M-l>'] = 'Expand window horizontally',
+    ['<leader><CR>'] = 'Disable highlighting',
+    ['<leader>w'] = 'Save',
+    ['<leader>q'] = 'Close/Quit',
+    ['<leader>b'] = 'Close all other buffers',
+    ['<leader>e'] = {
+      name = '+vsplit',
+      v = 'init.lua',
+      t = 'tmux.conf',
+      z = 'zshrc',
     },
-    opts = {},
+    Y = 'Yank til end of line',
   },
-  {
-    mappings = {
-      ['<leader>S'] = 'Sort selected lines',
-      ['<leader>w'] = 'Save',
-      ['<leader>q'] = 'Close/Quit',
-    },
-    opts = { mode = 'v' },
-  }
-)
+  opts = {},
+}, {
+  mappings = {
+    ['<leader>S'] = 'Sort selected lines',
+    ['<leader>w'] = 'Save',
+    ['<leader>q'] = 'Close/Quit',
+  },
+  opts = { mode = 'v' },
+})
