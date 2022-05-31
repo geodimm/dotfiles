@@ -16,6 +16,8 @@ if not status_ok then
   return
 end
 
+local null_ls_command_prefix = 'NULL_LS'
+
 local org_imports = function(wait_ms)
   local params = vim.lsp.util.make_range_params()
   params.context = { only = { 'source.organizeImports' } }
@@ -24,7 +26,7 @@ local org_imports = function(wait_ms)
     for _, r in pairs(res.result or {}) do
       if r.edit then
         vim.lsp.util.apply_workspace_edit(r.edit, 'utf-16')
-      else
+      elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
         vim.lsp.buf.execute_command(r.command)
       end
     end
