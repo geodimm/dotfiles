@@ -24,7 +24,6 @@ fi
 alias ll='ls'
 
 alias grepi="grep -i"
-alias vim="vim -O"
 alias up="${HOME}/dotfiles/scripts/update.sh"
 
 # git
