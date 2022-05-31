@@ -1,4 +1,4 @@
-local luasnip, lspkind, cmp, status_ok
+local status_ok, luasnip, lspkind, cmp, cmp_git
 status_ok, luasnip = pcall(require, 'luasnip')
 if not status_ok then
   return
@@ -8,6 +8,10 @@ if not status_ok then
   return
 end
 status_ok, cmp = pcall(require, 'cmp')
+if not status_ok then
+  return
+end
+status_ok, cmp_git = pcall(require, 'cmp_git')
 if not status_ok then
   return
 end
@@ -161,4 +165,4 @@ cmp.setup.filetype('gitcommit', {
   }),
 })
 
-require('cmp_git').setup()
+cmp_git.setup()

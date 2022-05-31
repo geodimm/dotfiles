@@ -1,9 +1,4 @@
-local refactoring, wk, status_ok
-status_ok, refactoring = pcall(require, 'refactoring')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
+local status_ok, refactoring = pcall(require, 'refactoring')
 if not status_ok then
   return
 end
@@ -31,21 +26,26 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true, expr = false }
 )
 
-wk.register({
-  ['<leader>r'] = {
-    name = '+refactoring',
-    r = 'Select refactor',
-    e = 'Extract Function',
-    f = 'Extract Function To File',
-    v = 'Extract Variable',
-    i = 'Inline Variable',
+require('utils.whichkey').register({
+  mappings = {
+    ['<leader>r'] = {
+      name = '+refactoring',
+      r = 'Select refactor',
+      e = 'Extract Function',
+      f = 'Extract Function To File',
+      v = 'Extract Variable',
+      i = 'Inline Variable',
+    },
   },
-}, { mode = 'v' })
-wk.register({
-  ['<leader>r'] = {
-    name = '+refactoring',
-    b = 'Extract Block',
-    bf = 'Extract Block To File',
-    i = 'Inline Variable',
+  opts = { mode = 'v' },
+}, {
+  mappings = {
+    ['<leader>r'] = {
+      name = '+refactoring',
+      b = 'Extract Block',
+      bf = 'Extract Block To File',
+      i = 'Inline Variable',
+    },
   },
-}, { mode = 'n' })
+  opts = { mode = 'n' },
+})

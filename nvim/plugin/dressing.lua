@@ -1,4 +1,4 @@
-local dressing, telescope_themes, status_ok
+local status_ok, dressing, telescope_themes
 status_ok, dressing = pcall(require, 'dressing')
 if not status_ok then
   return
