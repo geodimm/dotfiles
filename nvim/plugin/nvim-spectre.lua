@@ -1,9 +1,4 @@
-local spectre, wk, status_ok
-status_ok, spectre = pcall(require, 'spectre')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
+local status_ok, spectre = pcall(require, 'spectre')
 if not status_ok then
   return
 end
@@ -26,12 +21,14 @@ end, opts)
 vim.keymap.set('v', '<leader>sw', spectre.open_visual, opts)
 vim.keymap.set('n', '<leader>sf', spectre.open_file_search, opts)
 
-wk.register({
-  ['<leader>s'] = {
-    name = '+spectre',
-    f = 'Search in current file',
-    r = 'Search and replace',
-    w = 'Search for word under cursor',
+require('utils.whichkey').register({
+  mappings = {
+    ['<leader>s'] = {
+      name = '+spectre',
+      f = 'Search in current file',
+      r = 'Search and replace',
+      w = 'Search for word under cursor',
+    },
   },
-})
-wk.register({ ['<leader>s'] = { name = '+spectre', w = 'Search for selection' } }, { mode = 'v' })
+  opts = {},
+}, { mappings = { ['<leader>s'] = { name = '+spectre', w = 'Search for selection' } }, opts = { mode = 'v' } })

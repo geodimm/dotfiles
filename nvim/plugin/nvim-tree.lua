@@ -1,9 +1,4 @@
-local nvim_tree, wk, status_ok
-status_ok, nvim_tree = pcall(require, 'nvim-tree')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
+local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
   return
 end
@@ -46,7 +41,10 @@ local opts = { silent = true, noremap = true }
 vim.keymap.set('n', '<leader>fe', ':NvimTreeToggle<CR>', opts)
 vim.keymap.set('n', '<leader>fl', ':NvimTreeFindFile<CR>', opts)
 
-wk.register({
-  ['<leader>fl'] = { 'Locate file in explorer' },
-  ['<leader>fe'] = { 'Open file explorer' },
+require('utils.whichkey').register({
+  mappings = {
+    ['<leader>fl'] = { 'Locate file in explorer' },
+    ['<leader>fe'] = { 'Open file explorer' },
+  },
+  opts = {},
 })

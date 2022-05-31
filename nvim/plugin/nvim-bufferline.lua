@@ -1,9 +1,4 @@
-local bufferline, wk, status_ok
-status_ok, bufferline = pcall(require, 'bufferline')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
+local status_ok, bufferline = pcall(require, 'bufferline')
 if not status_ok then
   return
 end
@@ -30,7 +25,10 @@ bufferline.setup({
 vim.keymap.set('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
 
-wk.register({
-  ['[b'] = { 'Previous buffer' },
-  [']b'] = { 'Next buffer' },
+require('utils.whichkey').register({
+  mappings = {
+    ['[b'] = { 'Previous buffer' },
+    [']b'] = { 'Next buffer' },
+  },
+  opts = {},
 })

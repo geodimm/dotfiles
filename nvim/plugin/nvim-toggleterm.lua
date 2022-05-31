@@ -1,9 +1,4 @@
-local toggleterm, wk, status_ok
-status_ok, toggleterm = pcall(require, 'toggleterm')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
+local status_ok, toggleterm = pcall(require, 'toggleterm')
 if not status_ok then
   return
 end
@@ -39,6 +34,9 @@ end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
-wk.register({
-  ['<leader>t'] = { name = '+toggleterm', t = 'Open terminal' },
+require('utils.whichkey').register({
+  mappings = {
+    ['<leader>t'] = { name = '+toggleterm', t = 'Open terminal' },
+  },
+  opts = {},
 })
