@@ -7,6 +7,10 @@ end
 null_ls.setup({
   debug = true,
   diagnostics_format = '#{m} (#{s})',
+  on_attach = function(_, bufnr)
+    local opts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  end,
   sources = {
     -- diagnostics
     null_ls.builtins.diagnostics.golangci_lint.with({
