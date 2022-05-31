@@ -1,13 +1,9 @@
-local lspinstaller, lspconfig, wk, cmp_nvim_lsp, status_ok
+local status_ok, lspinstaller, lspconfig, cmp_nvim_lsp
 status_ok, lspinstaller = pcall(require, 'nvim-lsp-installer')
 if not status_ok then
   return
 end
 status_ok, lspconfig = pcall(require, 'lspconfig')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
 end
@@ -83,30 +79,32 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, opts)
 
-  wk.register({
-    K = 'Documentation',
-    ['<leader>g'] = {
-      name = '+goto',
-      D = 'Declaration',
-      I = 'Implementation',
-      d = 'Definition',
-      i = 'Incoming calls',
-      o = 'Outgoing calls',
-      r = 'References',
-      t = 'Type definition',
+  require('utils.whichkey').register({
+    mappings = {
+      K = 'Documentation',
+      ['<leader>g'] = {
+        name = '+goto',
+        D = 'Declaration',
+        I = 'Implementation',
+        d = 'Definition',
+        i = 'Incoming calls',
+        o = 'Outgoing calls',
+        r = 'References',
+        t = 'Type definition',
+      },
+      ['<leader>c'] = {
+        name = '+lsp',
+        a = 'Code actions',
+        f = 'Format',
+        l = 'Populate location list',
+        r = 'Rename',
+      },
+      ['<leader>k'] = 'Signature help',
+      [']d'] = { 'Next diagnostic' },
+      ['[d'] = { 'Previous diagnostic' },
     },
-    ['<leader>c'] = {
-      name = '+lsp',
-      a = 'Code actions',
-      f = 'Format',
-      l = 'Populate location list',
-      r = 'Rename',
-    },
-    ['<leader>k'] = 'Signature help',
-    [']d'] = { 'Next diagnostic' },
-    ['[d'] = { 'Previous diagnostic' },
-  }, { buffer = bufnr })
-  wk.register({ ['<leader>c'] = { a = 'Code actions' } }, { mode = 'v', buffer = bufnr })
+    opts = { buffer = bufnr },
+  }, { mappings = { ['<leader>c'] = { a = 'Code actions' } }, opts = { mode = 'v', buffer = bufnr } })
 
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.document_highlight then

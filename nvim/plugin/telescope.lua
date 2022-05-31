@@ -1,13 +1,8 @@
-local telescope, wk, status_ok
-status_ok, telescope = pcall(require, 'telescope')
+local status_ok, telescope = pcall(require, 'telescope')
 if not status_ok then
   return
 end
 status_ok, _ = pcall(require, 'trouble')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
 if not status_ok then
   return
 end
@@ -100,22 +95,25 @@ vim.keymap.set('n', '<leader>fgb', builtin.git_branches, opts)
 vim.keymap.set('n', '<leader>fgh', builtin.git_bcommits, opts)
 vim.keymap.set('n', '<leader>fgc', builtin.git_commits, opts)
 
-wk.register({
-  ['<leader>f'] = {
-    ['*'] = 'Word under cursor',
-    ['/'] = 'Current file',
-    a = 'Fuzzy search',
-    b = 'Buffers',
-    f = 'Files',
-    m = 'Keymaps',
-    t = 'Open Telescope',
+require('utils.whichkey').register({
+  mappings = {
+    ['<leader>f'] = {
+      ['*'] = 'Word under cursor',
+      ['/'] = 'Current file',
+      a = 'Fuzzy search',
+      b = 'Buffers',
+      f = 'Files',
+      m = 'Keymaps',
+      t = 'Open Telescope',
+    },
+    ['<leader>fg'] = {
+      name = '+git',
+      b = 'Branches',
+      c = 'Commits',
+      f = 'Files',
+      h = 'Buffer commits',
+      s = 'Status',
+    },
   },
-  ['<leader>fg'] = {
-    name = '+git',
-    b = 'Branches',
-    c = 'Commits',
-    f = 'Files',
-    h = 'Buffer commits',
-    s = 'Status',
-  },
+  opts = {},
 })

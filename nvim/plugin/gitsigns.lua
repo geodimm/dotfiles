@@ -1,9 +1,4 @@
-local gitsigns, wk, status_ok
-status_ok, gitsigns = pcall(require, 'gitsigns')
-if not status_ok then
-  return
-end
-status_ok, wk = pcall(require, 'which-key')
+local status_ok, gitsigns = pcall(require, 'gitsigns')
 if not status_ok then
   return
 end
@@ -67,23 +62,28 @@ gitsigns.setup({
   end,
 })
 
-wk.register({
-  [']c'] = { 'Next hunk' },
-  ['[c'] = { 'Previous hunk' },
-  ['<leader>h'] = {
-    name = '+gitsigns',
-    R = 'Reset buffer',
-    S = 'Stage buffer',
-    U = 'Reset buffer index',
-    b = 'Blame line',
-    d = 'Diff this',
-    p = 'Preview hunk',
-    r = 'Reset hunk',
-    s = 'Stage hunk',
-    u = 'Undo stage hunk',
-    td = 'Toggle deleted',
+require('utils.whichkey').register({
+  mappings = {
+    [']c'] = { 'Next hunk' },
+    ['[c'] = { 'Previous hunk' },
+    ['<leader>h'] = {
+      name = '+gitsigns',
+      R = 'Reset buffer',
+      S = 'Stage buffer',
+      U = 'Reset buffer index',
+      b = 'Blame line',
+      d = 'Diff this',
+      p = 'Preview hunk',
+      r = 'Reset hunk',
+      s = 'Stage hunk',
+      u = 'Undo stage hunk',
+      td = 'Toggle deleted',
+    },
   },
+  opts = {},
+}, {
+  mappings = {
+    ['<leader>h'] = { name = '+gitsigns', r = 'reset hunk', s = 'stage hunk' },
+  },
+  opts = { mode = 'v' },
 })
-wk.register({
-  ['<leader>h'] = { name = '+gitsigns', r = 'reset hunk', s = 'stage hunk' },
-}, { mode = 'v' })
