@@ -1,10 +1,14 @@
-local telescope_themes, status_ok
+local dressing, telescope_themes, status_ok
+status_ok, dressing = pcall(require, 'dressing')
+if not status_ok then
+  return
+end
 status_ok, telescope_themes = pcall(require, 'telescope.themes')
 if not status_ok then
   return
 end
 
-require('dressing').setup({
+dressing.setup({
   input = {
     winblend = 0,
   },
