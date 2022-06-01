@@ -57,6 +57,9 @@ do_update_linters() {
 		chmod +x "${hadolint}"
 	fi
 
+	info "[neovim][configure][linters] jsonlint"
+	npm install jsonlint -g
+
 	info "[neovim][configure][linters] stylua"
 	asset=$(curl --silent "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest" | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url')
 	if [[ -z $asset ]]; then
