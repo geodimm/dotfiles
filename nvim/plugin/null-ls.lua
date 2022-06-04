@@ -38,7 +38,6 @@ null_ls.setup({
     }),
 
     -- completion
-    null_ls.builtins.completion.spell,
     null_ls.builtins.completion.luasnip,
 
     -- code actions
