@@ -757,21 +757,23 @@
   ####################################[ form3_shell: f3 shell indicator ]#######################
   function prompt_form3_shell() {
     local session_expiry
-    local info
-    info="$(f3 auth info --json 2>/dev/null)"
-    if [[ $? -ne 0 ]]; then
-        return
+    if (( ${+F3_SESS_EXPIRY} )); then
+        session_expiry="${F3_SESS_EXPIRY}"
+    else
+        local info
+        info="$(f3 auth info --json 2>/dev/null)"
+        if [[ $? -ne 0 ]]; then
+            return
+        fi
+
+        session_expiry="$(date -d "$(echo "${info}" | jq -r .expiry 2>/dev/null)" +%s --utc)"
     fi
 
-    session_expiry="$(date -d "$(echo "${info}" | jq -r .expiry 2>/dev/null)" +%s --utc)"
     if (( ${session_expiry} )); then
       local total=$((session_expiry - $(date +%s)))
       local mins=$((total / 60))
       local color="$(_minutes_to_hex $mins)"
       local text=$'\uf415 '${mins}m
-      if [ $mins -le 0 ]; then
-        text=$'\uf421'
-      fi
       p10k segment -f ${color} -t ${text}
     fi
   }
