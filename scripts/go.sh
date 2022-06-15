@@ -5,7 +5,7 @@ set -e
 # shellcheck source=../scripts/util.sh
 source "$(pwd)/scripts/util.sh"
 
-GO_VERSION="${GO_VERSION:=1.18}"
+GO_VERSION="${GO_VERSION:=1.18.3}"
 
 do_install() {
 	if [[ "$(go version 2>/dev/null)" == *"${GO_VERSION}"* ]]; then
