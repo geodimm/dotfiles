@@ -9,9 +9,6 @@ vim.keymap.set('v', '<leader>w', '<Esc>:w<CR>gv', { noremap = true })
 vim.keymap.set('n', '<leader>q', ':q<CR>', { noremap = true })
 vim.keymap.set('v', '<leader>q', '<Esc>:q<CR>gv', { noremap = true })
 
--- Save with sudo
-vim.keymap.set('c', 'w!!', '%!sudo tee > /dev/null %', { noremap = true })
-
 -- Temporary turn off hlsearch
 vim.keymap.set('n', '<leader><CR>', ':noh<CR>', { noremap = true, silent = true })
 
