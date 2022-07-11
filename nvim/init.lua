@@ -53,6 +53,7 @@ packer.startup({
     use('rhysd/git-messenger.vim')
     use('tpope/vim-fugitive')
     use('folke/which-key.nvim')
+    use('FooSoft/vim-argwrap')
     use({ 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } })
 
     use({
