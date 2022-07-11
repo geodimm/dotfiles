@@ -23,7 +23,7 @@
 
   # Unset all configuration options. This allows you to apply configuration changes without
   # restarting zsh. Edit ~/.p10k.zsh and type `source ~/.p10k.zsh`.
-  unset -m 'POWERLEVEL9K_*|DEFAULT_USER'
+  unset -m '(POWERLEVEL9K_*|DEFAULT_USER)~POWERLEVEL9K_GITSTATUS_DIR'
 
   # Zsh >= 5.1 is required.
   autoload -Uz is-at-least && is-at-least 5.1 || return
@@ -70,12 +70,9 @@
     command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     load                    # CPU load
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     go_version              # go version (https://golang.org)
-    java_version            # java version (https://www.java.com/)
     kubecontext             # current kubernetes context (https://kubernetes.io/)
-    terraform               # terraform workspace (https://www.terraform.io)
     aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
     public_ip               # public IP address
     vpn_ip                  # virtual private network indicator
@@ -766,7 +763,7 @@
             return
         fi
 
-        session_expiry="$(date -d "$(echo "${info}" | jq -r .expiry 2>/dev/null)" +%s --utc)"
+        session_expiry="$(echo "${info}" | jq -r .expiry 2>/dev/null)"
     fi
 
     if (( ${session_expiry} )); then

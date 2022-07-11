@@ -95,8 +95,3 @@ zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w 
 
 # Reload the completions (uncomment if zsh-completions don't work)
 # autoload -U compinit && compinit
-
-# Add skaffold autocompletions
-if [ $commands[skaffold] ]; then
-    source <(skaffold completion zsh)
-fi
