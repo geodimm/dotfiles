@@ -1,13 +1,14 @@
-FROM ubuntu:focal
+ARG UBUNTU_VERSION=20.04
+
+FROM ubuntu:${UBUNTU_VERSION}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update\
+RUN apt-get update \ 
     && apt-get --no-install-recommends -y install \
     sudo \
     build-essential \
     software-properties-common \
-    && apt-add-repository -y ppa:git-core/ppa \
     && apt-get update \
     && apt-get --no-install-recommends -y install git \
     && rm -rf /var/lib/apt/lists/*

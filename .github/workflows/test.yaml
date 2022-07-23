@@ -13,8 +13,11 @@ jobs:
       matrix:
         os:
           - ubuntu-20.04
+          - ubuntu-22.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Test
         run: make test
+        env:
+          UBUNTU_VERSION: '${{ matrix.os }}'
