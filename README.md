@@ -33,13 +33,13 @@ flexibility and out-of-the-box experience.
 
 The tmux status is centered and has colour coded indicators for:
 
-- client prefix ![colour012](https://via.placeholder.com/15/0000FF?text=+)
+- client prefix ![colour012](https://via.placeholder.com/15/0000FF.png?text=+)
 `colour012 (Blue)`
-- copy mode ![colour003](https://via.placeholder.com/15/FFFF00?text=+)
+- copy mode ![colour003](https://via.placeholder.com/15/FFFF00.png?text=+)
 `colour003 (Yellow)`
-- zoomed panes ![colour002](https://via.placeholder.com/15/00FF00?text=+)
+- zoomed panes ![colour002](https://via.placeholder.com/15/00FF00.png?text=+)
 `colour002 (Green)`
-- synchronized panes ![colour001](https://via.placeholder.com/15/FF0000?text=+)
+- synchronized panes ![colour001](https://via.placeholder.com/15/FF0000.png?text=+)
 `colour001 (Red)`
 
 ![Tmux status bar](screenshots/tmux-status-bar.png)
@@ -72,7 +72,6 @@ The tmux status is centered and has colour coded indicators for:
 
 [bat]: https://github.com/sharkdp/bat "Bat"
 [lsd]: https://github.com/Peltoche/lsd "lsd"
-[fzf.vim]: https://github.com/junegunn/fzf.vim "FZF Vim"
 [fzf]: https://github.com/junegunn/fzf "FZF"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
