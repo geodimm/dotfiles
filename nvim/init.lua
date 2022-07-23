@@ -116,7 +116,13 @@ packer.startup({
     use('rafamadriz/friendly-snippets')
     use('onsails/lspkind-nvim')
     -- }}}
-    use({ 'fatih/vim-go', ft = { 'go', 'gomod' } })
+    use({
+      'olexsmir/gopher.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-treesitter/nvim-treesitter',
+      },
+    })
     use('hashivim/vim-terraform')
     use('towolf/vim-helm')
     use('bfrg/vim-jq')
