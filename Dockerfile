@@ -10,7 +10,7 @@ RUN apt-get update \
     build-essential \
     software-properties-common \
     && apt-get update \
-    && apt-get --no-install-recommends -y install git \
+    && apt-get --no-install-recommends -y install apt-utils git gpg-agent \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "Set disable_coredump false" >> /etc/sudo.conf
