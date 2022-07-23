@@ -71,14 +71,19 @@ end
 
 cmp.setup({
   enabled = function()
+    -- disable completion in prompts such as telescope filtering prompt
+    local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
+    if buftype == 'prompt' then
+      return false
+    end
+
     -- disable completion in comments
     local context = require('cmp.config.context')
-    -- keep command mode completion enabled when cursor is in a comment
-    if vim.api.nvim_get_mode().mode == 'c' then
-      return true
-    else
-      return not context.in_treesitter_capture('comment') and not context.in_syntax_group('Comment')
+    if context.in_treesitter_capture('comment') or context.in_syntax_group('Comment') then
+      return false
     end
+
+    return true
   end,
   snippet = {
     expand = function(args)
