@@ -76,6 +76,7 @@ telescope.setup({
 telescope.load_extension('fzf')
 telescope.load_extension('lsp_handlers')
 telescope.load_extension('refactoring')
+telescope.load_extension('notify')
 
 local opts = { silent = true, noremap = true }
 vim.keymap.set('n', '<leader>ft', ':Telescope<CR>', opts)

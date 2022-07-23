@@ -50,6 +50,7 @@ packer.startup({
     use('kyazdani42/nvim-tree.lua')
     use({ 'akinsho/nvim-toggleterm.lua', branch = 'main' })
     use('stevearc/dressing.nvim')
+    use('rcarriga/nvim-notify')
     use('rhysd/git-messenger.vim')
     use('tpope/vim-fugitive')
     use('folke/which-key.nvim')
