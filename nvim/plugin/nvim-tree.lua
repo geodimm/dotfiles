@@ -9,22 +9,19 @@ function table.removeKey(table, key)
 end
 
 nvim_tree.setup({
-  disable_netrw = false,
+  create_in_closed_folder = true,
   hijack_netrw = false,
-  open_on_setup = false,
   ignore_ft_on_setup = { 'startify' },
-  open_on_tab = false,
-  hijack_cursor = false,
-  update_cwd = false,
   diagnostics = { enable = true, icons = table.removeKey(require('config.icons').lsp, 'other') },
-  update_focused_file = { enable = false, update_cwd = false, ignore_list = {} },
-  system_open = { cmd = nil, args = {} },
   respect_buf_cwd = true,
   renderer = {
     add_trailing = true,
     highlight_git = true,
+    indent_markers = { enable = true },
+    special_files = { 'Makefile', 'README.md', 'go.mod' },
   },
   view = {
+    adaptive_size = true,
     width = 40,
     side = 'left',
     mappings = {
