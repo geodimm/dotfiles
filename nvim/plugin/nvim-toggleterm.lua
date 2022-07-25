@@ -13,7 +13,7 @@ toggleterm.setup({
   end,
   highlights = {
     FloatBorder = {
-      guifg = require('config.theme').get_color('FloatBorder', 'fg#'),
+      guifg = vim.api.nvim_get_hl_by_name('FloatBorder', true).foreground,
       guibg = '',
     },
   },
