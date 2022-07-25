@@ -96,22 +96,25 @@ vim.keymap.set('n', '<leader>fa', function()
   builtin.live_grep({ path_display = { 'shorten' } })
 end, opts)
 vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
-vim.keymap.set('n', '<leader>fgf', builtin.git_files, opts)
-vim.keymap.set('n', '<leader>fgs', builtin.git_status, opts)
 vim.keymap.set('n', '<leader>fgb', builtin.git_branches, opts)
-vim.keymap.set('n', '<leader>fgh', builtin.git_bcommits, opts)
 vim.keymap.set('n', '<leader>fgc', builtin.git_commits, opts)
+vim.keymap.set('n', '<leader>fgf', builtin.git_files, opts)
+vim.keymap.set('n', '<leader>fgh', builtin.git_bcommits, opts)
+vim.keymap.set('n', '<leader>fgs', builtin.git_status, opts)
 
 require('utils.whichkey').register({
   mappings = {
     ['<leader>f'] = {
+      name = 'find',
       ['*'] = 'Word under cursor',
       ['/'] = 'Current file',
       a = 'Fuzzy search',
       b = 'Buffers',
       f = 'Files',
+      h = 'Hidden files',
       m = 'Keymaps',
       t = 'Open Telescope',
+      v = 'vendor/**',
     },
     ['<leader>fg'] = {
       name = '+git',
