@@ -36,7 +36,7 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 require('utils.whichkey').register({
   mappings = {
-    ['<leader>t'] = { name = '+toggleterm', t = 'Open terminal' },
+    ['<leader>t'] = { name = '+terminal', t = 'Open terminal' },
   },
   opts = {},
 })

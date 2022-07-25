@@ -13,24 +13,10 @@ gitsigns.setup({
   },
   diff_opts = { internal = true },
   current_line_blame = true,
-  current_line_blame_opts = { delay = 0 },
-  current_line_blame_formatter = function(name, blame_info)
-    if blame_info.author == name then
-      blame_info.author = 'You'
-    end
-    local text
-    if blame_info.author == 'Not Committed Yet' then
-      text = blame_info.author
-    else
-      text = string.format(
-        '%s, %s - %s',
-        blame_info.author,
-        os.date('%Y-%m-%d', tonumber(blame_info['author_time'])),
-        blame_info.summary
-      )
-    end
-    return { { '   ' .. text, 'GitSignsCurrentLineBlame' } }
-  end,
+  current_line_blame_formatter = '  <author>, <author_time:%Y-%m-%d> - <summary>',
+  preview_config = {
+    border = 'rounded',
+  },
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
@@ -67,7 +53,7 @@ require('utils.whichkey').register({
     [']c'] = { 'Next hunk' },
     ['[c'] = { 'Previous hunk' },
     ['<leader>h'] = {
-      name = '+gitsigns',
+      name = '+git',
       R = 'Reset buffer',
       S = 'Stage buffer',
       U = 'Reset buffer index',
