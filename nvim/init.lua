@@ -147,6 +147,7 @@ packer.startup({
   end,
   config = {
     display = {
+      prompt_border = 'rounded',
       open_fn = function()
         return require('packer.util').float({ border = 'rounded' })
       end,
