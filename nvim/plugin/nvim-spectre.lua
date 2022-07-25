@@ -24,7 +24,7 @@ vim.keymap.set('n', '<leader>sf', spectre.open_file_search, opts)
 require('utils.whichkey').register({
   mappings = {
     ['<leader>s'] = {
-      name = '+spectre',
+      name = '+search',
       f = 'Search in current file',
       r = 'Search and replace',
       w = 'Search for word under cursor',

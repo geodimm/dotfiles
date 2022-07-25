@@ -12,9 +12,6 @@ vim.keymap.set('v', '<leader>q', '<Esc>:q<CR>gv', { noremap = true })
 -- Temporary turn off hlsearch
 vim.keymap.set('n', '<leader><CR>', ':noh<CR>', { noremap = true, silent = true })
 
--- Sort lines alphabetically
-vim.keymap.set('v', '<leader>S', ':sort<CR>', { noremap = true })
-
 -- Copy with Ctrl+C in visual mode
 vim.keymap.set('v', '<C-c>', '"+y<CR>', { noremap = true })
 
@@ -32,11 +29,6 @@ vim.keymap.set('n', 'gf', '^f/gf', { noremap = true })
 -- A quick way to move lines of text up or down
 vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true })
 vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true })
-
--- Quickly edit dotfiles
-vim.keymap.set('n', '<leader>ev', ':vsplit $MYVIMRC<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>et', ':vsplit ~/dotfiles/tmux/tmux.conf<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>ez', ':vsplit ~/dotfiles/zsh/zshrc<CR>', { noremap = true, silent = true })
 
 -- Exit insert mode with jj
 vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
@@ -71,29 +63,8 @@ vim.keymap.set('n', 'ZX', ':qa<CR>', { noremap = true })
 vim.api.nvim_command('iab cdate <c-r>=strftime("%Y-%m-%d")<CR>')
 vim.api.nvim_command('iab todo <c-r>="TODO (Georgi Dimitrov):"<CR>')
 
--- Formal XML
-vim.api.nvim_exec(
-  [[
-command! FormatXML silent! execute '%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())'
-    ]],
-  false
-)
-
--- Formal JSON
-vim.api.nvim_exec(
-  [[
-command! FormatJSON silent! execute '%!python3 -m json.tool'
-    ]],
-  false
-)
-
 -- Close all buffers but the current one
-vim.api.nvim_exec(
-  [[
-command! BufOnly silent! execute "%bd|e#|bd#"
-    ]],
-  false
-)
+vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', { nargs = 0 })
 vim.keymap.set('n', '<leader>b', ':BufOnly<CR>', { noremap = true })
 
 require('utils.whichkey').register({
@@ -112,18 +83,11 @@ require('utils.whichkey').register({
     ['<leader>w'] = 'Save',
     ['<leader>q'] = 'Close/Quit',
     ['<leader>b'] = 'Close all other buffers',
-    ['<leader>e'] = {
-      name = '+vsplit',
-      v = 'init.lua',
-      t = 'tmux.conf',
-      z = 'zshrc',
-    },
     Y = 'Yank til end of line',
   },
   opts = {},
 }, {
   mappings = {
-    ['<leader>S'] = 'Sort selected lines',
     ['<leader>w'] = 'Save',
     ['<leader>q'] = 'Close/Quit',
   },
