@@ -11,9 +11,31 @@ status_ok, cmp = pcall(require, 'cmp')
 if not status_ok then
   return
 end
+if not cmp then
+  return
+end
 status_ok, cmp_git = pcall(require, 'cmp_git')
 if not status_ok then
   return
+end
+
+local patch_hlgroups = function()
+  local lsp_types = require('cmp.types').lsp
+  for k, _ in pairs(lsp_types.CompletionItemKind) do
+    if type(k) == 'string' then
+      local name = 'CmpItemKind' .. k
+      local ok, hlgroup = pcall(vim.api.nvim_get_hl_by_name, name, true)
+      if ok then
+        hlgroup.reverse = true
+        vim.api.nvim_set_hl(0, name, hlgroup)
+      end
+    end
+  end
+  local ok, hlgroup = pcall(vim.api.nvim_get_hl_by_name, 'CmpItemMenu', true)
+  if ok then
+    hlgroup.foreground = vim.api.nvim_get_hl_by_name('Label', true).foreground
+    vim.api.nvim_set_hl(0, 'CmpItemMenu', hlgroup)
+  end
 end
 
 local has_words_before = function()
@@ -70,6 +92,47 @@ local label_comparator = function(entry1, entry2)
 end
 
 cmp.setup({
+  window = {
+    completion = {
+      border = 'rounded',
+      winhighlight = 'CursorLine:Visual,Search:None',
+      zindex = 1001,
+      col_offset = -3,
+      side_padding = 0,
+    },
+    documentation = {
+      border = 'rounded',
+      winhighlight = 'CursorLine:Visual,Search:None',
+      zindex = 1001,
+      col_offset = 10,
+      side_padding = 1,
+    },
+  },
+  formatting = {
+    fields = { cmp.ItemField.Kind, cmp.ItemField.Abbr, cmp.ItemField.Menu },
+    format = function(entry, vim_item)
+      local kind = lspkind.cmp_format({
+        mode = 'symbol_text',
+        maxwidth = 50,
+        menu = {
+          nvim_lsp = 'lsp',
+          luasnip = 'luasnip',
+          buffer = 'buffer',
+          nvim_lua = 'lua',
+        },
+      })(entry, vim_item)
+
+      local strings = vim.split(kind.kind, '%s', { trimempty = true })
+      kind.kind = ' ' .. strings[1] .. ' '
+      local menu = kind.menu
+      kind.menu = ' ' .. strings[2]
+      if menu then
+        kind.menu = kind.menu .. ' ' .. menu
+      end
+
+      return kind
+    end,
+  },
   enabled = function()
     -- disable completion in prompts such as telescope filtering prompt
     local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
@@ -103,17 +166,6 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
-    }),
-  },
-  formatting = {
-    format = lspkind.cmp_format({
-      mode = 'symbol_text',
-      menu = {
-        nvim_lsp = '[LSP]',
-        luasnip = '[LuaSnip]',
-        buffer = '[Buffer]',
-        nvim_lua = '[Lua]',
-      },
     }),
   },
   sorting = {
@@ -187,3 +239,5 @@ cmp.setup.cmdline(':', {
 })
 
 cmp_git.setup()
+
+patch_hlgroups()
