@@ -9,7 +9,6 @@ local setup = function()
     group = 'customise_highlight_groups',
     pattern = '*',
     callback = function()
-      vim.api.nvim_set_hl(0, 'Whitespace', { link = 'SpecialChar' })
       vim.api.nvim_set_hl(0, 'PmenuThumb', { link = 'Visual' })
     end,
   })
