@@ -17,8 +17,15 @@ dressing.setup({
     prefer_width = 0.5,
   },
   select = {
-    telescope = telescope_themes.get_cursor({}),
-    winblend = 0,
-    width = 0.5,
+    telescope = telescope_themes.get_cursor({
+      layout_config = {
+        width = function(_, max_columns, _)
+          return math.min(max_columns, 80)
+        end,
+        height = function(_, _, max_lines)
+          return math.min(max_lines, 15)
+        end,
+      },
+    }),
   },
 })
