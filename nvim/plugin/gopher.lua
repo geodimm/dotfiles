@@ -7,7 +7,7 @@ gopher.setup({
   commands = {
     go = 'go',
     gomodifytags = 'gomodifytags',
-    gotests = '~/go/bin/gotests', -- also you can set custom command path
+    gotests = 'gotests',
     impl = 'impl',
     iferr = 'iferr',
   },
