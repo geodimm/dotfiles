@@ -11,6 +11,7 @@
 	template = ~/dotfiles/git/commit-template
 [push]
 	default = simple
+	autoSetupRemote = true
 [pull]
 	rebase = true
 [diff]
