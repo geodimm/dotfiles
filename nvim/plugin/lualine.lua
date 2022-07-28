@@ -42,7 +42,7 @@ lualine.setup({
         'b:gitsigns_head',
         icon = '',
         fmt = trunc(100, 10, nil, false),
-        padding = { left = 1, right = 0 },
+        padding = { left = 1, right = 1 },
       },
       { 'diff', source = diff_source },
     },
