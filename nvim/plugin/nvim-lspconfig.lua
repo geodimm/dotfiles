@@ -279,6 +279,7 @@ local setup_servers = function()
   lspinstaller.setup({
     ensure_installed = required_servers,
     ui = {
+      border = 'rounded',
       icons = {
         server_installed = '✓',
         server_pending = '➜',
