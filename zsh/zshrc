@@ -93,5 +93,10 @@ zstyle ':completion:*:*:make::' tag-order 'targets variables'
 # give a preview of commandline arguments when completing `kill`
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 
+# Other {{{2
+
+# disable highlighting of pasted text
+zle_highlight=('paste:none')
+
 # Reload the completions (uncomment if zsh-completions don't work)
 # autoload -U compinit && compinit
