@@ -156,7 +156,13 @@ local on_attach = function(client, bufnr)
   end
 
   -- Create an autocmd to open LSP diagnostics in a float on CursorHold events
+  vim.api.nvim_create_augroup('lsp_diagnostic_float', { clear = false })
+  vim.api.nvim_clear_autocmds({
+    group = 'lsp_diagnostic_float',
+    buffer = bufnr,
+  })
   vim.api.nvim_create_autocmd('CursorHold', {
+    group = 'lsp_diagnostic_float',
     buffer = bufnr,
     callback = function()
       if diagnostics.is_disabled(bufnr) then
