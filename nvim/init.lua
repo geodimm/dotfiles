@@ -45,6 +45,7 @@ packer.startup({
     use('nvim-treesitter/nvim-treesitter-textobjects')
     use('kyazdani42/nvim-web-devicons')
     use({ 'RRethy/vim-hexokinase', run = 'make hexokinase' })
+    use({ 'Pocco81/true-zen.nvim', branch = 'dev' })
 
     -- IDE-like features {{{1
     use('kyazdani42/nvim-tree.lua')
