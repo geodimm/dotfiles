@@ -4,6 +4,8 @@ if not status_ok then
   return
 end
 
+vim.notify = notify
+
 notify.setup({
   timeout = 1500,
   stages = 'slide',
