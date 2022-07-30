@@ -174,8 +174,15 @@ local on_attach = function(client, bufnr)
         close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
         border = 'rounded',
         source = 'always',
-        prefix = ' ',
+        prefix = function(_, i, total)
+          if total > 1 then
+            return tostring(i) .. '. '
+          end
+
+          return ''
+        end,
         scope = 'cursor',
+        header = { 'Diagnostics', 'Title' },
       }
       vim.diagnostic.open_float(nil, diagnostic_float_opts)
     end,
