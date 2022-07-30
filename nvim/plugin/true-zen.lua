@@ -20,6 +20,9 @@ truezen.setup({
   modes = {
     ataraxis = {
       open_callback = open_callback('Ataraxis'),
+      minimum_writing_area = {
+        width = 100,
+      },
     },
     minimalist = {
       open_callback = open_callback('Minimalist'),
