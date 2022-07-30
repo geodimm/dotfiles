@@ -174,7 +174,7 @@ local on_attach = function(client, bufnr)
 
       local diagnostic_float_opts = {
         focusable = false,
-        close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+        close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
         border = 'rounded',
         source = 'always',
         prefix = ' ',
