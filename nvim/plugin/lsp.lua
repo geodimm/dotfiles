@@ -1,4 +1,4 @@
-local status_ok, lspinstaller, lspconfig, cmp_nvim_lsp
+local status_ok, lspinstaller, lspconfig, null_ls, cmp_nvim_lsp
 status_ok, lspinstaller = pcall(require, 'nvim-lsp-installer')
 if not status_ok then
   return
@@ -7,35 +7,27 @@ status_ok, lspconfig = pcall(require, 'lspconfig')
 if not status_ok then
   return
 end
+status_ok, null_ls = pcall(require, 'null-ls')
+if not status_ok then
+  return
+end
 status_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
 if not status_ok then
   return
 end
 
--- diagnostics is map[number]bool which keeps the current status of
--- lsp diagnostics for each buffer.
-local diagnostics = {}
+local diagnostics = require('utils.diagnostics')
 
--- set_diagnostics updates the status of lsp diagnostics for a buffer
-local set_diagnostics = function(bufnr, enabled)
-  diagnostics[bufnr] = enabled
-end
-
--- diagnostics_disabled returns whether lsp diagnostics are disabled for a buffer
-local diagnostics_disabled = function(bufnr)
-  return not diagnostics[bufnr]
-end
-
-local null_ls_command_prefix = 'NULL_LS'
-
-local org_imports = function(wait_ms)
+local org_imports = function(client, wait_ms)
+  local null_ls_command_prefix = 'NULL_LS'
   local params = vim.lsp.util.make_range_params()
   params.context = { only = { 'source.organizeImports' } }
   local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
   for _, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do
       if r.edit then
-        vim.lsp.util.apply_workspace_edit(r.edit, 'utf-16')
+        local encoding = client.offset_encoding
+        vim.lsp.util.apply_workspace_edit(r.edit, encoding)
       elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
         vim.lsp.buf.execute_command(r.command)
       end
@@ -47,8 +39,6 @@ vim.api.nvim_create_augroup('lsp_formatting', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = 'lsp_formatting',
   pattern = {
-    '*.c',
-    '*.h',
     '*.go',
     '*.lua',
     '*.tf',
@@ -74,7 +64,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Mark diagnostics as enabled by default
-  set_diagnostics(bufnr)
+  diagnostics.set(bufnr, true)
 
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -91,11 +81,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, keymap_opts)
   vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, keymap_opts)
   vim.keymap.set('n', '<leader>ce', function()
-    set_diagnostics(bufnr, true)
+    diagnostics.set(bufnr, true)
     vim.diagnostic.enable(bufnr)
   end, keymap_opts)
   vim.keymap.set('n', '<leader>cd', function()
-    set_diagnostics(bufnr, false)
+    diagnostics.set(bufnr, false)
     vim.diagnostic.disable(bufnr)
   end, keymap_opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, keymap_opts)
@@ -107,6 +97,7 @@ local on_attach = function(client, bufnr)
     vim.diagnostic.goto_next({ float = false })
   end, keymap_opts)
   vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, keymap_opts)
+  vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, keymap_opts)
 
   require('utils.whichkey').register({
     mappings = {
@@ -164,11 +155,11 @@ local on_attach = function(client, bufnr)
     })
   end
 
-  -- Diagnostics for specific cursor position
+  -- Create an autocmd to open LSP diagnostics in a float on CursorHold events
   vim.api.nvim_create_autocmd('CursorHold', {
     buffer = bufnr,
     callback = function()
-      if diagnostics_disabled(bufnr) then
+      if diagnostics.is_disabled(bufnr) then
         return
       end
 
@@ -314,8 +305,9 @@ local create_config = function(server)
   return opts
 end
 
--- Configure nvim-lsp-installer and lspconfig
+-- Configure nvim-lsp-installer lspconfig, and null-ls
 local setup_servers = function()
+  -- ensure all required LSP servers are installed
   local required_servers = {
     'gopls',
     'sumneko_lua',
@@ -341,10 +333,56 @@ local setup_servers = function()
     },
   })
 
+  -- Run all servers using lspconfig
   for _, server in ipairs(lspinstaller.get_installed_servers()) do
     local config = create_config(server)
     lspconfig[server.name].setup(config)
   end
+
+  -- Configure null-ls with the same on_attach function
+  null_ls.setup({
+    debug = true,
+    diagnostics_format = '#{m} (#{s})',
+    on_attach = on_attach,
+    sources = {
+      -- diagnostics
+      null_ls.builtins.diagnostics.golangci_lint.with({
+        extra_args = { '--config', vim.fn.expand('$HOME/dotfiles/golangci-lint/golangci.yml', nil, nil) },
+      }),
+      null_ls.builtins.diagnostics.hadolint,
+      null_ls.builtins.diagnostics.jsonlint,
+      null_ls.builtins.diagnostics.markdownlint.with({
+        extra_args = {
+          '--config',
+          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+        },
+      }),
+      null_ls.builtins.diagnostics.shellcheck,
+
+      -- formatting
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.jq,
+      null_ls.builtins.formatting.shfmt,
+      null_ls.builtins.formatting.markdownlint,
+      null_ls.builtins.formatting.markdownlint.with({
+        extra_args = {
+          '--config',
+          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+        },
+      }),
+
+      -- completion
+      null_ls.builtins.completion.luasnip,
+
+      -- code actions
+      null_ls.builtins.code_actions.refactoring,
+      null_ls.builtins.code_actions.gitsigns,
+      null_ls.builtins.code_actions.shellcheck,
+
+      -- hover
+      null_ls.builtins.hover.dictionary,
+    },
+  })
 end
 
 local customise_ui = function()
