@@ -64,7 +64,7 @@ lualine.setup({
     lualine_x = { 'filetype' },
     lualine_y = { { 'encoding', padding = { left = 1, right = 0 } }, 'fileformat' },
     lualine_z = {
-      { 'progress', padding = 0 },
+      { 'progress', padding = { left = 1, right = 0 } },
       { 'location', padding = { left = 0, right = 1 } },
     },
   },
