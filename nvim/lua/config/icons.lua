@@ -15,7 +15,7 @@ M.lspconfig = {
   Hint = lsp.hint,
   Info = lsp.info,
   Other = lsp.other,
-  Warning = lsp.warning,
+  Warn = lsp.warning,
 }
 
 return M
