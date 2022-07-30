@@ -12,6 +12,20 @@ if not status_ok then
   return
 end
 
+-- diagnostics is map[number]bool which keeps the current status of
+-- lsp diagnostics for each buffer.
+local diagnostics = {}
+
+-- set_diagnostics updates the status of lsp diagnostics for a buffer
+local set_diagnostics = function(bufnr, enabled)
+  diagnostics[bufnr] = enabled
+end
+
+-- diagnostics_disabled returns whether lsp diagnostics are disabled for a buffer
+local diagnostics_disabled = function(bufnr)
+  return not diagnostics[bufnr]
+end
+
 local null_ls_command_prefix = 'NULL_LS'
 
 local org_imports = function(wait_ms)
@@ -59,6 +73,9 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  -- Mark diagnostics as enabled by default
+  set_diagnostics(bufnr)
+
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -73,10 +90,22 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, keymap_opts)
   vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, keymap_opts)
   vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, keymap_opts)
+  vim.keymap.set('n', '<leader>ce', function()
+    set_diagnostics(bufnr, true)
+    vim.diagnostic.enable(bufnr)
+  end, keymap_opts)
+  vim.keymap.set('n', '<leader>cd', function()
+    set_diagnostics(bufnr, false)
+    vim.diagnostic.disable(bufnr)
+  end, keymap_opts)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, keymap_opts)
   vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, keymap_opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
+  vim.keymap.set('n', '[d', function()
+    vim.diagnostic.goto_prev({ float = false })
+  end, keymap_opts)
+  vim.keymap.set('n', ']d', function()
+    vim.diagnostic.goto_next({ float = false })
+  end, keymap_opts)
   vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, keymap_opts)
 
   require('utils.whichkey').register({
@@ -95,6 +124,8 @@ local on_attach = function(client, bufnr)
       ['<leader>c'] = {
         name = '+lsp',
         a = 'Code actions',
+        d = 'Disable diagnostics',
+        e = 'Enable diagnostics',
         f = 'Format',
         l = 'Populate location list',
         r = 'Rename',
@@ -137,6 +168,10 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd('CursorHold', {
     buffer = bufnr,
     callback = function()
+      if diagnostics_disabled(bufnr) then
+        return
+      end
+
       local diagnostic_float_opts = {
         focusable = false,
         close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
@@ -327,12 +362,12 @@ end
 
 local setup_vim_diagnostics = function()
   vim.diagnostic.config({
-    signs = true,
     underline = true,
+    virtual_text = false,
+    signs = true,
+    float = false,
     update_in_insert = true,
     severity_sort = true,
-    virtual_text = false,
-    float = true,
   })
 end
 
