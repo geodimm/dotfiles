@@ -69,6 +69,22 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  local diagnostic_float_opts = {
+    focusable = false,
+    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+    border = 'rounded',
+    source = 'always',
+    prefix = function(_, i, total)
+      if total > 1 then
+        return tostring(i) .. '. '
+      end
+
+      return ''
+    end,
+    scope = 'cursor',
+    header = { 'Diagnostics', 'Title' },
+  }
+
   local keymap_opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, keymap_opts)
   vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, keymap_opts)
@@ -91,10 +107,22 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, keymap_opts)
   vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, keymap_opts)
   vim.keymap.set('n', '[d', function()
-    vim.diagnostic.goto_prev({ float = false })
+    if diagnostics.is_disabled(bufnr) then
+      return
+    end
+    vim.diagnostic.goto_prev({ float = diagnostic_float_opts })
   end, keymap_opts)
   vim.keymap.set('n', ']d', function()
-    vim.diagnostic.goto_next({ float = false })
+    if diagnostics.is_disabled(bufnr) then
+      return
+    end
+    vim.diagnostic.goto_next({ float = diagnostic_float_opts })
+  end, keymap_opts)
+  vim.keymap.set('n', '<leader>cs', function()
+    if diagnostics.is_disabled(bufnr) then
+      return
+    end
+    vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
   end, keymap_opts)
   vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, keymap_opts)
   vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, keymap_opts)
@@ -120,6 +148,7 @@ local on_attach = function(client, bufnr)
         f = 'Format',
         l = 'Populate location list',
         r = 'Rename',
+        s = 'Show diagnostics',
       },
       ['<leader>k'] = 'Signature help',
       [']d'] = { 'Next diagnostic' },
@@ -154,39 +183,6 @@ local on_attach = function(client, bufnr)
       callback = vim.lsp.buf.clear_references,
     })
   end
-
-  -- Create an autocmd to open LSP diagnostics in a float on CursorHold events
-  vim.api.nvim_create_augroup('lsp_diagnostic_float', { clear = false })
-  vim.api.nvim_clear_autocmds({
-    group = 'lsp_diagnostic_float',
-    buffer = bufnr,
-  })
-  vim.api.nvim_create_autocmd('CursorHold', {
-    group = 'lsp_diagnostic_float',
-    buffer = bufnr,
-    callback = function()
-      if diagnostics.is_disabled(bufnr) then
-        return
-      end
-
-      local diagnostic_float_opts = {
-        focusable = false,
-        close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-        border = 'rounded',
-        source = 'always',
-        prefix = function(_, i, total)
-          if total > 1 then
-            return tostring(i) .. '. '
-          end
-
-          return ''
-        end,
-        scope = 'cursor',
-        header = { 'Diagnostics', 'Title' },
-      }
-      vim.diagnostic.open_float(nil, diagnostic_float_opts)
-    end,
-  })
 end
 
 -- Define LSP configuration settings for languages
