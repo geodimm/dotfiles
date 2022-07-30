@@ -3,4 +3,7 @@ if not status_ok then
   return
 end
 
+local icon = require('config.icons').lightbulb
+vim.fn.sign_define('LightBulbSign', { text = icon, texthl = 'Character', linehl = '', numhl = '' })
+
 lightbulb.setup({ autocmd = { enabled = true } })
