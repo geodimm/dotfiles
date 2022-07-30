@@ -62,22 +62,22 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  local opts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, opts)
-  vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, opts)
-  vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, opts)
-  vim.keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, opts)
-  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, opts)
-  vim.keymap.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, opts)
-  vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-  vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, opts)
-  vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, opts)
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-  vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, opts)
+  local keymap_opts = { noremap = true, silent = true, buffer = bufnr }
+  vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, keymap_opts)
+  vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, keymap_opts)
+  vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, keymap_opts)
+  vim.keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, keymap_opts)
+  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, keymap_opts)
+  vim.keymap.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, keymap_opts)
+  vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, keymap_opts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, keymap_opts)
+  vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, keymap_opts)
+  vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, keymap_opts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, keymap_opts)
+  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, keymap_opts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
+  vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, keymap_opts)
 
   require('utils.whichkey').register({
     mappings = {
@@ -104,26 +104,50 @@ local on_attach = function(client, bufnr)
       ['[d'] = { 'Previous diagnostic' },
     },
     opts = { buffer = bufnr },
-  }, { mappings = { ['<leader>c'] = { a = 'Code actions' } }, opts = { mode = 'v', buffer = bufnr } })
+  }, {
+    mappings = {
+      ['<leader>c'] = {
+        name = '+lsp',
+        a = 'Code actions',
+      },
+    },
+    opts = { mode = 'v', buffer = bufnr },
+  })
 
   -- Set autocommands conditional on server_capabilities
-  if client.server_capabilities.document_highlight then
-    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
-    vim.api.nvim_create_autocmd('CursorHold', {
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
+    vim.api.nvim_clear_autocmds({
       group = 'lsp_document_highlight',
-      pattern = '<buffer>',
-      callback = function()
-        vim.lsp.buf.document_highlight()
-      end,
+      buffer = bufnr,
+    })
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = 'lsp_document_highlight',
+      buffer = bufnr,
+      callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd('CursorMoved', {
       group = 'lsp_document_highlight',
-      pattern = '<buffer>',
-      callback = function()
-        vim.lsp.buf.clear_references()
-      end,
+      buffer = bufnr,
+      callback = vim.lsp.buf.clear_references,
     })
   end
+
+  -- Diagnostics for specific cursor position
+  vim.api.nvim_create_autocmd('CursorHold', {
+    buffer = bufnr,
+    callback = function()
+      local diagnostic_float_opts = {
+        focusable = false,
+        close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter', 'FocusLost' },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, diagnostic_float_opts)
+    end,
+  })
 end
 
 -- Define LSP configuration settings for languages
@@ -246,12 +270,6 @@ local create_config = function(server)
   local opts = {
     capabilities = capabilities,
     on_attach = on_attach,
-    -- modify virtual text
-    handlers = {
-      ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = { prefix = ' ', spacing = 4 },
-      }),
-    },
   }
 
   if build_lsp_config[server.name] then
@@ -295,17 +313,29 @@ local setup_servers = function()
 end
 
 local customise_ui = function()
-  local lspconfig_icons = require('config.icons').lspconfig
+  local icons = require('config.icons').lspconfig
   -- Update the sign icons
-  for type, icon in pairs(lspconfig_icons) do
-    local hl = 'LspDiagnosticsSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = '' })
+  for type, icon in pairs(icons) do
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
 
   -- Set borders to floating windows
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'single' })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'single' })
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
 end
 
+local setup_vim_diagnostics = function()
+  vim.diagnostic.config({
+    signs = true,
+    underline = true,
+    update_in_insert = true,
+    severity_sort = true,
+    virtual_text = false,
+    float = true,
+  })
+end
+
+setup_vim_diagnostics()
 setup_servers()
 customise_ui()

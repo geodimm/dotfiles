@@ -1,19 +1,21 @@
 local M = {}
 
-local lsp_icons = {
-  hint = '',
-  info = '',
-  warning = '',
-  error = '',
-  other = '',
+local lsp = {
+  error = '',
+  hint = '',
+  info = '',
+  other = '﫠',
+  warning = '',
 }
 
-M.lsp = lsp_icons
+M.lightbulb = ''
+M.lsp = lsp
 M.lspconfig = {
-  Hint = lsp_icons.hint,
-  Information = lsp_icons.info,
-  Warning = lsp_icons.warning,
-  Error = lsp_icons.error,
+  Error = lsp.error,
+  Hint = lsp.hint,
+  Info = lsp.info,
+  Other = lsp.other,
+  Warning = lsp.warning,
 }
 
 return M
