@@ -152,7 +152,7 @@ local on_attach = function(client, bufnr)
     buffer = bufnr,
     callback = function(_)
       if client.server_capabilities.documentFormattingProvider then
-        vim.lsp.buf.format()
+        vim.lsp.buf.format({ bufnr = bufnr })
       end
     end,
   })
@@ -369,7 +369,6 @@ local setup_servers = function()
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.jq,
       null_ls.builtins.formatting.shfmt,
-      null_ls.builtins.formatting.markdownlint,
       null_ls.builtins.formatting.markdownlint.with({
         extra_args = {
           '--config',
