@@ -147,15 +147,15 @@ local on_attach = function(client, bufnr)
     group = 'lsp_document_format',
     buffer = bufnr,
   })
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    group = 'lsp_document_format',
-    buffer = bufnr,
-    callback = function(_)
-      if client.server_capabilities.documentFormattingProvider then
+  if client.supports_method('textDocument/formatting') then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = 'lsp_document_format',
+      buffer = bufnr,
+      callback = function(_)
         vim.lsp.buf.format({ bufnr = bufnr })
-      end
-    end,
-  })
+      end,
+    })
+  end
 
   -- Workaround for gopls not organizing imports on vim.lsp.buf.format
   -- Call he organizeImports codeActions for *.go files
