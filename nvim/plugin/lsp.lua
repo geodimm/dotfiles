@@ -151,7 +151,9 @@ local on_attach = function(client, bufnr)
     group = 'lsp_document_format',
     buffer = bufnr,
     callback = function(_)
-      vim.lsp.buf.format()
+      if client.server_capabilities.documentFormattingProvider then
+        vim.lsp.buf.format()
+      end
     end,
   })
 
