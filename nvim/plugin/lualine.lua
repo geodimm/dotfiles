@@ -26,17 +26,19 @@ local function diff_source()
   end
 end
 
+local patched_theme = vim.tbl_deep_extend('force', require('lualine.themes.auto'), { normal = { c = { bg = 'none' } } })
+
 lualine.setup({
   options = {
-    theme = 'auto',
-    section_separators = { left = '', right = '' },
-    component_separators = { left = '', right = '' },
+    theme = patched_theme,
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '|', right = '|' },
     icons_enabled = true,
     globalstatus = true,
   },
   extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
   sections = {
-    lualine_a = { { 'mode', upper = true } },
+    lualine_a = { { 'mode', upper = true, separator = { left = '', right = '' } } },
     lualine_b = {
       {
         'b:gitsigns_head',
@@ -62,32 +64,10 @@ lualine.setup({
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
     lualine_x = { 'filetype' },
-    lualine_y = { { 'encoding', padding = { left = 1, right = 0 } }, 'fileformat' },
+    lualine_y = { { 'encoding', padding = { left = 1, right = 1 } }, 'fileformat' },
     lualine_z = {
       { 'progress', padding = { left = 1, right = 0 } },
-      { 'location', padding = { left = 0, right = 1 } },
+      { 'location', padding = { left = 0, right = 1 }, separator = { left = '', right = '' } },
     },
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {
-      {
-        'filename',
-        file_status = true,
-        path = 1,
-        color = function(_)
-          return vim.bo.modified and 'WarningMsg' or ''
-        end,
-        symbols = {
-          modified = ' ﱐ',
-          readonly = ' ',
-          unnamed = '[No name]',
-        },
-      },
-    },
-    lualine_x = { 'filetype' },
-    lualine_y = {},
-    lualine_z = {},
   },
 })
