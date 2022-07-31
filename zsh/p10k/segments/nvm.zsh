@@ -1,0 +1,4 @@
+typeset -g POWERLEVEL9K_NVM_FOREGROUND=$magenta
+typeset -g POWERLEVEL9K_NVM_BACKGROUND=$grey
+typeset -g POWERLEVEL9K_NVM_PROJECT_ONLY=false
+typeset -g POWERLEVEL9K_NVM_SHOW_ON_COMMAND='nvm|npm|node'
