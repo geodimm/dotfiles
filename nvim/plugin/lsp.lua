@@ -234,19 +234,8 @@ local build_lsp_config = {
     }
   end,
   sumneko_lua = function()
-    return {
-      settings = {
-        Lua = {
-          runtime = {
-            version = 'LuaJIT',
-          },
-          completion = { callSnippet = 'Both' },
-          diagnostics = { globals = { 'vim' } },
-          workspace = { library = vim.api.nvim_get_runtime_file('', true), checkThirdParty = false },
-          format = { enable = false },
-        },
-      },
-    }
+    local config = require('lua-dev').setup({})
+    return config
   end,
   jdtls = function()
     local jdtls_home = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/')
