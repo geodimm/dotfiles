@@ -70,4 +70,30 @@ lualine.setup({
       { 'location', padding = { left = 0, right = 1 }, separator = { left = '', right = '' } },
     },
   },
+  tabline = {
+    lualine_a = {
+      {
+        'buffers',
+        show_filename_only = true,
+        show_modified_status = true,
+        filetype_names = {
+          NvimTree = 'NvimTree',
+          TelescopePrompt = 'Telescope',
+          packer = 'Packer',
+          startify = 'Startify',
+        },
+        symbols = {
+          modified = ' ﱐ',
+          alternate_file = '',
+          directory = ' ',
+        },
+        separator = { left = '', right = '' },
+      },
+    },
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = { { 'tabs', separator = { left = '', right = '' } } },
+  },
 })
