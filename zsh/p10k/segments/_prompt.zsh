@@ -20,6 +20,9 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   command_execution_time  # duration of the last command
   background_jobs         # presence of background jobs
   load                    # CPU load
+  time                    # current time
+  # line 2 {{{2
+  newline
   nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
   go_version              # go version (https://golang.org)
   java_version            # java version (https://www.java.com/)
@@ -27,9 +30,6 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
   public_ip               # public IP address
   vpn_ip                  # virtual private network indicator
-  time                    # current time
-  # line 2 {{{2
-  newline
 )
 # }}}
 
