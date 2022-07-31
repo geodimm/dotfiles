@@ -34,7 +34,6 @@ packer.startup({
     -- Vanity {{{1
     use('wbthomason/packer.nvim')
     use('mhinz/vim-startify')
-    use({ 'akinsho/nvim-bufferline.lua', branch = 'main' })
     use('hoob3rt/lualine.nvim')
     use('folke/tokyonight.nvim')
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
