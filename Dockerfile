@@ -4,7 +4,8 @@ FROM ubuntu:${UBUNTU_VERSION}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update \ 
+# hadolint ignore=DL3008
+RUN apt-get update \
     && apt-get --no-install-recommends -y install \
     sudo \
     build-essential \
