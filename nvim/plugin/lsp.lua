@@ -234,7 +234,11 @@ local build_lsp_config = {
     }
   end,
   sumneko_lua = function()
-    local config = require('lua-dev').setup({})
+    local config = require('lua-dev').setup({
+      lspconfig = {
+        format = { enable = false },
+      },
+    })
     return config
   end,
   jdtls = function()
