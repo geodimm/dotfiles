@@ -18,48 +18,6 @@ end
 
 local diagnostics = require('utils.diagnostics')
 
-local org_imports = function(client, wait_ms)
-  local null_ls_command_prefix = 'NULL_LS'
-  local params = vim.lsp.util.make_range_params()
-  params.context = { only = { 'source.organizeImports' } }
-  local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
-  for _, res in pairs(result or {}) do
-    for _, r in pairs(res.result or {}) do
-      if r.edit then
-        local encoding = client.offset_encoding
-        vim.lsp.util.apply_workspace_edit(r.edit, encoding)
-      elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
-        vim.lsp.buf.execute_command(r.command)
-      end
-    end
-  end
-end
-
-vim.api.nvim_create_augroup('lsp_formatting', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = 'lsp_formatting',
-  pattern = {
-    '*.go',
-    '*.lua',
-    '*.tf',
-    '*.sh',
-    '*.bash',
-    '*.js',
-    '*.yaml',
-    '*.yml',
-    '*.json',
-    '*.html',
-    '*.md',
-  },
-  callback = function(args)
-    vim.lsp.buf.format()
-    local goSuffix = '.go'
-    if args.match:sub(-string.len(goSuffix)) == goSuffix then
-      org_imports(3000)
-    end
-  end,
-})
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -183,6 +141,43 @@ local on_attach = function(client, bufnr)
       callback = vim.lsp.buf.clear_references,
     })
   end
+
+  vim.api.nvim_create_augroup('lsp_document_format', { clear = false })
+  vim.api.nvim_clear_autocmds({
+    group = 'lsp_document_format',
+    buffer = bufnr,
+  })
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = 'lsp_document_format',
+    buffer = bufnr,
+    callback = function(_)
+      vim.lsp.buf.format()
+    end,
+  })
+
+  -- Workaround for gopls not organizing imports on vim.lsp.buf.format
+  -- Call he organizeImports codeActions for *.go files
+  local wait_ms = 3000
+  local null_ls_command_prefix = 'NULL_LS'
+  local encoding = client.offset_encoding
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = 'lsp_document_format',
+    pattern = { '*.go' },
+    callback = function(_)
+      local params = vim.lsp.util.make_range_params()
+      params.context = { only = { 'source.organizeImports' } }
+      local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
+      for _, res in pairs(result or {}) do
+        for _, r in pairs(res.result or {}) do
+          if r.edit then
+            vim.lsp.util.apply_workspace_edit(r.edit, encoding)
+          elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
+            vim.lsp.buf.execute_command(r.command)
+          end
+        end
+      end
+    end,
+  })
 end
 
 -- Define LSP configuration settings for languages
