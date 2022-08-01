@@ -234,7 +234,12 @@ local build_lsp_config = {
     }
   end,
   sumneko_lua = function()
-    local config = require('lua-dev').setup({
+    local ok, lua_dev = pcall(require, 'lua-dev')
+    if not ok then
+      vim.notify("Cannot import 'lua-dev'. Using empty config", vim.log.levels.WARN)
+      return {}
+    end
+    local config = lua_dev.setup({
       lspconfig = {
         format = { enable = false },
       },
