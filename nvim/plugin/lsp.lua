@@ -18,9 +18,7 @@ end
 
 local diagnostics = require('utils.diagnostics')
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local configure_keymaps = function(bufnr)
   -- Mark diagnostics as enabled by default
   diagnostics.set(bufnr, true)
 
@@ -122,7 +120,9 @@ local on_attach = function(client, bufnr)
     },
     opts = { mode = 'v', buffer = bufnr },
   })
+end
 
+local function configure_autocmds(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
@@ -159,20 +159,18 @@ local on_attach = function(client, bufnr)
 
   -- Workaround for gopls not organizing imports on vim.lsp.buf.format
   -- Call he organizeImports codeActions for *.go files
-  local wait_ms = 3000
   local null_ls_command_prefix = 'NULL_LS'
-  local encoding = client.offset_encoding
   vim.api.nvim_create_autocmd('BufWritePre', {
     group = 'lsp_document_format',
     pattern = { '*.go' },
     callback = function(_)
       local params = vim.lsp.util.make_range_params()
       params.context = { only = { 'source.organizeImports' } }
-      local result = vim.lsp.buf_request_sync(0, 'textDocument/codeAction', params, wait_ms)
+      local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', params, 3000)
       for _, res in pairs(result or {}) do
         for _, r in pairs(res.result or {}) do
           if r.edit then
-            vim.lsp.util.apply_workspace_edit(r.edit, encoding)
+            vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
           elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
             vim.lsp.buf.execute_command(r.command)
           end
@@ -180,6 +178,13 @@ local on_attach = function(client, bufnr)
       end
     end,
   })
+end
+
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local on_attach = function(client, bufnr)
+  configure_keymaps(bufnr)
+  configure_autocmds(client, bufnr)
 end
 
 -- Define LSP configuration settings for languages
