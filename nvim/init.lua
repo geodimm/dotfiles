@@ -20,9 +20,10 @@ if not status_ok then
   return
 end
 
-vim.api.nvim_create_augroup('packer_on_save', { clear = true })
+vim.api.nvim_create_augroup('user_packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
-  group = 'packer_on_save',
+  group = 'user_packer',
+  desc = 'run packer.compile() on save',
   pattern = 'init.lua',
   callback = function()
     packer.compile()
@@ -152,6 +153,7 @@ packer.startup({
   },
 })
 
-require('config.settings')
+require('config.autocmd')
+require('config.options')
 require('config.mappings')
 require('config.theme').setup()
