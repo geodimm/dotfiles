@@ -30,4 +30,11 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   end,
 })
 
+-- Highlight yanked text {{{1
+vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+  callback = function()
+    vim.highlight.on_yank({ higroup = 'Visual', timeout = 500 })
+  end,
+})
+
 --- }}}
