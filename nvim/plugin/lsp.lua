@@ -133,51 +133,50 @@ local function configure_autocmds(client, bufnr)
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
       group = 'lsp_document_highlight',
       buffer = bufnr,
+      desc = 'highlight current symbol on hover',
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd('CursorMoved', {
       group = 'lsp_document_highlight',
       buffer = bufnr,
+      desc = 'clear current symbol highlight',
       callback = vim.lsp.buf.clear_references,
     })
   end
 
-  vim.api.nvim_create_augroup('lsp_document_format', { clear = false })
-  vim.api.nvim_clear_autocmds({
-    group = 'lsp_document_format',
-    buffer = bufnr,
-  })
   if client.supports_method('textDocument/formatting') then
+    vim.api.nvim_create_augroup('lsp_document_format', { clear = false })
+    vim.api.nvim_clear_autocmds({
+      group = 'lsp_document_format',
+      buffer = bufnr,
+    })
+    local null_ls_command_prefix = 'NULL_LS'
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = 'lsp_document_format',
       buffer = bufnr,
+      desc = 'format on save',
       callback = function(_)
         vim.lsp.buf.format({ bufnr = bufnr })
+
+        -- Workaround for gopls not organizing imports on vim.lsp.buf.format
+        -- Call the organizeImports codeActions for *.go files
+        if vim.bo.filetype == 'go' then
+          local params = vim.lsp.util.make_range_params()
+          params.context = { only = { 'source.organizeImports' } }
+          local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', params, 3000)
+          for _, res in pairs(result or {}) do
+            for _, r in pairs(res.result or {}) do
+              if r.edit then
+                vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
+              elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
+                vim.lsp.buf.execute_command(r.command)
+              end
+            end
+          end
+        end
       end,
     })
   end
-
-  -- Workaround for gopls not organizing imports on vim.lsp.buf.format
-  -- Call he organizeImports codeActions for *.go files
-  local null_ls_command_prefix = 'NULL_LS'
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    group = 'lsp_document_format',
-    pattern = { '*.go' },
-    callback = function(_)
-      local params = vim.lsp.util.make_range_params()
-      params.context = { only = { 'source.organizeImports' } }
-      local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', params, 3000)
-      for _, res in pairs(result or {}) do
-        for _, r in pairs(res.result or {}) do
-          if r.edit then
-            vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
-          elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
-            vim.lsp.buf.execute_command(r.command)
-          end
-        end
-      end
-    end,
-  })
 end
 
 -- Use an on_attach function to only map the following keys
