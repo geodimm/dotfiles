@@ -393,7 +393,7 @@ local setup_servers = function()
 end
 
 local customise_ui = function()
-  local icons = require('config.icons').lspconfig
+  local icons = require('user.icons').lspconfig
   -- Update the sign icons
   for type, icon in pairs(icons) do
     local hl = 'DiagnosticSign' .. type

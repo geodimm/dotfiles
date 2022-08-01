@@ -12,7 +12,7 @@ nvim_tree.setup({
   create_in_closed_folder = true,
   hijack_netrw = false,
   ignore_ft_on_setup = { 'startify' },
-  diagnostics = { enable = true, icons = table.removeKey(require('config.icons').lsp, 'other') },
+  diagnostics = { enable = true, icons = table.removeKey(require('user.icons').lsp, 'other') },
   respect_buf_cwd = true,
   renderer = {
     add_trailing = true,
