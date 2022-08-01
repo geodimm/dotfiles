@@ -403,6 +403,14 @@ local customise_ui = function()
   -- Set borders to floating windows
   vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
   vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+
+  -- Use nvim-notify for LSP messages
+  vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    local lvl = ({ 'ERROR', 'WARN', 'INFO', 'DEBUG' })[result.type]
+    local timeout = (result.type < 2 and 3000 or 1500)
+    vim.notify({ result.message }, lvl, { title = 'LSP | ' .. client.name, timeout = timeout })
+  end
 end
 
 local setup_vim_diagnostics = function()
