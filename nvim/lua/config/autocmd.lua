@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter' }, {
   desc = 'enable cursorline on focus',
   pattern = '*',
   callback = function()
-    vim.cmd(':setlocal cursorline')
+    vim.opt_local.cursorline = true
   end,
 })
 vim.api.nvim_create_autocmd('VimLeave', {
@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd('VimLeave', {
   desc = 'disable cursorline on lost focus',
   pattern = '*',
   callback = function()
-    vim.cmd(':setlocal nocursorline')
+    vim.opt_local.cursorline = false
   end,
 })
 
