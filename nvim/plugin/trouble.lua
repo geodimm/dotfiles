@@ -12,7 +12,7 @@ vim.keymap.set('n', '<leader>xq', '<cmd>Trouble quickfix<CR>', opts)
 vim.keymap.set('n', '<leader>gR', '<cmd>Trouble lsp_references<CR>', opts)
 
 trouble.setup({
-  signs = require('config.icons').lsp,
+  signs = require('user.icons').lsp,
 })
 
 require('utils.whichkey').register({
