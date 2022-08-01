@@ -153,7 +153,7 @@ packer.startup({
   },
 })
 
-require('config.autocmd')
-require('config.options')
-require('config.mappings')
-require('config.theme').setup()
+require('user.autocmd')
+require('user.options')
+require('user.mappings')
+require('user.theme').setup()
