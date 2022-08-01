@@ -125,19 +125,19 @@ end
 local function configure_autocmds(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup('lsp_document_highlight', { clear = false })
+    vim.api.nvim_create_augroup('user_lsp_document_highlight', { clear = false })
     vim.api.nvim_clear_autocmds({
-      group = 'lsp_document_highlight',
+      group = 'user_lsp_document_highlight',
       buffer = bufnr,
     })
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-      group = 'lsp_document_highlight',
+      group = 'user_lsp_document_highlight',
       buffer = bufnr,
       desc = 'highlight current symbol on hover',
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd('CursorMoved', {
-      group = 'lsp_document_highlight',
+      group = 'user_lsp_document_highlight',
       buffer = bufnr,
       desc = 'clear current symbol highlight',
       callback = vim.lsp.buf.clear_references,
@@ -145,14 +145,14 @@ local function configure_autocmds(client, bufnr)
   end
 
   if client.supports_method('textDocument/formatting') then
-    vim.api.nvim_create_augroup('lsp_document_format', { clear = false })
+    vim.api.nvim_create_augroup('user_lsp_document_format', { clear = false })
     vim.api.nvim_clear_autocmds({
-      group = 'lsp_document_format',
+      group = 'user_lsp_document_format',
       buffer = bufnr,
     })
     local null_ls_command_prefix = 'NULL_LS'
     vim.api.nvim_create_autocmd('BufWritePre', {
-      group = 'lsp_document_format',
+      group = 'user_lsp_document_format',
       buffer = bufnr,
       desc = 'format on save',
       callback = function(_)

@@ -4,7 +4,7 @@ local lsp = {
   error = '',
   hint = '',
   info = '',
-  other = '﫠',
+  other = ' ',
   warning = '',
 }
 
