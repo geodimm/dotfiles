@@ -27,12 +27,16 @@ toggleterm.setup({
   float_opts = { border = 'curved', winblend = 0 },
 })
 
-function _G.set_terminal_keymaps()
-  local opts = { noremap = true, buffer = 0 }
-  vim.keymap.set('t', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
-end
-
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.api.nvim_create_augroup('user_toggleterm', { clear = true })
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = 'user_toggleterm',
+  desc = 'configure toggleterm keymaps',
+  pattern = 'term://*',
+  callback = function()
+    local opts = { noremap = true, buffer = 0 }
+    vim.keymap.set('t', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
+  end,
+})
 
 require('utils.whichkey').register({
   mappings = {
