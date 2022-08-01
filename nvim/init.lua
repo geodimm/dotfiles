@@ -156,4 +156,4 @@ packer.startup({
 require('user.autocmd')
 require('user.options')
 require('user.mappings')
-require('user.theme').setup()
+require('user.colorscheme').setup()
