@@ -19,6 +19,8 @@ local lsp = {
   warning = '',
 }
 
+M.prompt = '❯'
+M.search = ''
 M.group = ''
 M.lightbulb = ''
 M.keyboard = keyboard
@@ -29,6 +31,10 @@ M.lspconfig = {
   Info = lsp.info,
   Other = lsp.other,
   Warn = lsp.warning,
+}
+M.telescope = {
+  prompt_prefix = M.search .. ' ',
+  selection_caret = M.prompt .. ' ',
 }
 
 return M
