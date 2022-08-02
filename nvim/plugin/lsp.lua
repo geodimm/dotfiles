@@ -319,7 +319,7 @@ local setup_servers = function()
 
   -- Configure null-ls with the same on_attach function
   null_ls.setup({
-    debug = true,
+    debug = false,
     diagnostics_format = '#{m} (#{s})',
     on_attach = on_attach,
     sources = {
@@ -347,9 +347,6 @@ local setup_servers = function()
           vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
         },
       }),
-
-      -- completion
-      null_ls.builtins.completion.luasnip,
 
       -- code actions
       null_ls.builtins.code_actions.refactoring,
