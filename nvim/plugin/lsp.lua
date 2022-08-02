@@ -41,85 +41,51 @@ local configure_keymaps = function(bufnr)
     header = { 'Diagnostics', 'Title' },
   }
 
-  local keymap_opts = { noremap = true, silent = true, buffer = bufnr }
-  vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, keymap_opts)
-  vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, keymap_opts)
-  vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, keymap_opts)
-  vim.keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, keymap_opts)
-  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, keymap_opts)
-  vim.keymap.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, keymap_opts)
-  vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, keymap_opts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, keymap_opts)
-  vim.keymap.set('n', '<leader>k', vim.lsp.buf.signature_help, keymap_opts)
-  vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, keymap_opts)
-  vim.keymap.set('n', '<leader>ce', function()
+  local keymaps = require('user.keymaps')
+  keymaps.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = 'Declaration', buffer = bufnr })
+  keymaps.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = 'Definition', buffer = bufnr })
+  keymaps.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = 'Type definition', buffer = bufnr })
+  keymaps.set('n', '<leader>gI', vim.lsp.buf.implementation, { desc = 'Implementation', buffer = bufnr })
+  keymaps.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, { desc = 'Incoming calls', buffer = bufnr })
+  keymaps.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, { desc = 'Outgoing calls', buffer = bufnr })
+  keymaps.set('n', '<leader>gr', vim.lsp.buf.references, { desc = 'References', buffer = bufnr })
+  keymaps.set('n', 'K', vim.lsp.buf.hover, { desc = 'Documentation', buffer = bufnr })
+  keymaps.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
+  keymaps.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
+  keymaps.set('n', '<leader>ce', function()
     diagnostics.set(bufnr, true)
     vim.diagnostic.enable(bufnr)
-  end, keymap_opts)
-  vim.keymap.set('n', '<leader>cd', function()
+  end, { desc = 'Enable diagnostics', buffer = bufnr })
+  keymaps.set('n', '<leader>cd', function()
     diagnostics.set(bufnr, false)
     vim.diagnostic.disable(bufnr)
-  end, keymap_opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, keymap_opts)
-  vim.keymap.set('v', '<leader>ca', vim.lsp.buf.range_code_action, keymap_opts)
-  vim.keymap.set('n', '[d', function()
+  end, { desc = 'Disable diagnostics', buffer = bufnr })
+  keymaps.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
+  keymaps.set('v', '<leader>ca', vim.lsp.buf.range_code_action, { desc = 'Range code action', buffer = bufnr })
+  keymaps.set('n', '[d', function()
     if diagnostics.is_disabled(bufnr) then
       return
     end
     vim.diagnostic.goto_prev({ float = diagnostic_float_opts })
-  end, keymap_opts)
-  vim.keymap.set('n', ']d', function()
+  end, { desc = 'Go to previous diagnostic', buffer = bufnr })
+  keymaps.set('n', ']d', function()
     if diagnostics.is_disabled(bufnr) then
       return
     end
     vim.diagnostic.goto_next({ float = diagnostic_float_opts })
-  end, keymap_opts)
-  vim.keymap.set('n', '<leader>cs', function()
+  end, { desc = 'Go to next diagnostic', buffer = bufnr })
+  keymaps.set('n', '<leader>cs', function()
     if diagnostics.is_disabled(bufnr) then
       return
     end
     vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
-  end, keymap_opts)
-  vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, keymap_opts)
-  vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, keymap_opts)
+  end, { desc = 'Show diagnostics', buffer = bufnr })
+  keymaps.set('n', '<leader>cl', vim.diagnostic.setloclist, { desc = 'Populate loclist', buffer = bufnr })
+  keymaps.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format', buffer = bufnr })
 
-  require('utils.whichkey').register({
-    mappings = {
-      K = 'Documentation',
-      ['<leader>g'] = {
-        name = '+goto',
-        D = 'Declaration',
-        I = 'Implementation',
-        d = 'Definition',
-        i = 'Incoming calls',
-        o = 'Outgoing calls',
-        r = 'References',
-        t = 'Type definition',
-      },
-      ['<leader>c'] = {
-        name = '+lsp',
-        a = 'Code actions',
-        d = 'Disable diagnostics',
-        e = 'Enable diagnostics',
-        f = 'Format',
-        l = 'Populate location list',
-        r = 'Rename',
-        s = 'Show diagnostics',
-      },
-      ['<leader>k'] = 'Signature help',
-      [']d'] = { 'Next diagnostic' },
-      ['[d'] = { 'Previous diagnostic' },
-    },
-    opts = { buffer = bufnr },
-  }, {
-    mappings = {
-      ['<leader>c'] = {
-        name = '+lsp',
-        a = 'Code actions',
-      },
-    },
-    opts = { mode = 'v', buffer = bufnr },
-  })
+  keymaps.register_group('<leader>g', 'Goto', { buffer = bufnr })
+  keymaps.register_group('<leader>c', 'LSP', { buffer = bufnr })
+  keymaps.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = 'v' })
 end
 
 local function configure_autocmds(client, bufnr)

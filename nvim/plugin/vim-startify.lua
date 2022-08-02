@@ -19,7 +19,4 @@ vim.g.startify_bookmarks = {
 
 vim.g.startify_session_before_save = { 'silent! NvimTreeClose' }
 
-local opts = { silent = true, noremap = true }
-vim.keymap.set('n', '<leader>p', ':Startify<CR>', opts)
-
-require('utils.whichkey').register({ mappings = { ['<leader>p'] = 'Open Startify' }, opts = {} })
+require('user.keymaps').set('n', '<leader>p', ':Startify<CR>', { desc = 'Open Startify' })

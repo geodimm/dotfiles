@@ -13,22 +13,13 @@ spectre.setup({
   },
 })
 
-local opts = { silent = true, noremap = true }
-vim.keymap.set('n', '<leader>sr', spectre.open, opts)
-vim.keymap.set('n', '<leader>sw', function()
+local keymaps = require('user.keymaps')
+keymaps.set('n', '<leader>sr', spectre.open, { desc = 'Search in current file' })
+keymaps.set('n', '<leader>sw', function()
   spectre.open_visual({ select_word = true })
-end, opts)
-vim.keymap.set('v', '<leader>sw', spectre.open_visual, opts)
-vim.keymap.set('n', '<leader>sf', spectre.open_file_search, opts)
+end, { desc = 'Search for selection' })
+keymaps.set('v', '<leader>sw', spectre.open_visual, { desc = 'Search for word under cursor' })
+keymaps.set('n', '<leader>sf', spectre.open_file_search, { desc = 'Search in current file' })
 
-require('utils.whichkey').register({
-  mappings = {
-    ['<leader>s'] = {
-      name = '+search',
-      f = 'Search in current file',
-      r = 'Search and replace',
-      w = 'Search for word under cursor',
-    },
-  },
-  opts = {},
-}, { mappings = { ['<leader>s'] = { name = '+spectre', w = 'Search for selection' } }, opts = { mode = 'v' } })
+keymaps.register_group('<leader>s', 'Search', {})
+keymaps.register_group('<leader>s', 'Search', { mode = 'v' })

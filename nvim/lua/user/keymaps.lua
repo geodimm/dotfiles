@@ -1,63 +1,63 @@
+M = {}
+
+local status_ok, wk
+status_ok, wk = pcall(require, 'which-key')
+
+-- Set calls vim.keymap.set with sensible opts.
+local set = function(mode, lhs, rhs, opts)
+  opts = opts or {}
+  if opts.silent == nil then
+    opts.silent = true
+  end
+
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+-- Register group assigns a name for a keymap prefix in which-key
+local register_group = function(prefix, name, opts)
+  if not status_ok then
+    return
+  end
+
+  wk.register({ [prefix] = { name = name } }, opts)
+end
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
--- Save files
-vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true })
-vim.keymap.set('v', '<leader>w', '<Esc>:w<CR>gv', { noremap = true })
+set('n', '<leader>w', ':w<CR>', { desc = 'Save' })
+set('v', '<leader>w', '<Esc>:w<CR>gv', { desc = 'Save' })
+set('n', '<leader>q', ':q<CR>', { desc = 'Close/Quit' })
+set('v', '<leader>q', '<Esc>:q<CR>gv', { desc = 'Close/Quit' })
+set('n', '<leader><CR>', ':noh<CR>', { desc = 'Turn off search highlights' })
+set('v', '<C-c>', '"+y<CR>', { desc = 'Copy with Ctrl+C in visual mode' })
+set('x', 'p', 'pgvy', { desc = 'Allow pasting the same selection multiple times' })
+set('n', 'gf', '^f/gf', { desc = 'Open first file on the current line' })
+set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
 
--- Quit vim
-vim.keymap.set('n', '<leader>q', ':q<CR>', { noremap = true })
-vim.keymap.set('v', '<leader>q', '<Esc>:q<CR>gv', { noremap = true })
+set('v', '<', '<gv', { desc = 'Go back to visual mode after reindent' })
+set('v', '>', '>gv', { desc = 'Go back to visual mode after reindent' })
 
--- Temporary turn off hlsearch
-vim.keymap.set('n', '<leader><CR>', ':noh<CR>', { noremap = true, silent = true })
+set('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 
--- Copy with Ctrl+C in visual mode
-vim.keymap.set('v', '<C-c>', '"+y<CR>', { noremap = true })
+set('n', 'j', "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", { desc = 'Go to next wrapped line', expr = true })
+set('n', 'k', "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", { desc = 'Go to previous wrapped line', expr = true })
 
--- Allow pasting the same selection multiple times
--- 'p' to paste, 'gv' to re-select what was originally selected. 'y' to copy it again.
-vim.keymap.set('x', 'p', 'pgvy', { noremap = true })
+set('n', '<C-j>', '<C-w><Down>', { desc = 'Move down' })
+set('n', '<C-k>', '<C-w><Up>', { desc = 'Move up' })
+set('n', '<C-l>', '<C-w><Right>', { desc = 'Move right' })
+set('n', '<C-h>', '<C-w><Left>', { desc = 'Move left' })
+set('n', '<C-f>', ':vertical wincmd f<CR>', { desc = 'Open file under cursor' })
 
--- Go back to visual mode after reindenting
-vim.keymap.set('v', '<', '<gv', { noremap = true })
-vim.keymap.set('v', '>', '>gv', { noremap = true })
+set('n', '<M-j>', ':resize -2<CR>', { desc = 'Decrease window height' })
+set('n', '<M-k>', ':resize +2<CR>', { desc = 'Increase window height' })
+set('n', '<M-h>', ':vertical resize -10<CR>', { desc = 'Decrease window width' })
+set('n', '<M-l>', ':vertical resize +10<CR>', { desc = 'Increase window width' })
 
--- Remap gf to open first file on line
-vim.keymap.set('n', 'gf', '^f/gf', { noremap = true })
-
--- A quick way to move lines of text up or down
-vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true })
-vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true })
-
--- Exit insert mode with jj
-vim.keymap.set('i', 'jj', '<Esc>', { noremap = true, silent = true })
-
--- Go to the next line in editor for wrapped lines
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", { noremap = true, expr = true })
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", { noremap = true, expr = true })
-
--- Easier navigation through split windows
-vim.keymap.set('n', '<C-j>', '<C-w><Down>', { noremap = true })
-vim.keymap.set('n', '<C-k>', '<C-w><Up>', { noremap = true })
-vim.keymap.set('n', '<C-l>', '<C-w><Right>', { noremap = true })
-vim.keymap.set('n', '<C-h>', '<C-w><Left>', { noremap = true })
-vim.keymap.set('n', '<C-f>', ':vertical wincmd f<CR>', { noremap = true })
-
--- Use alt + hjkl to resize windows
-vim.keymap.set('n', '<M-j>', ':resize -2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-k>', ':resize +2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-h>', ':vertical resize -10<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-l>', ':vertical resize +10<CR>', { noremap = true, silent = true })
-
--- Remap 0 to go to first non-blank character of the line
-vim.keymap.set('n', '0', '^', { noremap = true })
-
--- Remap Y to apply till EOL, just like D and C.
-vim.keymap.set('n', 'Y', 'y$', { noremap = true })
-
--- Remap ZX to quitall
-vim.keymap.set('n', 'ZX', ':qa<CR>', { noremap = true })
+set('n', '0', '^', { desc = 'Go to first non-whitespace character of the line' })
+set('n', 'Y', 'y$', { desc = 'Yank til end of line' })
+set('n', 'ZX', ':qa<CR>', { desc = 'Quitall' })
 
 -- Abbreviations
 vim.api.nvim_command('iab cdate <c-r>=strftime("%Y-%m-%d")<CR>')
@@ -65,31 +65,9 @@ vim.api.nvim_command('iab todo <c-r>="TODO (Georgi Dimitrov):"<CR>')
 
 -- Close all buffers but the current one
 vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', { nargs = 0 })
-vim.keymap.set('n', '<leader>b', ':BufOnly<CR>', { noremap = true })
+set('n', '<leader>b', ':BufOnly<CR>', { desc = 'Close all other buffers' })
 
-require('utils.whichkey').register({
-  mappings = {
-    ['<C-f>'] = 'Open file under cursor',
-    ['<C-h>'] = 'Move left',
-    ['<C-j>'] = 'Move down',
-    ['<C-k>'] = 'Move up',
-    ['<C-l>'] = 'Move right',
-    ['<C-\\>'] = 'Switch to last window',
-    ['<M-h>'] = 'Shrink window horizontally',
-    ['<M-j>'] = 'Shrink window vertically',
-    ['<M-k>'] = 'Expand window vertically',
-    ['<M-l>'] = 'Expand window horizontally',
-    ['<leader><CR>'] = 'Disable highlighting',
-    ['<leader>w'] = 'Save',
-    ['<leader>q'] = 'Close/Quit',
-    ['<leader>b'] = 'Close all other buffers',
-    Y = 'Yank til end of line',
-  },
-  opts = {},
-}, {
-  mappings = {
-    ['<leader>w'] = 'Save',
-    ['<leader>q'] = 'Close/Quit',
-  },
-  opts = { mode = 'v' },
-})
+M.set = set
+M.register_group = register_group
+
+return M
