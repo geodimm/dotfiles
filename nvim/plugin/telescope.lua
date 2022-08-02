@@ -8,6 +8,7 @@ if not status_ok then
 end
 
 local builtin = require('telescope.builtin')
+local command = require('telescope.command')
 local sorters = require('telescope.sorters')
 local previewers = require('telescope.previewers')
 local themes = require('telescope.themes')
@@ -78,52 +79,29 @@ telescope.load_extension('lsp_handlers')
 telescope.load_extension('refactoring')
 telescope.load_extension('notify')
 
-local opts = { silent = true, noremap = true }
-vim.keymap.set('n', '<leader>ft', ':Telescope<CR>', opts)
-vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
-vim.keymap.set('n', '<leader>fh', function()
+local keymaps = require('user.keymaps')
+keymaps.set('n', '<leader>ft', command.load_command, { desc = 'Open telescope' })
+keymaps.set('n', '<leader>ff', builtin.find_files, { desc = 'Files' })
+keymaps.set('n', '<leader>fh', function()
   builtin.find_files({ hidden = true })
-end, opts)
-vim.keymap.set('n', '<leader>fv', function()
+end, { desc = 'Hidden files' })
+keymaps.set('n', '<leader>fv', function()
   builtin.find_files({ search_dirs = { 'vendor/' } })
-end, opts)
-vim.keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, opts)
-vim.keymap.set('n', '<leader>f*', builtin.grep_string, opts)
-vim.keymap.set('n', '<leader>fb', function()
+end, { desc = 'Go vendor/ files' })
+keymaps.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, { desc = 'Current file' })
+keymaps.set('n', '<leader>f*', builtin.grep_string, { desc = 'Word under cursor' })
+keymaps.set('n', '<leader>fb', function()
   builtin.buffers({ show_all_buffers = true, sort_lastused = true })
-end, opts)
-vim.keymap.set('n', '<leader>fa', function()
+end, { desc = 'Buffers' })
+keymaps.set('n', '<leader>fa', function()
   builtin.live_grep({ path_display = { 'shorten' } })
-end, opts)
-vim.keymap.set('n', '<leader>fm', builtin.keymaps, opts)
-vim.keymap.set('n', '<leader>fgb', builtin.git_branches, opts)
-vim.keymap.set('n', '<leader>fgc', builtin.git_commits, opts)
-vim.keymap.set('n', '<leader>fgf', builtin.git_files, opts)
-vim.keymap.set('n', '<leader>fgh', builtin.git_bcommits, opts)
-vim.keymap.set('n', '<leader>fgs', builtin.git_status, opts)
+end, { desc = 'Fuzzy live grep' })
+keymaps.set('n', '<leader>fm', builtin.keymaps, { desc = 'Keymapss' })
+keymaps.set('n', '<leader>fgb', builtin.git_branches, { desc = 'Branches' })
+keymaps.set('n', '<leader>fgc', builtin.git_commits, { desc = 'Commits' })
+keymaps.set('n', '<leader>fgf', builtin.git_files, { desc = 'Files' })
+keymaps.set('n', '<leader>fgh', builtin.git_bcommits, { desc = 'Buffer commits' })
+keymaps.set('n', '<leader>fgs', builtin.git_status, { desc = 'Status' })
 
-require('utils.whichkey').register({
-  mappings = {
-    ['<leader>f'] = {
-      name = 'find',
-      ['*'] = 'Word under cursor',
-      ['/'] = 'Current file',
-      a = 'Fuzzy search',
-      b = 'Buffers',
-      f = 'Files',
-      h = 'Hidden files',
-      m = 'Keymaps',
-      t = 'Open Telescope',
-      v = 'vendor/**',
-    },
-    ['<leader>fg'] = {
-      name = '+git',
-      b = 'Branches',
-      c = 'Commits',
-      f = 'Files',
-      h = 'Buffer commits',
-      s = 'Status',
-    },
-  },
-  opts = {},
-})
+keymaps.register_group('<leader>f', 'Find', {})
+keymaps.register_group('<leader>fg', 'Git', {})

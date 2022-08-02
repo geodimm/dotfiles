@@ -3,6 +3,24 @@ if not status_ok then
   return
 end
 
+local blame_line = function()
+  gitsigns.blame_line({ full = true })
+end
+local next_hunk = function()
+  if vim.wo.diff then
+    return ']c'
+  end
+  vim.schedule(gitsigns.next_hunk)
+  return '<Ignore>'
+end
+local prev_hunk = function()
+  if vim.wo.diff then
+    return '[c'
+  end
+  vim.schedule(gitsigns.prev_hunk)
+  return '<Ignore>'
+end
+
 gitsigns.setup({
   signs = {
     add = { text = '▌' },
@@ -17,59 +35,22 @@ gitsigns.setup({
   preview_config = {
     border = 'rounded',
   },
-  on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+  on_attach = function()
+    local keymaps = require('user.keymaps')
+    keymaps.set('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Stage buffer' })
+    keymaps.set('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Reset buffer' })
+    keymaps.set('n', '<leader>hU', gitsigns.reset_buffer_index, { desc = 'Reset buffer index' })
+    keymaps.set('n', '<leader>hb', blame_line, { desc = 'Blame line' })
+    keymaps.set('n', '<leader>hd', gitsigns.diffthis, { desc = 'Diff this' })
+    keymaps.set('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview hunk' })
+    keymaps.set({ 'n', 'v' }, '<leader>hr', gitsigns.reset_hunk, { desc = 'Reset hunk' })
+    keymaps.set({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage hunk' })
+    keymaps.set('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'Undo stage hunk' })
+    keymaps.set('n', '<leader>ht', gitsigns.toggle_deleted, { desc = 'Toggle deleted' })
+    keymaps.set('n', ']c', next_hunk, { desc = 'Next hunk', expr = true })
+    keymaps.set('n', '[c', prev_hunk, { desc = 'Previous hunk', expr = true })
 
-    local map = function(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
-
-    -- Navigation
-    map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
-    map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
-
-    -- Actions
-    map({ 'n', 'v' }, '<leader>hs', ':Gitsigns stage_hunk<CR>')
-    map({ 'n', 'v' }, '<leader>hr', ':Gitsigns reset_hunk<CR>')
-    map('n', '<leader>hS', gs.stage_buffer)
-    map('n', '<leader>hu', gs.undo_stage_hunk)
-    map('n', '<leader>hR', gs.reset_buffer)
-    map('n', '<leader>hp', gs.preview_hunk)
-    map('n', '<leader>hb', function()
-      gs.blame_line({ full = true })
-    end)
-    map('n', '<leader>hd', gs.diffthis)
-    map('n', '<leader>htd', gs.toggle_deleted)
-
-    -- Text object
-    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+    keymaps.register_group('<leader>h', 'Git', {})
+    keymaps.register_group('<leader>h', 'Git', { mode = 'v' })
   end,
-})
-
-require('utils.whichkey').register({
-  mappings = {
-    [']c'] = { 'Next hunk' },
-    ['[c'] = { 'Previous hunk' },
-    ['<leader>h'] = {
-      name = '+git',
-      R = 'Reset buffer',
-      S = 'Stage buffer',
-      U = 'Reset buffer index',
-      b = 'Blame line',
-      d = 'Diff this',
-      p = 'Preview hunk',
-      r = 'Reset hunk',
-      s = 'Stage hunk',
-      u = 'Undo stage hunk',
-      td = 'Toggle deleted',
-    },
-  },
-  opts = {},
-}, {
-  mappings = {
-    ['<leader>h'] = { name = '+gitsigns', r = 'reset hunk', s = 'stage hunk' },
-  },
-  opts = { mode = 'v' },
 })

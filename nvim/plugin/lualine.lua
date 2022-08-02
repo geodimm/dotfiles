@@ -27,6 +27,7 @@ local function diff_source()
 end
 
 local patched_theme = vim.tbl_deep_extend('force', require('lualine.themes.auto'), { normal = { c = { bg = 'none' } } })
+local separator = { left = '', right = '' }
 
 lualine.setup({
   options = {
@@ -38,7 +39,7 @@ lualine.setup({
   },
   extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
   sections = {
-    lualine_a = { { 'mode', upper = true, separator = { left = '', right = '' } } },
+    lualine_a = { { 'mode', upper = true, separator = separator } },
     lualine_b = {
       {
         'b:gitsigns_head',
@@ -67,7 +68,7 @@ lualine.setup({
     lualine_y = { { 'encoding', padding = { left = 1, right = 1 } }, 'fileformat' },
     lualine_z = {
       { 'progress', padding = { left = 1, right = 0 } },
-      { 'location', padding = { left = 0, right = 1 }, separator = { left = '', right = '' } },
+      { 'location', padding = { left = 0, right = 1 }, separator = separator },
     },
   },
   tabline = {
@@ -87,13 +88,13 @@ lualine.setup({
           alternate_file = '',
           directory = ' ',
         },
-        separator = { left = '', right = '' },
+        separator = separator,
       },
     },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = { { 'tabs', separator = { left = '', right = '' } } },
+    lualine_z = { { 'tabs', separator = separator } },
   },
 })

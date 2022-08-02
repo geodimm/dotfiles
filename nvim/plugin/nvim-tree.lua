@@ -34,14 +34,8 @@ nvim_tree.setup({
   },
 })
 
-local opts = { silent = true, noremap = true }
-vim.keymap.set('n', '<leader>fe', ':NvimTreeToggle<CR>', opts)
-vim.keymap.set('n', '<leader>fl', ':NvimTreeFindFile<CR>', opts)
-
-require('utils.whichkey').register({
-  mappings = {
-    ['<leader>fl'] = { 'Locate file in explorer' },
-    ['<leader>fe'] = { 'Open file explorer' },
-  },
-  opts = {},
-})
+local keymaps = require('user.keymaps')
+keymaps.set('n', '<leader>fl', function()
+  nvim_tree.find_file(true, nil, true)
+end, { desc = 'Locate file in explorer' })
+keymaps.set('n', '<leader>fe', nvim_tree.toggle, { desc = 'Open file explorer' })
