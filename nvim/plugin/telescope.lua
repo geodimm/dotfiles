@@ -14,6 +14,7 @@ local previewers = require('telescope.previewers')
 local themes = require('telescope.themes')
 local trouble = require('trouble.providers.telescope')
 
+local icons = require('user.icons')
 telescope.setup({
   defaults = {
     vimgrep_arguments = {
@@ -27,8 +28,8 @@ telescope.setup({
       '--glob',
       '!vendor/*',
     },
-    prompt_prefix = ' ',
-    selection_caret = '❯ ',
+    prompt_prefix = icons.telescope.prompt_prefix,
+    selection_caret = icons.telescope.selection_caret,
     entry_prefix = '  ',
     initial_mode = 'insert',
     selection_strategy = 'reset',
