@@ -17,7 +17,7 @@ toggleterm.setup({
       guibg = '',
     },
   },
-  open_mapping = [[<leader>tt]],
+  open_mapping = nil, -- [[<leader>tt]],
   insert_mappings = false,
   shade_terminals = false,
   persist_size = false,
@@ -33,14 +33,11 @@ vim.api.nvim_create_autocmd('TermOpen', {
   desc = 'configure toggleterm keymaps',
   pattern = 'term://*',
   callback = function()
-    local opts = { noremap = true, buffer = 0 }
+    local opts = { buffer = 0 }
     vim.keymap.set('t', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
   end,
 })
 
-require('utils.whichkey').register({
-  mappings = {
-    ['<leader>t'] = { name = '+terminal', t = 'Open terminal' },
-  },
-  opts = {},
-})
+local keymaps = require('user.keymaps')
+keymaps.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', { desc = 'Open terminal' })
+keymaps.register_group('<leader>t', 'Terminal', {})
