@@ -336,6 +336,7 @@ local setup_servers = function()
         },
       }),
       null_ls.builtins.diagnostics.shellcheck,
+      null_ls.builtins.diagnostics.zsh,
 
       -- formatting
       null_ls.builtins.formatting.stylua,
