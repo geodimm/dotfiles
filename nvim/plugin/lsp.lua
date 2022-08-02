@@ -221,14 +221,14 @@ local build_lsp_config = {
     return config
   end,
   jdtls = function()
-    local jdtls_home = vim.fn.expand('$HOME/.local/share/nvim/lsp_servers/jdtls/')
+    local workspace_dir = vim.fn.expand('$HOME/java/workspace/')
     local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
     return {
-      cmd_env = {
-        JAVA_HOME = '/usr/lib/jvm/java-11-openjdk-amd64',
-        GRADLE_HOME = vim.fn.expand('$HOME/gradle', nil, nil),
-        JDTLS_HOME = jdtls_home,
-        WORKSPACE = vim.fn.expand('$HOME/java/workspace/') .. project_name,
+      init_options = {
+        workspace = workspace_dir .. project_name,
+      },
+      settings = {
+        java = {},
       },
     }
   end,
