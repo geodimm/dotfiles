@@ -211,7 +211,11 @@ local build_lsp_config = {
     end
     local config = lua_dev.setup({
       lspconfig = {
-        format = { enable = false },
+        settings = {
+          Lua = {
+            format = { enable = false },
+          },
+        },
       },
     })
     return config
