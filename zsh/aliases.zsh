@@ -36,9 +36,6 @@ docker-clean() {
     docker container prune -f && docker volume prune -f && docker network prune -f
 }
 
-# aws
-alias aws="aws --no-cli-pager"
-
 # tldr
 alias tldr="tldr --theme=base16"
 
