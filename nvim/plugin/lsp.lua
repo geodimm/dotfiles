@@ -320,22 +320,24 @@ local setup_servers = function()
   -- Configure null-ls with the same on_attach function
   null_ls.setup({
     debug = false,
-    diagnostics_format = '#{m} (#{s})',
+    diagnostics_format = '#{m}',
     on_attach = on_attach,
     sources = {
       -- diagnostics
       null_ls.builtins.diagnostics.golangci_lint.with({
         extra_args = { '--config', vim.fn.expand('$HOME/dotfiles/golangci-lint/golangci.yml', nil, nil) },
       }),
-      null_ls.builtins.diagnostics.hadolint,
+      null_ls.builtins.diagnostics.hadolint.with({
+        diagnostics_format = '#{c}: #{m}',
+      }),
       null_ls.builtins.diagnostics.jsonlint,
       null_ls.builtins.diagnostics.markdownlint.with({
         extra_args = {
           '--config',
           vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
         },
+        diagnostics_format = '#{c}: #{m}',
       }),
-      null_ls.builtins.diagnostics.shellcheck,
       null_ls.builtins.diagnostics.zsh,
 
       -- formatting
