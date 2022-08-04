@@ -156,4 +156,5 @@ packer.startup({
 require('user.autocmd')
 require('user.options')
 require('user.keymaps')
+require('user.command')
 require('user.colorscheme').setup()
