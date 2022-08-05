@@ -1,5 +1,6 @@
 # vim: foldmethod=marker
 # Oh-My-Zsh {{{1
+
 export ZSH="${HOME}/.oh-my-zsh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -13,7 +14,7 @@ plugins=(
     aws
     colored-man-pages
     docker
-    fast-syntax-highlighting
+    F-Sy-H
     git
     golang
     helm
@@ -26,7 +27,6 @@ plugins=(
     you-should-use
     z
     zsh-autosuggestions
-    zsh-completions
     zsh-nvm
     fzf-tab # fzf-tab should be the last plugin to bind "^I"
 )
@@ -45,6 +45,16 @@ DISABLE_MAGIC_FUNCTIONS=true
 # Enable Node Version Manager lazy load
 export NVM_LAZY_LOAD=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
+
+# Workaround for https://github.com/zsh-users/zsh-completions/issues/603
+if [[ -d "${ZSH_CUSTOM}/plugins/zsh-completions/src" ]]; then
+  fpath+="${ZSH_CUSTOM}/plugins/zsh-completions/src"
+fi
+
+# Load custom completions
+if [[ -d "${ZSH_CUSTOM}/completions" ]]; then
+  fpath+="${ZSH_CUSTOM}/completions"
+fi
 # }}}
 
 # Load oh-my-zsh
@@ -86,6 +96,9 @@ test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
 
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
 
 # Only display targets tag for make command completion
 zstyle ':completion:*:*:make::' tag-order 'targets variables'

@@ -8,6 +8,16 @@ source "$(pwd)/scripts/util.sh"
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_CUSTOM="${ZSH}/custom"
 
+declare -A ZSH_CUSTOM_PLUGINS=(
+	["plugins/F-Sy-H"]="https://github.com/z-shell/F-Sy-H"
+	["plugins/zsh-autosuggestions"]="https://github.com/zsh-users/zsh-autosuggestions"
+	["plugins/zsh-completions"]="https://github.com/zsh-users/zsh-completions"
+	["plugins/fzf-tab"]="https://github.com/Aloxaf/fzf-tab"
+	["plugins/you-should-use"]="https://github.com/MichaelAquilina/zsh-you-should-use"
+	["plugins/zsh-nvm"]="https://github.com/lukechilds/zsh-nvm"
+	["themes/powerlevel10k"]="https://github.com/romkatv/powerlevel10k"
+)
+
 do_install() {
 	if [[ -d "${ZSH}" ]]; then
 		info "[ohmyzsh] Already installed"
@@ -21,18 +31,9 @@ do_install() {
 do_configure() {
 	info "[ohmyzsh] Configure"
 	info "[ohmyzsh][configure] Download plugins"
-	declare -A plugins=(
-		["plugins/fast-syntax-highlighting"]="https://github.com/z-shell/fast-syntax-highlighting"
-		["plugins/zsh-autosuggestions"]="https://github.com/zsh-users/zsh-autosuggestions"
-		["plugins/zsh-completions"]="https://github.com/zsh-users/zsh-completions"
-		["plugins/fzf-tab"]="https://github.com/Aloxaf/fzf-tab"
-		["plugins/you-should-use"]="https://github.com/MichaelAquilina/zsh-you-should-use"
-		["plugins/zsh-nvm"]="https://github.com/lukechilds/zsh-nvm"
-		["themes/powerlevel10k"]="https://github.com/romkatv/powerlevel10k"
-	)
-	for path in "${!plugins[@]}"; do
+	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
 		if [[ ! -d "${ZSH_CUSTOM}/$path" ]]; then
-			git clone --quiet "${plugins[$path]}" "${ZSH_CUSTOM}/$path"
+			git clone --quiet "${ZSH_CUSTOM_PLUGINS[$path]}" "${ZSH_CUSTOM}/$path"
 		fi
 	done
 
@@ -41,6 +42,18 @@ do_configure() {
 	ln -fs "$(pwd)/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
 	ln -fs "$(pwd)/zsh/zshrc" "${HOME}/.zshrc"
 	ln -fs "$(pwd)/zsh/zshenv" "${HOME}/.zshenv"
+}
+
+do_update_plugins() {
+	info "[ohmyzsh] Update plugins"
+	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
+		if [[ -d "${ZSH_CUSTOM}/$path" ]]; then
+			{
+				info "[ohmyzsh][update] Update $path"
+				cd "${ZSH_CUSTOM}/$path" && git pull --quiet
+			}
+		fi
+	done
 }
 
 main() {
@@ -53,6 +66,10 @@ main() {
 	"configure")
 		shift
 		do_configure "$@"
+		;;
+	"update_plugins")
+		shift
+		do_update_plugins "$@"
 		;;
 	*)
 		error "$(basename "$0"): '$command' is not a valid command"
