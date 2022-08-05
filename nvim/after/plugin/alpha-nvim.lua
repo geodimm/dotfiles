@@ -19,7 +19,25 @@ local logo = {
   },
   opts = {
     position = 'left',
-    hl = 'Function',
+    hl = 'DevIconVim',
+  },
+}
+
+local function info_value()
+  local total_plugins = #vim.tbl_keys(packer_plugins)
+  local datetime = os.date(' %d-%m-%Y')
+  local version = vim.version()
+  local nvim_version_info = '   v' .. version.major .. '.' .. version.minor .. '.' .. version.patch
+
+  return '        ' .. datetime .. '   ' .. total_plugins .. ' plugins' .. nvim_version_info
+end
+
+local info = {
+  type = 'text',
+  val = info_value(),
+  opts = {
+    hl = 'DevIconVim',
+    position = 'left',
   },
 }
 
@@ -36,6 +54,7 @@ local header = {
   type = 'group',
   val = {
     logo,
+    info,
     message,
   },
 }
