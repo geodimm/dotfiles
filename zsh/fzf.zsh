@@ -2,26 +2,21 @@
 # vim: foldmethod=marker
 # vim: set filetype=zsh
 
+test -f "${HOME}/.fzf.zsh" && source "${HOME}/.fzf.zsh"
+
 # fzf-tab settings
-#
+
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
+
 # remove prefix
 zstyle ':fzf-tab:*' prefix ''
 
+# use tmux popup (requires tmux 3.2)
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' fzf-flags "--color=16"
+zstyle ':fzf-tab:*' fzf-flags "--color=fg:7,bg:-1,hl:5,fg+:4,bg+:-1,hl+:13"
+zstyle ':fzf-tab:*' fzf-flags "--color=info:2,prompt:4,pointer:6,marker:3,spinner:4,header:4"
+
 # Whether to automatically insert a space after the result.
 zstyle ':fzf-tab:*' insert-space false
-
-# The preview command used by fzf-tab (show file or directory contents on completion)
-zstyle ':fzf-tab:complete:*:*' fzf-preview '(bat --color=always --pager=never ${realpath} || lsd --color=always --long -A --group-dirs=first ${realpath}) 2>/dev/null'
-
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
-
-# show systemd unit status
-zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
-
-# environment variable
-zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
-
-test -f "${HOME}/.fzf.zsh" && source "${HOME}/.fzf.zsh"
