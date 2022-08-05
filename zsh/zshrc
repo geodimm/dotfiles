@@ -51,10 +51,6 @@ if [[ -d "${ZSH_CUSTOM}/plugins/zsh-completions/src" ]]; then
   fpath+="${ZSH_CUSTOM}/plugins/zsh-completions/src"
 fi
 
-# Load custom completions
-if [[ -d "${ZSH_CUSTOM}/completions" ]]; then
-  fpath+="${ZSH_CUSTOM}/completions"
-fi
 # }}}
 
 # Load oh-my-zsh
