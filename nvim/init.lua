@@ -34,7 +34,7 @@ packer.startup({
   function(use)
     -- Vanity {{{1
     use('wbthomason/packer.nvim')
-    use('mhinz/vim-startify')
+    use('goolord/alpha-nvim')
     use('hoob3rt/lualine.nvim')
     use('folke/tokyonight.nvim')
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
@@ -56,11 +56,11 @@ packer.startup({
 
     use({
       'windwp/nvim-spectre',
-      requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+      requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
     })
     use({
       'nvim-telescope/telescope.nvim',
-      requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+      requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' },
     })
     use({
       'nvim-telescope/telescope-fzf-native.nvim',
@@ -77,10 +77,7 @@ packer.startup({
     })
     use({
       'ThePrimeagen/refactoring.nvim',
-      requires = {
-        { 'nvim-lua/plenary.nvim' },
-        { 'nvim-treesitter/nvim-treesitter' },
-      },
+      requires = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
     })
 
     -- Tmux integration {{{1
@@ -93,8 +90,8 @@ packer.startup({
     use('tpope/vim-repeat')
 
     -- " Languages/LSP {{{1
-    use({ 'neovim/nvim-lspconfig' })
-    use({ 'williamboman/nvim-lsp-installer' })
+    use('neovim/nvim-lspconfig')
+    use('williamboman/nvim-lsp-installer')
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } })
     use('kosayoda/nvim-lightbulb')
     use('folke/lua-dev.nvim')
@@ -106,7 +103,7 @@ packer.startup({
     use('hrsh7th/cmp-buffer')
     use('hrsh7th/cmp-path')
     use('hrsh7th/cmp-nvim-lua')
-    use({ 'petertriho/cmp-git', requires = 'nvim-lua/plenary.nvim' })
+    use({ 'petertriho/cmp-git', requires = { 'nvim-lua/plenary.nvim' } })
     use('L3MON4D3/LuaSnip')
     use({
       'saadparwaiz1/cmp_luasnip',
