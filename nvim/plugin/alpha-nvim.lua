@@ -105,22 +105,16 @@ local config = {
         pattern = 'AlphaReady',
         desc = 'disable lualine for alpha',
         callback = function()
-          local ok, lualine = pcall(require, 'lualine')
-          if ok then
-            lualine.hide({})
-            vim.go.laststatus = 0
-          end
+          vim.go.laststatus = 0
+          vim.opt.showtabline = 0
         end,
       })
       vim.api.nvim_create_autocmd('BufUnload', {
         buffer = 0,
         desc = 'enable lualine after alpha',
         callback = function()
-          local ok, lualine = pcall(require, 'lualine')
-          if ok then
-            vim.go.laststatus = 2
-            lualine.hide({ unhide = true })
-          end
+          vim.go.laststatus = 2
+          vim.opt.showtabline = 2
         end,
       })
     end,
