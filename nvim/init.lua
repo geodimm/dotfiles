@@ -85,7 +85,7 @@ packer.startup({
     use('urbainvaes/vim-tmux-pilot')
 
     -- Text editing features {{{1
-    use('tpope/vim-surround')
+    use('kylechui/nvim-surround')
     use('tpope/vim-commentary')
     use('tpope/vim-repeat')
 
