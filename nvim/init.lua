@@ -1,6 +1,6 @@
 -- vim: foldmethod=marker
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-local packer_bootstrap = false
+local packer_bootstrap = nil
 
 if vim.fn.empty(vim.fn.glob(install_path, nil, nil, nil)) > 0 then
   vim.o.runtimepath = vim.fn.stdpath('data') .. '/site/pack/*/start/*,' .. vim.o.runtimepath
