@@ -81,7 +81,7 @@ lualine.setup({
           NvimTree = 'NvimTree',
           TelescopePrompt = 'Telescope',
           packer = 'Packer',
-          startify = 'Startify',
+          alpha = 'Alpha',
         },
         symbols = {
           modified = ' ﱐ',
