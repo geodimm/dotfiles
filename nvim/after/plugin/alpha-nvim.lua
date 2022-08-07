@@ -122,18 +122,20 @@ local config = {
     setup = function()
       vim.api.nvim_create_autocmd('User', {
         pattern = 'AlphaReady',
-        desc = 'disable lualine for alpha',
+        desc = 'disable status, tabline and cmdline for alpha',
         callback = function()
           vim.go.laststatus = 0
           vim.opt.showtabline = 0
+          vim.opt.cmdheight = 0
         end,
       })
       vim.api.nvim_create_autocmd('BufUnload', {
         buffer = 0,
-        desc = 'enable lualine after alpha',
+        desc = 'enable status, tabline and cmdline after alpha',
         callback = function()
           vim.go.laststatus = 2
           vim.opt.showtabline = 2
+          vim.opt.cmdheight = 1
         end,
       })
     end,
