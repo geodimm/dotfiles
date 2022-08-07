@@ -63,10 +63,6 @@ set('n', 'ZX', ':qa<CR>', { desc = 'Quitall' })
 vim.api.nvim_command('iab cdate <c-r>=strftime("%Y-%m-%d")<CR>')
 vim.api.nvim_command('iab todo <c-r>="TODO (Georgi Dimitrov):"<CR>')
 
--- Close all buffers but the current one
-vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', { nargs = 0 })
-set('n', '<leader>b', ':BufOnly<CR>', { desc = 'Close all other buffers' })
-
 M.set = set
 M.register_group = register_group
 
