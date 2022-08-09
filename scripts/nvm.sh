@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 NVM_DIR="${HOME}/.nvm"
 NVM_VERSION="${NVM_VERSION:=0.34.0}"

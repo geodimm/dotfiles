@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 do_configure() {
 	info "[tmux] Configure"
@@ -13,7 +14,7 @@ do_configure() {
 	fi
 
 	info "[tmux][configure] Create config file symlink"
-	ln -fs "$(pwd)/tmux/tmux.conf" "${HOME}/.tmux.conf"
+	ln -fs "${DOTFILES_DIR}/tmux/tmux.conf" "${HOME}/.tmux.conf"
 }
 
 main() {

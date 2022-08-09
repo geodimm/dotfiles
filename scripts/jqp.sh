@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 JQP_VERSION="${JQP_VERSION:=v0.0.3}"
 

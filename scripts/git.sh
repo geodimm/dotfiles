@@ -2,16 +2,17 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 do_configure() {
 	info "[git] Configure"
 	info "[git][configure] Create config file symlink"
-	ln -fs "$(pwd)/git/gitconfig" "${HOME}/.gitconfig"
+	ln -fs "${DOTFILES_DIR}/git/gitconfig" "${HOME}/.gitconfig"
 
 	info "[git][configure] Create a commit-template file"
-	touch "$(pwd)/git/commit-template"
+	touch "${DOTFILES_DIR}/git/commit-template"
 }
 
 main() {

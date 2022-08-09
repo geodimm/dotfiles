@@ -4,8 +4,9 @@ set -o errexit  # abort on nonzero exitstatus
 set -o nounset  # abort on unbound variable
 set -o pipefail # don't hide errors within pipes
 
-# shellcheck source=./util.sh
-source "${HOME}/dotfiles/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${HOME}/dotfiles}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 function main() {
 	system
@@ -32,7 +33,7 @@ function system() {
 function nvim() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update neovim"
-	make -C ~/dotfiles neovim-nightly
+	make -C "${DOTFILES_DIR}" neovim-nightly
 
 	info "[${funcname}] Update plugins"
 	vim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
@@ -48,7 +49,10 @@ function omz() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update"
 	zsh -c 'source ${HOME}/.zshrc && omz update && exit'
-	"${HOME}/dotfiles/scripts/ohmyzsh.sh" update_plugins
+	(
+		cd "${DOTFILES_DIR}"
+		./scripts/ohmyzsh.sh update_plugins
+	)
 }
 
 main

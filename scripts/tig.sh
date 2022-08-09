@@ -2,13 +2,14 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 do_configure() {
 	info "[tig] Configure"
 	info "[tig][configure] Create config file symlink"
-	ln -fs "$(pwd)/tig/tigrc" "${HOME}/.tigrc"
+	ln -fs "${DOTFILES_DIR}/tig/tigrc" "${HOME}/.tigrc"
 }
 
 main() {

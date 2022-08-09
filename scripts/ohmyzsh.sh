@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 ZSH="${HOME}/.oh-my-zsh"
 ZSH_CUSTOM="${ZSH}/custom"
@@ -38,10 +39,10 @@ do_configure() {
 	done
 
 	info "[ohmyzsh][configure] Create symlinks"
-	ln -fs "$(pwd)/zsh/p10k/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
-	ln -fs "$(pwd)/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
-	ln -fs "$(pwd)/zsh/zshrc" "${HOME}/.zshrc"
-	ln -fs "$(pwd)/zsh/zshenv" "${HOME}/.zshenv"
+	ln -fs "${DOTFILES_DIR}/zsh/p10k/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
+	ln -fs "${DOTFILES_DIR}/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
+	ln -fs "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
+	ln -fs "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
 }
 
 do_update_plugins() {

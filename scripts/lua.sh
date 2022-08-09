@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 LUA_VERSION="${LUA_VERSION:=5.3.5}"
 LUAROCKS_VERSION="${LUAROCKS_VERSION:=3.3.1}"
