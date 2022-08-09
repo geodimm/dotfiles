@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 NVM_DIR="${HOME}/.nvm"
 
@@ -21,7 +22,7 @@ do_configure() {
 
 	info "[neovim][configure] Create configuration directory symlink"
 	rm -rf "${XDG_CONFIG_HOME}/nvim" && mkdir -p "${XDG_CONFIG_HOME}"
-	ln -fs "$(pwd)/nvim" "${XDG_CONFIG_HOME}/nvim"
+	ln -fs "${DOTFILES_DIR}/nvim" "${XDG_CONFIG_HOME}/nvim"
 
 	info "[neovim][configure] Install the neovim package for languages"
 	info "[neovim][configure][languages] Python"
@@ -75,7 +76,7 @@ do_update_linters() {
 
 	info "[neovim][configure][linters] golangci-lint"
 	/usr/local/go/bin/go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-	ln -fs "$(pwd)/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
+	ln -fs "${DOTFILES_DIR}/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
 }
 
 main() {
