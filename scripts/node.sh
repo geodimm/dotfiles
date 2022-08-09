@@ -2,8 +2,9 @@
 
 set -e
 
-# shellcheck source=../scripts/util.sh
-source "$(pwd)/scripts/util.sh"
+DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
+# shellcheck disable=SC1090
+source "${DOTFILES_DIR}/scripts/util.sh"
 
 NVM_DIR="${HOME}/.nvm"
 
@@ -14,7 +15,7 @@ do_install() {
 	fi
 
 	info "[node] Install"
-	# shellcheck source=../../.nvm/nvm.sh
+	# shellcheck disable=SC1090
 	source "${NVM_DIR}/nvm.sh" && nvm install node
 }
 
