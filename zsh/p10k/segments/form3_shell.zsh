@@ -6,13 +6,7 @@ local session_expiry
 if (( ${+F3_SESS_EXPIRY} )); then
     session_expiry="${F3_SESS_EXPIRY}"
 else
-    local info
-     info="$(f3 auth info --json 2>/dev/null)"
-    if [[ $? -ne 0 ]]; then
-        return
-    fi
-
-    session_expiry="$(echo "${info}" | jq -r .expiry 2>/dev/null)"
+    session_expiry="$(f3 auth info --json 2>/dev/null | jq -Rr 'fromjson? | .expiry' 2>/dev/null)"
 fi
 
 if (( ${session_expiry} )); then
