@@ -48,11 +48,11 @@ function gopls() {
 function omz() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update"
-	zsh -c 'source ${HOME}/.zshrc && omz update && exit'
 	(
 		cd "${DOTFILES_DIR}"
 		./scripts/ohmyzsh.sh update_plugins
 	)
+	zsh -c 'source ${HOME}/.zshrc && omz update && exit'
 }
 
 main
