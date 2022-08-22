@@ -32,6 +32,13 @@ nvim_tree.setup({
       },
     },
   },
+  actions = {
+    file_popup = {
+      open_win_config = {
+        border = 'rounded',
+      },
+    },
+  },
 })
 
 local keymaps = require('user.keymaps')
