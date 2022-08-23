@@ -72,7 +72,7 @@ do_configure() {
 	git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"
 	(
 		cd "${install_dir}"
-		git sparse-checkout add patched-fonts/Meslo/L/Regular
+		git sparse-checkout add patched-fonts/Meslo/S/Regular
 		find . -type f -name '*.ttf' ! -name '*Windows*' -exec cp "{}" "${FONTS_DIR}" \;
 	)
 	sudo fc-cache -f
