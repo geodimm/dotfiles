@@ -385,6 +385,9 @@ local customise_ui = function()
     local timeout = (result.type < 2 and 3000 or 1500)
     vim.notify({ result.message }, lvl, { title = 'LSP | ' .. client.name, timeout = timeout })
   end
+
+  -- Update LspInfo window border
+  require('lspconfig.ui.windows').default_options.border = 'rounded'
 end
 
 local setup_vim_diagnostics = function()
