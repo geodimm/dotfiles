@@ -91,7 +91,8 @@ packer.startup({
 
     -- " Languages/LSP {{{1
     use('neovim/nvim-lspconfig')
-    use('williamboman/nvim-lsp-installer')
+    use('williamboman/mason.nvim')
+    use('williamboman/mason-lspconfig.nvim')
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } })
     use('kosayoda/nvim-lightbulb')
     use('folke/lua-dev.nvim')

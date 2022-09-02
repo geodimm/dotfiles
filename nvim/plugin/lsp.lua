@@ -1,5 +1,9 @@
-local status_ok, lspinstaller, lspconfig, null_ls, cmp_nvim_lsp
-status_ok, lspinstaller = pcall(require, 'nvim-lsp-installer')
+local status_ok, mason, mason_lspconfig, lspconfig, null_ls, cmp_nvim_lsp
+status_ok, mason = pcall(require, 'mason')
+if not status_ok then
+  return
+end
+status_ok, mason_lspconfig = pcall(require, 'mason-lspconfig')
 if not status_ok then
   return
 end
@@ -163,7 +167,6 @@ end
 local build_lsp_config = {
   gopls = function()
     return {
-      cmd = { vim.fn.expand('$HOME/go/bin/gopls', nil, nil), '-remote=auto' },
       settings = {
         gopls = {
           buildFlags = { '-tags=all,test_setup' },
@@ -283,8 +286,8 @@ local create_config = function(server)
     on_attach = on_attach,
   }
 
-  if build_lsp_config[server.name] then
-    opts = vim.tbl_deep_extend('force', opts, build_lsp_config[server.name]())
+  if build_lsp_config[server] then
+    opts = vim.tbl_deep_extend('force', opts, build_lsp_config[server]())
   end
 
   return opts
@@ -306,22 +309,24 @@ local setup_servers = function()
     'jdtls',
     'denols',
   }
-  lspinstaller.setup({
-    ensure_installed = required_servers,
+  mason.setup({
     ui = {
       border = 'rounded',
       icons = {
-        server_installed = '✓',
-        server_pending = '➜',
-        server_uninstalled = '✗',
+        package_installed = '✓',
+        package_pending = '➜',
+        package_uninstalled = '✗',
       },
     },
   })
+  mason_lspconfig.setup({
+    ensure_installed = required_servers,
+  })
 
   -- Run all servers using lspconfig
-  for _, server in ipairs(lspinstaller.get_installed_servers()) do
+  for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
     local config = create_config(server)
-    lspconfig[server.name].setup(config)
+    lspconfig[server].setup(config)
   end
 
   -- Configure null-ls with the same on_attach function
@@ -401,6 +406,6 @@ local setup_vim_diagnostics = function()
   })
 end
 
+customise_ui()
 setup_vim_diagnostics()
 setup_servers()
-customise_ui()
