@@ -133,7 +133,7 @@ local config = {
         buffer = 0,
         desc = 'enable status, tabline and cmdline after alpha',
         callback = function()
-          vim.go.laststatus = 2
+          vim.go.laststatus = 3
           vim.opt.showtabline = 2
           vim.opt.cmdheight = 1
         end,
