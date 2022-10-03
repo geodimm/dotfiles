@@ -71,8 +71,7 @@ local configure_keymaps = function(bufnr)
     diagnostics.set(bufnr, false)
     vim.diagnostic.disable(bufnr)
   end, { desc = 'Disable diagnostics', buffer = bufnr })
-  keymaps.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
-  keymaps.set('v', '<leader>ca', vim.lsp.buf.range_code_action, { desc = 'Range code action', buffer = bufnr })
+  keymaps.set({'v', 'n'}, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
   keymaps.set('n', '[d', function()
     if diagnostics.is_disabled(bufnr) then
       return
