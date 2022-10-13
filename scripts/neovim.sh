@@ -62,7 +62,7 @@ do_update_linters() {
 	npm install jsonlint -g
 
 	info "[neovim][configure][linters] stylua"
-	asset=$(curl --silent "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest" | jq -r '.assets // [] | .[] | select(.name | contains("linux")) | .url')
+	asset=$(curl --silent "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest" | jq -r '.assets // [] | .[] | select(.name | contains("linux-x86_64")) | .url')
 	if [[ -z $asset ]]; then
 		warn "Cannot find a release. Please try again later."
 	else
