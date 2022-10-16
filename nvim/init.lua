@@ -95,7 +95,7 @@ packer.startup({
     use('williamboman/mason-lspconfig.nvim')
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } })
     use('kosayoda/nvim-lightbulb')
-    use('folke/lua-dev.nvim')
+    use('folke/neodev.nvim')
 
     -- Autocompletion {{{2
     use('hrsh7th/nvim-cmp')

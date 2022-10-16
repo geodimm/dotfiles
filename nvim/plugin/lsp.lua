@@ -213,12 +213,15 @@ local build_lsp_config = {
     }
   end,
   sumneko_lua = function()
-    local ok, lua_dev = pcall(require, 'lua-dev')
+    local ok, neodev = pcall(require, 'neodev')
     if not ok then
-      vim.notify("Cannot import 'lua-dev'. Using empty config", vim.log.levels.WARN)
+      vim.notify("Cannot import 'neodev'. Using empty config", vim.log.levels.WARN)
       return {}
     end
-    local config = lua_dev.setup({
+
+    neodev.setup({})
+
+    return {
       lspconfig = {
         settings = {
           Lua = {
@@ -226,8 +229,7 @@ local build_lsp_config = {
           },
         },
       },
-    })
-    return config
+    }
   end,
   jdtls = function()
     local workspace_dir = vim.fn.expand('$HOME/java/workspace/')
