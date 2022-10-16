@@ -71,7 +71,7 @@ local configure_keymaps = function(bufnr)
     diagnostics.set(bufnr, false)
     vim.diagnostic.disable(bufnr)
   end, { desc = 'Disable diagnostics', buffer = bufnr })
-  keymaps.set({'v', 'n'}, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
+  keymaps.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
   keymaps.set('n', '[d', function()
     if diagnostics.is_disabled(bufnr) then
       return
@@ -273,12 +273,7 @@ local build_lsp_config = {
 
 -- Create config that activates keymaps and enables snippet support
 local create_config = function(server)
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = { 'documentation', 'detail', 'additionalTextEdits' },
-  }
+  local capabilities = cmp_nvim_lsp.default_capabilities()
 
   local opts = {
     capabilities = capabilities,
