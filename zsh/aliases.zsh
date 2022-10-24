@@ -39,13 +39,6 @@ docker-clean() {
 # tldr
 alias tldr="tldr --theme=base16"
 
-# z with fzf
-unalias z 2> /dev/null
-z() {
-  [ $# -gt 0 ] && _z "$*" && return
-  cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')" || return
-}
-
 # convert minutes {0..60} to {red..green} in hex
 function _minutes_to_hex() {
     local num=$1
