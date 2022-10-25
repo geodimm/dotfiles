@@ -142,7 +142,7 @@ cmp.setup({
 
     -- disable completion in comments
     local context = require('cmp.config.context')
-    if context.in_treesitter_capture('comment') or context.in_syntax_group('Comment') then
+    if context.in_syntax_group('Comment') then
       return false
     end
 
