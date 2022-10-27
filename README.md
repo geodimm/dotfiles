@@ -10,6 +10,7 @@ cd ~/dotfiles
 make
 ```
 
+> **Note**
 > For more information run `make help`
 
 ## Useful Links
