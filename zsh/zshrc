@@ -67,17 +67,6 @@ bindkey '^ ' autosuggest-accept
 # Set the default umask
 umask 022
 
-# OSTYPE specific settings
-case "${OSTYPE}" in
-    linux*)
-        if (( $+commands[setxkbmap] )); then
-            setxkbmap -option caps:escape_shifted_capslock
-            setxkbmap -option altwin:swap_lalt_lwin
-        fi
-        ;;
-    *) ;;
-esac
-
 # Source files {{{2
 # Load aliases
 source ~/dotfiles/zsh/aliases.zsh
