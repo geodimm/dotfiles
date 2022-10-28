@@ -38,4 +38,15 @@ vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
   end,
 })
 
+-- Notify when Mason tools are updated {{{1
+vim.api.nvim_create_augroup('user_mason_tool_update', { clear = true })
+vim.api.nvim_create_autocmd('User', {
+  group = 'user_mason_tool_update',
+  desc = 'send a notification when Mason tools are updated',
+  pattern = 'MasonToolsUpdateCompleted',
+  callback = function()
+    vim.notify('Successfully updated Mason tools', vim.log.levels.INFO)
+  end,
+})
+
 --- }}}

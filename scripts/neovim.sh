@@ -37,46 +37,6 @@ do_configure() {
 	# shellcheck source=../../.nvm/nvm.sh
 	source "${NVM_DIR}/nvm.sh"
 	npm install --quiet -g yarn
-
-	info "[neovim][configure] Install linters for LSP"
-	do_update_linters
-}
-
-do_update_linters() {
-	info "[neovim][configure][linters] markdownlint-cli"
-	# shellcheck source=../../.nvm/nvm.sh
-	source "${NVM_DIR}/nvm.sh"
-	npm install --quiet -g markdownlint-cli
-
-	info "[neovim][configure][linters] hadolint"
-	asset=$(curl --silent "https://api.github.com/repos/hadolint/hadolint/releases/latest" | jq -r '.assets // [] | .[] | select(.name | startswith("hadolint-Linux-x86_64")) | .url')
-	if [[ -z $asset ]]; then
-		warn "Cannot find a release. Please try again later."
-	else
-		local hadolint="${HOME}/bin/hadolint"
-		download "${asset}" "${hadolint}"
-		chmod +x "${hadolint}"
-	fi
-
-	info "[neovim][configure][linters] jsonlint"
-	npm install jsonlint -g
-
-	info "[neovim][configure][linters] stylua"
-	asset=$(curl --silent "https://api.github.com/repos/JohnnyMorganz/StyLua/releases/latest" | jq -r '.assets // [] | .[] | select(.name | contains("linux-x86_64")) | .url')
-	if [[ -z $asset ]]; then
-		warn "Cannot find a release. Please try again later."
-	else
-		local stylua="${HOME}/bin/stylua"
-		download "${asset}" "" | gunzip -c >"${stylua}"
-		chmod +x "${stylua}"
-	fi
-
-	info "[neovim][configure][linters] shfmt"
-	/usr/local/go/bin/go install mvdan.cc/sh/v3/cmd/shfmt@latest
-
-	info "[neovim][configure][linters] golangci-lint"
-	/usr/local/go/bin/go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-	ln -fs "${DOTFILES_DIR}/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
 }
 
 main() {
@@ -85,10 +45,6 @@ main() {
 	"configure")
 		shift
 		do_configure "$@"
-		;;
-	"update_linters")
-		shift
-		do_update_linters "$@"
 		;;
 	*)
 		error "$(basename "$0"): '$command' is not a valid command"
