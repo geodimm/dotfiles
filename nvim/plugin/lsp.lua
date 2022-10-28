@@ -333,17 +333,18 @@ local setup_servers = function()
     sources = {
       -- diagnostics
       null_ls.builtins.diagnostics.golangci_lint.with({
-        extra_args = { '--config', vim.fn.expand('$HOME/dotfiles/golangci-lint/golangci.yml', nil, nil) },
+        extra_args = { '--config', vim.fn.expand('$HOME/dotfiles/golangci-lint/golangci.yml') },
       }),
       null_ls.builtins.diagnostics.hadolint,
       null_ls.builtins.diagnostics.jsonlint,
       null_ls.builtins.diagnostics.markdownlint.with({
         extra_args = {
           '--config',
-          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
         },
       }),
       null_ls.builtins.diagnostics.zsh,
+      null_ls.builtins.diagnostics.actionlint,
 
       -- formatting
       null_ls.builtins.formatting.stylua,
@@ -352,7 +353,7 @@ local setup_servers = function()
       null_ls.builtins.formatting.markdownlint.with({
         extra_args = {
           '--config',
-          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml', nil, nil),
+          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
         },
       }),
 
