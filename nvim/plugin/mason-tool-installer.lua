@@ -17,7 +17,6 @@ local tools = {
   'jsonlint',
   'lua-language-server',
   'markdownlint',
-  'proselint',
   'pyright',
   'shfmt',
   'stylua',
