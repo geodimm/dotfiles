@@ -36,6 +36,8 @@ function nvim() {
 
 	info "[${funcname}] Update plugins"
 	vim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	info "[${funcname}] Update LSP tools"
+	vim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsUpdate'
 }
 
 function omz() {
