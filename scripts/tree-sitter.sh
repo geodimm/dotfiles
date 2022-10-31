@@ -6,7 +6,7 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 # shellcheck disable=SC1090
 source "${DOTFILES_DIR}/scripts/util.sh"
 
-TS_VERSION="${TS_VERSION:=0.20.6}"
+TS_VERSION="${TS_VERSION:=0.20.7}"
 
 do_install() {
 	if [[ "$(tree-sitter --version 2>/dev/null)" == *"${TS_VERSION}"* ]]; then
