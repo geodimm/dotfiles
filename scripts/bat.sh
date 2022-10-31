@@ -6,7 +6,7 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 # shellcheck disable=SC1090
 source "${DOTFILES_DIR}/scripts/util.sh"
 
-BAT_VERSION="${BAT_VERSION:=0.20.0}"
+BAT_VERSION="${BAT_VERSION:=0.22.1}"
 
 do_install() {
 	if [[ "$(bat --version 2>/dev/null)" == *"${BAT_VERSION}"* ]]; then
