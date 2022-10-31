@@ -15,7 +15,6 @@ for k, v in pairs(key_labels) do
 end
 
 wk.setup({
-  plugins = { spelling = { enabled = true } },
   icons = {
     group = icons.group .. ' ',
   },
