@@ -7,17 +7,21 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 source "${DOTFILES_DIR}/scripts/util.sh"
 
 NVM_DIR="${HOME}/.nvm"
-NVM_VERSION="${NVM_VERSION:=0.34.0}"
+NVM_VERSION="${NVM_VERSION:=v0.39.2}"
 
 do_install() {
 	if [[ -f "${NVM_DIR}/nvm.sh" ]]; then
-		info "[nvm] ${NVM_VERSION} already installed"
+		info "[nvm] Already installed. Updating..."
+		(
+			cd "${NVM_DIR}"
+			git checkout --quiet "${NVM_VERSION}"
+		)
 		return
 	fi
 
 	info "[nvm] Install ${NVM_VERSION}"
 	mkdir -p "${NVM_DIR}"
-	curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash
+	curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash
 }
 
 main() {
