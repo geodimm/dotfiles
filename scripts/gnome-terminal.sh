@@ -11,15 +11,19 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 do_configure() {
 	export TERMINAL=gnome-terminal
-	local install_dir="/tmp/gogh"
+	local install_dir="/tmp/gnome-terminal-themes"
 
 	info "[gnome-terminal] Configure"
 	info "[gnome-terminal][configure] Configure themes"
 	rm -rf "$install_dir" && mkdir -p "$install_dir"
-	git clone --quiet https://github.com/Mayccoll/Gogh.git "$install_dir"
+	git clone --quiet https://github.com/Mayccoll/Gogh.git "$install_dir/gogh"
 
 	info "[gnome-terminal][configure][themes] Tokyo Night Storm"
-	"$install_dir/themes/tokyo-night-storm.sh"
+	"$install_dir/gogh/themes/tokyo-night-storm.sh"
+
+	info "[gnome-terminal][configure][themes] Catppuccin"
+	git clone --quiet https://github.com/catppuccin/gnome-terminal "$install_dir/catppuccin"
+	python3 "$install_dir/catppuccin/install.py"
 }
 
 main() {
