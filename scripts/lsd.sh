@@ -6,7 +6,7 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 # shellcheck disable=SC1090
 source "${DOTFILES_DIR}/scripts/util.sh"
 
-LSD_VERSION="${LSD_VERSION:=0.21.0}"
+LSD_VERSION="${LSD_VERSION:=0.23.1}"
 
 do_install() {
 	if [[ "$(lsd --version 2>/dev/null)" == *"${LSD_VERSION}"* ]]; then
