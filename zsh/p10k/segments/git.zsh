@@ -9,7 +9,7 @@ function my_git_formatter() {
     return
   fi
 
-  local       meta='%8F'   # grey foreground
+  local       meta='%0F'   # black foreground
   local      clean='%0F'   # lime foreground
   local   modified='%0F'   # yellow foreground
   local  untracked='%0F'   # blue foreground
