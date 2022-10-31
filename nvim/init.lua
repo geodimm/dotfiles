@@ -37,6 +37,7 @@ packer.startup({
     use('goolord/alpha-nvim')
     use('hoob3rt/lualine.nvim')
     use('folke/tokyonight.nvim')
+    use({ 'catppuccin/nvim', as = 'catppuccin' })
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-textobjects')
     use('kyazdani42/nvim-web-devicons')
