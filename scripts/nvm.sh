@@ -14,7 +14,8 @@ do_install() {
 		info "[nvm] Already installed. Updating..."
 		(
 			cd "${NVM_DIR}"
-			git checkout --quiet "${NVM_VERSION}"
+			git fetch origin tag "${NVM_VERSION}" --depth 1 --quiet
+			git -c advice.detachedHead=false checkout -f --quiet FETCH_HEAD
 		)
 		return
 	fi
