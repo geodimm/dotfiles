@@ -98,6 +98,7 @@ packer.startup({
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = { 'nvim-lua/plenary.nvim' } })
     use('kosayoda/nvim-lightbulb')
     use('folke/neodev.nvim')
+    use('mfussenegger/nvim-jdtls')
 
     -- Autocompletion {{{2
     use('hrsh7th/nvim-cmp')
