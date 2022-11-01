@@ -33,7 +33,7 @@ local get_main_branch = function()
 end
 
 local generate_github_link = function()
-  local repo_root = trim_space(vim.fn.system('git rev-parse --show-toplevel'))
+  local repo_root = vim.fs.dirname(vim.fs.find('.git', { upward = true })[1])
   local repo = get_github_repo()
   local branch = get_main_branch()
   local path = string.sub(vim.fn.expand('%:p'), string.len(repo_root .. '/') + 1)
