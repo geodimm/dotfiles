@@ -76,7 +76,7 @@ set('n', 'z=', function()
     end
   end
 
-  vim.ui.select(suggestions, {}, vim.schedule_wrap(selected))
+  vim.ui.select(suggestions, { kind = 'spellsuggest' }, vim.schedule_wrap(selected))
 end)
 
 -- Abbreviations
