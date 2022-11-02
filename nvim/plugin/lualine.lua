@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local icons = require('user.icons')
+
 local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
     local win_width = vim.fn.winwidth(0)
@@ -26,55 +28,76 @@ local function diff_source()
   end
 end
 
+-- Override 'encoding': Don't display if encoding is UTF-8.
+local function encoding()
+  local fenc = vim.opt.fileencoding:get()
+  if fenc == 'utf-8' then
+    return ''
+  end
+
+  return fenc
+end
+
+-- Override 'fileformat': Don't display if &ff is unix.
+local function fileformat()
+  if vim.bo.fileformat == 'unix' then
+    return ''
+  end
+
+  return icons.os[vim.bo.fileformat]
+end
+
 local patched_theme = vim.tbl_deep_extend('force', require('lualine.themes.auto'), { normal = { c = { bg = 'none' } } })
-local separator = { left = '', right = '' }
+local section_separator = { left = '', right = '' }
 
 lualine.setup({
   options = {
     theme = patched_theme,
     section_separators = { left = '', right = '' },
-    component_separators = { left = '|', right = '|' },
+    component_separators = '',
     icons_enabled = true,
     globalstatus = true,
   },
   extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
   sections = {
-    lualine_a = { { 'mode', upper = true, separator = separator } },
+    lualine_a = { { 'mode', upper = true, separator = section_separator } },
     lualine_b = {
       {
         'b:gitsigns_head',
         icon = '',
         fmt = trunc(100, 10, nil, false),
-        padding = { left = 1, right = 1 },
       },
-      { 'diff', source = diff_source },
+      { 'diff', source = diff_source, padding = 0 },
+      { 'diagnostics', sources = { 'nvim_lsp' }, padding = { left = 1, right = 0 } },
     },
     lualine_c = {
       {
         'filename',
         file_status = true,
+        newfile_status = true,
         color = function(_)
           return vim.bo.modified and 'WarningMsg' or ''
         end,
-        symbols = {
-          modified = ' ﱐ',
-          readonly = ' ',
-          unnamed = '[No name]',
-        },
+        symbols = icons.file,
       },
-      { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
-    lualine_x = { 'filetype' },
-    lualine_y = { { 'encoding', padding = { left = 1, right = 1 } }, 'fileformat' },
+    lualine_x = {
+      { 'filetype', icon_only = false },
+    },
+    lualine_y = {
+      { encoding, padding = 0 },
+      { fileformat },
+    },
     lualine_z = {
-      { 'progress', padding = { left = 1, right = 0 } },
-      { 'location', padding = { left = 0, right = 1 }, separator = separator },
+      { 'progress', padding = 0 },
+      { 'location', padding = { left = 1, right = 0 }, separator = section_separator },
     },
   },
   tabline = {
     lualine_a = {
       {
         'buffers',
+        mode = 4,
         show_filename_only = true,
         show_modified_status = true,
         filetype_names = {
@@ -84,17 +107,17 @@ lualine.setup({
           alpha = 'Alpha',
         },
         symbols = {
-          modified = ' ﱐ',
+          modified = ' ' .. icons.file.modified,
           alternate_file = '',
-          directory = ' ',
+          directory = icons.file.directory,
         },
-        separator = separator,
+        separator = section_separator,
       },
     },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = { { 'tabs', separator = separator } },
+    lualine_z = { { 'tabs', separator = section_separator } },
   },
 })

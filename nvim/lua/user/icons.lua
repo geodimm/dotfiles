@@ -1,6 +1,12 @@
 local M = {}
 
-local keyboard = {
+M.os = {
+  unix = '',
+  dos = '',
+  mac = '',
+}
+
+M.keyboard = {
   Alt = 'הּ',
   Backspace = '',
   Caps = 'בּ',
@@ -11,7 +17,7 @@ local keyboard = {
   Tab = '',
 }
 
-local lsp = {
+M.lsp = {
   error = '',
   hint = '',
   info = '',
@@ -19,18 +25,25 @@ local lsp = {
   warning = '',
 }
 
+M.file = {
+  newfile = '',
+  readonly = '',
+  modified = 'ﱐ',
+  unnamed = '',
+  directory = '',
+}
+
 M.prompt = '❯'
 M.search = ''
 M.group = ''
 M.lightbulb = ''
-M.keyboard = keyboard
-M.lsp = lsp
+M.lock = ''
 M.lspconfig = {
-  Error = lsp.error,
-  Hint = lsp.hint,
-  Info = lsp.info,
-  Other = lsp.other,
-  Warn = lsp.warning,
+  Error = M.lsp.error,
+  Hint = M.lsp.hint,
+  Info = M.lsp.info,
+  Other = M.lsp.other,
+  Warn = M.lsp.warning,
 }
 M.telescope = {
   prompt_prefix = M.search .. ' ',
