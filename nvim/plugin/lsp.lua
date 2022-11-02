@@ -98,9 +98,11 @@ local build_lsp_config = {
           format = { enable = true },
           validate = true,
           schemas = {
+            ['https://json.schemastore.org/chart.json'] = '/kubernetes/*.y*ml',
             ['https://json.schemastore.org/golangci-lint.json'] = '*golangci.y*ml',
             ['https://json.schemastore.org/kustomization.json'] = '/*kustomization.y*ml',
             ['https://json.schemastore.org/swagger-2.0.json'] = '/*swagger.y*ml',
+            ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
             ['https://json.schemastore.org/travis.json'] = '/*travis.y*ml',
             ['https://json.schemastore.org/yamllint.json'] = '/*yamllint.y*ml',
             ['https://json.schemastore.org/markdownlint.json'] = '/*.markdownlint.y*ml',
