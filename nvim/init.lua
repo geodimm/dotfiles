@@ -123,13 +123,10 @@ packer.startup({
         'nvim-treesitter/nvim-treesitter',
       },
     })
-    use('hashivim/vim-terraform')
     use('towolf/vim-helm')
     use('bfrg/vim-jq')
-    use('Joorem/vim-haproxy')
-    use('preservim/vim-markdown')
-    use('godlygeek/tabular') -- required to format Markdown tables
     use('mracos/mermaid.vim')
+    use({ 'preservim/vim-markdown', requires = { 'godlygeek/tabular' } })
     use({
       'iamcco/markdown-preview.nvim',
       run = function()
