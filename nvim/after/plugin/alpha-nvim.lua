@@ -5,6 +5,12 @@ end
 
 local startify = require('alpha.themes.startify')
 local fortune = require('alpha.fortune')
+local icons = require('user.icons')
+local devicons = require('nvim-web-devicons')
+
+local function surround(v)
+  return ' ' .. v .. ' '
+end
 
 local logo = {
   type = 'text',
@@ -25,11 +31,17 @@ local logo = {
 
 local function info_value()
   local total_plugins = #vim.tbl_keys(packer_plugins)
-  local datetime = os.date(' %d-%m-%Y')
+  local datetime = os.date(surround(icons.ui.calendar) .. '%d-%m-%Y')
   local version = vim.version()
-  local nvim_version_info = '   v' .. version.major .. '.' .. version.minor .. '.' .. version.patch
+  local nvim_version_info = surround(devicons.get_icon_by_filetype('vim', {}))
+    .. 'v'
+    .. version.major
+    .. '.'
+    .. version.minor
+    .. '.'
+    .. version.patch
 
-  return '        ' .. datetime .. '   ' .. total_plugins .. ' plugins' .. nvim_version_info
+  return '        ' .. datetime .. surround(icons.ui.plug) .. total_plugins .. ' plugins' .. nvim_version_info
 end
 
 local info = {
@@ -94,16 +106,20 @@ local buttons = {
       },
     },
     { type = 'padding', val = 1 },
-    startify.button('e', '  New file', ':ene <BAR> startinsert<CR>'),
-    startify.button('f', '  Find file', "<cmd>lua require('telescope.builtin').find_files()<CR>"),
-    startify.button('a', '  Live grep', "<cmd>lua require('telescope.builtin').live_grep({shorten_path=true})<CR>"),
+    startify.button('e', icons.file.newfile .. '  New file', ':ene <BAR> startinsert<CR>'),
+    startify.button('f', icons.file.find .. '  Find file', "<cmd>lua require('telescope.builtin').find_files()<CR>"),
+    startify.button(
+      'a',
+      icons.ui.search .. '  Live grep',
+      "<cmd>lua require('telescope.builtin').live_grep({shorten_path=true})<CR>"
+    ),
     startify.button(
       'd',
-      '  Dotfiles',
+      icons.ui.gear .. '  Dotfiles',
       "<cmd>lua require('telescope.builtin').find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })<CR>"
     ),
-    startify.button('u', '  Update plugins', ':PackerSync<CR>'),
-    startify.button('q', '  Quit', ':qa<CR>'),
+    startify.button('u', icons.ui.update .. '  Update plugins', ':PackerSync<CR>'),
+    startify.button('q', icons.ui.sign_out .. '  Quit', ':qa<CR>'),
   },
   opts = {
     position = 'left',

@@ -16,7 +16,7 @@ end
 
 wk.setup({
   icons = {
-    group = icons.ui.group .. ' ',
+    group = icons.ui.list_ul .. ' ',
   },
   key_labels = key_labels,
   window = { border = 'rounded', margin = { 0, 0, 0, 0 }, padding = { 1, 1, 1, 1 } },

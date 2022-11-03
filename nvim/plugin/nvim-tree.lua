@@ -3,16 +3,11 @@ if not status_ok then
   return
 end
 
-function table.removeKey(table, key)
-  table[key] = nil
-  return table
-end
-
 nvim_tree.setup({
   create_in_closed_folder = true,
   hijack_netrw = false,
   ignore_ft_on_setup = { 'alpha' },
-  diagnostics = { enable = true, icons = table.removeKey(require('user.icons').lsp, 'other') },
+  diagnostics = { enable = true, icons = require('user.icons').nerdtree },
   respect_buf_cwd = true,
   renderer = {
     add_trailing = true,

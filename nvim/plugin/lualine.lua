@@ -15,6 +15,10 @@ local function map(tbl, f)
   return t
 end
 
+local function append_whitespace(v)
+  return v .. ' '
+end
+
 local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
     local win_width = vim.fn.winwidth(0)
@@ -89,12 +93,18 @@ end
 
 local theme = require('lualine.themes.' .. colorscheme.name)
 local patched_theme = vim.tbl_deep_extend('force', theme, { normal = { c = { bg = 'none' } } })
-local section_separator = { left = '', right = '' }
+local section_separator = {
+  left = icons.powerline.left_half_circle_thick,
+  right = icons.powerline.right_half_circle_thick,
+}
 
 lualine.setup({
   options = {
     theme = patched_theme,
-    section_separators = { left = '', right = '' },
+    section_separators = {
+      left = icons.powerline.right_half_circle_thick,
+      right = icons.powerline.left_half_circle_thick,
+    },
     component_separators = '',
     icons_enabled = true,
     globalstatus = true,
@@ -102,20 +112,21 @@ lualine.setup({
   extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
   sections = {
     lualine_a = {
-      { 'mode', separator = section_separator },
+      {
+        'mode',
+        separator = section_separator,
+      },
     },
     lualine_b = {
       {
         'b:gitsigns_head',
-        icon = '',
+        icon = icons.git.branch,
         fmt = trunc(100, 10, nil, false),
       },
       {
         'diff',
         source = diff_source,
-        symbols = map(icons.diff, function(v)
-          return v .. ' '
-        end),
+        symbols = map(icons.git.diff, append_whitespace),
         padding = 0,
       },
     },
@@ -133,12 +144,21 @@ lualine.setup({
     lualine_x = {
       {
         lsp_clients,
-        icon = icons.ui.cogs,
+        icon = icons.ui.gears,
         color = { fg = colors.teal },
         padding = { right = 1 },
       },
-      { 'diagnostics', sources = { 'nvim_lsp' }, padding = { right = 1 } },
-      { 'filetype', icon_only = false, padding = { right = 1 } },
+      {
+        'diagnostics',
+        sources = { 'nvim_lsp' },
+        symbols = map(icons.lsp, append_whitespace),
+        padding = { right = 1 },
+      },
+      {
+        'filetype',
+        icon_only = false,
+        padding = { right = 1 },
+      },
     },
     lualine_y = {
       {
@@ -160,10 +180,15 @@ lualine.setup({
         fmt = function()
           return '%P/%L'
         end,
-        color = {},
+        icon = icons.powerline.column_number,
         padding = { right = 1 },
       },
-      { 'location', padding = 0, separator = section_separator },
+      {
+        'location',
+        icon = icons.powerline.line_number,
+        padding = 0,
+        separator = section_separator,
+      },
     },
   },
   tabline = {

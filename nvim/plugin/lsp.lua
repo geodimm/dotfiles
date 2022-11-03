@@ -20,6 +20,8 @@ if not status_ok then
   return
 end
 
+local icons = require('user.icons')
+
 -- Define LSP configuration settings for languages
 local build_lsp_config = {
   gopls = function()
@@ -157,9 +159,9 @@ local setup_servers = function()
     ui = {
       border = 'rounded',
       icons = {
-        package_installed = '✓',
-        package_pending = '➜',
-        package_uninstalled = '✗',
+        package_installed = icons.ui.check,
+        package_pending = icons.ui.play,
+        package_uninstalled = icons.ui.close,
       },
     },
   })
@@ -221,9 +223,8 @@ local setup_servers = function()
 end
 
 local customise_ui = function()
-  local icons = require('user.icons').lspconfig
   -- Update the sign icons
-  for type, icon in pairs(icons) do
+  for type, icon in pairs(icons.lspconfig) do
     local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
