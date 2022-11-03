@@ -4,7 +4,8 @@ if not status_ok then
 end
 
 local icons = require('user.icons')
-local colors = require('user.colorscheme').colors
+local colorscheme = require('user.colorscheme')
+local colors = colorscheme.colors
 
 local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
@@ -78,7 +79,8 @@ local function lsp_clients()
   return table.concat(vim.fn.uniq(client_names), ', ')
 end
 
-local patched_theme = vim.tbl_deep_extend('force', require('lualine.themes.auto'), { normal = { c = { bg = 'none' } } })
+local theme = require('lualine.themes.' .. colorscheme.name)
+local patched_theme = vim.tbl_deep_extend('force', theme, { normal = { c = { bg = 'none' } } })
 local section_separator = { left = '', right = '' }
 
 lualine.setup({
@@ -107,8 +109,8 @@ lualine.setup({
         'filename',
         file_status = true,
         newfile_status = true,
-        color = function(_)
-          return vim.bo.modified and 'WarningMsg' or ''
+        color = function()
+          return vim.bo.modified and { fg = colors.yellow } or { fg = colors.fg }
         end,
         symbols = icons.file,
       },
