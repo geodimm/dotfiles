@@ -64,16 +64,24 @@ do_configure() {
 	info "[system][configure][directories] User binaries directory"
 	install -d -m 0755 -o "${USER}" -g "${USER}" "$HOME/bin"
 
-	# Font: MesloLGL Nerd Font Mono
-	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/L/Regular/complete
+	# Font: MesloLGS NF
+	# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
+	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S/Regular/complete
 	info "[system][configure] Install patched fonts"
-	local install_dir="/tmp/nerd-fonts"
+	local install_dir="/tmp/fonts"
 	rm -rf "${install_dir}" && mkdir -p "${install_dir}"
-	git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"
+
+	git clone --quiet "https://github.com/romkatv/powerlevel10k-media" "${install_dir}"/p10k
 	(
-		cd "${install_dir}"
+		cd "${install_dir}"/p10k
+		find . -type f -name '*.ttf' ! -exec cp "{}" "${FONTS_DIR}" \;
+	)
+
+	git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"/nerd-fonts
+	(
+		cd "${install_dir}"/nerd-fonts
 		git sparse-checkout add patched-fonts/Meslo/S/Regular
-		find . -type f -name '*.ttf' ! -name '*Windows*' -exec cp "{}" "${FONTS_DIR}" \;
+		find . -type f -name '*.ttf' ! -name '*Windows*' ! -name '*Mono*' -exec cp "{}" "${FONTS_DIR}" \;
 	)
 	sudo fc-cache -f
 }
