@@ -33,13 +33,26 @@ M.file = {
   directory = '',
 }
 
-M.prompt = '❯'
-M.search = ''
-M.group = ''
-M.cog = ''
-M.lightbulb = ''
-M.lock = ''
-M.tree = ''
+M.diff = {
+  diff = '',
+  added = '',
+  ignored = '',
+  modified = '',
+  removed = '',
+  renamed = '',
+}
+
+M.ui = {
+  prompt = '❯',
+  search = '',
+  group = '',
+  cog = '',
+  cogs = '',
+  lightbulb = '',
+  lock = '',
+  tree = '',
+}
+
 M.lspconfig = {
   Error = M.lsp.error,
   Hint = M.lsp.hint,
@@ -48,8 +61,8 @@ M.lspconfig = {
   Warn = M.lsp.warning,
 }
 M.telescope = {
-  prompt_prefix = M.search .. ' ',
-  selection_caret = M.prompt .. ' ',
+  prompt_prefix = M.ui.search .. ' ',
+  selection_caret = M.ui.prompt .. ' ',
 }
 
 return M

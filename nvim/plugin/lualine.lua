@@ -7,6 +7,14 @@ local icons = require('user.icons')
 local colorscheme = require('user.colorscheme')
 local colors = colorscheme.colors
 
+local function map(tbl, f)
+  local t = {}
+  for k, v in pairs(tbl) do
+    t[k] = f(v)
+  end
+  return t
+end
+
 local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
     local win_width = vim.fn.winwidth(0)
@@ -102,7 +110,14 @@ lualine.setup({
         icon = '',
         fmt = trunc(100, 10, nil, false),
       },
-      { 'diff', source = diff_source, padding = 0 },
+      {
+        'diff',
+        source = diff_source,
+        symbols = map(icons.diff, function(v)
+          return v .. ' '
+        end),
+        padding = 0,
+      },
     },
     lualine_c = {
       {
@@ -118,7 +133,7 @@ lualine.setup({
     lualine_x = {
       {
         lsp_clients,
-        icon = icons.cog,
+        icon = icons.ui.cogs,
         color = { fg = colors.teal },
         padding = { right = 1 },
       },
@@ -128,7 +143,7 @@ lualine.setup({
     lualine_y = {
       {
         function()
-          return icons.tree
+          return icons.ui.tree
         end,
         color = function()
           local ts = vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] or {}
