@@ -21,6 +21,8 @@ local prev_hunk = function()
   return '<Ignore>'
 end
 
+local icons = require('user.icons')
+
 gitsigns.setup({
   signs = {
     add = { text = '▌' },
@@ -31,7 +33,7 @@ gitsigns.setup({
   },
   diff_opts = { internal = true },
   current_line_blame = true,
-  current_line_blame_formatter = '  <author>, <author_time:%Y-%m-%d> - <summary>',
+  current_line_blame_formatter = ' ' .. icons.git.compare .. ' <author>, <author_time:%Y-%m-%d> - <summary>',
   preview_config = {
     border = 'rounded',
   },

@@ -19,6 +19,8 @@ if not status_ok then
   return
 end
 
+local icons = require('user.icons')
+
 local patch_hlgroups = function()
   local lsp_types = require('cmp.types').lsp
   for k, _ in pairs(lsp_types.CompletionItemKind) do
@@ -115,10 +117,10 @@ cmp.setup({
         mode = 'symbol_text',
         maxwidth = 50,
         menu = {
-          nvim_lsp = 'lsp',
-          luasnip = 'luasnip',
-          buffer = 'buffer',
-          nvim_lua = 'lua',
+          nvim_lsp = '[lsp]',
+          luasnip = '[luasnip]',
+          buffer = '[buffer]',
+          nvim_lua = '[lua]',
         },
       })(entry, vim_item)
 
@@ -162,7 +164,7 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete({}),
     ['<CR>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
