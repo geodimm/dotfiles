@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local icons = require('user.icons')
+local colors = require('user.colorscheme').colors
 
 local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
   return function(str)
@@ -47,6 +48,36 @@ local function fileformat()
   return icons.os[vim.bo.fileformat]
 end
 
+local function lsp_clients()
+  local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  if next(active_clients) == nil then
+    return 'LS Inactive'
+  end
+
+  local client_names = {}
+
+  for _, client in pairs(active_clients) do
+    if client.name ~= 'null-ls' then
+      table.insert(client_names, client.name)
+    else
+      local available_sources = require('null-ls.sources').get_available(vim.bo.filetype)
+      local registered = {}
+      for _, source in ipairs(available_sources) do
+        for method in pairs(source.methods) do
+          registered[method] = registered[method] or {}
+          table.insert(registered[method], source.name)
+        end
+      end
+
+      local methods = require('null-ls').methods
+      vim.list_extend(client_names, registered[methods.FORMATTING] or {})
+      vim.list_extend(client_names, registered[methods.DIAGNOSTICS] or {})
+    end
+  end
+
+  return table.concat(vim.fn.uniq(client_names), ', ')
+end
+
 local patched_theme = vim.tbl_deep_extend('force', require('lualine.themes.auto'), { normal = { c = { bg = 'none' } } })
 local section_separator = { left = '', right = '' }
 
@@ -60,7 +91,9 @@ lualine.setup({
   },
   extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
   sections = {
-    lualine_a = { { 'mode', upper = true, separator = section_separator } },
+    lualine_a = {
+      { 'mode', separator = section_separator },
+    },
     lualine_b = {
       {
         'b:gitsigns_head',
@@ -68,7 +101,6 @@ lualine.setup({
         fmt = trunc(100, 10, nil, false),
       },
       { 'diff', source = diff_source, padding = 0 },
-      { 'diagnostics', sources = { 'nvim_lsp' }, padding = { left = 1, right = 0 } },
     },
     lualine_c = {
       {
@@ -82,15 +114,39 @@ lualine.setup({
       },
     },
     lualine_x = {
-      { 'filetype', icon_only = false },
+      {
+        lsp_clients,
+        icon = icons.cog,
+        color = { fg = colors.teal },
+        padding = { right = 1 },
+      },
+      { 'diagnostics', sources = { 'nvim_lsp' }, padding = { right = 1 } },
+      { 'filetype', icon_only = false, padding = { right = 1 } },
     },
     lualine_y = {
-      { encoding, padding = 0 },
-      { fileformat },
+      {
+        function()
+          return icons.tree
+        end,
+        color = function()
+          local ts = vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] or {}
+          return { fg = not vim.tbl_isempty(ts) and colors.green or colors.red }
+        end,
+        padding = { right = 1 },
+      },
+      { encoding, padding = { right = 1 } },
+      { fileformat, padding = { right = 1 } },
     },
     lualine_z = {
-      { 'progress', padding = 0 },
-      { 'location', padding = { left = 1, right = 0 }, separator = section_separator },
+      {
+        'progress',
+        fmt = function()
+          return '%P/%L'
+        end,
+        color = {},
+        padding = { right = 1 },
+      },
+      { 'location', padding = 0, separator = section_separator },
     },
   },
   tabline = {
@@ -118,6 +174,6 @@ lualine.setup({
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = { { 'tabs', separator = section_separator } },
+    lualine_z = {},
   },
 })
