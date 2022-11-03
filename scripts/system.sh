@@ -71,7 +71,7 @@ do_configure() {
 	local install_dir="/tmp/fonts"
 	rm -rf "${install_dir}" && mkdir -p "${install_dir}"
 
-	git clone --quiet "https://github.com/romkatv/powerlevel10k-media" "${install_dir}"/p10k
+	git clone --quiet "https://github.com/kgraefe/meslo-lgsn-patched" "${install_dir}"/p10k
 	(
 		cd "${install_dir}"/p10k
 		find . -type f -name '*.ttf' ! -exec cp "{}" "${FONTS_DIR}" \;
