@@ -71,7 +71,7 @@ local setup_catppuccin = function()
 
   local cp = require('catppuccin.palettes').get_palette()
   M.colors = {
-    bg = cp.mantle,
+    bg = cp.base,
     fg = cp.text,
     blue = cp.blue,
     cyan = cp.sky,
