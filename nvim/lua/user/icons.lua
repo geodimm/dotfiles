@@ -23,6 +23,7 @@ M.ui = {
   exclamation = '', -- nf-fa-exclamation_circle
   times = '', -- nf-fa-times_circle
   question = '', -- nf-fa-question_circle
+  location = '', -- nf-oct-location
 }
 
 M.ui.close = M.ui.error

@@ -180,12 +180,20 @@ lualine.setup({
         fmt = function()
           return '%P/%L'
         end,
-        icon = icons.powerline.column_number,
+        icon = icons.ui.location,
         padding = { right = 1 },
       },
       {
         'location',
-        icon = icons.powerline.line_number,
+        fmt = function()
+          return string.format(
+            '%s%3d %s%3d',
+            icons.powerline.line_number,
+            vim.fn.line('.'),
+            icons.powerline.column_number,
+            vim.fn.virtcol('.')
+          )
+        end,
         padding = 0,
         separator = section_separator,
       },
