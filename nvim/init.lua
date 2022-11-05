@@ -40,6 +40,7 @@ packer.startup({
     use({ 'catppuccin/nvim', as = 'catppuccin' })
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-textobjects')
+    use('p00f/nvim-ts-rainbow')
     use('kyazdani42/nvim-web-devicons')
     use({ 'RRethy/vim-hexokinase', run = 'make hexokinase' })
     use({ 'Pocco81/true-zen.nvim', branch = 'dev' })

@@ -3,6 +3,8 @@ if not status_ok then
   return
 end
 
+local colors = require('user.colorscheme').colors
+
 treesitter_configs.setup({
   ensure_installed = {
     'bash',
@@ -75,6 +77,29 @@ treesitter_configs.setup({
         ['[M'] = '@function.outer',
         ['[]'] = '@class.outer',
       },
+    },
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil,
+    colors = {
+      colors.magenta,
+      colors.purple,
+      colors.blue,
+      colors.cyan,
+      colors.yellow,
+      colors.orange,
+      colors.red,
+    },
+    termcolors = {
+      '13',
+      '5',
+      '12',
+      '14',
+      '11',
+      '3',
+      '9',
     },
   },
 })
