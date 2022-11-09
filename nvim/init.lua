@@ -55,6 +55,7 @@ packer.startup({
     use('folke/which-key.nvim')
     use('FooSoft/vim-argwrap')
     use({ 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } })
+    use('junegunn/vim-easy-align')
 
     use({
       'windwp/nvim-spectre',
@@ -127,7 +128,6 @@ packer.startup({
     use('towolf/vim-helm')
     use('bfrg/vim-jq')
     use('mracos/mermaid.vim')
-    use({ 'preservim/vim-markdown', requires = { 'godlygeek/tabular' } })
     use({
       'iamcco/markdown-preview.nvim',
       run = function()
