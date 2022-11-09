@@ -30,6 +30,7 @@ gitsigns.setup({
     delete = { text = '▌' },
     topdelete = { text = '▌' },
     changedelete = { text = '▌' },
+    untracked = { text = '▌' },
   },
   diff_opts = { internal = true },
   current_line_blame = true,
