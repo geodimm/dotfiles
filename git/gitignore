@@ -4,3 +4,4 @@ georgi.yaml
 .project
 .settings/
 tags
+.luarc.json
