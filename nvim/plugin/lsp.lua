@@ -82,11 +82,12 @@ local build_lsp_config = {
     neodev.setup({})
 
     return {
-      lspconfig = {
-        settings = {
-          Lua = {
-            format = { enable = false },
+      settings = {
+        Lua = {
+          workspace = {
+            checkThirdParty = false,
           },
+          format = { enable = false },
         },
       },
     }
