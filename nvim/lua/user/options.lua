@@ -8,8 +8,8 @@ vim.opt.shortmess = {
   T = true, -- truncate non-file messages in middle
   f = true, -- (file x of x) instead of just (x of x
   F = true, -- Don't give file info when editing a file, NOTE: this breaks autocommand messages
-  s = true,
-  c = true,
+  s = true, -- Don't give search hit ... messages
+  c = true, -- Don't give ins-completion-menu messages
   W = true, -- Dont show [w] or written when writing
 }
 
