@@ -19,9 +19,7 @@ if not status_ok then
   return
 end
 
-local icons = require('user.icons')
-
-local patch_hlgroups = function()
+local function patch_hlgroups()
   local lsp_types = require('cmp.types').lsp
   for k, _ in pairs(lsp_types.CompletionItemKind) do
     if type(k) == 'string' then
@@ -40,12 +38,12 @@ local patch_hlgroups = function()
   end
 end
 
-local has_words_before = function()
+local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
-local select_next_item = function(fallback)
+local function select_next_item(fallback)
   if cmp.visible() then
     cmp.select_next_item()
   elseif luasnip.expand_or_jumpable() then
@@ -57,7 +55,7 @@ local select_next_item = function(fallback)
   end
 end
 
-local select_prev_item = function(fallback)
+local function select_prev_item(fallback)
   if cmp.visible() then
     cmp.select_prev_item()
   elseif luasnip.jumpable(-1) then
@@ -67,7 +65,7 @@ local select_prev_item = function(fallback)
   end
 end
 
-local lspkind_comparator = function(conf)
+local function lspkind_comparator(conf)
   local lsp_types = require('cmp.types').lsp
   return function(entry1, entry2)
     if entry1.source.name ~= 'nvim_lsp' then
@@ -89,7 +87,7 @@ local lspkind_comparator = function(conf)
   end
 end
 
-local label_comparator = function(entry1, entry2)
+local function label_comparator(entry1, entry2)
   return entry1.completion_item.label < entry2.completion_item.label
 end
 

@@ -1,8 +1,10 @@
 local M = {}
 
+local status_ok, navic = pcall(require, 'nvim-navic')
+
 local diagnostics = require('utils.diagnostics')
 
-local configure_keymaps = function(bufnr)
+local function configure_keymaps(bufnr)
   -- Mark diagnostics as enabled by default
   diagnostics.set(bufnr, true)
 

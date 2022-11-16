@@ -3,17 +3,17 @@ if not status_ok then
   return
 end
 
-local blame_line = function()
+local function blame_line()
   gitsigns.blame_line({ full = true })
 end
-local next_hunk = function()
+local function next_hunk()
   if vim.wo.diff then
     return ']c'
   end
   vim.schedule(gitsigns.next_hunk)
   return '<Ignore>'
 end
-local prev_hunk = function()
+local function prev_hunk()
   if vim.wo.diff then
     return '[c'
   end
