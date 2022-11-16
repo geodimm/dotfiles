@@ -16,6 +16,7 @@ local tools = {
   'json-lsp',
   'jsonlint',
   'lua-language-server',
+  'marksman',
   'markdownlint',
   'pyright',
   'shfmt',
