@@ -21,6 +21,7 @@ local tools = {
   'pyright',
   'shfmt',
   'stylua',
+  'taplo',
   'terraform-ls',
   'yaml-language-server',
 }
