@@ -153,6 +153,7 @@ local function setup_servers()
     'pyright',
     'jdtls',
     'denols',
+    'marksman',
   }
   mason.setup({
     ui = {
