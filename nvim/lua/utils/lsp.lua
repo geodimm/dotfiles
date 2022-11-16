@@ -121,6 +121,7 @@ local function configure_autocmds(client, bufnr)
         if vim.bo.filetype == 'go' then
           local params = vim.lsp.util.make_range_params()
           params.context = { only = { 'source.organizeImports' } }
+          ---@diagnostic disable-next-line: param-type-mismatch
           local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', params, 3000)
           for _, res in pairs(result or {}) do
             for _, r in pairs(res.result or {}) do
