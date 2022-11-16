@@ -24,6 +24,7 @@ M.ui = {
   times = '', -- nf-fa-times_circle
   question = '', -- nf-fa-question_circle
   location = '', -- nf-oct-location
+  breadcrumb = '', -- nf-mdi-chevron_double_right
 }
 
 M.ui.close = M.ui.error

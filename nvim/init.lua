@@ -94,6 +94,10 @@ packer.startup({
 
     -- " Languages/LSP {{{1
     use('neovim/nvim-lspconfig')
+    use({
+      'SmiteshP/nvim-navic',
+      requires = { 'neovim/nvim-lspconfig' },
+    })
     use('williamboman/mason.nvim')
     use('williamboman/mason-lspconfig.nvim')
     use('WhoIsSethDaniel/mason-tool-installer.nvim')
