@@ -1,7 +1,10 @@
-local status_ok, lualine = pcall(require, 'lualine')
+local status_ok, lualine, navic
+status_ok, lualine = pcall(require, 'lualine')
 if not status_ok then
   return
 end
+
+status_ok, navic = pcall(require, 'nvim-navic')
 
 local icons = require('user.icons')
 local colorscheme = require('user.colorscheme')
@@ -91,6 +94,15 @@ local function lsp_clients()
   return table.concat(vim.fn.uniq(client_names), ', ')
 end
 
+local function lsp_context()
+  if not status_ok then
+    return ''
+  end
+
+  local value = navic.get_location()
+  return icons.ui.breadcrumb .. ' ' .. value:match('^(.*%S)%s*$') .. ' '
+end
+
 local theme = require('lualine.themes.' .. colorscheme.name)
 local patched_theme = vim.tbl_deep_extend('force', theme, { normal = { c = { bg = 'none' } } })
 local section_separator = {
@@ -139,6 +151,11 @@ lualine.setup({
           return vim.bo.modified and { fg = colors.yellow } or { fg = colors.fg }
         end,
         symbols = icons.file,
+        padding = { left = 1 },
+      },
+      {
+        lsp_context,
+        cond = navic.is_available,
       },
     },
     lualine_x = {

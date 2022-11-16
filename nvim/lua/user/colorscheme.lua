@@ -54,22 +54,33 @@ local setup_tokyonight = function()
   }
 end
 
-local setup_catppuccin = function()
+local function setup_catppuccin()
   local status_ok, catppuccin = pcall(require, 'catppuccin')
   if not status_ok then
     return
   end
 
-  catppuccin.setup({
+  local cp = require('catppuccin.palettes').get_palette()
+
+  local config = {
     flavour = 'macchiato',
+    transparent_background = true,
     integrations = {
       nvimtree = {
         transparent_panel = true,
       },
+      navic = {
+        enabled = true,
+        custom_bg = cp.bg,
+      },
+      mason = true,
+      notify = true,
+      which_key = true,
     },
-  })
+  }
 
-  local cp = require('catppuccin.palettes').get_palette()
+  catppuccin.setup(config)
+
   M.colors = {
     bg = cp.base,
     fg = cp.text,
