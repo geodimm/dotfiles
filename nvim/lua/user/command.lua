@@ -3,11 +3,11 @@
 local keymaps = require('user.keymaps')
 
 -- Show current line in GitHub {{{1
-local trim_space = function(s)
+local function trim_space(s)
   return string.gsub(s, '%s+$', '')
 end
 
-local get_github_repo = function()
+local function get_github_repo()
   local url = trim_space(vim.fn.system('git config --get remote.origin.url'))
   if string.find(url, '^git@') then
     local parts = {}
@@ -21,7 +21,7 @@ local get_github_repo = function()
   return string.gsub(url, '.git$', '')
 end
 
-local get_main_branch = function()
+local function get_main_branch()
   for branch in pairs({ 'master', 'main' }) do
     local result = os.execute('git show-ref --quiet refs/heads/' .. branch)
     if not result then
@@ -32,7 +32,7 @@ local get_main_branch = function()
   return 'master'
 end
 
-local generate_github_link = function()
+local function generate_github_link()
   local repo_root = vim.fs.dirname(vim.fs.find('.git', { upward = true })[1])
   local repo = get_github_repo()
   local branch = get_main_branch()
@@ -42,7 +42,7 @@ local generate_github_link = function()
   return url
 end
 
-local open_in_github = function()
+local function open_in_github()
   local url = generate_github_link()
   os.execute(string.format('xdg-open "%s"', url))
 end

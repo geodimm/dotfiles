@@ -4,7 +4,7 @@ local status_ok, wk
 status_ok, wk = pcall(require, 'which-key')
 
 -- Set calls vim.keymap.set with sensible opts.
-local set = function(mode, lhs, rhs, opts)
+local function set(mode, lhs, rhs, opts)
   opts = opts or {}
   if opts.silent == nil then
     opts.silent = true
@@ -14,7 +14,7 @@ local set = function(mode, lhs, rhs, opts)
 end
 
 -- Register group assigns a name for a keymap prefix in which-key
-local register_group = function(prefix, name, opts)
+local function register_group(prefix, name, opts)
   if not status_ok then
     return
   end
@@ -69,7 +69,7 @@ set('n', 'z=', function()
 
   local suggestions = vim.fn.spellsuggest(word, 25, bad[2] == 'caps' and 1 or 0)
 
-  local selected = function(selected)
+  local function selected(selected)
     if selected then
       vim.api.nvim_feedkeys('ciw' .. selected, 'n', true)
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, true, true), 'n', true)

@@ -16,7 +16,7 @@ M.colors = {
 
 local name = 'catppuccin'
 
-local setup_tokyonight = function()
+local function setup_tokyonight()
   local status_ok, tokyonight = pcall(require, 'tokyonight')
   if not status_ok then
     return
@@ -103,6 +103,7 @@ local setup = function()
   elseif name == 'catppuccin' then
     setup_catppuccin()
   end
+  ---@diagnostic disable-next-line: param-type-mismatch
   pcall(vim.cmd, 'colorscheme ' .. name)
 end
 

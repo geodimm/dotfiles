@@ -125,7 +125,7 @@ local build_lsp_config = {
 }
 
 -- Create config that activates keymaps and enables snippet support
-local create_config = function(server)
+local function create_config(server)
   local capabilities = cmp_nvim_lsp.default_capabilities()
 
   local opts = {
@@ -141,7 +141,7 @@ local create_config = function(server)
 end
 
 -- Configure mason, mason-lspconfig and null-ls
-local setup_servers = function()
+local function setup_servers()
   -- ensure all required LSP servers are installed
   local required_servers = {
     'gopls',
@@ -223,7 +223,7 @@ local setup_servers = function()
   })
 end
 
-local customise_ui = function()
+local function customise_ui()
   -- Update the sign icons
   for type, icon in pairs(icons.lspconfig) do
     local hl = 'DiagnosticSign' .. type

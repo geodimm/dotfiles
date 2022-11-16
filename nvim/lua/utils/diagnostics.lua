@@ -5,12 +5,12 @@ local M = {}
 local diagnostics = {}
 
 -- set updates the status of lsp diagnostics for a buffer
-local set = function(bufnr, enabled)
+local function set(bufnr, enabled)
   diagnostics[bufnr] = enabled
 end
 
 -- is_disabled returns whether lsp diagnostics are disabled for a buffer
-local is_disabled = function(bufnr)
+local function is_disabled(bufnr)
   return not diagnostics[bufnr]
 end
 

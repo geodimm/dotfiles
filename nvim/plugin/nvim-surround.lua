@@ -3,4 +3,4 @@ if not status_ok then
   return
 end
 
-surround.setup()
+surround.setup({})

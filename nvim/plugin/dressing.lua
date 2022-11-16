@@ -9,7 +9,7 @@ if not status_ok then
 end
 
 -- adopted from https://github.com/stevearc/dressing.nvim/blob/12b808a6867e8c38015488ad6cee4e3d58174182/lua/dressing/select/telescope.lua#L8
-local indexed_selection = function(opts, defaults, items)
+local function indexed_selection(opts, defaults, items)
   local entry_display = require('telescope.pickers.entry_display')
   local finders = require('telescope.finders')
   local displayer

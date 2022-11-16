@@ -35,6 +35,7 @@ local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
 end
 
 local function diff_source()
+  ---@diagnostic disable-next-line: undefined-field
   local gitsigns = vim.b.gitsigns_status_dict
   if gitsigns then
     return {
@@ -104,7 +105,6 @@ local function lsp_context()
 end
 
 local theme = require('lualine.themes.' .. colorscheme.name)
-local patched_theme = vim.tbl_deep_extend('force', theme, { normal = { c = { bg = 'none' } } })
 local section_separator = {
   left = icons.powerline.left_half_circle_thick,
   right = icons.powerline.right_half_circle_thick,
@@ -112,7 +112,7 @@ local section_separator = {
 
 lualine.setup({
   options = {
-    theme = patched_theme,
+    theme = theme,
     section_separators = {
       left = icons.powerline.right_half_circle_thick,
       right = icons.powerline.left_half_circle_thick,
