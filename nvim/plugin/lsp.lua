@@ -154,6 +154,7 @@ local function setup_servers()
     'jdtls',
     'denols',
     'marksman',
+    'taplo',
   }
   mason.setup({
     ui = {
