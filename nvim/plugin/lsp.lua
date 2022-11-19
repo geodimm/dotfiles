@@ -120,6 +120,11 @@ local build_lsp_config = {
   jsonls = function()
     return { settings = { json = { format = { enable = true } } } }
   end,
+  tilt_ls = function()
+    return {
+      filetypes = { 'tiltfile', 'starlark' },
+    }
+  end,
 }
 
 -- Create config that activates keymaps and enables snippet support
@@ -178,6 +183,11 @@ local function setup_servers()
     local config = create_config(server)
     lspconfig[server].setup(config)
     ::continue::
+  end
+
+  if vim.fn.executable('tilt') then
+    local config = create_config('tilt_ls')
+    lspconfig['tilt_ls'].setup(config)
   end
 
   -- Configure null-ls with the same on_attach function
