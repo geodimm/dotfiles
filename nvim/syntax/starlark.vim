@@ -2,17 +2,11 @@ if exists("b:current_syntax")
   finish
 endif
 
-" We need nocompatible mode in order to continue lines with backslashes.
-" Original setting will be restored.
-let s:cpo_save = &cpo
-set cpo&vim
-
 syntax case match
 
 syn keyword    starlarkDirective          load
 syn keyword    starlarkKeyword            None True False
 syn keyword    starlarkStatement          break continue return pass
-syn keyword    starlarkType               lambda
 syn keyword    starlarkConditional        if elif else
 syn keyword    starlarkRepeat             for
 syn keyword    starlarkOperator           and in not or
@@ -61,7 +55,6 @@ hi def link    starlarkBuitinFuncs        Function
 hi def link    starlarkFunction           Function
 hi def link    starlarkComment            Comment
 hi def link    starlarkTodo               Todo
-hi def link    starlarkType               Type
 hi def link    starlarkString             String
 hi def link    starlarkNumber             Number
 hi def link    starlarkReserved           Error
@@ -70,8 +63,4 @@ hi def link    starlarkCustomFunc         Function
 hi def link    starlarkCustomMethod       Function
 hi def link    starlarkCustomAttr         Identifier
 
-
 let b:current_syntax = 'starlark'
-
-let &cpo = s:cpo_save
-unlet s:cpo_save
