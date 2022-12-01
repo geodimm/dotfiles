@@ -21,7 +21,7 @@ toggleterm.setup({
   insert_mappings = false,
   shade_terminals = false,
   persist_size = false,
-  direction = 'float',
+  direction = 'horizontal',
   close_on_exit = true,
   shell = vim.o.shell,
   float_opts = { border = 'curved', winblend = 0 },
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
   pattern = 'term://*',
   callback = function()
     local opts = { buffer = 0 }
-    vim.keymap.set('t', '<leader>tt', [[<C-\><C-n><C-W>l]], opts)
+    vim.keymap.set('t', '<leader>tt', '<cmd>wincmd q<CR>', opts)
   end,
 })
 
