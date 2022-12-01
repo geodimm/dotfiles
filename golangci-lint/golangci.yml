@@ -46,9 +46,6 @@ linters:
     - nolintlint
     - prealloc
   linters-settings:
-    govet:
-      disable:
-        - fieldalignment
     errcheck:
       check-blank: true
     lll:
