@@ -33,12 +33,13 @@ telescope.setup({
     entry_prefix = '  ',
     initial_mode = 'insert',
     selection_strategy = 'reset',
-    sorting_strategy = 'descending',
-    layout_strategy = 'flex',
+    sorting_strategy = 'ascending',
+    layout_strategy = 'vertical',
     layout_config = {
-      horizontal = { mirror = false, preview_width = 0.4 },
-      vertical = { mirror = true, preview_height = 0.4 },
+      prompt_position = 'top',
+      mirror = true,
     },
+    wrap_results = true,
     file_sorter = sorters.get_fuzzy_file,
     file_ignore_patterns = {},
     generic_sorter = sorters.get_generic_fuzzy_sorter,
@@ -46,7 +47,7 @@ telescope.setup({
     border = {},
     color_devicons = true,
     use_less = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    set_env = { ['COLORTERM'] = 'truecolor' },
     file_previewer = previewers.vim_buffer_cat.new,
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
@@ -55,15 +56,41 @@ telescope.setup({
       i = { ['<C-r>'] = trouble.open_with_trouble },
       n = { ['<C-r>'] = trouble.open_with_trouble },
     },
-
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = previewers.buffer_previewer_maker,
+  },
+  pickers = {
+    lsp_references = {
+      show_line = false,
+    },
+    lsp_incoming_calls = {
+      show_line = false,
+    },
+    lsp_outgoing_calls = {
+      show_line = false,
+    },
+    lsp_document_symbols = {
+      show_line = false,
+    },
+    lsp_workspace_symbols = {
+      show_line = false,
+    },
+    lsp_dynamic_workspace_symbols = {
+      show_line = false,
+    },
+    diagnostics = {
+      show_line = false,
+    },
+    lsp_definitions = {
+      show_line = false,
+    },
+    lsp_type_definitions = {
+      show_line = false,
+    },
   },
   extensions = {
     lsp_handlers = {
-      location = { telescope = { path_display = { 'shorten' } } },
-      symbol = { telescope = { path_display = { 'shorten' } } },
-      call_hierarchy = { telescope = { path_display = { 'shorten' } } },
+      location = { telescope = { show_line = false } },
+      symbol = { telescope = { show_line = false } },
+      call_hierarchy = { telescope = { show_line = false } },
       code_action = { telescope = themes.get_dropdown({}) },
     },
     fzf = {
