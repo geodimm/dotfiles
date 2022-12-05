@@ -66,7 +66,9 @@ require('dressing.select.telescope').custom_kind['spellsuggest'] = indexed_selec
 
 dressing.setup({
   input = {
-    winblend = 0,
+    win_options = {
+      winblend = 0,
+    },
     insert_only = false,
     prompt_align = 'center',
     relative = 'editor',
