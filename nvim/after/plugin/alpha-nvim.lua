@@ -135,37 +135,37 @@ local buttons = {
       'e',
       'New file',
       ':ene <BAR> startinsert<CR>',
-      { icon = icons.file.newfile, hl = { { 'Bold', 0, 1 }, { 'String', 1, 50 } } }
+      { icon = icons.file.newfile, hl = { { 'Normal', 0, 1 }, { 'String', 1, 50 } } }
     ),
     button(
       'f',
       'Find file',
       "<cmd>lua require('telescope.builtin').find_files()<CR>",
-      { icon = icons.file.find, hl = { { 'Bold', 0, 1 }, { 'Operator', 1, 50 } } }
+      { icon = icons.file.find, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
     ),
     button(
       'a',
       'Live grep',
       "<cmd>lua require('telescope.builtin').live_grep({ shorten_path = true })<CR>",
-      { icon = icons.ui.search, hl = { { 'Bold', 0, 1 }, { 'Operator', 1, 50 } } }
+      { icon = icons.ui.search, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
     ),
     button(
       'd',
       'Dotfiles',
       "<cmd>lua require('telescope.builtin').find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })<CR>",
-      { icon = icons.ui.gears, hl = { { 'Bold', 0, 1 }, { 'Operator', 1, 50 } } }
+      { icon = icons.ui.gears, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
     ),
     button(
       'u',
       'Update plugins',
       ':PackerSync<CR>',
-      { icon = icons.ui.update, hl = { { 'Bold', 0, 1 }, { 'Structure', 1, 50 } } }
+      { icon = icons.ui.update, hl = { { 'Normal', 0, 1 }, { 'Structure', 1, 50 } } }
     ),
     button(
       'l',
       'Update LSP tools',
       ':MasonToolsUpdate<CR>',
-      { icon = icons.ui.update, hl = { { 'Bold', 0, 1 }, { 'Structure', 1, 50 } } }
+      { icon = icons.ui.update, hl = { { 'Normal', 0, 1 }, { 'Structure', 1, 50 } } }
     ),
     button(
       't',
