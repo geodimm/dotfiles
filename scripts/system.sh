@@ -67,6 +67,8 @@ do_configure() {
 	# Font: MesloLGS NF
 	# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
 	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S/Regular/complete
+	# Font: Hack Nerd Font
+	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular/complete
 	info "[system][configure] Install patched fonts"
 	local install_dir="/tmp/fonts"
 	rm -rf "${install_dir}" && mkdir -p "${install_dir}"
@@ -81,6 +83,9 @@ do_configure() {
 	(
 		cd "${install_dir}"/nerd-fonts
 		git sparse-checkout add patched-fonts/Meslo/S/Regular
+		find . -type f -name '*.ttf' ! -name '*Windows*' ! -name '*Mono*' -exec cp "{}" "${FONTS_DIR}" \;
+
+		git sparse-checkout add patched-fonts/Hack/Regular
 		find . -type f -name '*.ttf' ! -name '*Windows*' ! -name '*Mono*' -exec cp "{}" "${FONTS_DIR}" \;
 	)
 	sudo fc-cache -f
