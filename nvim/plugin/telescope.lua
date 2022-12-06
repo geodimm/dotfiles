@@ -36,8 +36,10 @@ telescope.setup({
     sorting_strategy = 'ascending',
     layout_strategy = 'vertical',
     layout_config = {
-      prompt_position = 'top',
-      mirror = true,
+      vertical = {
+        prompt_position = 'top',
+        mirror = true,
+      },
     },
     wrap_results = true,
     file_sorter = sorters.get_fuzzy_file,
