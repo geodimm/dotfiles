@@ -137,6 +137,7 @@ packer.startup({
         vim.fn['mkdp#util#install']()
       end,
     })
+    use({ 'toppair/peek.nvim', run = 'deno task --quiet build:fast' })
     -- }}}
 
     -- Automatically set up your configuration after cloning packer.nvim
