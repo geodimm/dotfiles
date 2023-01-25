@@ -8,7 +8,7 @@ status_ok, navic = pcall(require, 'nvim-navic')
 
 local icons = require('user.icons')
 local colorscheme = require('user.colorscheme')
-local colors = colorscheme.colors
+local colors = require('user.colors').colors(colorscheme.name)
 
 local function map(tbl, f)
   local t = {}
@@ -48,6 +48,7 @@ end
 
 -- Override 'encoding': Don't display if encoding is UTF-8.
 local function encoding()
+  ---@diagnostic disable-next-line: undefined-field
   local fenc = vim.opt.fileencoding:get()
   if fenc == 'utf-8' then
     return ''
@@ -227,6 +228,10 @@ lualine.setup({
           TelescopePrompt = 'Telescope',
           lazy = 'Lazy',
           alpha = 'Alpha',
+        },
+        buffers_color = {
+          active = { fg = colors.bg, bg = colors.blue },
+          inactive = { fg = colors.blue, bg = colors.bg },
         },
         symbols = {
           modified = ' ' .. icons.file.modified,
