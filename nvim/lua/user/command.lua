@@ -22,14 +22,13 @@ local function get_github_repo()
 end
 
 local function get_main_branch()
-  for branch in pairs({ 'master', 'main' }) do
-    local result = os.execute('git show-ref --quiet refs/heads/' .. branch)
-    if not result then
-      return branch
-    end
+  local result = trim_space(vim.fn.system('git symbolic-ref refs/remotes/origin/HEAD'))
+  local parts = {}
+  for part in string.gmatch(result, '([^/]+)') do
+    table.insert(parts, part)
   end
 
-  return 'master'
+  return parts[#parts]
 end
 
 local function generate_github_link()
