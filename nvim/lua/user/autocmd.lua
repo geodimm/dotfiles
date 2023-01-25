@@ -28,6 +28,21 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
     vim.api.nvim_set_hl(0, 'PmenuThumb', { link = 'Visual' })
     vim.api.nvim_set_hl(0, 'LspInfoBorder', { link = 'FloatBorder' })
+
+    local lsp_types = require('cmp.types').lsp
+    for kind, _ in pairs(lsp_types.CompletionItemKind) do
+      if type(kind) == 'string' then
+        local name = ('CmpItemKind%s'):format(kind)
+        local ok, hlgroup = pcall(vim.api.nvim_get_hl_by_name, name, true)
+        if ok then
+          hlgroup.reverse = true
+          vim.api.nvim_set_hl(0, name, hlgroup)
+        end
+      end
+    end
+
+    local fg = vim.api.nvim_get_hl_by_name('Label', true).foreground
+    vim.api.nvim_set_hl(0, 'CmpItemMenu', { foreground = fg })
   end,
 })
 

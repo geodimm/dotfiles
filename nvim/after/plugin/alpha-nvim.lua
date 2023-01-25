@@ -7,6 +7,7 @@ local startify = require('alpha.themes.startify')
 local fortune = require('alpha.fortune')
 local icons = require('user.icons')
 local devicons = require('nvim-web-devicons')
+local lazy = require('lazy')
 
 local function surround(v)
   return ' ' .. v .. ' '
@@ -30,7 +31,7 @@ local logo = {
 }
 
 local function info_value()
-  local total_plugins = #vim.tbl_keys(packer_plugins)
+  local total_plugins = lazy.stats().count
   local datetime = os.date(surround(icons.ui.calendar) .. '%d-%m-%Y')
   local version = vim.version()
   local nvim_version_info = surround(devicons.get_icon_by_filetype('vim', {}))
@@ -158,7 +159,7 @@ local buttons = {
     button(
       'u',
       'Update plugins',
-      ':PackerSync<CR>',
+      ':Lazy sync<CR>',
       { icon = icons.ui.update, hl = { { 'Normal', 0, 1 }, { 'Structure', 1, 50 } } }
     ),
     button(
