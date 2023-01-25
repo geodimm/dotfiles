@@ -29,8 +29,6 @@ local function setup_catppuccin()
     return
   end
 
-  local cp = require('catppuccin.palettes').get_palette()
-
   local config = {
     flavour = 'macchiato',
     transparent_background = true,
@@ -38,7 +36,6 @@ local function setup_catppuccin()
       nvimtree = true,
       navic = {
         enabled = true,
-        custom_bg = cp.bg,
       },
       mason = true,
       notify = true,
