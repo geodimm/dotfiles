@@ -66,9 +66,9 @@ set('n', 'z=', function()
 
   local suggestions = vim.fn.spellsuggest(word, 25, bad[2] == 'caps' and 1 or 0)
 
-  local function selected(selected)
-    if selected then
-      vim.api.nvim_feedkeys('ciw' .. selected, 'n', true)
+  local function selected(item)
+    if item then
+      vim.api.nvim_feedkeys('ciw' .. item, 'n', true)
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, true, true), 'n', true)
     end
   end
