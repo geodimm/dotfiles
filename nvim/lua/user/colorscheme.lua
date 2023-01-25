@@ -66,9 +66,7 @@ local function setup_catppuccin()
     flavour = 'macchiato',
     transparent_background = true,
     integrations = {
-      nvimtree = {
-        transparent_panel = true,
-      },
+      nvimtree = true,
       navic = {
         enabled = true,
         custom_bg = cp.bg,

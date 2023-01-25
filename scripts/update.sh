@@ -35,7 +35,7 @@ function nvim() {
 	make -C "${DOTFILES_DIR}" neovim-nightly
 
 	info "[${funcname}] Update plugins"
-	vim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+	vim --headless "+Lazy! sync" +qa
 	info "[${funcname}] Update LSP tools"
 	vim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsUpdate'
 }

@@ -22,9 +22,6 @@ local function register_group(prefix, name, opts)
   wk.register({ [prefix] = { name = name } }, opts)
 end
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
-
 set('n', '<leader>w', ':w<CR>', { desc = 'Save' })
 set('v', '<leader>w', '<Esc>:w<CR>gv', { desc = 'Save' })
 set('n', '<leader>q', ':q<CR>', { desc = 'Close/Quit' })

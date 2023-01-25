@@ -3,8 +3,6 @@ if not status_ok then
   return
 end
 
-local colors = require('user.colorscheme').colors
-
 treesitter_configs.setup({
   ensure_installed = {
     'bash',

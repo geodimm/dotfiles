@@ -104,7 +104,6 @@ local function lsp_context()
   return icons.ui.breadcrumb .. ' ' .. value:match('^(.*%S)%s*$') .. ' '
 end
 
-local theme = require('lualine.themes.' .. colorscheme.name)
 local section_separator = {
   left = icons.powerline.left_half_circle_thick,
   right = icons.powerline.right_half_circle_thick,
@@ -112,7 +111,7 @@ local section_separator = {
 
 lualine.setup({
   options = {
-    theme = theme,
+    theme = colorscheme.name,
     section_separators = {
       left = icons.powerline.right_half_circle_thick,
       right = icons.powerline.left_half_circle_thick,
@@ -226,7 +225,7 @@ lualine.setup({
         filetype_names = {
           NvimTree = 'NvimTree',
           TelescopePrompt = 'Telescope',
-          packer = 'Packer',
+          lazy = 'Lazy',
           alpha = 'Alpha',
         },
         symbols = {

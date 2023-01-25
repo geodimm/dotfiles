@@ -19,25 +19,6 @@ if not status_ok then
   return
 end
 
-local function patch_hlgroups()
-  local lsp_types = require('cmp.types').lsp
-  for k, _ in pairs(lsp_types.CompletionItemKind) do
-    if type(k) == 'string' then
-      local name = 'CmpItemKind' .. k
-      local ok, hlgroup = pcall(vim.api.nvim_get_hl_by_name, name, true)
-      if ok then
-        hlgroup.reverse = true
-        vim.api.nvim_set_hl(0, name, hlgroup)
-      end
-    end
-  end
-  local ok, hlgroup = pcall(vim.api.nvim_get_hl_by_name, 'CmpItemMenu', true)
-  if ok then
-    hlgroup.foreground = vim.api.nvim_get_hl_by_name('Label', true).foreground
-    vim.api.nvim_set_hl(0, 'CmpItemMenu', hlgroup)
-  end
-end
-
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
@@ -239,5 +220,3 @@ cmp.setup.cmdline(':', {
 })
 
 cmp_git.setup()
-
-patch_hlgroups()
