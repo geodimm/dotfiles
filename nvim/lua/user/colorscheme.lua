@@ -1,19 +1,3 @@
-local M = {}
-
-M.colors = {
-  bg = 'none',
-  fg = 'none',
-  blue = 'blue',
-  cyan = 'cyan',
-  purple = 'purple',
-  magenta = 'magenta',
-  orange = 'orange',
-  yellow = 'yellow',
-  green = 'green',
-  teal = 'teal',
-  red = 'red',
-}
-
 local name = 'catppuccin'
 
 local function setup_tokyonight()
@@ -37,21 +21,6 @@ local function setup_tokyonight()
   }
 
   tokyonight.setup(config)
-
-  local tn = require('tokyonight.colors').setup(config)
-  M.colors = {
-    bg = tn.bg,
-    fg = tn.fg,
-    blue = tn.blue,
-    cyan = tn.cyan,
-    purple = tn.purple,
-    magenta = tn.magenta,
-    orange = tn.orange,
-    yellow = tn.yellow,
-    green = tn.green,
-    teal = tn.teal,
-    red = tn.red,
-  }
 end
 
 local function setup_catppuccin()
@@ -78,20 +47,6 @@ local function setup_catppuccin()
   }
 
   catppuccin.setup(config)
-
-  M.colors = {
-    bg = cp.base,
-    fg = cp.text,
-    blue = cp.blue,
-    cyan = cp.sky,
-    purple = cp.pink,
-    magenta = cp.mauve,
-    orange = cp.peach,
-    yellow = cp.yellow,
-    green = cp.green,
-    teal = cp.teal,
-    red = cp.red,
-  }
 end
 
 local setup = function()
