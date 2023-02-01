@@ -70,6 +70,10 @@ lazy.setup({
     'ThePrimeagen/refactoring.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
   },
+  {
+    'Wansmer/treesj',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+  },
 
   -- Tmux integration {{{1
   { 'tmux-plugins/vim-tmux' },
