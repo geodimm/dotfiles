@@ -5,7 +5,6 @@ end
 
 nvim_tree.setup({
   hijack_netrw = false,
-  ignore_ft_on_setup = { 'alpha' },
   diagnostics = { enable = true, icons = require('user.icons').nerdtree },
   respect_buf_cwd = true,
   renderer = {
