@@ -6,7 +6,7 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 # shellcheck disable=SC1090
 source "${DOTFILES_DIR}/scripts/util.sh"
 
-GO_VERSION="${GO_VERSION:=1.19.2}"
+GO_VERSION="${GO_VERSION:=1.20}"
 
 do_install() {
 	if [[ "$(go version 2>/dev/null)" == *"${GO_VERSION}"* ]]; then
