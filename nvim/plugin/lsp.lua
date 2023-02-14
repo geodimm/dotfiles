@@ -70,7 +70,7 @@ local build_lsp_config = {
       },
     }
   end,
-  sumneko_lua = function()
+  lua_ls = function()
     local ok, neodev = pcall(require, 'neodev')
     if not ok then
       vim.notify("Cannot import 'neodev'. Using empty config", vim.log.levels.WARN)
@@ -148,7 +148,7 @@ local function setup_servers()
   -- ensure all required LSP servers are installed
   local required_servers = {
     'gopls',
-    'sumneko_lua',
+    'lua_ls',
     'bashls',
     'jsonls',
     'yamlls',
