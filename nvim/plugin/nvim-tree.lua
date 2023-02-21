@@ -37,7 +37,7 @@ nvim_tree.setup({
 local keymaps = require('user.keymaps')
 keymaps.set('n', '<leader>fl', function()
   local api = require('nvim-tree.api').tree
-  api.toggle({ focus = true, find_file = true })
+  api.open({ focus = true, find_file = true })
   api.reload()
 end, { desc = 'Locate file in explorer' })
 keymaps.set('n', '<leader>fe', nvim_tree.toggle, { desc = 'Open file explorer' })
