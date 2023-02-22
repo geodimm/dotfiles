@@ -63,6 +63,10 @@ lazy.setup({
     dependencies = { 'nvim-telescope/telescope.nvim' },
   },
   {
+    'molecule-man/telescope-menufacture',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+  },
+  {
     'folke/trouble.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
   },
