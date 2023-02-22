@@ -101,6 +101,11 @@ telescope.setup({
       override_file_sorter = true,
       case_mode = 'smart_case',
     },
+    menufacture = {
+      mappings = {
+        main_menu = { [{ 'i', 'n' }] = '<C-o>' },
+      },
+    },
   },
 })
 
@@ -108,27 +113,20 @@ telescope.load_extension('fzf')
 telescope.load_extension('lsp_handlers')
 telescope.load_extension('refactoring')
 telescope.load_extension('notify')
+telescope.load_extension('menufacture')
 
 local keymaps = require('user.keymaps')
 keymaps.set('n', '<leader>ft', command.load_command, { desc = 'Open telescope' })
-keymaps.set('n', '<leader>ff', builtin.find_files, { desc = 'Files' })
-keymaps.set('n', '<leader>fh', function()
-  builtin.find_files({ hidden = true })
-end, { desc = 'Hidden files' })
+keymaps.set('n', '<leader>ff', telescope.extensions.menufacture.find_files, { desc = 'Files' })
 keymaps.set('n', '<leader>fd', function()
   builtin.find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })
 end, { desc = 'dotfiles' })
-keymaps.set('n', '<leader>fv', function()
-  builtin.find_files({ search_dirs = { 'vendor/' } })
-end, { desc = 'Go vendor/ files' })
 keymaps.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, { desc = 'Current file' })
-keymaps.set('n', '<leader>f*', builtin.grep_string, { desc = 'Word under cursor' })
+keymaps.set('n', '<leader>f*', telescope.extensions.menufacture.grep_string, { desc = 'Word under cursor' })
 keymaps.set('n', '<leader>fb', function()
   builtin.buffers({ show_all_buffers = true, sort_lastused = true })
 end, { desc = 'Buffers' })
-keymaps.set('n', '<leader>fa', function()
-  builtin.live_grep({})
-end, { desc = 'Fuzzy live grep' })
+keymaps.set('n', '<leader>fa', telescope.extensions.menufacture.live_grep, { desc = 'Fuzzy live grep' })
 keymaps.set('n', '<leader>fm', builtin.keymaps, { desc = 'Keymapss' })
 keymaps.set('n', '<leader>fgb', builtin.git_branches, { desc = 'Branches' })
 keymaps.set('n', '<leader>fgc', builtin.git_commits, { desc = 'Commits' })
