@@ -186,8 +186,8 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'luasnip' },
     { name = 'nvim_lua' },
+    { name = 'luasnip' },
   }, {
     { name = 'buffer' },
   }, {
@@ -203,7 +203,7 @@ cmp.setup.filetype('gitcommit', {
   }),
 })
 
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' },
@@ -216,6 +216,8 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' },
   }, {
     { name = 'path' },
+  }, {
+    { name = 'buffer' },
   }),
 })
 
