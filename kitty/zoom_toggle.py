@@ -5,14 +5,11 @@ MAGNIFYING_GLASS_ICON="\uf848"
 
 
 def toggle_tab_title_icon(tab, icon):
-    title = tab.active_window.title
-    if " " in title:
-        title = title.split()[0]
-
-    if icon:
-        tab.active_window.set_title(f"{title} {icon}")
+    window = tab.active_window
+    if icon in window.title:
+        window.set_title(window.title.strip(icon))
     else:
-        tab.active_window.set_title(title.strip(icon))
+        window.set_title(f"{window.title} {icon}")
 
 
 def main(args):
@@ -27,7 +24,7 @@ def handle_result(args, answer, target_window_id, boss):
 
     if tab.current_layout.name == 'stack':
         tab.last_used_layout()
-        toggle_tab_title_icon(tab, None)
     else:
         tab.goto_layout('stack')
-        toggle_tab_title_icon(tab, MAGNIFYING_GLASS_ICON)
+
+    toggle_tab_title_icon(tab, MAGNIFYING_GLASS_ICON)
