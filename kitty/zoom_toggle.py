@@ -16,12 +16,13 @@ def main(args):
 
 @result_handler(no_ui=True)
 def handle_result(args, answer, target_window_id, boss):
-  tab = boss.active_tab
-  if tab is not None:
-     off = len(args) > 1 and args[1] == 'off'
-     if tab.current_layout.name == 'stack':
+    tab = boss.active_tab
+    if not tab:
+        return
+
+    if tab.current_layout.name == 'stack':
         tab.last_used_layout()
         toggle_tab_title_icon(tab, None)
-     elif not off:
+    else:
         tab.goto_layout('stack')
         toggle_tab_title_icon(tab, MAGNIFYING_GLASS_ICON)
