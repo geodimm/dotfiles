@@ -22,6 +22,11 @@ do_install() {
 
 do_configure() {
 	info "[kitty] Configure"
+	info "[kitty][configure] Set as default terminal"
+	local kitty_path
+	kitty_path="$(type -P kitty)"
+	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$kitty_path" 60
+	sudo update-alternatives --set x-terminal-emulator "$kitty_path"
 
 	info "[kitty][configure] Configure desktop entries"
 	cp "${HOME}"/.local/kitty.app/share/applications/kitty.desktop "${HOME}/.local/share/applications/"
