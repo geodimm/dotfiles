@@ -29,9 +29,12 @@ node: nvm ## Install Node.js
 nvm: ## Install Node version manager
 	@./scripts/nvm.sh install
 
-terminal: tmux zsh ohmyzsh fzf ## Setup the terminal
-tmux: ## Configure tmux
-	@./scripts/tmux.sh configure
+terminal: kitty zsh ohmyzsh fzf ## Setup the terminal
+kitty: kitty-install kitty-configure ## Install and configure Kitty
+kitty-install:
+	@./scripts/kitty.sh install
+kitty-configure:
+	@./scripts/kitty.sh configure
 zsh: ## Configure zsh
 	@./scripts/zsh.sh configure
 ohmyzsh: ohmyzsh-install ohmyzsh-configure ## Install and configure Oh My Zsh

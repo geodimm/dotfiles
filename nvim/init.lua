@@ -79,9 +79,9 @@ lazy.setup({
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
 
-  -- Tmux integration {{{1
-  { 'tmux-plugins/vim-tmux' },
-  { 'urbainvaes/vim-tmux-pilot' },
+  -- kitty integration {{{1
+  { 'fladson/vim-kitty' },
+  { 'knubie/vim-kitty-navigator', build = 'cp ./*.py ~/.config/kitty/' },
 
   -- Text editing features {{{1
   { 'kylechui/nvim-surround' },

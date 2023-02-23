@@ -41,7 +41,7 @@ set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 set('n', 'j', "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", { desc = 'Go to next wrapped line', expr = true })
 set('n', 'k', "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", { desc = 'Go to previous wrapped line', expr = true })
 
--- Don't override vim-tmux-pilot key bindings
+-- Don't override vim-kitty-navigator key bindings
 -- set('n', '<C-j>', '<C-w><Down>', { desc = 'Move down' })
 -- set('n', '<C-k>', '<C-w><Up>', { desc = 'Move up' })
 -- set('n', '<C-l>', '<C-w><Right>', { desc = 'Move right' })

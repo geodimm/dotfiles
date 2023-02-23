@@ -15,6 +15,7 @@ make
 
 ## Useful Links
 
+- [kitty] Cross-platform, fast, feature-rich, GPU based terminal
 - [ohmyzsh] Oh My Zsh is an open source, community-driven
 framework for managing your zsh configuration.
 - [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
@@ -23,6 +24,7 @@ flexibility and out-of-the-box experience.
 - [bat] A cat(1) clone with wings.
 - [lsd] The next gen ls command
 
+[kitty]: https://github.com/kovidgoyal/kitty "Kitty"
 [ohmyzsh]: https://github.com/ohmyzsh/ohmyzsh "Oh My Zsh"
 [powerlevel10k]: https://github.com/romkatv/powerlevel10k "Powerlevel10k"
 [fzf]: https://github.com/junegunn/fzf "FZF"
