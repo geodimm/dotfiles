@@ -29,7 +29,6 @@ do_install() {
 		ripgrep
 		shellcheck
 		tig
-		tmux
 		tree
 		units
 		universal-ctags

@@ -22,7 +22,6 @@ plugins=(
     kubectl
     npm
     terraform
-    tmux
     vi-mode
     you-should-use
     z
