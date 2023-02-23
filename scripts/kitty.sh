@@ -29,6 +29,7 @@ do_configure() {
 	sudo update-alternatives --set x-terminal-emulator "$kitty_path"
 
 	info "[kitty][configure] Configure desktop entries"
+	mkdir -p "${HOME}/.local/share/applications/"
 	cp "${HOME}"/.local/kitty.app/share/applications/kitty.desktop "${HOME}/.local/share/applications/"
 	sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty.desktop
 	sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty.desktop
