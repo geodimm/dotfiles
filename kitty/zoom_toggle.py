@@ -1,13 +1,18 @@
-MAGNIFYING_GLASS_ICON="\uf848"
-
 from kittens.tui.handler import result_handler
 
 
+MAGNIFYING_GLASS_ICON="\uf848"
+
+
 def toggle_tab_title_icon(tab, icon):
+    title = tab.active_window.title
+    if " " in title:
+        title = title.split()[0]
+
     if icon:
-        tab.set_title(f"{tab.title} {icon}")
+        tab.active_window.set_title(f"{title} {icon}")
     else:
-        tab.set_title(tab.title.strip(icon))
+        tab.active_window.set_title(title.strip(icon))
 
 
 def main(args):
