@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 NVM_DIR="${HOME}/.nvm"
 
-do_install() {
+function do_install() {
 	if is_installed node; then
 		info "[node] Already installed"
 		return
@@ -19,7 +19,7 @@ do_install() {
 	source "${NVM_DIR}/nvm.sh" && nvm install node
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

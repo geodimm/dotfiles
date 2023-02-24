@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 KITTY_CONFIG_DIR="${XDG_CONFIG_HOME}/kitty"
 
-do_install() {
+function do_install() {
 	if is_installed kitty; then
 		info "[kitty] Already installed"
 		return
@@ -16,11 +16,11 @@ do_install() {
 
 	info "[kitty] Install"
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
-	sudo ln -s "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
-	sudo ln -s "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
+	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
+	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
 }
 
-do_configure() {
+function do_configure() {
 	info "[kitty] Configure"
 	info "[kitty][configure] Set as default terminal"
 	local kitty_path
@@ -42,7 +42,7 @@ do_configure() {
 	kitty +kitten themes --config-file-name=themes.conf Catppuccin-Macchiato
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

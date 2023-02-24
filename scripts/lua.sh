@@ -9,7 +9,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 LUA_VERSION="${LUA_VERSION:=5.3.5}"
 LUAROCKS_VERSION="${LUAROCKS_VERSION:=3.3.1}"
 
-do_install() {
+function do_install() {
 	if [[ "$(lua -v 2>/dev/null)" == *"${LUA_VERSION}"* ]]; then
 		info "[lua] ${LUA_VERSION} already installed"
 		return
@@ -46,7 +46,7 @@ do_install() {
 	)
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

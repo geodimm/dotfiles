@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 TS_VERSION="${TS_VERSION:=0.20.7}"
 
-do_install() {
+function do_install() {
 	if [[ "$(tree-sitter --version 2>/dev/null)" == *"${TS_VERSION}"* ]]; then
 		info "[tree-sitter] ${TS_VERSION} already installed"
 		return
@@ -25,7 +25,7 @@ do_install() {
 	chmod +x "${treesitter}"
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

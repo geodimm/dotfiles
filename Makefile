@@ -31,9 +31,9 @@ nvm: ## Install Node version manager
 
 terminal: kitty zsh ohmyzsh fzf ## Setup the terminal
 kitty: kitty-install kitty-configure ## Install and configure Kitty
-kitty-install:
+kitty-install: ## Install Kitty
 	@./scripts/kitty.sh install
-kitty-configure:
+kitty-configure: ## Configure Kitty
 	@./scripts/kitty.sh configure
 zsh: ## Configure zsh
 	@./scripts/zsh.sh configure
@@ -58,9 +58,10 @@ tig: ## Configure tig
 jqp: ## Install jqp
 	@./scripts/jqp.sh install
 
-neovim: tree-sitter ## Configure neovim
+neovim: neovim-install neovim-configure tree-sitter ## Install and configure neovim
+neovim-install: ## Install neovim
+	@./scripts/neovim.sh install
+neovim-configure: ## Configure neovim
 	@./scripts/neovim.sh configure
-neovim-nightly: ## Install neovim (nightly build)
-	@./scripts/neovim-nightly.sh install
 tree-sitter: ## Install tree-sitter
 	@./scripts/tree-sitter.sh install

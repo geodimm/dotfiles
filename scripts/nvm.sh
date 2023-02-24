@@ -9,7 +9,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 NVM_DIR="${HOME}/.nvm"
 NVM_VERSION="${NVM_VERSION:=v0.39.2}"
 
-do_install() {
+function do_install() {
 	if [[ -f "${NVM_DIR}/nvm.sh" ]]; then
 		info "[nvm] Already installed. Updating..."
 		(
@@ -25,7 +25,7 @@ do_install() {
 	curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")
