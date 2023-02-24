@@ -14,8 +14,6 @@ system-configure: ## Create directories, install fonts, etc.
 	@./scripts/system.sh configure
 git: ## Configure git
 	@./scripts/git.sh configure
-gnome-terminal: ## Install themes for gnome-terminal
-	@./scripts/gnome-terminal.sh configure
 
 languages: go rust lua node ## Install programming languages
 go: ## Install Go
