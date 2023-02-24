@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 JQP_VERSION="${JQP_VERSION:=v0.0.3}"
 
-do_install() {
+function do_install() {
 	if [[ "$(jqp -V 2>/dev/null)" == *"${JQP_VERSION}"* ]]; then
 		info "[jqp] ${JQP_VERSION} already installed"
 		return
@@ -18,7 +18,7 @@ do_install() {
 	curl -s "https://raw.githubusercontent.com/georgijd/jqp/${JQP_VERSION}/scripts/install.sh" | bash
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

@@ -6,7 +6,7 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 # shellcheck disable=SC1090
 source "${DOTFILES_DIR}/scripts/util.sh"
 
-do_install() {
+function do_install() {
 	if is_installed rustc; then
 		info "[rust] Already installed"
 		return
@@ -16,7 +16,7 @@ do_install() {
 	curl --silent --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 GO_VERSION="${GO_VERSION:=1.20}"
 
-do_install() {
+function do_install() {
 	if [[ "$(go version 2>/dev/null)" == *"${GO_VERSION}"* ]]; then
 		info "[go] ${GO_VERSION} already installed"
 		return
@@ -21,7 +21,7 @@ do_install() {
 	sudo tar -C /usr/local -xzf "${go}"
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

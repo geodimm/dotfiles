@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 FZF_DIR="${HOME}/.fzf"
 
-do_install() {
+function do_install() {
 	if is_installed fzf; then
 		info "[fzf] Already installed. Updating..."
 		(
@@ -26,7 +26,7 @@ do_install() {
 	fi
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

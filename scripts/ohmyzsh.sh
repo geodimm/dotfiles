@@ -19,7 +19,7 @@ declare -A ZSH_CUSTOM_PLUGINS=(
 	["themes/powerlevel10k"]="https://github.com/romkatv/powerlevel10k"
 )
 
-do_install() {
+function do_install() {
 	if [[ -d "${ZSH}" ]]; then
 		info "[ohmyzsh] Already installed"
 		return
@@ -29,7 +29,7 @@ do_install() {
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
 }
 
-do_configure() {
+function do_configure() {
 	info "[ohmyzsh] Configure"
 	info "[ohmyzsh][configure] Download plugins"
 	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
@@ -45,7 +45,7 @@ do_configure() {
 	ln -fs "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
 }
 
-do_update_plugins() {
+function do_update_plugins() {
 	info "[ohmyzsh] Update plugins"
 	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
 		if [[ -d "${ZSH_CUSTOM}/$path" ]]; then
@@ -57,7 +57,7 @@ do_update_plugins() {
 	done
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

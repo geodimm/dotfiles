@@ -8,36 +8,40 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 FONTS_DIR="$HOME/.local/share/fonts"
 
-do_install() {
+function do_install() {
 	local packages=(
+		# system
+		fontconfig
+		dconf-cli
+
+		# development
 		build-essential
 		cmake
-		curl
-		dconf-cli
-		fd-find
-		fontconfig
-		git
-		htop
-		httpie
-		jq
 		libreadline-dev
 		moreutils
 		ncurses-term
+		zsh
+		git
+		tig
 		neovim
 		python3-dev
 		python3-pip
-		ripgrep
 		shellcheck
-		tig
-		tree
-		units
 		universal-ctags
+		uuid-runtime
+
+		# productivity tools
+		htop
+		curl
+		wget
+		httpie
 		unrar
 		unzip
-		uuid-runtime
-		wget
-		xclip
-		zsh
+		tree
+		fd-find
+		ripgrep
+		jq
+		units
 	)
 
 	info "[system] Install packages"
@@ -48,7 +52,7 @@ do_install() {
 	sudo apt-get install -qq -y "${packages[@]}"
 }
 
-do_configure() {
+function do_configure() {
 	info "[system] Configure"
 	info "[system][configure] Create directories"
 	info "[system][configure][directories] Repositories"
@@ -90,7 +94,7 @@ do_configure() {
 	sudo fc-cache -f
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")

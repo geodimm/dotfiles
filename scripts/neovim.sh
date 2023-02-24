@@ -8,7 +8,19 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 NVM_DIR="${HOME}/.nvm"
 
-do_configure() {
+function do_install() {
+	info "[neovimy] Install nightly"
+	local target="/tmp/nvim.deb"
+	asset=$(curl --silent https://api.github.com/repos/neovim/neovim/releases/tags/nightly | jq -r '.assets // [] | .[] | select(.name | endswith("nvim-linux64.deb")) | .url')
+	if [[ -z ${asset} ]]; then
+		warn "Cannot find a nightly release. Please try again later."
+		exit 0
+	fi
+	download "${asset}" "${target}"
+	sudo dpkg -i --force-overwrite "${target}"
+}
+
+function do_configure() {
 	info "[neovim] Configure"
 	info "[neovim][configure] Set as default editor"
 	local nvim_path
@@ -31,17 +43,15 @@ do_configure() {
 	info "[neovim][configure][languages] Node.js"
 	# shellcheck source=../../.nvm/nvm.sh
 	source "${NVM_DIR}/nvm.sh" && npm install --quiet -g neovim
-
-	info "[neovim][configure] Install dependencies for LSP"
-	info "[neovim][configure][dependencies] yarn"
-	# shellcheck source=../../.nvm/nvm.sh
-	source "${NVM_DIR}/nvm.sh"
-	npm install --quiet -g yarn
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
+	"install")
+		shift
+		do_install "$@"
+		;;
 	"configure")
 		shift
 		do_configure "$@"

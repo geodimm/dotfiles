@@ -8,7 +8,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 
 LSD_VERSION="${LSD_VERSION:=0.23.1}"
 
-do_install() {
+function do_install() {
 	if [[ "$(lsd --version 2>/dev/null)" == *"${LSD_VERSION}"* ]]; then
 		info "[lsd] ${LSD_VERSION} already installed"
 		return
@@ -20,7 +20,7 @@ do_install() {
 	sudo dpkg -i "${lsd}"
 }
 
-main() {
+function main() {
 	command=$1
 	case $command in
 	"install")
