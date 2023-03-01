@@ -32,7 +32,7 @@ function system() {
 function nvim() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update neovim"
-	make -C "${DOTFILES_DIR}" neovim-nightly
+	make -C "${DOTFILES_DIR}" neovim-install
 
 	info "[${funcname}] Update plugins"
 	vim --headless "+Lazy! sync" +qa
