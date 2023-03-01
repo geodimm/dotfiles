@@ -9,7 +9,7 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 NVM_DIR="${HOME}/.nvm"
 
 function do_install() {
-	info "[neovimy] Install nightly"
+	info "[neovim] Install nightly"
 	local target="/tmp/nvim.deb"
 	asset=$(curl --silent https://api.github.com/repos/neovim/neovim/releases/tags/nightly | jq -r '.assets // [] | .[] | select(.name | endswith("nvim-linux64.deb")) | .url')
 	if [[ -z ${asset} ]]; then
