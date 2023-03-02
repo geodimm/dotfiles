@@ -13,6 +13,9 @@ nvim_tree.setup({
     indent_markers = { enable = true },
     special_files = { 'Makefile', 'README.md', 'go.mod' },
   },
+  git = {
+    ignore = false,
+  },
   view = {
     adaptive_size = true,
     width = 40,
