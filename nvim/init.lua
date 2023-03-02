@@ -26,7 +26,6 @@ lazy.setup({
   -- Vanity {{{1
   { 'goolord/alpha-nvim' },
   { 'hoob3rt/lualine.nvim' },
-  { 'folke/tokyonight.nvim' },
   { 'catppuccin/nvim', name = 'catppuccin' },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
@@ -45,7 +44,6 @@ lazy.setup({
   { 'rhysd/git-messenger.vim' },
   { 'tpope/vim-fugitive' },
   { 'folke/which-key.nvim' },
-  { 'FooSoft/vim-argwrap' },
   { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   { 'junegunn/vim-easy-align' },
 
