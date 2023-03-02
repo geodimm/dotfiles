@@ -6,12 +6,6 @@ from typing import List
 from kitty.boss import Boss
 
 
-FZF_BIN = os.path.join(os.environ["HOME"], ".fzf/bin")
-FZF_OPTS= [
-    "--color=16,fg:7,bg:-1,hl:5,fg+:13,bg+:8,hl+:6,info:2,prompt:4,pointer:13,marker:3,spinner:4,header:4",
-    "--no-separator",
-    "--reverse",
-]
 ENABLED_LAYOUTS = [
     'fat',
     'grid',
@@ -26,14 +20,18 @@ ENABLED_LAYOUTS = [
 def fzf(choices: List[str], delimiter='\n'):
     exe = which("fzf")
     if not exe:
-        raise SystemError(f"Cannot find 'fzf' installed on PATH.")
+        raise SystemError(f"Cannot find 'fzf' installed on $PATH.")
+
+    shell = which("zsh") or os.environ.get("SHELL")
+    if not shell:
+        raise SystemError(f"Cannot find a $SHELL to use.")
 
     selection = []
     with tempfile.NamedTemporaryFile(delete=True) as input_file:
         with tempfile.NamedTemporaryFile(delete=True) as output_file:
             input_file.write(delimiter.join(map(str, choices)).encode('utf-8'))
             input_file.flush()
-            os.system(f"{exe} < \"{input_file.name}\" > \"{output_file.name}\"")
+            os.system(f"{shell} -c '{exe} --reverse < \"{input_file.name}\" > \"{output_file.name}\"'")
             for line in output_file:
                 selection.append(line.strip().decode("utf-8"))
 
@@ -41,8 +39,8 @@ def fzf(choices: List[str], delimiter='\n'):
 
 
 def main(args: List[str]) -> str:
-    os.environ["PATH"] += f":{FZF_BIN}"
-    os.environ["FZF_DEFAULT_OPTS"] = " ".join(FZF_OPTS)
+    fzf_path = os.path.join(os.environ["HOME"], ".fzf/bin")
+    os.environ["PATH"] += f":{fzf_path}"
 
     result = fzf(ENABLED_LAYOUTS)
     if len(result) > 0:
