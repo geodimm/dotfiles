@@ -38,6 +38,11 @@ test -f "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
 
 # FZF
 export FZF_DEFAULT_COMMAND='find -L'
-export FZF_DEFAULT_OPTS="--bind 'ctrl-v:execute(vim {})+abort,?:toggle-preview,alt-a:select-all,alt-d:deselect-all' --tiebreak=index --cycle --preview-window right:50%:border:wrap"
-export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS} --color=dark,fg:7,bg:-1,hl:5,fg+:15,bg+:8,hl+:13,info:2,prompt:4,pointer:1,marker:3,spinner:4,header:4"
+export FZF_DEFAULT_OPTS="\
+--bind 'alt-a:select-all,alt-d:deselect-all' \
+--tiebreak=index \
+--cycle \
+--no-separator \
+--info inline \
+--color=16,fg:7,bg:-1,hl:5,fg+:13,bg+:8,hl+:6,info:2,prompt:4,pointer:13,marker:3,spinner:4,header:4"
 export FZF_CTRL_R_OPTS="--layout=reverse --preview-window hidden"
