@@ -1,26 +1,6 @@
 #!/usr/bin/env zsh
 # vim: set filetype=zsh
 
-# Add more dirs to PATH
-if [[ ! "${PATH}" == *:.* ]]; then
-    export PATH="${PATH}:."
-fi
-for dir in bin .bin; do
-    if [[ ! "${PATH}" == *${HOME}/${dir}* ]]; then
-        export PATH="${HOME}/${dir}:${PATH}"
-    fi
-done
-
-# Golang
-export GOPATH="${HOME}/go"
-if [[ ! "${PATH}" == */usr/local/go/bin* ]]; then
-    export PATH="${PATH}:/usr/local/go/bin"
-fi
-
-if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
-    export PATH="${PATH}:${GOPATH}/bin"
-fi
-
 # Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
 export KEYTIMEOUT=1
 
@@ -33,9 +13,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # Set the GPG_TTY to the current TTY
 export GPG_TTY=${TTY}
 
-# Rust
-test -f "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
-
 # FZF
 export FZF_DEFAULT_COMMAND='find -L'
 export FZF_DEFAULT_OPTS="\
@@ -46,3 +23,26 @@ export FZF_DEFAULT_OPTS="\
 --info inline \
 --color=16,fg:7,bg:-1,hl:5,fg+:13,bg+:8,hl+:6,info:2,prompt:4,pointer:13,marker:3,spinner:4,header:4"
 export FZF_CTRL_R_OPTS="--layout=reverse --preview-window hidden"
+
+# Golang
+export GOPATH="${HOME}/go"
+if [[ ! "${PATH}" == */usr/local/go/bin* ]]; then
+    export PATH="${PATH}:/usr/local/go/bin"
+fi
+
+if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
+    export PATH="${PATH}:${GOPATH}/bin"
+fi
+
+# Rust
+test -f "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
+
+# Append ~/bin directory to PATH
+if [[ ! "${PATH}" == *${HOME}/bin* ]]; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
+
+# Append current directory to PATH
+if [[ ! "${PATH}" == *:.* ]]; then
+    export PATH="${PATH}:."
+fi
