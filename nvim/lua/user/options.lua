@@ -63,8 +63,6 @@ vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 vim.opt.showmode = false -- Don't show mode in cmd
 vim.opt.syntax = 'on' -- Enable syntax highlighting
 vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
-vim.go.t_8f = '[[38;2;%lu;%lu;%lum' -- Set foreground color
-vim.go.t_8b = '[[48;2;%lu;%lu;%lum' -- Set background color
 
 -- List chars {{{1
 vim.opt.list = true -- Show special characters
