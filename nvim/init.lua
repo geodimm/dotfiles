@@ -30,7 +30,7 @@ lazy.setup({
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
   { 'kyazdani42/nvim-web-devicons' },
-  { 'RRethy/vim-hexokinase', build = 'make hexokinase' },
+  { 'norcalli/nvim-colorizer.lua' },
   {
     'giusgad/pets.nvim',
     dependencies = { 'MunifTanjim/nui.nvim', 'edluffy/hologram.nvim' },
