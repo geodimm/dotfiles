@@ -15,28 +15,7 @@ local default = {
 }
 
 local function colors(colorscheme)
-  if colorscheme == 'tokyonight' then
-    local status_ok, tokyonight = pcall(require, 'tokyonight.colors')
-    if not status_ok then
-      vim.notify('Failed to import tokyonight.colors', vim.log.levels.WARN)
-      return default
-    end
-
-    local tn = tokyonight.setup()
-    return {
-      bg = tn.bg,
-      fg = tn.fg,
-      blue = tn.blue,
-      cyan = tn.cyan,
-      purple = tn.purple,
-      magenta = tn.magenta,
-      orange = tn.orange,
-      yellow = tn.yellow,
-      green = tn.green,
-      teal = tn.teal,
-      red = tn.red,
-    }
-  elseif colorscheme == 'catppuccin' then
+  if colorscheme == 'catppuccin' then
     local status_ok, catppuccin = pcall(require, 'catppuccin.palettes')
     if not status_ok then
       vim.notify('Failed to import catppuccin.palettes', vim.log.levels.WARN)
