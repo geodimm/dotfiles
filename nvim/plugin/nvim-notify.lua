@@ -9,7 +9,7 @@ vim.notify = notify
 local icons = require('user.icons')
 
 notify.setup({
-  timeout = 1500,
+  timeout = 3000,
   stages = 'slide',
   icons = {
     DEBUG = icons.ui.bug,
