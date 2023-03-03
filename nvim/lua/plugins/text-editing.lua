@@ -1,7 +1,12 @@
 return {
   {
-    'kylechui/nvim-surround',
-    config = true,
+    'echasnovski/mini.surround',
+    opts = {
+      highlight_duration = 1000,
+    },
+    config = function(_, opts)
+      require('mini.surround').setup(opts)
+    end,
   },
   {
     'echasnovski/mini.comment',
