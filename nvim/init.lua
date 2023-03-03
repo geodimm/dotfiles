@@ -23,33 +23,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 lazy.setup({
+  { import = 'plugins' },
   -- Vanity {{{1
   { 'goolord/alpha-nvim' },
   { 'hoob3rt/lualine.nvim' },
-  {
-    'catppuccin/nvim',
-    name = 'catppuccin',
-    lazy = false,
-    priority = 1000,
-    opts = {
-      flavour = 'macchiato',
-      transparent_background = true,
-      integrations = {
-        nvimtree = true,
-        navic = {
-          enabled = true,
-        },
-        mason = true,
-        notify = true,
-        which_key = true,
-      },
-    },
-    config = function(plugin, opts)
-      vim.opt.background = 'dark'
-      require(plugin.name).setup(opts)
-      vim.cmd('colorscheme catppuccin')
-    end,
-  },
   { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
   { 'nvim-treesitter/nvim-treesitter-textobjects' },
   { 'kyazdani42/nvim-web-devicons' },
