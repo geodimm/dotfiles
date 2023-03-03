@@ -5,7 +5,7 @@ return {
       local lualine = require('lualine')
       local navic = require('nvim-navic')
       local icons = require('user.icons')
-      local colors = require('user.colors').colors(vim.g.colors_name)
+      local colors = require('utils.color').colors(vim.g.colors_name)
 
       local function map(tbl, f)
         local t = {}

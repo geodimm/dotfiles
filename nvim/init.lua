@@ -24,7 +24,6 @@ vim.g.maplocalleader = '\\'
 
 require('user.options')
 require('user.autocmd')
-require('user.keymaps')
 require('user.command')
 
 lazy.setup({
@@ -37,3 +36,5 @@ lazy.setup({
     colorscheme = { 'catppuccin-macchiato' },
   },
 })
+
+require('user.keymap')
