@@ -34,16 +34,15 @@ vim.opt.fillchars = {
   foldclose = '▸',
 }
 -- Diff options {{{1
-vim.opt.diffopt = vim.opt.diffopt
-  + {
-    'vertical',
-    'iwhite',
-    'hiddenoff',
-    'foldcolumn:0',
-    'context:4',
-    'algorithm:histogram',
-    'indent-heuristic',
-  }
+vim.opt.diffopt:append({
+  'vertical',
+  'iwhite',
+  'hiddenoff',
+  'foldcolumn:0',
+  'context:4',
+  'algorithm:histogram',
+  'indent-heuristic',
+})
 
 -- Folds {{{1
 vim.opt.foldmethod = 'expr'
