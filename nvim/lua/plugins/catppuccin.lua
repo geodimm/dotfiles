@@ -19,6 +19,19 @@ return {
     },
     config = function(plugin, opts)
       vim.opt.background = 'dark'
+
+      -- Customise colorscheme highlight groups
+      vim.api.nvim_create_augroup('user_customise_colorscheme', { clear = true })
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        group = 'user_customise_colorscheme',
+        desc = 'customise the colorscheme highlights',
+        pattern = '*',
+        callback = function()
+          vim.api.nvim_set_hl(0, 'PmenuThumb', { link = 'Visual' })
+          vim.api.nvim_set_hl(0, 'LspInfoBorder', { link = 'FloatBorder' })
+        end,
+      })
+
       require(plugin.name).setup(opts)
       vim.cmd('colorscheme catppuccin')
     end,

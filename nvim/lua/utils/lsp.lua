@@ -1,6 +1,7 @@
 local M = {}
 
 local diagnostics = require('utils.diagnostics')
+local icons = require('user.icons').lspconfig
 
 local function configure_keymaps(bufnr)
   -- Mark diagnostics as enabled by default
@@ -156,6 +157,59 @@ local function on_attach(client, bufnr)
   attach_navic(client, bufnr)
 end
 
+-- Create config that activates keymaps and enables snippet support
+local function create_config(servers, server)
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+  local opts = {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+
+  if servers[server] then
+    opts = vim.tbl_deep_extend('force', opts, servers[server]())
+  end
+
+  return opts
+end
+
+local function customise_ui()
+  -- Update the sign icons
+  for type, icon in pairs(icons) do
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  end
+
+  -- Set borders to floating windows
+  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
+  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
+
+  -- Use nvim-notify for LSP messages
+  vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    local lvl = ({ 'ERROR', 'WARN', 'INFO', 'DEBUG' })[result.type]
+    local timeout = (result.type < 2 and 3000 or 1500)
+    vim.notify(result.message, lvl, { title = 'LSP | ' .. client.name, timeout = timeout })
+  end
+
+  -- Update LspInfo window border
+  require('lspconfig.ui.windows').default_options.border = 'rounded'
+end
+
+local function setup_vim_diagnostics()
+  vim.diagnostic.config({
+    underline = true,
+    virtual_text = false,
+    signs = true,
+    float = false,
+    update_in_insert = true,
+    severity_sort = true,
+  })
+end
+
 M.on_attach = on_attach
+M.create_config = create_config
+M.customise_ui = customise_ui
+M.setup_vim_diagnostics = setup_vim_diagnostics
 
 return M
