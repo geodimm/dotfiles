@@ -278,4 +278,16 @@ return {
       },
     },
   },
+  {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    opts = {
+      draw = {
+        delay = 0,
+      },
+    },
+    config = function()
+      require('mini.indentscope').setup()
+    end,
+  },
 }
