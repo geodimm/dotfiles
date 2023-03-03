@@ -7,8 +7,7 @@ end
 status_ok, navic = pcall(require, 'nvim-navic')
 
 local icons = require('user.icons')
-local colorscheme = require('user.colorscheme')
-local colors = require('user.colors').colors(colorscheme.name)
+local colors = require('user.colors').colors(vim.g.colors_name)
 
 local function map(tbl, f)
   local t = {}
@@ -112,7 +111,7 @@ local section_separator = {
 
 lualine.setup({
   options = {
-    theme = colorscheme.name,
+    theme = vim.g.colors_name,
     section_separators = {
       left = icons.powerline.right_half_circle_thick,
       right = icons.powerline.left_half_circle_thick,
