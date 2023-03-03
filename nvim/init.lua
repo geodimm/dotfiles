@@ -111,7 +111,6 @@ lazy.setup({
   -- Text editing features {{{1
   { 'kylechui/nvim-surround' },
   { 'tpope/vim-commentary' },
-  { 'tpope/vim-repeat' },
 
   -- " Languages/LSP {{{1
   { 'neovim/nvim-lspconfig' },
