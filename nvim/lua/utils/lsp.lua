@@ -1,7 +1,5 @@
 local M = {}
 
-local status_ok, navic = pcall(require, 'nvim-navic')
-
 local diagnostics = require('utils.diagnostics')
 
 local function configure_keymaps(bufnr)
@@ -139,7 +137,9 @@ local function configure_autocmds(client, bufnr)
 end
 
 local function attach_navic(client, bufnr)
+  local status_ok, navic = pcall(require, 'nvim-navic')
   if not status_ok then
+    vim.notify('Failed to import nvim-navic', vim.log.levels.WARN)
     return
   end
 
