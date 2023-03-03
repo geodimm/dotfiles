@@ -1,5 +1,7 @@
 return {
-  { 'junegunn/vim-easy-align' },
-  { 'kylechui/nvim-surround' },
+  {
+    'kylechui/nvim-surround',
+    config = true,
+  },
   { 'tpope/vim-commentary' },
 }
