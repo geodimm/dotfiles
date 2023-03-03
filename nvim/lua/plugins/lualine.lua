@@ -3,7 +3,6 @@ return {
     'hoob3rt/lualine.nvim',
     config = function()
       local lualine = require('lualine')
-      local navic = require('nvim-navic')
       local icons = require('user.icons')
       local colors = require('utils.color').colors(vim.g.colors_name)
 
@@ -45,7 +44,6 @@ return {
 
       -- Override 'encoding': Don't display if encoding is UTF-8.
       local function encoding()
-        ---@diagnostic disable-next-line: undefined-field
         local fenc = vim.opt.fileencoding:get()
         if fenc == 'utf-8' then
           return ''
@@ -94,7 +92,11 @@ return {
       end
 
       local function lsp_context()
-        local value = navic.get_location()
+        if not package.loaded['nvim-navic'] then
+          return ''
+        end
+
+        local value = require('nvim-navic').get_location()
         return icons.ui.breadcrumb .. ' ' .. value:match('^(.*%S)%s*$') .. ' '
       end
 
@@ -124,13 +126,13 @@ return {
           },
           lualine_b = {
             {
-              'b:gitsigns_head',
+              package.loaded.gitsigns and 'b:gitsigns_head' or 'branch',
               icon = icons.git.branch,
               fmt = trunc(100, 10, nil, false),
             },
             {
               'diff',
-              source = diff_source,
+              source = package.loaded.gitsigns and diff_source or nil,
               symbols = map(icons.git.diff, append_whitespace),
               padding = 0,
             },
@@ -148,7 +150,7 @@ return {
             },
             {
               lsp_context,
-              cond = navic.is_available,
+              cond = package.loaded['nvim-navic'] and require('nvim-navic').is_available,
             },
           },
           lualine_x = {
