@@ -149,8 +149,8 @@ return {
     'folke/trouble.nvim',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     init = function()
-      local keymaps = require('user.keymaps')
-      keymaps.register_group('<leader>x', 'Trouble', {})
+      local keymap = require('utils.keymap')
+      keymap.register_group('<leader>x', 'Trouble', {})
     end,
     keys = {
       { '<leader>xx', '<cmd>Trouble<CR>', desc = 'Open' },
@@ -171,8 +171,8 @@ return {
       { '<leader>tt', '<cmd>ToggleTerm<CR>', desc = 'Open terminal' },
     },
     init = function()
-      local keymaps = require('user.keymaps')
-      keymaps.register_group('<leader>t', 'Terminal', {})
+      local keymap = require('utils.keymap')
+      keymap.register_group('<leader>t', 'Terminal', {})
     end,
     opts = {
       size = function(term)
@@ -220,9 +220,9 @@ return {
       'nvim-lua/plenary.nvim',
     },
     init = function()
-      local keymaps = require('user.keymaps')
-      keymaps.register_group('<leader>s', 'Search', {})
-      keymaps.register_group('<leader>s', 'Search', { mode = 'v' })
+      local keymap = require('utils.keymap')
+      keymap.register_group('<leader>s', 'Search', {})
+      keymap.register_group('<leader>s', 'Search', { mode = 'v' })
     end,
     keys = {
       {

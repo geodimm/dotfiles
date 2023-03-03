@@ -1,6 +1,6 @@
 -- vim: foldmethod=marker
 
-local keymaps = require('user.keymaps')
+local keymap = require('utils.keymap')
 
 -- Show current line in GitHub {{{1
 local function trim_space(s)
@@ -48,10 +48,10 @@ end
 
 vim.api.nvim_create_user_command('ShowInGitHub', open_in_github, { nargs = 0 })
 
-keymaps.set('n', '<leader>gg', '<cmd>ShowInGitHub<CR>', { desc = 'Show in GitHub', silent = true })
+keymap.set('n', '<leader>gg', '<cmd>ShowInGitHub<CR>', { desc = 'Show in GitHub', silent = true })
 
 -- Close all buffers except the current one {{{1
 vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', { nargs = 0 })
 
-keymaps.set('n', '<leader>b', ':BufOnly<CR>', { desc = 'Close all other buffers' })
+keymap.set('n', '<leader>b', ':BufOnly<CR>', { desc = 'Close all other buffers' })
 -- }}}
