@@ -1,3 +1,6 @@
+local icons = require('user.icons')
+local lsp_utils = require('utils.lsp')
+
 local lsp_tools = {
   -- language servers
   'bash-language-server',
@@ -42,23 +45,8 @@ local required_servers = {
   'yamlls',
 }
 
-local required_linters = {
-  -- linters
-  'actionlint',
-  'golangci-lint',
-  'hadolint',
-  'jsonlint',
-  'markdownlint',
-
-  -- formatters
-  'shfmt',
-  'stylua',
-}
-
-local icons = require('user.icons')
-
 -- Define LSP configuration settings for languages
-local lsp_server_config = {
+local servers_config = {
   gopls = function()
     return {
       settings = {
@@ -162,79 +150,29 @@ local lsp_server_config = {
   end,
 }
 
--- Create config that activates keymaps and enables snippet support
-local function create_config(server)
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-  local opts = {
-    capabilities = capabilities,
-    on_attach = require('utils.lsp').on_attach,
-  }
-
-  if lsp_server_config[server] then
-    opts = vim.tbl_deep_extend('force', opts, lsp_server_config[server]())
-  end
-
-  return opts
-end
-
-local function customise_ui()
-  -- Update the sign icons
-  for type, icon in pairs(icons.lspconfig) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-
-  -- Set borders to floating windows
-  vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' })
-  vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' })
-
-  -- Use nvim-notify for LSP messages
-  vim.lsp.handlers['window/showMessage'] = function(_, result, ctx)
-    local client = vim.lsp.get_client_by_id(ctx.client_id)
-    local lvl = ({ 'ERROR', 'WARN', 'INFO', 'DEBUG' })[result.type]
-    local timeout = (result.type < 2 and 3000 or 1500)
-    vim.notify(result.message, lvl, { title = 'LSP | ' .. client.name, timeout = timeout })
-  end
-
-  -- Update LspInfo window border
-  require('lspconfig.ui.windows').default_options.border = 'rounded'
-end
-
-local setup_vim_diagnostics = function()
-  vim.diagnostic.config({
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    float = false,
-    update_in_insert = true,
-    severity_sort = true,
-  })
-end
-
 return {
   {
     'neovim/nvim-lspconfig',
     dependencies = { 'williamboman/mason-lspconfig.nvim' },
     init = function()
-      customise_ui()
-      setup_vim_diagnostics()
+      lsp_utils.customise_ui()
+      lsp_utils.setup_vim_diagnostics()
     end,
     config = function()
-      local lspconfig = require('lspconfig')
+      local nvim_lspconfig = require('lspconfig')
       local mason_lspconfig = require('mason-lspconfig')
       for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
         if server == 'jdtls' then
           goto continue -- see nvim/ftplugin/java.lua instead
         end
-        local config = create_config(server)
-        lspconfig[server].setup(config)
+        local config = lsp_utils.create_config(servers_config, server)
+        nvim_lspconfig[server].setup(config)
         ::continue::
       end
 
       if vim.fn.executable('tilt') then
-        local config = create_config('tilt_ls')
-        lspconfig['tilt_ls'].setup(config)
+        local config = lsp_utils.create_config(servers_config, 'tilt_ls')
+        nvim_lspconfig['tilt_ls'].setup(config)
       end
     end,
   },
@@ -260,18 +198,22 @@ return {
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    init = function()
+      -- Notify when Mason tools are updated
+      vim.api.nvim_create_augroup('user_mason_tool_update', { clear = true })
+      vim.api.nvim_create_autocmd('User', {
+        group = 'user_mason_tool_update',
+        desc = 'send a notification when Mason tools are updated',
+        pattern = 'MasonToolsUpdateCompleted',
+        callback = function()
+          vim.notify('Successfully updated Mason tools', vim.log.levels.INFO)
+        end,
+      })
+    end,
     opts = {
       ensure_installed = lsp_tools,
       auto_update = false,
       run_on_start = false,
-    },
-  },
-  {
-    'SmiteshP/nvim-navic',
-    dependencies = { 'neovim/nvim-lspconfig' },
-    opts = {
-      highlight = true,
-      separator = ' ' .. icons.ui.breadcrumb .. ' ',
     },
   },
   {
@@ -285,7 +227,7 @@ return {
       null_ls.setup({
         debug = false,
         diagnostics_format = '#{m}',
-        on_attach = require('utils.lsp').on_attach,
+        on_attach = lsp_utils.on_attach,
         sources = {
           -- diagnostics
           null_ls.builtins.diagnostics.golangci_lint.with({
@@ -323,6 +265,14 @@ return {
         },
       })
     end,
+  },
+  {
+    'SmiteshP/nvim-navic',
+    dependencies = { 'neovim/nvim-lspconfig' },
+    opts = {
+      highlight = true,
+      separator = ' ' .. icons.ui.breadcrumb .. ' ',
+    },
   },
   {
     'kosayoda/nvim-lightbulb',

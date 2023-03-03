@@ -1,63 +1,7 @@
--- adopted from https://github.com/stevearc/dressing.nvim/blob/12b808a6867e8c38015488ad6cee4e3d58174182/lua/dressing/select/telescope.lua#L8
-local function indexed_selection(opts, defaults, items)
-  local entry_display = require('telescope.pickers.entry_display')
-  local finders = require('telescope.finders')
-  local displayer
-
-  local function make_display(entry)
-    local columns = {
-      { entry.idx .. ':', 'TelescopePromptPrefix' },
-      entry.text,
-      { entry.kind, 'Comment' },
-    }
-    return displayer(columns)
-  end
-
-  local entries = {}
-  local kind_width = 1
-  local text_width = 1
-  local idx_width = 1
-  for idx, item in ipairs(items) do
-    local text = opts.format_item(item)
-    local kind = opts.kind
-
-    kind_width = math.max(kind_width, vim.api.nvim_strwidth(kind))
-    text_width = math.max(text_width, vim.api.nvim_strwidth(text))
-    idx_width = math.max(idx_width, vim.api.nvim_strwidth(tostring(idx)))
-
-    table.insert(entries, {
-      idx = idx,
-      display = make_display,
-      text = text,
-      kind = kind,
-      ordinal = idx .. ' ' .. text .. ' ' .. kind,
-      value = item,
-    })
-  end
-  displayer = entry_display.create({
-    separator = ' ',
-    items = {
-      { width = idx_width + 1 },
-      { width = text_width },
-      { width = kind_width },
-    },
-  })
-
-  defaults.finder = finders.new_table({
-    results = entries,
-    entry_maker = function(item)
-      return item
-    end,
-  })
-end
-
 return {
   { 'kyazdani42/nvim-web-devicons' },
   {
     'norcalli/nvim-colorizer.lua',
-    init = function()
-      vim.opt.termguicolors = true
-    end,
     cmd = 'ColorizerToggle',
   },
   { 'goolord/alpha-nvim' },
@@ -91,6 +35,59 @@ return {
     },
     config = function(_, opts)
       local dressing = require('dressing')
+
+      -- adopted from https://github.com/stevearc/dressing.nvim/blob/12b808a6867e8c38015488ad6cee4e3d58174182/lua/dressing/select/telescope.lua#L8
+      local function indexed_selection(options, defaults, items)
+        local entry_display = require('telescope.pickers.entry_display')
+        local finders = require('telescope.finders')
+        local displayer
+
+        local function make_display(entry)
+          local columns = {
+            { entry.idx .. ':', 'TelescopePromptPrefix' },
+            entry.text,
+            { entry.kind, 'Comment' },
+          }
+          return displayer(columns)
+        end
+
+        local entries = {}
+        local kind_width = 1
+        local text_width = 1
+        local idx_width = 1
+        for idx, item in ipairs(items) do
+          local text = options.format_item(item)
+          local kind = options.kind
+
+          kind_width = math.max(kind_width, vim.api.nvim_strwidth(kind))
+          text_width = math.max(text_width, vim.api.nvim_strwidth(text))
+          idx_width = math.max(idx_width, vim.api.nvim_strwidth(tostring(idx)))
+
+          table.insert(entries, {
+            idx = idx,
+            display = make_display,
+            text = text,
+            kind = kind,
+            ordinal = idx .. ' ' .. text .. ' ' .. kind,
+            value = item,
+          })
+        end
+        displayer = entry_display.create({
+          separator = ' ',
+          items = {
+            { width = idx_width + 1 },
+            { width = text_width },
+            { width = kind_width },
+          },
+        })
+
+        defaults.finder = finders.new_table({
+          results = entries,
+          entry_maker = function(item)
+            return item
+          end,
+        })
+      end
 
       -- customise the telescope entry style for spellsuggest selections
       require('dressing.select.telescope').custom_kind['spellsuggest'] = indexed_selection
