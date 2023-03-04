@@ -149,7 +149,7 @@ return {
     end,
   },
   {
-    url = 'git@github.com:georgijd/telescope-lsp-handlers.nvim',
+    'gbrlsnchs/telescope-lsp-handlers.nvim',
     dependencies = { 'nvim-telescope/telescope.nvim' },
     config = function()
       require('telescope').load_extension('lsp_handlers')
