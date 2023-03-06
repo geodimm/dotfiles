@@ -9,12 +9,12 @@ DOTFILES_DIR="${DOTFILES_DIR:=${HOME}/dotfiles}"
 source "${DOTFILES_DIR}/scripts/util.sh"
 
 function main() {
-	system
-	nvim
-	omz
+	update_system
+	update_nvim
+	update_omz
 }
 
-function system() {
+function update_system() {
 	local funcname="${FUNCNAME[0]}"
 	case "${PLATFORM}" in
 	"linux")
@@ -39,7 +39,7 @@ function system() {
 	esac
 }
 
-function nvim() {
+function update_nvim() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update neovim"
 	make -C "${DOTFILES_DIR}" neovim-install
@@ -50,7 +50,7 @@ function nvim() {
 	nvim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsUpdate'
 }
 
-function omz() {
+function update_omz() {
 	local funcname="${FUNCNAME[0]}"
 	info "[${funcname}] Update"
 	(
