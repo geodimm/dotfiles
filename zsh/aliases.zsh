@@ -16,10 +16,20 @@ if cmd_path lsd; then
     alias lt="ls -t --reverse"
     alias la="ls -a"
 else
-    LS_OPTS="--color=auto --group-directories-first"
-    alias ls="ls ${LS_OPTS}"
-    alias lt="ls -ltrh"
-    alias la="ls -A"
+    platform="$(uname | tr '[:upper:]' '[:lower:]')"
+    LS_OPTS="--color=auto -l --group-directories-first"
+    case "${platform}" in
+    "linux")
+        alias ls="ls ${LS_OPTS}"
+        alias lt="ls -ltrh"
+        alias la="ls -A"
+        ;;
+    "darwin")
+        alias ls="gls ${LS_OPTS}"
+        alias lt="ls -ltrh"
+        alias la="ls -A"
+        ;;
+    esac
 fi
 alias ll='ls'
 

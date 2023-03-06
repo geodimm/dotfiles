@@ -15,24 +15,35 @@ function do_install() {
 	fi
 
 	info "[kitty] Install"
-	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
-	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
-	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
+	case "${PLATFORM}" in
+	"linux")
+		curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+		sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
+		sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
+		;;
+	"darwin")
+		brew install kitty
+		sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitty" "${HOME}/bin/"
+		sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitten" "${HOME}/bin/"
+		;;
+	esac
 }
 
 function do_configure() {
 	info "[kitty] Configure"
-	info "[kitty][configure] Set as default terminal"
-	local kitty_path
-	kitty_path="$(type -P kitty)"
-	sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$kitty_path" 60
-	sudo update-alternatives --set x-terminal-emulator "$kitty_path"
+	if [[ "${PLATFORM}" == "linux" ]]; then
+		info "[kitty][configure] Set as default terminal"
+		local kitty_path
+		kitty_path="$(type -P kitty)"
+		sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$kitty_path" 60
+		sudo update-alternatives --set x-terminal-emulator "$kitty_path"
 
-	info "[kitty][configure] Configure desktop entries"
-	mkdir -p "${HOME}/.local/share/applications/"
-	cp "${HOME}"/.local/kitty.app/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
-	sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
-	sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty*.desktop
+		info "[kitty][configure] Configure desktop entries"
+		mkdir -p "${HOME}/.local/share/applications/"
+		cp "${HOME}"/.local/kitty.app/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
+		sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
+		sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty*.desktop
+	fi
 
 	info "[kitty][configure] Create config file symlink"
 	mkdir -p "${KITTY_CONFIG_DIR}"

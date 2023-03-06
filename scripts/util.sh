@@ -2,6 +2,7 @@
 
 # shellcheck disable=2034
 XDG_CONFIG_HOME="${HOME}/.config"
+PLATFORM="$(uname | tr '[:upper:]' '[:lower:]')"
 
 function info() {
 	printf "\033[36m%s\033[0m\n" "$*" >&2

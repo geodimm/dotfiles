@@ -16,17 +16,27 @@ function main() {
 
 function system() {
 	local funcname="${FUNCNAME[0]}"
-	info "[${funcname}] Retrieve new lists of packages"
-	sudo apt-get update -qq
+	case "${PLATFORM}" in
+	"linux")
+		info "[${funcname}] Retrieve new lists of packages"
+		sudo apt-get update -qq
 
-	info "[${funcname}] Upgrade packages"
-	sudo apt-get upgrade -y
+		info "[${funcname}] Upgrade packages"
+		sudo apt-get upgrade -y
 
-	info "[${funcname}] Remove unused packages"
-	sudo apt-get autoclean -y
+		info "[${funcname}] Remove unused packages"
+		sudo apt-get autoclean -y
 
-	info "[${funcname}] Erase old downloaded archive files"
-	sudo apt-get autoremove -y
+		info "[${funcname}] Erase old downloaded archive files"
+		sudo apt-get autoremove -y
+		;;
+	"darwin")
+		info "[${funcname}] Retrieve new lists of packages"
+		brew update
+		info "[${funcname}] Upgrade packages"
+		brew upgrade
+		;;
+	esac
 }
 
 function nvim() {

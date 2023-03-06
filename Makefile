@@ -56,10 +56,8 @@ tig: ## Configure tig
 jqp: ## Install jqp
 	@./scripts/jqp.sh install
 
-neovim: neovim-install neovim-configure tree-sitter ## Install and configure neovim
+neovim: neovim-install neovim-configure ## Install and configure neovim
 neovim-install: ## Install neovim
 	@./scripts/neovim.sh install
 neovim-configure: ## Configure neovim
 	@./scripts/neovim.sh configure
-tree-sitter: ## Install tree-sitter
-	@./scripts/tree-sitter.sh install

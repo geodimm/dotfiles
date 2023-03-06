@@ -10,27 +10,41 @@ NVM_DIR="${HOME}/.nvm"
 
 function do_install() {
 	info "[neovim] Install nightly"
-	local target="/tmp/nvim.deb"
-	asset=$(curl --silent https://api.github.com/repos/neovim/neovim/releases/tags/nightly | jq -r '.assets // [] | .[] | select(.name | endswith("nvim-linux64.deb")) | .url')
-	if [[ -z ${asset} ]]; then
-		warn "Cannot find a nightly release. Please try again later."
-		exit 0
-	fi
-	download "${asset}" "${target}"
-	sudo dpkg -i --force-overwrite "${target}"
+	case "${PLATFORM}" in
+	"linux")
+		local target="/tmp/nvim.deb"
+		asset=$(curl --silent https://api.github.com/repos/neovim/neovim/releases/tags/nightly | jq -r '.assets // [] | .[] | select(.name | endswith("nvim-linux64.deb")) | .url')
+		if [[ -z ${asset} ]]; then
+			warn "Cannot find a nightly release. Please try again later."
+			exit 0
+		fi
+		download "${asset}" "${target}"
+		sudo dpkg -i --force-overwrite "${target}"
+		;;
+	"darwin")
+		if is_installed nvim; then
+			brew upgrade neovim-nightly
+		else
+			brew tap austinliuigi/brew-neovim-nightly
+			brew install neovim-nightly
+		fi
+		;;
+	esac
 }
 
 function do_configure() {
 	info "[neovim] Configure"
 	info "[neovim][configure] Set as default editor"
-	local nvim_path
-	nvim_path="$(type -P nvim)"
-	sudo update-alternatives --install /usr/bin/vi vi "$nvim_path" 60
-	sudo update-alternatives --set vi "$nvim_path"
-	sudo update-alternatives --install /usr/bin/vim vim "$nvim_path" 60
-	sudo update-alternatives --set vim "$nvim_path"
-	sudo update-alternatives --install /usr/bin/editor editor "$nvim_path" 60
-	sudo update-alternatives --set editor "$nvim_path"
+	if [[ "${PLATFORM}" == "linux" ]]; then
+		local nvim_path
+		nvim_path="$(type -P nvim)"
+		sudo update-alternatives --install /usr/bin/vi vi "$nvim_path" 60
+		sudo update-alternatives --set vi "$nvim_path"
+		sudo update-alternatives --install /usr/bin/vim vim "$nvim_path" 60
+		sudo update-alternatives --set vim "$nvim_path"
+		sudo update-alternatives --install /usr/bin/editor editor "$nvim_path" 60
+		sudo update-alternatives --set editor "$nvim_path"
+	fi
 
 	info "[neovim][configure] Create configuration directory symlink"
 	rm -rf "${XDG_CONFIG_HOME}/nvim" && mkdir -p "${XDG_CONFIG_HOME}"

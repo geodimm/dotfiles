@@ -18,4 +18,5 @@ return {
   { 'towolf/vim-helm' },
   { 'bfrg/vim-jq' },
   { 'mracos/mermaid.vim' },
+  { 'bfontaine/Brewfile.vim' },
 }

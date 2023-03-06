@@ -9,15 +9,17 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 LSD_VERSION="${LSD_VERSION:=0.23.1}"
 
 function do_install() {
-	if [[ "$(lsd --version 2>/dev/null)" == *"${LSD_VERSION}"* ]]; then
-		info "[lsd] ${LSD_VERSION} already installed"
-		return
-	fi
+	if [[ "${PLATFORM}" == "linux" ]]; then
+		if [[ "$(lsd --version 2>/dev/null)" == *"${LSD_VERSION}"* ]]; then
+			info "[lsd] ${LSD_VERSION} already installed"
+			return
+		fi
 
-	info "[lsd] Install"
-	local lsd=/tmp/lsd.deb
-	download "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/lsd_${LSD_VERSION}_amd64.deb" "${lsd}"
-	sudo dpkg -i "${lsd}"
+		info "[lsd] Install"
+		local lsd=/tmp/lsd.deb
+		download "https://github.com/Peltoche/lsd/releases/download/${LSD_VERSION}/lsd_${LSD_VERSION}_amd64.deb" "${lsd}"
+		sudo dpkg -i "${lsd}"
+	fi
 }
 
 function main() {
