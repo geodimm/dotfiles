@@ -168,7 +168,7 @@ return {
     'akinsho/nvim-toggleterm.lua',
     branch = 'main',
     keys = {
-      { '<leader>tt', '<cmd>ToggleTerm<CR>', desc = 'Open terminal' },
+      { '<leader>tt', vim.cmd.ToggleTerm, desc = 'Open terminal' },
     },
     init = function()
       local keymap = require('utils.keymap')

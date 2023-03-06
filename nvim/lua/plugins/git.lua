@@ -10,7 +10,7 @@ return {
       vim.g.git_messenger_popup_content_margins = false
     end,
     keys = {
-      { '<leader>hh', '<cmd>GitMessenger<CR>', desc = 'Show history' },
+      { '<leader>hh', vim.cmd.GitMessenger, desc = 'Show history' },
     },
   },
   {
