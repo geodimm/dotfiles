@@ -4,7 +4,6 @@ return {
     dependencies = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
-      'ThePrimeagen/refactoring.nvim',
     },
     config = function()
       local telescope = require('telescope')
@@ -110,12 +109,11 @@ return {
         },
       })
 
-      if package.loaded.refactoring then
-        telescope.load_extension('refactoring')
-      end
-      if package.loaded.notify then
-        telescope.load_extension('notify')
-      end
+      telescope.load_extension('refactoring')
+      telescope.load_extension('notify')
+      telescope.load_extension('fzf')
+      telescope.load_extension('lsp_handlers')
+      telescope.load_extension('menufacture')
 
       local keymap = require('utils.keymap')
       keymap.set('n', '<leader>ft', command.load_command, { desc = 'Open telescope' })
@@ -142,24 +140,12 @@ return {
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
     build = 'make',
-    config = function()
-      require('telescope').load_extension('fzf')
-    end,
   },
   {
     'gbrlsnchs/telescope-lsp-handlers.nvim',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
-    config = function()
-      require('telescope').load_extension('lsp_handlers')
-    end,
   },
   {
     'molecule-man/telescope-menufacture',
-    dependencies = { 'nvim-telescope/telescope.nvim' },
-    config = function()
-      require('telescope').load_extension('menufacture')
-    end,
   },
 }
