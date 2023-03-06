@@ -7,9 +7,11 @@ DOTFILES_DIR="${DOTFILES_DIR:=${PWD}}"
 source "${DOTFILES_DIR}/scripts/util.sh"
 
 do_configure() {
-	info "[zsh] Configure"
-	info "[zsh][configure] Set as default shell"
-	sudo usermod -s "$(type -P zsh)" "$(whoami)"
+	if [[ "${PLATFORM}" == "linux" ]]; then
+		info "[zsh] Configure"
+		info "[zsh][configure] Set as default shell"
+		sudo usermod -s "$(type -P zsh)" "$(whoami)"
+	fi
 }
 
 main() {

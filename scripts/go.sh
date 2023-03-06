@@ -16,7 +16,16 @@ function do_install() {
 
 	info "[go] Install ${GO_VERSION}"
 	local go="/tmp/go${GO_VERSION}.tar.gz"
-	download "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" "${go}"
+	local arch
+	case "${PLATFORM}" in
+	"linux")
+		arch="amd64"
+		;;
+	"darwin")
+		arch="arm64"
+		;;
+	esac
+	download "https://dl.google.com/go/go${GO_VERSION}.${PLATFORM}-${arch}.tar.gz" "${go}"
 	sudo rm -rf /usr/local/go
 	sudo tar -C /usr/local -xzf "${go}"
 }

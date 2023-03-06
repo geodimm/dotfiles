@@ -18,12 +18,21 @@ function do_install() {
 	info "[lua] Install"
 	local lua="lua-${LUA_VERSION}"
 	local target="/tmp/${lua}.tar.gz"
+	local make_target
+	case "${PLATFORM}" in
+	"linux")
+		make_target="linux"
+		;;
+	"darwin")
+		make_target="macosx"
+		;;
+	esac
 	download "http://www.lua.org/ftp/${lua}.tar.gz" "${target}"
 	(
 		cd /tmp
 		tar -xzf "${target}"
 		cd "${lua}"
-		make linux test
+		make "${make_target}" test
 		sudo make install
 	)
 
