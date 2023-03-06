@@ -1,3 +1,6 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
 local keymap = require('utils.keymap')
 
 keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save' })
@@ -6,6 +9,7 @@ keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Close/Quit' })
 keymap.set('v', '<leader>q', '<Esc>:q<CR>gv', { desc = 'Close/Quit' })
 keymap.set('n', '<leader><CR>', ':noh<CR>', { desc = 'Turn off search highlights' })
 keymap.set('v', '<C-c>', '"+y<CR>', { desc = 'Copy with Ctrl+C in visual mode' })
+keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines but keep cursor position' })
 keymap.set('x', 'p', 'pgvy', { desc = 'Allow pasting the same selection multiple times' })
 keymap.set('n', 'gf', '^f/gf', { desc = 'Open first file on the current line' })
 keymap.set('i', 'jj', '<Esc>', { desc = 'Exit insert mode' })
@@ -16,11 +20,6 @@ keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 keymap.set('n', 'j', "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", { desc = 'Go to next wrapped line', expr = true })
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", { desc = 'Go to previous wrapped line', expr = true })
 
--- Don't override vim-kitty-navigator key bindings
--- keymap.set('n', '<C-j>', '<C-w><Down>', { desc = 'Move down' })
--- keymap.set('n', '<C-k>', '<C-w><Up>', { desc = 'Move up' })
--- keymap.set('n', '<C-l>', '<C-w><Right>', { desc = 'Move right' })
--- keymap.set('n', '<C-h>', '<C-w><Left>', { desc = 'Move left' })
 keymap.set('n', '<C-f>', ':vertical wincmd f<CR>', { desc = 'Open file under cursor' })
 keymap.set('n', '<M-j>', ':resize -2<CR>', { desc = 'Decrease window height' })
 keymap.set('n', '<M-k>', ':resize +2<CR>', { desc = 'Increase window height' })

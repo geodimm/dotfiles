@@ -19,10 +19,8 @@ if not status_ok then
   return
 end
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
-
 require('user.options')
+require('user.keymap')
 require('user.autocmd')
 require('user.command')
 
@@ -36,5 +34,3 @@ lazy.setup({
     colorscheme = { 'catppuccin-macchiato' },
   },
 })
-
-require('user.keymap')
