@@ -279,7 +279,7 @@ return {
         function()
           require('spectre').open()
         end,
-        desc = 'Search in current file',
+        desc = 'Search in project',
       },
       {
         '<leader>sw',
