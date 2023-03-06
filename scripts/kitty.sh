@@ -9,17 +9,19 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 KITTY_CONFIG_DIR="${XDG_CONFIG_HOME}/kitty"
 
 function do_install() {
+	if [[ "${PLATFORM}" == "darwin" ]]; then
+		return
+	fi
+
 	if is_installed kitty; then
 		info "[kitty] Already installed"
 		return
 	fi
 
 	info "[kitty] Install"
-	if [[ "${PLATFORM}" == "linux" ]]; then
-		curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
-		sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
-		sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
-	fi
+	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
+	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
 }
 
 function do_configure() {
