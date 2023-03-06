@@ -11,6 +11,7 @@ brew "tig"
 brew "ctags"
 
 # productivity tools
+brew "kitty"
 brew "lsd"
 brew "bat"
 brew "htop"

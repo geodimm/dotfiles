@@ -15,23 +15,17 @@ function do_install() {
 	fi
 
 	info "[kitty] Install"
-	case "${PLATFORM}" in
-	"linux")
+	if [[ "${PLATFORM}" == "linux" ]]; then
 		curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
 		sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
 		sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
-		;;
-	"darwin")
-		brew install kitty
-		sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitty" "${HOME}/bin/"
-		sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitten" "${HOME}/bin/"
-		;;
-	esac
+	fi
 }
 
 function do_configure() {
 	info "[kitty] Configure"
-	if [[ "${PLATFORM}" == "linux" ]]; then
+	case "${PLATFORM}" in
+	"linux")
 		info "[kitty][configure] Set as default terminal"
 		local kitty_path
 		kitty_path="$(type -P kitty)"
@@ -43,7 +37,13 @@ function do_configure() {
 		cp "${HOME}"/.local/kitty.app/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
 		sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
 		sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty*.desktop
-	fi
+		;;
+
+	"darwin")
+		sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitty" "${HOME}/bin/"
+		sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitten" "${HOME}/bin/"
+		;;
+	esac
 
 	info "[kitty][configure] Create config file symlink"
 	mkdir -p "${KITTY_CONFIG_DIR}"
