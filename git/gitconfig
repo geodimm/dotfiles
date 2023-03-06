@@ -3,7 +3,7 @@
 	name = Georgi Dimitrov
 	email = georgijd92@gmail.com
 [core]
-	editor = vim
+	editor = nvim
 	mergeoptions = --no-edit
 	excludesFile = ~/dotfiles/git/gitignore
 	pager = less -F -X
