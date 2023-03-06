@@ -118,7 +118,4 @@ vim.opt.backup = false -- Disable backups
 vim.opt.writebackup = false -- Disable backups
 vim.opt.swapfile = false -- Disable swapfiles
 
--- Python {{{1
-vim.g.python3_host_prog = '/usr/bin/python3'
-
 --- }}}
