@@ -22,12 +22,7 @@ function do_install() {
 		sudo dpkg -i --force-overwrite "${target}"
 		;;
 	"darwin")
-		if is_installed nvim; then
-			brew upgrade neovim-nightly
-		else
-			brew tap austinliuigi/brew-neovim-nightly
-			brew install neovim-nightly
-		fi
+		brew install --HEAD neovim
 		;;
 	esac
 }
