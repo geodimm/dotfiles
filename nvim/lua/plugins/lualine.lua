@@ -155,20 +155,16 @@ return {
           },
           lualine_x = {
             {
-              lsp_clients,
-              icon = icons.ui.gears,
-              color = { fg = colors.teal },
-              padding = { right = 1 },
-            },
-            {
-              'diagnostics',
-              sources = { 'nvim_lsp' },
-              symbols = map(icons.lsp, append_whitespace),
-              padding = { right = 1 },
-            },
-            {
               'filetype',
               icon_only = false,
+              padding = { right = 1 },
+            },
+            {
+              encoding,
+              padding = { right = 1 },
+            },
+            {
+              fileformat,
               padding = { right = 1 },
             },
           },
@@ -183,8 +179,19 @@ return {
               end,
               padding = { right = 1 },
             },
-            { encoding, padding = { right = 1 } },
-            { fileformat, padding = { right = 1 } },
+            {
+              lsp_clients,
+              icon = icons.ui.gears,
+              separator = section_separator,
+              padding = { right = 1 },
+            },
+            {
+              'diagnostics',
+              sources = { 'nvim_lsp' },
+              symbols = map(icons.lsp, append_whitespace),
+              separator = section_separator,
+              padding = { right = 1 },
+            },
           },
           lualine_z = {
             {
@@ -193,7 +200,6 @@ return {
                 return '%P/%L'
               end,
               icon = icons.ui.location,
-              padding = { right = 1 },
             },
             {
               'location',
