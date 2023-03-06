@@ -45,9 +45,9 @@ function nvim() {
 	make -C "${DOTFILES_DIR}" neovim-install
 
 	info "[${funcname}] Update plugins"
-	vim --headless "+Lazy! sync" +qa
+	nvim --headless "+Lazy! sync" +qa
 	info "[${funcname}] Update LSP tools"
-	vim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsUpdate'
+	nvim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsUpdate'
 }
 
 function omz() {
