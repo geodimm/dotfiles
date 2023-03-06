@@ -10,6 +10,10 @@ LUA_VERSION="${LUA_VERSION:=5.3.5}"
 LUAROCKS_VERSION="${LUAROCKS_VERSION:=3.3.1}"
 
 function do_install() {
+	if [[ "${PLATFORM}" == "darwin" ]]; then
+		return
+	fi
+
 	if [[ "$(lua -v 2>/dev/null)" == *"${LUA_VERSION}"* ]]; then
 		info "[lua] ${LUA_VERSION} already installed"
 		return

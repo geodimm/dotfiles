@@ -9,6 +9,9 @@ brew "bash"
 brew "bash-completion"
 brew "tig"
 brew "ctags"
+brew "lua"
+brew "luarocks"
+brew "shellcheck"
 
 # productivity tools
 brew "kitty"

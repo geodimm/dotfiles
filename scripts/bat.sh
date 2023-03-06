@@ -9,17 +9,19 @@ source "${DOTFILES_DIR}/scripts/util.sh"
 BAT_VERSION="${BAT_VERSION:=0.22.1}"
 
 function do_install() {
-	if [[ "${PLATFORM}" == "linux" ]]; then
-		if [[ "$(bat --version 2>/dev/null)" == *"${BAT_VERSION}"* ]]; then
-			info "[bat] ${BAT_VERSION} already installed"
-			return
-		fi
-
-		info "[bat] Install ${BAT_VERSION}"
-		local bat=/tmp/bat.deb
-		download "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb" "${bat}"
-		sudo dpkg -i "${bat}"
+	if [[ "${PLATFORM}" == "darwin" ]]; then
+		return
 	fi
+
+	if [[ "$(bat --version 2>/dev/null)" == *"${BAT_VERSION}"* ]]; then
+		info "[bat] ${BAT_VERSION} already installed"
+		return
+	fi
+
+	info "[bat] Install ${BAT_VERSION}"
+	local bat=/tmp/bat.deb
+	download "https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_amd64.deb" "${bat}"
+	sudo dpkg -i "${bat}"
 }
 
 function do_configure() {
