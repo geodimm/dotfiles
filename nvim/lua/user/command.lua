@@ -41,9 +41,19 @@ local function generate_github_link()
   return url
 end
 
+local function open_program()
+  local platform = trim_space(vim.fn.system('uname'))
+  local exe = 'xdg-open'
+  if platform == 'Darwin' then
+    exe = 'open'
+  end
+  return exe
+end
+
 local function open_in_github()
   local url = generate_github_link()
-  os.execute(string.format('xdg-open "%s" >/dev/null 2>&1', url))
+  local open = open_program()
+  os.execute(string.format('%s "%s" >/dev/null 2>&1', open, url))
 end
 
 vim.api.nvim_create_user_command('ShowInGitHub', open_in_github, { nargs = 0 })
