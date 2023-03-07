@@ -179,18 +179,6 @@ return {
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    init = function()
-      -- Notify when Mason tools are updated
-      vim.api.nvim_create_augroup('user_mason_tool_update', { clear = true })
-      vim.api.nvim_create_autocmd('User', {
-        group = 'user_mason_tool_update',
-        desc = 'send a notification when Mason tools are updated',
-        pattern = 'MasonToolsUpdateCompleted',
-        callback = function()
-          vim.notify('Successfully updated Mason tools', vim.log.levels.INFO)
-        end,
-      })
-    end,
     opts = {
       ensure_installed = lsp_tools,
       auto_update = true,
