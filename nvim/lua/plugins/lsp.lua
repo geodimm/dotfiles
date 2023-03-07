@@ -29,22 +29,6 @@ local lsp_tools = {
   'stylua',
 }
 
-local required_servers = {
-  'bashls',
-  'denols',
-  'dockerls',
-  'gopls',
-  'html',
-  'jdtls',
-  'jsonls',
-  'lua_ls',
-  'marksman',
-  'pyright',
-  'taplo',
-  'terraformls',
-  'yamlls',
-}
-
 -- Define LSP configuration settings for languages
 local servers_config = {
   gopls = function()
@@ -192,9 +176,6 @@ return {
   {
     'williamboman/mason-lspconfig.nvim',
     dependencies = { 'williamboman/mason.nvim' },
-    opts = {
-      ensure_installed = required_servers,
-    },
   },
   {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -212,8 +193,8 @@ return {
     end,
     opts = {
       ensure_installed = lsp_tools,
-      auto_update = false,
-      run_on_start = false,
+      auto_update = true,
+      run_on_start = true,
     },
   },
   {
