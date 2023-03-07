@@ -1,6 +1,17 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    -- This fixes the errors during initial installation but is executed every time
+    -- init = function()
+    --   vim.api.nvim_create_autocmd('User', {
+    --     once = true,
+    --     pattern = 'LazyDone',
+    --     desc = 'Update all installed TS parsers',
+    --     callback = function()
+    --       vim.cmd.TSUpdate()
+    --     end,
+    --   })
+    -- end,
     build = ':TSUpdate',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
