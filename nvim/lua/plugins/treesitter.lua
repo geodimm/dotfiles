@@ -2,6 +2,9 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     opts = {
       ensure_installed = {
         'bash',
@@ -32,7 +35,12 @@ return {
         'vim',
         'yaml',
       },
-      highlight = { enable = true },
+      sync_install = false,
+      auto_install = false,
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -42,7 +50,9 @@ return {
           node_decremental = 'grm',
         },
       },
-      indent = { enable = true },
+      indent = {
+        enable = true,
+      },
       textobjects = {
         select = {
           enable = true,
@@ -59,21 +69,28 @@ return {
         move = {
           enable = true,
           set_jumps = true,
-          goto_next_start = { [']m'] = '@function.outer', [']]'] = '@class.outer' },
-          goto_next_end = { [']M'] = '@function.outer', [']['] = '@class.outer' },
-          goto_previous_start = { ['[m'] = '@function.outer', ['[['] = '@class.outer' },
-          goto_previous_end = { ['[M'] = '@function.outer', ['[]'] = '@class.outer' },
+          goto_next_start = {
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
+          },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
+          },
+          goto_previous_start = {
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
+          },
         },
       },
     },
     config = function(_, opts)
-      local treesitter_configs = require('nvim-treesitter.configs')
-      treesitter_configs.setup(opts)
+      require('nvim-treesitter.configs').setup(opts)
     end,
-  },
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
   },
   {
     'Wansmer/treesj',
