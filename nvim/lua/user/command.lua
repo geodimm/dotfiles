@@ -64,4 +64,16 @@ keymap.set('n', '<leader>gg', vim.cmd.ShowInGitHub, { desc = 'Show in GitHub', s
 vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', { nargs = 0 })
 
 keymap.set('n', '<leader>b', vim.cmd.BufOnly, { desc = 'Close all other buffers' })
+
+-- Change directory to the .git root of the current buffer
+local function get_git_root()
+  local dot_git_path = vim.fn.finddir('.git', '.;')
+  return vim.fn.fnamemodify(dot_git_path, ':h')
+end
+
+vim.api.nvim_create_user_command('CdGitRoot', function()
+  vim.api.nvim_set_current_dir(get_git_root())
+end, {})
+
+keymap.set('n', 'cd', vim.cmd.CdGitRoot, { desc = 'Change directory to Git root' })
 -- }}}
