@@ -106,6 +106,17 @@ return {
               main_menu = { [{ 'i', 'n' }] = '<C-o>' },
             },
           },
+          repo = {
+            list = {
+              fd_opts = {
+                '--exclude',
+                'vendor',
+              },
+              search_dirs = {
+                '~/repos',
+              },
+            },
+          },
         },
       })
 
@@ -114,6 +125,7 @@ return {
       telescope.load_extension('fzf')
       telescope.load_extension('lsp_handlers')
       telescope.load_extension('menufacture')
+      telescope.load_extension('repo')
 
       local keymap = require('utils.keymap')
       keymap.set('n', '<leader>ft', command.load_command, { desc = 'Open telescope' })
@@ -133,6 +145,7 @@ return {
       keymap.set('n', '<leader>fgf', builtin.git_files, { desc = 'Files' })
       keymap.set('n', '<leader>fgh', builtin.git_bcommits, { desc = 'Buffer commits' })
       keymap.set('n', '<leader>fgs', builtin.git_status, { desc = 'Status' })
+      keymap.set('n', '<leader>fr', telescope.extensions.repo.list, { desc = 'Repositories' })
 
       keymap.register_group('<leader>f', 'Find', {})
       keymap.register_group('<leader>fg', 'Git', {})
@@ -147,5 +160,8 @@ return {
   },
   {
     'molecule-man/telescope-menufacture',
+  },
+  {
+    'cljoly/telescope-repo.nvim',
   },
 }
