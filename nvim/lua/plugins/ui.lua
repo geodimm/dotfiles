@@ -69,29 +69,6 @@ return {
     dependencies = {
       'nvim-telescope/telescope.nvim',
     },
-    opts = {
-      input = {
-        win_options = {
-          winblend = 0,
-        },
-        insert_only = false,
-        prompt_align = 'center',
-        relative = 'editor',
-        prefer_width = 0.5,
-      },
-      select = {
-        telescope = require('telescope.themes').get_cursor({
-          layout_config = {
-            width = function(_, max_columns, _)
-              return math.min(max_columns, 80)
-            end,
-            height = function(_, _, max_lines)
-              return math.min(max_lines, 15)
-            end,
-          },
-        }),
-      },
-    },
     config = function(_, opts)
       local dressing = require('dressing')
 
@@ -150,6 +127,30 @@ return {
 
       -- customise the telescope entry style for spellsuggest selections
       require('dressing.select.telescope').custom_kind['spellsuggest'] = indexed_selection
+
+      opts = vim.tbl_deep_extend('force', opts, {
+        input = {
+          win_options = {
+            winblend = 0,
+          },
+          insert_only = false,
+          prompt_align = 'center',
+          relative = 'editor',
+          prefer_width = 0.5,
+        },
+        select = {
+          telescope = require('telescope.themes').get_cursor({
+            layout_config = {
+              width = function(_, max_columns, _)
+                return math.min(max_columns, 80)
+              end,
+              height = function(_, _, max_lines)
+                return math.min(max_lines, 15)
+              end,
+            },
+          }),
+        },
+      })
 
       dressing.setup(opts)
     end,
