@@ -1,4 +1,4 @@
-ARG UBUNTU_VERSION=20.04
+ARG UBUNTU_VERSION=22.04
 
 FROM ubuntu:${UBUNTU_VERSION}
 
@@ -11,7 +11,7 @@ RUN apt-get update \
     build-essential \
     software-properties-common \
     && apt-get update \
-    && apt-get --no-install-recommends -y install apt-utils git gpg-agent \
+    && apt-get --no-install-recommends -y install apt-utils curl git gpg-agent \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "Set disable_coredump false" >> /etc/sudo.conf

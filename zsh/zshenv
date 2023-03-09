@@ -26,16 +26,17 @@ export FZF_CTRL_R_OPTS="--layout=reverse --preview-window hidden"
 
 # Golang
 export GOPATH="${HOME}/go"
-if [[ ! "${PATH}" == */usr/local/go/bin* ]]; then
-    export PATH="${PATH}:/usr/local/go/bin"
-fi
-
 if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
     export PATH="${PATH}:${GOPATH}/bin"
 fi
 
 # Rust
 test -f "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
+
+# NVM
+export NVM_DIR="${HOME}/.nvm"
+export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim')
 
 # Append ~/bin directory to PATH
 if [[ ! "${PATH}" == *${HOME}/bin* ]]; then

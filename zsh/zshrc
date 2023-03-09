@@ -41,10 +41,6 @@ CASE_SENSITIVE="true"
 # Fix slow paste
 DISABLE_MAGIC_FUNCTIONS=true
 
-# Enable Node Version Manager lazy load
-export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim')
-
 # Workaround for https://github.com/zsh-users/zsh-completions/issues/603
 if [[ -d "${ZSH_CUSTOM}/plugins/zsh-completions/src" ]]; then
   fpath+="${ZSH_CUSTOM}/plugins/zsh-completions/src"
@@ -88,8 +84,9 @@ bindkey '^ ' autosuggest-accept
 umask 022
 
 # Source files {{{2
-# Load aliases
-source ~/dotfiles/zsh/aliases.zsh
+
+# Homebrew
+test -f "${HOMEBREW_PREFIX}/bin/brew" && eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
 
 # Apply FZF configuration
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
