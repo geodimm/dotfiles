@@ -7,7 +7,7 @@
 ```bash
 git clone https://github.com/georgijd/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-make
+make init
 ```
 
 > **Note**
