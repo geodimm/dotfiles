@@ -24,18 +24,16 @@ function do_configure() {
 		fi
 	done
 
-	ln -fs "${PWD}/zsh/p10k/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
-	ln -fs "${PWD}/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
-	ln -fs "${PWD}/zsh/zshrc" "${HOME}/.zshrc"
-	ln -fs "${PWD}/zsh/zshenv" "${HOME}/.zshenv"
+	ln -fs "${DOTFILES_DIR}/zsh/p10k/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
+	ln -fs "${DOTFILES_DIR}/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
+	ln -fs "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
+	ln -fs "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
 }
 
 function do_update_plugins() {
 	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
 		if [[ -d "${ZSH_CUSTOM}/${path}" ]]; then
-			{
-				cd "${ZSH_CUSTOM}/${path}" && git pull --quiet
-			}
+			git -C "${ZSH_CUSTOM}/${path}" pull --quiet
 		fi
 	done
 }
