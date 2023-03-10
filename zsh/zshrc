@@ -46,6 +46,8 @@ if [[ -d "${ZSH_CUSTOM}/plugins/zsh-completions/src" ]]; then
   fpath+="${ZSH_CUSTOM}/plugins/zsh-completions/src"
 fi
 
+[ -n "${HOMEBREW_PREFIX+1}" ] && fpath+="${HOMEBREW_PREFIX}/share/zsh/site-functions"
+
 # }}}
 
 # Load oh-my-zsh
