@@ -12,7 +12,7 @@ M.ui = {
   scissors = '', -- nf-fa-scissors
   calendar = '', -- nf-fa-calendar
   plug = '', -- nf-fa-plug
-  update = 'ﮮ', -- nf-mdi-update
+  update = '󰚰', -- nf-md-update
   exit = '', -- nf-mdi-exit_to_app
   sign_out = '', -- nf-fa-sign_out
   check = '', -- nf-fa-check_circle
@@ -36,23 +36,23 @@ M.os = {
 }
 
 M.keyboard = {
-  Alt = 'הּ', -- nf-mdi-apple_keyboard_option
-  Backspace = '', -- nf-mdi-keyboard_return
-  Caps = 'בּ', -- nf-mdi-apple_keyboard_caps
-  Control = 'דּ', -- nf-mdi-apple_keyboard_control
-  Return = '', -- nf-mdi-keyboard_return
-  Shift = 'וּ', -- nf-mdi-apple_keyboard_shift
-  Space = '', --nf-oct-dash
-  Tab = '', -- nf-mdi-keyboard_tab
+  Alt = '󰘵', -- nf-md-apple_keyboard_option
+  Backspace = '󰌍', -- nf-md-keyboard_return
+  Caps = '󰘲', -- nf-md-apple_keyboard_caps
+  Control = '󰘴', -- nf-md-apple_keyboard_control
+  Return = '󰌑', -- nf-md-keyboard_return
+  Shift = '󰘶', -- nf-md-apple_keyboard_shift
+  Space = '󱁐', --nf-md-keyboard-space
+  Tab = '󰌒', -- nf-md-keyboard_tab
 }
 
 M.file = {
-  newfile = '', -- nf-mdi-file
-  readonly = '', -- nf-mdi-file_lock
-  modified = 'ﱐ', -- nf-mdi-file_plus
-  unnamed = '', -- nf-mdi-file_outline
-  find = '', -- nf-mdif-file_find
-  directory = '', -- nf-mdi-folder
+  newfile = '󰈔', -- nf-md-file
+  readonly = '󰈡', -- nf-md-file_lock
+  modified = '󰝒', -- nf-md-file_plus
+  unnamed = '󰡯', -- nf-md-file_question
+  find = '󰈞', -- nf-md-file_find
+  directory = '󰉋', -- nf-md-folder
 }
 
 M.git = {
