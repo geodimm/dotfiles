@@ -13,6 +13,12 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # Set the GPG_TTY to the current TTY
 export GPG_TTY=${TTY}
 
+# Homebrew
+case "${OSTYPE}" in
+    linux*) eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" ;;
+    darwin*) eval "$(/opt/homebrew/bin/brew shellenv)" ;;
+esac
+
 # FZF
 export FZF_DEFAULT_COMMAND='find -L'
 export FZF_DEFAULT_OPTS="\

@@ -85,9 +85,6 @@ umask 022
 
 # Source files {{{2
 
-# Homebrew
-test -f "${HOMEBREW_PREFIX}/bin/brew" && eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
-
 # Apply FZF configuration
 test -f ~/.fzf.zsh && source ~/.fzf.zsh
 
