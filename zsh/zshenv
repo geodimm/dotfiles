@@ -18,7 +18,9 @@ case "${OSTYPE}" in
     linux*) brew_path="/home/linuxbrew/.linuxbrew" ;;
     darwin*) brew_path="/opt/homebrew" ;;
 esac
-test -f "${brew_path}/bin/brew" && eval "$(${brew_path}/bin/brew shellenv)"
+if [[ -f "${brew_path}/bin/brew" ]]; then
+    eval "$(${brew_path}/bin/brew shellenv)"
+fi
 
 # FZF
 export FZF_DEFAULT_COMMAND='find -L'
@@ -38,7 +40,9 @@ if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
 fi
 
 # Rust
-test -f "${HOME}/.cargo/env" && source "${HOME}/.cargo/env"
+if [[ -f "${HOME}/.cargo/env" ]]; then
+    source "${HOME}/.cargo/env"
+fi
 
 # NVM
 export NVM_DIR="${HOME}/.nvm"
