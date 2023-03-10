@@ -15,9 +15,10 @@ export GPG_TTY=${TTY}
 
 # Homebrew
 case "${OSTYPE}" in
-    linux*) eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" ;;
-    darwin*) eval "$(/opt/homebrew/bin/brew shellenv)" ;;
+    linux*) brew_path="/home/linuxbrew/.linuxbrew" ;;
+    darwin*) brew_path="/opt/homebrew" ;;
 esac
+test -f "${brew_path}/bin/brew" && eval "$(${brew_path}/bin/brew shellenv)"
 
 # FZF
 export FZF_DEFAULT_COMMAND='find -L'
