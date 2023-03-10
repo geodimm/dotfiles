@@ -30,7 +30,7 @@ plugins=(
     fzf-tab # fzf-tab should be the last plugin to bind "^I"
 )
 
-# Settings that must be applid before loading Oh-My-Zsh {{{2
+# Settings that must be applied before loading Oh-My-Zsh {{{2
 
 # Set the theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -46,7 +46,9 @@ if [[ -d "${ZSH_CUSTOM}/plugins/zsh-completions/src" ]]; then
   fpath+="${ZSH_CUSTOM}/plugins/zsh-completions/src"
 fi
 
-[ -n "${HOMEBREW_PREFIX+1}" ] && fpath+="${HOMEBREW_PREFIX}/share/zsh/site-functions"
+if [[ -n "${HOMEBREW_PREFIX+1}" ]]; then
+    fpath+="${HOMEBREW_PREFIX}/share/zsh/site-functions"
+fi
 
 # }}}
 
@@ -88,10 +90,14 @@ umask 022
 # Source files {{{2
 
 # Apply FZF configuration
-test -f ~/.fzf.zsh && source ~/.fzf.zsh
+if [[ -f "${HOME}/.fzf.zsh" ]]; then
+    source "${HOME}/.fzf.zsh"
+fi
 
 # Load any extra settings
-test -f ~/dotfiles/zsh/extras && source ~/dotfiles/zsh/extras
+if [[ -f "${HOME}/dotfiles/zsh/extras" ]]; then
+    source "${HOME}/dotfiles/zsh/extras"
+fi
 
 # Completion {{{2
 
