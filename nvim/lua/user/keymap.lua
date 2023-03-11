@@ -28,25 +28,6 @@ keymap.set('n', '<M-l>', ':vertical resize +10<CR>', { desc = 'Increase window w
 keymap.set('n', '0', '^', { desc = 'Go to first non-whitespace character of the line' })
 keymap.set('n', 'Y', 'y$', { desc = 'Yank til end of line' })
 keymap.set('n', 'ZX', ':qa<CR>', { desc = 'Quitall' })
-keymap.set('n', 'z=', function()
-  local cursor_word = vim.fn.expand('<cword>')
-  local bad = vim.fn.spellbadword(cursor_word)
-  local word = bad[1]
-  if word == '' then
-    word = cursor_word
-  end
-
-  local suggestions = vim.fn.spellsuggest(word, 25, bad[2] == 'caps' and 1 or 0)
-
-  local function selected(item)
-    if item then
-      vim.api.nvim_feedkeys('ciw' .. item, 'n', true)
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, true, true), 'n', true)
-    end
-  end
-
-  vim.ui.select(suggestions, { kind = 'spellsuggest' }, vim.schedule_wrap(selected))
-end)
 
 -- Abbreviations
 vim.api.nvim_command('iab cdate <c-r>=strftime("%Y-%m-%d")<CR>')
