@@ -115,26 +115,19 @@ return {
     'folke/which-key.nvim',
     opts = function()
       local icons = require('user.icons')
-      local key_labels = {
-        ['<space>'] = icons.keyboard.Space,
-        ['<cr>'] = icons.keyboard.Return,
-        ['<bs>'] = icons.keyboard.Backspace,
-        ['<tab>'] = icons.keyboard.Tab,
-      }
-      for k, v in pairs(key_labels) do
-        key_labels[k:upper()] = v
-      end
-
+      local side_margin = math.floor(vim.fn.winwidth(0) / 10)
       return {
         icons = {
           group = icons.ui.list_ul .. ' ',
           breadcrumb = icons.ui.breadcrumb,
         },
-        key_labels = key_labels,
         window = {
           border = 'rounded',
-          margin = { 0, 0, 0, 0 },
+          margin = { 2, side_margin, 2, side_margin },
           padding = { 1, 1, 1, 1 },
+        },
+        layout = {
+          align = 'center',
         },
       }
     end,
