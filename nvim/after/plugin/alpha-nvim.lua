@@ -162,18 +162,6 @@ local buttons = {
       ':Lazy sync<CR>',
       { icon = icons.ui.update, hl = { { 'Normal', 0, 1 }, { 'Structure', 1, 50 } } }
     ),
-    button(
-      'l',
-      'Update LSP tools',
-      ':MasonToolsUpdate<CR>',
-      { icon = icons.ui.update, hl = { { 'Normal', 0, 1 }, { 'Structure', 1, 50 } } }
-    ),
-    button(
-      't',
-      'Update TS parsers',
-      ':TSUpdate<CR>',
-      { icon = icons.ui.update, hl = { { 'Bold', 0, 1 }, { 'Structure', 1, 50 } } }
-    ),
     button('q', 'Quit', ':qa<CR>', { icon = icons.ui.sign_out, hl = { { 'Bold', 0, 1 }, { 'Statement', 1, 50 } } }),
   },
   opts = {
