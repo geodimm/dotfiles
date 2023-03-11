@@ -66,11 +66,11 @@ M.git = {
   pull_request = '', -- nf-dev-git_pull_request
   diff = {
     diff = '', -- nf-oct-diff
-    added = '', -- nf-oct-diff_added
-    ignored = '', -- nf-oct-diff_ignored
-    modified = '', -- nf-oct-diff_modified
-    removed = '', -- nf-oct-diff_removed
-    renamed = '', -- nf-oct-diff_renamed
+    added = '', -- nf-fa-plus_circle
+    ignored = '', -- nf-fa-times_circle
+    modified = '', -- nf-fa-question_circle
+    removed = '', -- nf-fa-minus_circle
+    renamed = '', -- nf-fa-arrow_circle_right
   },
 }
 
