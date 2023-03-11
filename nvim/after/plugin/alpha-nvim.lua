@@ -88,7 +88,7 @@ local mru = {
     {
       type = 'group',
       val = function()
-        return { startify.mru(1, vim.fn.getcwd(), 5) }
+        return { startify.mru(1, vim.fn.getcwd(), 10) }
       end,
     },
   },
@@ -155,6 +155,12 @@ local buttons = {
       'Dotfiles',
       "<cmd>lua require('telescope.builtin').find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })<CR>",
       { icon = icons.ui.gears, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
+    ),
+    button(
+      'r',
+      'Repositories',
+      "<cmd>lua require('telescope').extensions.repo.list()<CR>",
+      { icon = icons.git.repositories, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
     ),
     button(
       'u',

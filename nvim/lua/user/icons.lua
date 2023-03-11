@@ -59,6 +59,8 @@ M.file = {
 }
 
 M.git = {
+  repository = '󰳏', -- nf-md-source_repository
+  repositories = '󰳐', -- nf-md-source_repository_multiple
   git = '', -- nf-dev-git
   github = '', -- nf-dev-github_badge
   octocat = '', -- nf-dev-github_alt
