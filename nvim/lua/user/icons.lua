@@ -11,20 +11,23 @@ M.ui = {
   tree = '', -- nf-fa-tree
   scissors = '', -- nf-fa-scissors
   calendar = '', -- nf-fa-calendar
+  pencil = '', -- nf-fa-pencil
+  bug = '', -- nf-fa-bug
   plug = '', -- nf-fa-plug
   update = '󰚰', -- nf-md-update
-  exit = '', -- nf-mdi-exit_to_app
+  location = '', -- nf-oct-location
+  breadcrumb = '󰄾', -- nf-md-chevron_double_right
+  exit = '󰗼', -- nf-md-exit_to_app
   sign_out = '', -- nf-fa-sign_out
   check = '', -- nf-fa-check_circle
   play = '', -- nf-fa-play_circle
-  pencil = '', -- nf-fa-pencil
-  bug = '', -- nf-fa-bug
+  plus = '', -- nf-fa-plus_circle
+  minus = '', -- nf-fa-minus_circle
+  times = '', -- nf-fa-times_circle
+  arrow_right = '', -- nf-fa-arrow_circle_right
   info = '', -- nf-fa-info_circle
   exclamation = '', -- nf-fa-exclamation_circle
-  times = '', -- nf-fa-times_circle
   question = '', -- nf-fa-question_circle
-  location = '', -- nf-oct-location
-  breadcrumb = '', -- nf-mdi-chevron_double_right
 }
 
 M.ui.close = M.ui.error
@@ -66,11 +69,11 @@ M.git = {
   pull_request = '', -- nf-dev-git_pull_request
   diff = {
     diff = '', -- nf-oct-diff
-    added = '', -- nf-fa-plus_circle
-    ignored = '', -- nf-fa-times_circle
-    modified = '', -- nf-fa-question_circle
-    removed = '', -- nf-fa-minus_circle
-    renamed = '', -- nf-fa-arrow_circle_right
+    added = M.ui.plus,
+    ignored = M.ui.times,
+    modified = M.ui.exclamation,
+    removed = M.ui.minus,
+    renamed = M.ui.arrow_right,
   },
 }
 
