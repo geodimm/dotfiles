@@ -95,8 +95,7 @@ return {
           return ''
         end
 
-        local value = require('nvim-navic').get_location()
-        return icons.ui.breadcrumb .. ' ' .. value:match('^(.*%S)%s*$') .. ' '
+        return require('nvim-navic').get_location({ separator = ' ' }) or ''
       end
 
       local section_separator = {
