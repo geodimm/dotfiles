@@ -94,10 +94,14 @@ M.update_status = function(self)
 
       if opts.progress.enabled then
         local data = client.messages
-        progress = #data.progress > 0 and 10 or 0
-        for _, ctx in pairs(data.progress) do
-          local current = ctx.done and 10 or math.floor(ctx.percentage / 10)
-          progress = math.min(current, progress)
+        if not vim.tbl_isempty(data.progress) then
+          progress = 10
+          for _, ctx in pairs(data.progress) do
+            local current = ctx.done and 10 or math.floor((ctx.percentage or 0) / 10)
+            progress = math.min(current, progress)
+          end
+        else
+          progress = vim.lsp.buf.server_ready() and 10 or 0
         end
       end
     else
