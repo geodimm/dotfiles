@@ -42,25 +42,6 @@ return {
         end
       end
 
-      -- Override 'encoding': Don't display if encoding is UTF-8.
-      local function encoding()
-        local fenc = vim.opt.fileencoding:get()
-        if fenc == 'utf-8' then
-          return ''
-        end
-
-        return fenc
-      end
-
-      -- Override 'fileformat': Don't display if &ff is unix.
-      local function fileformat()
-        if vim.bo.fileformat == 'unix' then
-          return ''
-        end
-
-        return icons.os[vim.bo.fileformat]
-      end
-
       local function lsp_clients()
         local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
         if next(active_clients) == nil then
@@ -105,6 +86,15 @@ return {
         right = icons.powerline.right_half_circle_thick,
       }
 
+      local space = {
+        function()
+          return ' '
+        end,
+        padding = 0,
+      }
+
+      local theme = require('lualine.themes.' .. vim.g.colors_name)
+
       lualine.setup({
         options = {
           theme = vim.g.colors_name,
@@ -122,30 +112,50 @@ return {
             {
               'mode',
               separator = section_separator,
+              padding = 0,
             },
           },
-          lualine_b = {
+          lualine_b = {},
+          lualine_c = {
+            space,
             {
               package.loaded.gitsigns and 'b:gitsigns_head' or 'branch',
-              icon = icons.git.branch,
               fmt = trunc(100, 10, nil, false),
+              icon = icons.git.branch,
+              color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
+              separator = section_separator,
+              padding = 0,
             },
             {
               'diff',
               source = package.loaded.gitsigns and diff_source or nil,
               symbols = map(icons.git.diff, append_whitespace),
+              color = { bg = theme.normal.b.bg },
+              separator = section_separator,
+              padding = { left = 1 },
+            },
+            space,
+            {
+              'filetype',
+              icon_only = true,
+              icon = { align = 'left' },
+              color = {},
+              separator = section_separator,
               padding = 0,
             },
-          },
-          lualine_c = {
             {
               'filename',
               file_status = true,
               newfile_status = true,
-              color = function()
-                return vim.bo.modified and { fg = colors.yellow } or { fg = colors.fg }
-              end,
               symbols = icons.file,
+              color = function()
+                local c = {}
+                if vim.bo.modified then
+                  c.fg = colors.yellow
+                end
+                return c
+              end,
+              separator = section_separator,
               padding = { left = 1 },
             },
             {
@@ -155,65 +165,69 @@ return {
           },
           lualine_x = {
             {
-              'filetype',
-              icon_only = false,
-              padding = { right = 1 },
+              'encoding',
+              cond = function()
+                return vim.opt.fileencoding:get() ~= 'utf-8'
+              end,
+              color = { fg = colors.bg, bg = colors.magenta },
+              separator = section_separator,
+              padding = 0,
             },
             {
-              encoding,
-              padding = { right = 1 },
+              'fileformat',
+              cond = function()
+                return vim.bo.fileformat ~= 'unix'
+              end,
+              color = { fg = colors.bg, bg = colors.magenta },
+              separator = section_separator,
             },
-            {
-              fileformat,
-              padding = { right = 1 },
-            },
-          },
-          lualine_y = {
+            space,
             {
               function()
-                return icons.ui.tree
+                return append_whitespace(icons.ui.tree)
               end,
               color = function()
                 local ts = vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] or {}
-                return { fg = not vim.tbl_isempty(ts) and colors.green or colors.red }
+                return {
+                  fg = not vim.tbl_isempty(ts) and colors.green or colors.red,
+                  bg = theme.normal.b.bg,
+                }
               end,
-              padding = { right = 1 },
+              separator = section_separator,
+              padding = 0,
             },
             {
               lsp_clients,
               icon = icons.ui.gears,
+              color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
-              padding = { right = 1 },
+              padding = 0,
             },
             {
               'diagnostics',
               sources = { 'nvim_lsp' },
               symbols = map(icons.lsp, append_whitespace),
+              color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
-              padding = { right = 1 },
+              padding = { left = 1 },
             },
+            space,
           },
+          lualine_y = {},
           lualine_z = {
             {
               'progress',
               fmt = function()
                 return '%P/%L'
               end,
-              icon = icons.ui.location,
+              separator = section_separator,
+              padding = 0,
             },
+            space,
             {
               'location',
-              fmt = function()
-                return string.format(
-                  '%s%3d %s%3d',
-                  icons.powerline.line_number,
-                  vim.fn.line('.'),
-                  icons.powerline.column_number,
-                  vim.fn.virtcol('.')
-                )
-              end,
-              padding = 0,
               separator = section_separator,
+              padding = 0,
             },
           },
         },
