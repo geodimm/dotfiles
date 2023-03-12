@@ -42,62 +42,6 @@ return {
         end
       end
 
-      local function lsp_progress()
-        local stage = 0
-        local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
-        for _, client in pairs(active_clients) do
-          if client.name ~= 'null-ls' then
-            local data = client.messages
-            stage = #data.progress and 10 or 0
-            for _, ctx in pairs(data.progress) do
-              local current_stage = ctx.done and 10 or math.floor(ctx.percentage / 10)
-              stage = math.min(current_stage, stage)
-            end
-            break
-          end
-        end
-
-        return append_whitespace(icons.lsp_progress['stage' .. stage])
-      end
-
-      local function lsp_clients()
-        local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
-        if next(active_clients) == nil then
-          return 'LS Inactive'
-        end
-
-        local client_names = {}
-
-        for _, client in pairs(active_clients) do
-          if client.name ~= 'null-ls' then
-            table.insert(client_names, client.name)
-          else
-            local available_sources = require('null-ls.sources').get_available(vim.bo.filetype)
-            local registered = {}
-            for _, source in ipairs(available_sources) do
-              for method in pairs(source.methods) do
-                registered[method] = registered[method] or {}
-                table.insert(registered[method], source.name)
-              end
-            end
-
-            local methods = require('null-ls').methods
-            vim.list_extend(client_names, registered[methods.FORMATTING] or {})
-            vim.list_extend(client_names, registered[methods.DIAGNOSTICS] or {})
-          end
-        end
-
-        return lsp_progress() .. table.concat(vim.fn.uniq(client_names), ', ')
-      end
-
-      local function lsp_context()
-        if not package.loaded['nvim-navic'] then
-          return ''
-        end
-
-        return require('nvim-navic').get_location({ separator = ' ' }) or ''
-      end
-
       local section_separator = {
         left = icons.powerline.left_half_circle_thick,
         right = icons.powerline.right_half_circle_thick,
@@ -176,7 +120,10 @@ return {
               padding = { left = 1 },
             },
             {
-              lsp_context,
+              require('user.lualine.components.lsp_navic'),
+              navic_opts = {
+                separator = ' ',
+              },
               cond = package.loaded['nvim-navic'] and require('nvim-navic').is_available,
             },
           },
@@ -214,7 +161,20 @@ return {
               padding = 0,
             },
             {
-              lsp_clients,
+              require('user.lualine.components.lsp_clients'),
+              progress = {
+                colors = {
+                  inactive = theme.normal.b.fg,
+                  loading = colors.yellow,
+                  done = colors.green,
+                },
+              },
+              names = {
+                colors = {
+                  inactive = theme.normal.b.fg,
+                  active = theme.normal.b.fg,
+                },
+              },
               color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
               padding = 0,
