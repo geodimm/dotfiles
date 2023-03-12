@@ -12,6 +12,7 @@ local default = {
   green = 'green',
   teal = 'teal',
   red = 'red',
+  grey = 'grey',
 }
 
 local function colors(colorscheme)
@@ -35,6 +36,7 @@ local function colors(colorscheme)
       green = cp.green,
       teal = cp.teal,
       red = cp.red,
+      grey = cp.overlay2,
     }
   end
 
