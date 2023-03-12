@@ -81,9 +81,40 @@ M.init = function(self, options)
   end
 end
 
+local function get_progress(client)
+  local data = client.messages
+  local progress = 0
+  if not vim.tbl_isempty(data.progress) then
+    progress = 10
+    for _, ctx in pairs(data.progress) do
+      local current = ctx.done and 10 or math.floor((ctx.percentage or 0) / 10)
+      progress = math.min(current, progress)
+    end
+  end
+
+  return progress
+end
+
+local function get_null_ls_client_names(opts)
+  local available_sources = require('null-ls.sources').get_available(vim.bo.filetype)
+  local registered_clients = {}
+  for _, source in ipairs(available_sources) do
+    for method in pairs(source.methods) do
+      registered_clients[method] = registered_clients[method] or {}
+      table.insert(registered_clients[method], source.name)
+    end
+  end
+
+  local client_names = {}
+  for _, method in ipairs(opts.names.null_ls.methods) do
+    vim.list_extend(client_names, registered_clients[method] or {})
+  end
+
+  return client_names
+end
+
 M.update_status = function(self)
   local opts = self.options
-  local result = {}
   local progress = 0
   local client_names = {}
 
@@ -91,70 +122,50 @@ M.update_status = function(self)
   for _, client in pairs(active_clients) do
     if client.name ~= 'null-ls' then
       table.insert(client_names, client.name)
-
       if opts.progress.enabled then
-        local data = client.messages
-        if not vim.tbl_isempty(data.progress) then
-          progress = 10
-          for _, ctx in pairs(data.progress) do
-            local current = ctx.done and 10 or math.floor((ctx.percentage or 0) / 10)
-            progress = math.min(current, progress)
-          end
-        else
-          progress = vim.lsp.buf.server_ready() and 10 or 0
-        end
+        progress = get_progress(client)
       end
     else
       if opts.names.null_ls.include then
-        local available_sources = require('null-ls.sources').get_available(vim.bo.filetype)
-        local registered = {}
-        for _, source in ipairs(available_sources) do
-          for method in pairs(source.methods) do
-            registered[method] = registered[method] or {}
-            table.insert(registered[method], source.name)
-          end
-        end
-
-        for _, method in ipairs(opts.names.null_ls.methods) do
-          vim.list_extend(client_names, registered[method] or {})
-        end
+        vim.list_extend(client_names, get_null_ls_client_names(opts))
       end
     end
   end
 
+  local result = {}
   if opts.progress.enabled then
-    local icon = opts.progress.symbols[progress]
-    local hl_group = ''
-    if opts.progress.colors.enabled then
-      local hl
-      if progress == 0 then
-        hl = self.highlights.progress.inactive
-      elseif progress == 10 then
-        hl = self.highlights.progress.done
-      else
-        hl = self.highlights.progress.loading
-      end
-      hl_group = highlight.component_format_highlight(hl)
-    end
-
-    table.insert(result, hl_group .. icon)
+    table.insert(result, self:format_progress(progress))
   end
 
-  local clients = table.concat(vim.fn.uniq(client_names), ', ')
-  local hl_group = ''
-  if opts.names.colors.enabled then
-    local hl
-    if clients ~= '' then
-      hl = self.highlights.names.active
-    else
-      hl = self.highlights.names.inactive
-    end
-    hl_group = highlight.component_format_highlight(hl)
-  end
-
-  table.insert(result, hl_group .. (clients ~= '' and clients or opts.names.inactive_message))
-
+  table.insert(result, self:format_client_names(client_names))
   return table.concat(result, ' ')
+end
+
+M.format_progress = function(self, progress)
+  local opts = self.options
+  local icon = opts.progress.symbols[progress]
+  local hl_group = ''
+
+  if opts.progress.colors.enabled then
+    local hl = ({ [0] = 'inactive', [10] = 'done' })[progress] or 'loading'
+    hl_group = highlight.component_format_highlight(self.highlights.progress[hl])
+  end
+
+  return hl_group .. icon
+end
+
+M.format_client_names = function(self, client_names)
+  local opts = self.options
+  local value = table.concat(vim.fn.uniq(client_names), ', ')
+  local hl_group = ''
+
+  if opts.names.colors.enabled then
+    local hl = value ~= '' and 'active' or 'inactive'
+    hl_group = highlight.component_format_highlight(self.highlights.names[hl])
+  end
+
+  local clients = value ~= '' and value or opts.names.inactive_message
+  return hl_group .. clients
 end
 
 return M
