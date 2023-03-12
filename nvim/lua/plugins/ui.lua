@@ -193,7 +193,14 @@ return {
         desc = 'configure toggleterm keymaps',
         pattern = 'term://*',
         callback = function()
-          vim.keymap.set('t', '<leader>tt', '<cmd>wincmd q<CR>', { buffer = 0 })
+          local keymap_opts = { buffer = 0 }
+          vim.keymap.set('t', '<leader>tt', '<cmd>wincmd q<CR>', keymap_opts)
+          vim.keymap.set('t', 'jj', [[<C-\><C-n>]], keymap_opts)
+          vim.keymap.set('t', '<C-h>', [[<cmd>wincmd h<CR>]], keymap_opts)
+          vim.keymap.set('t', '<C-j>', [[<cmd>wincmd j<CR>]], keymap_opts)
+          vim.keymap.set('t', '<C-k>', [[<cmd>wincmd k<CR>]], keymap_opts)
+          vim.keymap.set('t', '<C-l>', [[<cmd>wincmd l<CR>]], keymap_opts)
+          vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], keymap_opts)
         end,
       })
 
