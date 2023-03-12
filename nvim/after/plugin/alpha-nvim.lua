@@ -154,7 +154,7 @@ local buttons = {
       'd',
       'Dotfiles',
       "<cmd>lua require('telescope.builtin').find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })<CR>",
-      { icon = icons.ui.gears, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
+      { icon = icons.ui.gear, hl = { { 'Normal', 0, 1 }, { 'Operator', 1, 50 } } }
     ),
     button(
       'r',
