@@ -168,7 +168,7 @@ return {
         icons = {
           package_installed = icons.ui.check,
           package_pending = icons.ui.play,
-          package_uninstalled = icons.ui.close,
+          package_uninstalled = icons.ui.times,
         },
       },
     },
