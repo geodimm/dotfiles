@@ -8,6 +8,10 @@ return {
   { 'goolord/alpha-nvim' },
   {
     'folke/noice.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
     opts = {
       lsp = {
         progress = {
@@ -42,22 +46,26 @@ return {
         {
           filter = {
             any = {
-              { event = 'msg_show', kind = '', find = 'written' },
+              { event = 'msg_show', find = '%d+L, %d+B' },
               { event = 'msg_show', kind = '', find = 'fewer lines' },
               { event = 'msg_show', kind = '', find = 'more line' },
               { event = 'msg_show', kind = '', find = 'more lines' },
-              {
-                cmdline = true,
-              },
             },
           },
           opts = { skip = true },
         },
+        {
+          filter = { cmdline = 'Inspect' },
+          view = 'split',
+        },
       },
-    },
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'rcarriga/nvim-notify',
+      views = {
+        mini = {
+          win_options = {
+            winblend = 0,
+          },
+        },
+      },
     },
   },
   {
