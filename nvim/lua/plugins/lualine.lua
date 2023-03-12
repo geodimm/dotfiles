@@ -148,18 +148,21 @@ return {
             space,
             {
               function()
-                return append_whitespace(icons.ui.tree)
+                return 'TS'
               end,
+              icon = icons.ui.tree,
               color = function()
                 local ts = vim.treesitter.highlighter.active[vim.api.nvim_get_current_buf()] or {}
-                return {
-                  fg = not vim.tbl_isempty(ts) and colors.green or colors.red,
-                  bg = theme.normal.b.bg,
-                }
+                if vim.tbl_isempty(ts) then
+                  return { bg = theme.normal.b.bg, fg = colors.grey }
+                end
+
+                return { bg = colors.green, fg = theme.normal.b.bg }
               end,
               separator = section_separator,
               padding = 0,
             },
+            space,
             {
               require('user.lualine.components.lsp_clients'),
               progress = {
