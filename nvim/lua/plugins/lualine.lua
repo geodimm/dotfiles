@@ -110,11 +110,7 @@ return {
               newfile_status = true,
               symbols = icons.file,
               color = function()
-                local c = {}
-                if vim.bo.modified then
-                  c.fg = colors.yellow
-                end
-                return c
+                return vim.bo.modified and { fg = colors.yellow } or {}
               end,
               separator = section_separator,
               padding = { left = 1 },
