@@ -4,6 +4,7 @@ M.ui = {
   prompt = '', -- nf-fa-chevron_right
   search = '', -- nf-fa-search
   list_ul = '', -- nf-fa-list-ul
+  gear = '', --nf-fa-gear
   lightbulb = '', -- nf-cod-lightbulb
   tree = '', -- nf-fa-tree
   calendar = '', -- nf-fa-calendar
