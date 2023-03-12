@@ -80,17 +80,17 @@ M.lsp = {
 }
 
 M.lsp_progress = {
-  stage0 = '', -- ???
-  stage1 = '󰪞', -- nf-md-circle_slice_1
-  stage2 = '󰪟', -- nf-md-circle_slice_2
-  stage3 = '󰪟', -- nf-md-circle_slice_2
-  stage4 = '󰪠', -- nf-md-circle_slice_3
-  stage5 = '󰪡', -- nf-md-circle_slice_4
-  stage6 = '󰪢', -- nf-md-circle_slice_5
-  stage7 = '󰪣', -- nf-md-circle_slice_6
-  stage8 = '󰪤', -- nf-md-circle_slice_7
-  stage9 = '󰪤', -- nf-md-circle_slice_7
-  stage10 = '󰪥', -- nf-md-circle_slice_8
+  [0] = '', -- ???
+  [1] = '󰪞', -- nf-md-circle_slice_1
+  [2] = '󰪟', -- nf-md-circle_slice_2
+  [3] = '󰪟', -- nf-md-circle_slice_2
+  [4] = '󰪠', -- nf-md-circle_slice_3
+  [5] = '󰪡', -- nf-md-circle_slice_4
+  [6] = '󰪢', -- nf-md-circle_slice_5
+  [7] = '󰪣', -- nf-md-circle_slice_6
+  [8] = '󰪤', -- nf-md-circle_slice_7
+  [9] = '󰪤', -- nf-md-circle_slice_7
+  [10] = '󰪥', -- nf-md-circle_slice_8
 }
 
 M.lspconfig = {
