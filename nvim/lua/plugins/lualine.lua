@@ -42,6 +42,24 @@ return {
         end
       end
 
+      local function lsp_progress()
+        local stage = 0
+        local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
+        for _, client in pairs(active_clients) do
+          if client.name ~= 'null-ls' then
+            local data = client.messages
+            stage = #data.progress and 10 or 0
+            for _, ctx in pairs(data.progress) do
+              local current_stage = ctx.done and 10 or math.floor(ctx.percentage / 10)
+              stage = math.min(current_stage, stage)
+            end
+            break
+          end
+        end
+
+        return append_whitespace(icons.lsp_progress['stage' .. stage])
+      end
+
       local function lsp_clients()
         local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
         if next(active_clients) == nil then
@@ -69,7 +87,7 @@ return {
           end
         end
 
-        return table.concat(vim.fn.uniq(client_names), ', ')
+        return lsp_progress() .. table.concat(vim.fn.uniq(client_names), ', ')
       end
 
       local function lsp_context()
@@ -198,7 +216,6 @@ return {
             },
             {
               lsp_clients,
-              icon = icons.ui.gears,
               color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
               padding = 0,
