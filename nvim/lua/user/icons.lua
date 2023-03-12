@@ -4,20 +4,15 @@ M.ui = {
   prompt = '', -- nf-fa-chevron_right
   search = '', -- nf-fa-search
   list_ul = '', -- nf-fa-list-ul
-  gear = '', -- nf-fa-gear
   gears = '', --nf-fa-gears
   lightbulb = '', -- nf-cod-lightbulb
-  lock = '', -- nf-fa-lock
   tree = '', -- nf-fa-tree
-  scissors = '', -- nf-fa-scissors
   calendar = '', -- nf-fa-calendar
   pencil = '', -- nf-fa-pencil
   bug = '', -- nf-fa-bug
   plug = '', -- nf-fa-plug
   update = '󰚰', -- nf-md-update
-  location = '', -- nf-oct-location
   breadcrumb = '󰄾', -- nf-md-chevron_double_right
-  exit = '󰗼', -- nf-md-exit_to_app
   sign_out = '', -- nf-fa-sign_out
   check = '', -- nf-fa-check_circle
   play = '', -- nf-fa-play_circle
@@ -29,8 +24,6 @@ M.ui = {
   exclamation = '', -- nf-fa-exclamation_circle
   question = '', -- nf-fa-question_circle
 }
-
-M.ui.close = M.ui.error
 
 M.os = {
   unix = '', -- nf-fa-linux
@@ -59,16 +52,10 @@ M.file = {
 }
 
 M.git = {
-  repository = '󰳏', -- nf-md-source_repository
   repositories = '󰳐', -- nf-md-source_repository_multiple
-  git = '', -- nf-dev-git
-  github = '', -- nf-dev-github_badge
-  octocat = '', -- nf-dev-github_alt
   branch = '', -- nf-dev-git_branch
-  commit = '', -- nf-dev-git_commit
   compare = '', -- nf-dev-git_compare
   merge = '', -- nf-dev-git_merge
-  pull_request = '', -- nf-dev-git_pull_request
   diff = {
     diff = '', -- nf-oct-diff
     added = M.ui.plus,
@@ -80,13 +67,8 @@ M.git = {
 }
 
 M.powerline = {
-  branch = '', -- nf-pl-branch
-  line_number = '', -- nf-pl-line_number
-  column_number = '', -- nf-pl-columnt-number
   left_half_circle_thick = '', -- nf-ple-left_half_circle_thick
-  left_half_circle_thin = '', -- nf-ple-left_half_circle_thin
   right_half_circle_thick = '', -- nf-ple-right_half_circle_thick
-  right_half_circle_thin = '', -- nf-ple-right_half_circle_thin
 }
 
 M.lsp = {
