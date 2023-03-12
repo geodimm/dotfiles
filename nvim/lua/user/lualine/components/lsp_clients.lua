@@ -110,7 +110,8 @@ local function get_null_ls_client_names(opts)
     vim.list_extend(client_names, registered_clients[method] or {})
   end
 
-  return client_names
+  table.sort(client_names)
+  return vim.fn.uniq(client_names)
 end
 
 M.update_status = function(self)
@@ -156,7 +157,7 @@ end
 
 M.format_client_names = function(self, client_names)
   local opts = self.options
-  local value = table.concat(vim.fn.uniq(client_names), ', ')
+  local value = table.concat(client_names, ', ')
   local hl_group = ''
 
   if opts.names.colors.enabled then
