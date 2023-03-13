@@ -32,6 +32,9 @@ local default_options = {
   },
 }
 
+local buf_progress_checks = {}
+local num_checks_before_server_ready = 10
+
 -- Initializer
 M.init = function(self, options)
   M.super.init(self, options)
@@ -89,6 +92,12 @@ local function get_progress(client)
     for _, ctx in pairs(data.progress) do
       local current = ctx.done and 10 or math.floor((ctx.percentage or 0) / 10)
       progress = math.min(current, progress)
+    end
+  else
+    local buf_id = vim.api.nvim_get_current_buf()
+    buf_progress_checks[buf_id] = (buf_progress_checks[buf_id] or 0) + 1
+    if buf_progress_checks[buf_id] > num_checks_before_server_ready then
+      progress = vim.lsp.buf.server_ready() and 10 or 0
     end
   end
 
