@@ -80,7 +80,7 @@ M.lsp = {
 }
 
 M.lsp_progress = {
-  [0] = '', -- ???
+  [0] = '', -- nf-fa-circle_o
   [1] = '󰪞', -- nf-md-circle_slice_1
   [2] = '󰪟', -- nf-md-circle_slice_2
   [3] = '󰪟', -- nf-md-circle_slice_2
