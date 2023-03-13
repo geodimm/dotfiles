@@ -13,7 +13,7 @@ return {
       {
         '<leader>fe',
         function()
-          require('nvim-tree').toggle()
+          require('nvim-tree.api').tree.toggle()
         end,
         desc = 'Open file explorer',
       },
