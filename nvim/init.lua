@@ -13,18 +13,12 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Use a protected call so we don't error out on first use
-local status_ok, lazy = pcall(require, 'lazy')
-if not status_ok then
-  return
-end
-
 require('user.options')
 require('user.keymap')
 require('user.autocmd')
 require('user.command')
 
-lazy.setup({
+require('lazy').setup({
   { import = 'plugins' },
 }, {
   ui = {
