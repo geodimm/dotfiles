@@ -16,25 +16,16 @@ return {
         notify = true,
         which_key = true,
       },
+      custom_highlights = function(colors)
+        return {
+          PmenuThumb = { bg = colors.blue },
+        }
+      end,
     },
     config = function(plugin, opts)
-      local cp = require('catppuccin.palettes').get_palette()
-
       vim.opt.background = 'dark'
-      -- Customise colorscheme highlight groups
-      vim.api.nvim_create_augroup('user_customise_colorscheme', { clear = true })
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        group = 'user_customise_colorscheme',
-        desc = 'customise the colorscheme highlights',
-        pattern = '*',
-        callback = function()
-          vim.api.nvim_set_hl(0, 'PmenuThumb', { bg = cp.blue })
-          vim.api.nvim_set_hl(0, 'LspInfoBorder', { link = 'FloatBorder' })
-        end,
-      })
-
       require(plugin.name).setup(opts)
-      vim.cmd('colorscheme catppuccin')
+      vim.cmd.colorscheme('catppuccin')
     end,
   },
 }
