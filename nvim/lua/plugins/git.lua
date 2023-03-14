@@ -16,6 +16,12 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    init = function()
+      local keymap = require('utils.keymap')
+
+      keymap.register_group('<leader>h', 'Git', {})
+      keymap.register_group('<leader>h', 'Git', { mode = 'v' })
+    end,
     config = function()
       local gitsigns = require('gitsigns')
 
@@ -68,9 +74,6 @@ return {
           keymap.set('n', '<leader>ht', gitsigns.toggle_deleted, { desc = 'Toggle deleted' })
           keymap.set('n', ']c', next_hunk, { desc = 'Next hunk', expr = true })
           keymap.set('n', '[c', prev_hunk, { desc = 'Previous hunk', expr = true })
-
-          keymap.register_group('<leader>h', 'Git', {})
-          keymap.register_group('<leader>h', 'Git', { mode = 'v' })
         end,
       })
     end,
