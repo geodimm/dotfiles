@@ -1,33 +1,17 @@
 return {
   {
     'hoob3rt/lualine.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
     config = function()
       local lualine = require('lualine')
+      local strings = require('plenary.strings')
       local icons = require('user.icons')
       local colors = require('utils.color').colors(vim.g.colors_name)
 
-      local function map(tbl, f)
-        local t = {}
-        for k, v in pairs(tbl) do
-          t[k] = f(v)
-        end
-        return t
-      end
-
       local function append_whitespace(v)
         return v .. ' '
-      end
-
-      local function trunc(trunc_width, trunc_len, hide_width, no_ellipsis)
-        return function(str)
-          local win_width = vim.fn.winwidth(0)
-          if hide_width and win_width < hide_width then
-            return ''
-          elseif trunc_width and trunc_len and win_width < trunc_width and #str > trunc_len then
-            return str:sub(1, trunc_len) .. (no_ellipsis and '' or '…')
-          end
-          return str
-        end
       end
 
       local function diff_source()
@@ -81,7 +65,9 @@ return {
             space,
             {
               package.loaded.gitsigns and 'b:gitsigns_head' or 'branch',
-              fmt = trunc(100, 10, nil, false),
+              fmt = function(str)
+                return strings.truncate(str, 10, nil, 1)
+              end,
               icon = icons.git.branch,
               color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
@@ -90,7 +76,7 @@ return {
             {
               'diff',
               source = package.loaded.gitsigns and diff_source or nil,
-              symbols = map(icons.git.diff, append_whitespace),
+              symbols = vim.tbl_map(append_whitespace, icons.git.diff),
               color = { bg = theme.normal.b.bg },
               separator = section_separator,
               padding = { left = 1 },
@@ -181,7 +167,7 @@ return {
             {
               'diagnostics',
               sources = { 'nvim_lsp' },
-              symbols = map(icons.lsp, append_whitespace),
+              symbols = vim.tbl_map(append_whitespace, icons.lsp),
               color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
               padding = { left = 1 },
