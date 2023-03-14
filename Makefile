@@ -5,7 +5,7 @@ SHELL := /bin/bash
 
 include test.mk
 
-SRC := ${HOME}/dotfiles
+DOTFILES_DIR ?= ${HOME}/dotfiles
 XDG_CONFIG_HOME ?= ${HOME}/.config
 PLATFORM ?= $(shell uname | tr '[:upper:]' '[:lower:]')
 GROUP := $(shell if [ ${PLATFORM} == "linux" ]; then  echo "${USER}"; else echo "staff"; fi)
@@ -23,7 +23,7 @@ init: homebrew  ## Run the intial setup
 	eval "$$(${HOMEBREW_PREFIX}/bin/brew shellenv)" && $(MAKE)
 
 packages: ## Install system packages
-	brew bundle --file="${SRC}/Brewfile"
+	brew bundle --file="${DOTFILES_DIR}/Brewfile"
 
 dirs: ## Create directories in $HOME
 	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/bin"
@@ -34,8 +34,8 @@ fonts: ## Install fonts
 	@./scripts/fonts.sh
 
 git: ## Configure git
-	ln -fs "${SRC}/git/gitconfig" "${HOME}/.gitconfig"
-	touch "${SRC}/git/commit-template"
+	ln -fs "${DOTFILES_DIR}/git/gitconfig" "${HOME}/.gitconfig"
+	touch "${DOTFILES_DIR}/git/commit-template"
 
 nvm: ## Configure nvm
 	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/.nvm"
@@ -78,10 +78,10 @@ tools: bat tig jqp
 
 bat:
 	mkdir -p "${XDG_CONFIG_HOME}/bat"
-	ln -fs "${SRC}/bat/config" "${XDG_CONFIG_HOME}/bat/config"
+	ln -fs "${DOTFILES_DIR}/bat/config" "${XDG_CONFIG_HOME}/bat/config"
 
 tig: ## Configure tig
-	ln -fs "${SRC}/tig/tigrc" "${HOME}/.tigrc"
+	ln -fs "${DOTFILES_DIR}/tig/tigrc" "${HOME}/.tigrc"
 
 jqp: JQP_VERSION=v0.0.3
 jqp: ## Install jqp
@@ -94,5 +94,5 @@ neovim-install: ## Install neovim
 
 neovim-configure: ## Configure neovim
 	rm -rf "${XDG_CONFIG_HOME}/nvim" && mkdir -p "${XDG_CONFIG_HOME}"
-	ln -fs "${SRC}/nvim" "${XDG_CONFIG_HOME}/"
+	ln -fs "${DOTFILES_DIR}/nvim" "${XDG_CONFIG_HOME}/"
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" && npm install --quiet -g neovim
