@@ -15,10 +15,15 @@ return {
         mason = true,
         notify = true,
         which_key = true,
+        dap = {
+          enabled = true,
+          enable_ui = true,
+        },
       },
       custom_highlights = function(colors)
         return {
           PmenuThumb = { bg = colors.blue },
+          DapUIFloatBorder = { link = 'FloatBorder' },
         }
       end,
     },

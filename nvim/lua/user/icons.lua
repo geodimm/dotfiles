@@ -101,6 +101,14 @@ M.lspconfig = {
   Warn = M.lsp.warn,
 }
 
+M.dap = {
+  DapBreakpoint = '', -- nf-cod-debug
+  DapBreakpointCondition = '', -- nf-cod-debug_breakpoint_conditional
+  DapBreakpointRejected = '', -- nf-cod-debug_breakpoint_unsupported
+  DapLogPoint = '', -- nf-cod-debug_breakpoint_log
+  DapStopped = '', -- nf-cod-debug_continue
+}
+
 M.nerdtree = {
   error = M.lsp.error,
   hint = M.lsp.hint,
