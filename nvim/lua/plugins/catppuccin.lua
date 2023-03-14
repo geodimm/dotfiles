@@ -12,6 +12,7 @@ return {
         navic = {
           enabled = true,
         },
+        neotest = true,
         mason = true,
         notify = true,
         which_key = true,
