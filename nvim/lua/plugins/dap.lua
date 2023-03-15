@@ -31,11 +31,18 @@ return {
         desc = 'Toggle breakpoint',
       },
       {
+        '<leader>dB',
+        function()
+          require('dap').clear_breakpoints()
+        end,
+        desc = 'Clear breakpoints',
+      },
+      {
         '<leader>dc',
         function()
           require('dap').continue()
         end,
-        desc = 'Continue',
+        desc = 'Start/Continue',
       },
       {
         '<leader>di',
@@ -64,6 +71,34 @@ return {
           require('dap').step_back()
         end,
         desc = 'Step back',
+      },
+      {
+        '<leader>dq',
+        function()
+          require('dap').close()
+        end,
+        desc = 'Close session',
+      },
+      {
+        '<leader>dQ',
+        function()
+          require('dap').terminate()
+        end,
+        desc = 'Terminate session',
+      },
+      {
+        '<leader>dP',
+        function()
+          require('dap').pause()
+        end,
+        desc = 'Pause',
+      },
+      {
+        '<leader>dr',
+        function()
+          require('dap').restart_frame()
+        end,
+        desc = 'Restart',
       },
     },
     config = function()
@@ -99,7 +134,7 @@ return {
     dependencies = { 'mfussenegger/nvim-dap' },
     keys = {
       {
-        '<leader>dd',
+        '<leader>du',
         function()
           require('dapui').toggle()
         end,
