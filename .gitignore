@@ -1,7 +1,8 @@
-Brewfile.lock.json
-nvim/spell
-nvim/.netrwhist
-lazy-lock.json
-zsh/extras
-git/extras
-git/commit-template
+/Brewfile.lock.json
+/nvim/spell
+/nvim/.netrwhist
+/nvim/lazy-lock.json
+/nvim/lua/plugins/extras.lua
+/zsh/extras
+/git/extras
+/git/commit-template
