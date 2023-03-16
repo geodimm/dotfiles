@@ -46,9 +46,6 @@ docker-clean() {
     docker container prune -f && docker volume prune -f && docker network prune -f
 }
 
-# tldr
-alias tldr="tldr --theme=base16"
-
 # convert minutes {0..60} to {red..green} in hex
 function _minutes_to_hex() {
     local num=$1
