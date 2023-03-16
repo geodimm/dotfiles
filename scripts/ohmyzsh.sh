@@ -7,20 +7,22 @@ set -o pipefail # don't hide errors within pipes
 DOTFILES_DIR="${DOTFILES_DIR:=${HOME}/dotfiles}"
 ZSH_CUSTOM="${HOME}/.oh-my-zsh/custom"
 
-declare -A ZSH_CUSTOM_PLUGINS=(
-	["plugins/F-Sy-H"]="https://github.com/z-shell/F-Sy-H"
-	["plugins/zsh-autosuggestions"]="https://github.com/zsh-users/zsh-autosuggestions"
-	["plugins/zsh-completions"]="https://github.com/zsh-users/zsh-completions"
-	["plugins/fzf-tab"]="https://github.com/Aloxaf/fzf-tab"
-	["plugins/you-should-use"]="https://github.com/MichaelAquilina/zsh-you-should-use"
-	["plugins/zsh-nvm"]="https://github.com/lukechilds/zsh-nvm"
-	["themes/powerlevel10k"]="https://github.com/romkatv/powerlevel10k"
+declare -a ZSH_CUSTOM_PLUGINS=(
+	"themes/powerlevel10k=https://github.com/romkatv/powerlevel10k"
+	"plugins/F-Sy-H=https://github.com/z-shell/F-Sy-H"
+	"plugins/zsh-autosuggestions=https://github.com/zsh-users/zsh-autosuggestions"
+	"plugins/zsh-completions=https://github.com/zsh-users/zsh-completions"
+	"plugins/you-should-use=https://github.com/MichaelAquilina/zsh-you-should-use"
+	"plugins/zsh-nvm=https://github.com/lukechilds/zsh-nvm"
+	"plugins/fzf-tab=https://github.com/Aloxaf/fzf-tab"
 )
 
 function do_configure() {
-	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
+	for value in "${ZSH_CUSTOM_PLUGINS[@]}"; do
+		path="${value%%=*}"
+		repo="${value##*=}"
 		if [[ ! -d "${ZSH_CUSTOM}/${path}" ]]; then
-			git clone --quiet "${ZSH_CUSTOM_PLUGINS[${path}]}" "${ZSH_CUSTOM}/${path}"
+			git clone --quiet "${repo}" "${ZSH_CUSTOM}/${path}"
 		fi
 	done
 
@@ -31,7 +33,8 @@ function do_configure() {
 }
 
 function do_update_plugins() {
-	for path in "${!ZSH_CUSTOM_PLUGINS[@]}"; do
+	for value in "${ZSH_CUSTOM_PLUGINS[@]}"; do
+		path="${value%%=*}"
 		if [[ -d "${ZSH_CUSTOM}/${path}" ]]; then
 			git -C "${ZSH_CUSTOM}/${path}" pull --quiet
 		fi
