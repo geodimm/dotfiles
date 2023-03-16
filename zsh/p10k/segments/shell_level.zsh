@@ -1,6 +1,6 @@
 typeset -g POWERLEVEL9K_SHELL_LEVEL_SHOW_ONE=false
 typeset -g POWERLEVEL9K_SHELL_LEVEL_FOREGROUND=$purple
-typeset -g POWERLEVEL9K_SHELL_LEVEL_BACKGROUND=$grey
+typeset -g POWERLEVEL9K_SHELL_LEVEL_BACKGROUND=$black
 
 function prompt_shell_level() {
     local one=0xf8a3

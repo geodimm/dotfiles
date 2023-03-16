@@ -1,5 +1,5 @@
 # vim: foldmethod=marker
-typeset -g POWERLEVEL9K_FORM3_SHELL_BACKGROUND=$grey
+typeset -g POWERLEVEL9K_FORM3_SHELL_BACKGROUND=$black
 
 function prompt_form3_shell() {
     local session_expiry
