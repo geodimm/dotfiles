@@ -108,7 +108,7 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     keys = {
       {
-        '<leader>m',
+        'gS',
         function()
           require('treesj').toggle()
         end,
