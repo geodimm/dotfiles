@@ -58,6 +58,10 @@ return {
           filter = { cmdline = 'Inspect' },
           view = 'split',
         },
+        {
+          filter = { event = 'msg_showmode' },
+          view = 'notify',
+        },
       },
       views = {
         mini = {
