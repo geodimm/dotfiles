@@ -40,6 +40,15 @@ return {
 
       local theme = require('lualine.themes.' .. vim.g.colors_name)
 
+      local winbar = {
+        lualine_c = {
+          {
+            require('user.lualine.components.lsp_navic'),
+            cond = package.loaded['nvim-navic'] and require('nvim-navic').is_available,
+          },
+        },
+      }
+
       lualine.setup({
         options = {
           theme = vim.g.colors_name,
@@ -50,6 +59,9 @@ return {
           component_separators = '',
           icons_enabled = true,
           globalstatus = true,
+          disabled_filetypes = {
+            winbar = { 'NvimTree', 'alpha' },
+          },
         },
         extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
         sections = {
@@ -100,13 +112,6 @@ return {
               end,
               separator = section_separator,
               padding = { left = 1 },
-            },
-            {
-              require('user.lualine.components.lsp_navic'),
-              navic_opts = {
-                separator = ' ',
-              },
-              cond = package.loaded['nvim-navic'] and require('nvim-navic').is_available,
             },
           },
           lualine_x = {
@@ -223,6 +228,8 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
+        winbar = winbar,
+        inactive_winbar = winbar,
       })
     end,
   },

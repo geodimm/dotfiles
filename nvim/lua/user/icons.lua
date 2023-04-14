@@ -23,6 +23,7 @@ M.ui = {
   info = '', -- nf-fa-info_circle
   exclamation = '', -- nf-fa-exclamation_circle
   question = '', -- nf-fa-question_circle
+  location = '', -- nf-cod-location
 }
 
 M.os = {
