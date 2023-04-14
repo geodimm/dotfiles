@@ -60,7 +60,7 @@ return {
           icons_enabled = true,
           globalstatus = true,
           disabled_filetypes = {
-            winbar = { 'NvimTree', 'alpha' },
+            winbar = { 'NvimTree', 'alpha', 'gitcommit' },
           },
         },
         extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
