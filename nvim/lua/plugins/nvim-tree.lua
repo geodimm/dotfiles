@@ -18,38 +18,48 @@ return {
         desc = 'Open file explorer',
       },
     },
-    opts = {
-      hijack_netrw = false,
-      diagnostics = { enable = true, icons = require('user.icons').nerdtree },
-      respect_buf_cwd = true,
-      renderer = {
-        add_trailing = true,
-        highlight_git = true,
-        indent_markers = { enable = true },
-        special_files = { 'Makefile', 'README.md', 'go.mod' },
-      },
-      git = {
-        ignore = false,
-      },
-      view = {
-        adaptive_size = true,
-        width = 40,
-        side = 'left',
-        mappings = {
-          custom_only = false,
-          list = {
-            { key = { '<CR>', 'l', 'o', '<2-LeftMouse>' }, action = 'edit' },
-            { key = 'h', action = 'close_node' },
+    opts = function()
+      return {
+        hijack_netrw = false,
+        diagnostics = { enable = true, icons = require('user.icons').nerdtree },
+        respect_buf_cwd = true,
+        on_attach = function(bufnr)
+          local api = require('nvim-tree.api')
+
+          local function opts(desc)
+            return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
+
+          api.config.mappings.default_on_attach(bufnr)
+
+          vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
+          vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
+          vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
+          vim.keymap.set('n', '<2-LeftMouse>', api.node.open.edit, opts('Open'))
+          vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+        end,
+        renderer = {
+          add_trailing = true,
+          highlight_git = true,
+          indent_markers = { enable = true },
+          special_files = { 'Makefile', 'README.md', 'go.mod' },
+        },
+        git = {
+          ignore = false,
+        },
+        view = {
+          adaptive_size = true,
+          width = 40,
+          side = 'left',
+        },
+        actions = {
+          file_popup = {
+            open_win_config = {
+              border = 'rounded',
+            },
           },
         },
-      },
-      actions = {
-        file_popup = {
-          open_win_config = {
-            border = 'rounded',
-          },
-        },
-      },
-    },
+      }
+    end,
   },
 }
