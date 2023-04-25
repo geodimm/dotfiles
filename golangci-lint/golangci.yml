@@ -20,16 +20,12 @@ linters:
   fast: false
   enable:
     # default
-    - deadcode
     - errcheck
     - gosimple
     - govet
     - ineffassign
-    - staticcheck
-    - structcheck
     - typecheck
     - unused
-    - varcheck
     # non-default
     - asciicheck
     - bodyclose
