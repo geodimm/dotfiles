@@ -16,7 +16,7 @@ local default = {
 }
 
 local function colors(colorscheme)
-  if colorscheme == 'catppuccin' then
+  if colorscheme:find('catppuccin', 1, true) == 1 then
     local status_ok, catppuccin = pcall(require, 'catppuccin.palettes')
     if not status_ok then
       vim.notify('Failed to import catppuccin.palettes', vim.log.levels.WARN)
