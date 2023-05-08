@@ -50,6 +50,7 @@ return {
               { event = 'msg_show', kind = '', find = 'fewer lines' },
               { event = 'msg_show', kind = '', find = 'more line' },
               { event = 'msg_show', kind = '', find = 'more lines' },
+              { find = 'offset_encodings' },
             },
           },
           opts = { skip = true },
