@@ -4,6 +4,7 @@ local lsp_utils = require('utils.lsp')
 local lsp_tools = {
   -- language servers
   'bash-language-server',
+  'clangd',
   'deno',
   'dockerfile-language-server',
   'gopls',
@@ -27,6 +28,7 @@ local lsp_tools = {
   -- formatters
   'shfmt',
   'stylua',
+  'clang-format',
 }
 
 -- Define LSP configuration settings for languages
@@ -214,6 +216,12 @@ return {
           null_ls.builtins.diagnostics.actionlint,
 
           -- formatting
+          null_ls.builtins.formatting.clang_format.with({
+            extra_args = {
+              '--style',
+              '{BasedOnStyle: llvm, IndentWidth: 4}',
+            },
+          }),
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.jq,
           null_ls.builtins.formatting.shfmt,
