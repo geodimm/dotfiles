@@ -49,6 +49,7 @@ kitty: kitty-install kitty-configure ## Install and configure Kitty
 
 kitty-install: ## Install Kitty
 ifeq ($(PLATFORM),linux)
+	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/.local"
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
 	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitty" /usr/local/bin/
 	sudo ln -fs "${HOME}/.local/kitty.app/bin/kitten" /usr/local/bin/
