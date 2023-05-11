@@ -91,7 +91,7 @@ jqp: ## Install jqp
 neovim: neovim-install neovim-configure ## Install and configure neovim
 
 neovim-install: ## Install neovim
-	brew install --HEAD neovim
+	brew install neovim
 
 neovim-configure: ## Configure neovim
 	rm -rf "${XDG_CONFIG_HOME}/nvim" && mkdir -p "${XDG_CONFIG_HOME}"
