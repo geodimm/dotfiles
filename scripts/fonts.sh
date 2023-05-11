@@ -22,9 +22,9 @@ function install_fonts() {
 
 	# Font: MesloLGS NF
 	# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
-	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S/Regular/complete
+	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S/Regular
 	# Font: Hack Nerd Font
-	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular/complete
+	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular
 	local install_dir="/tmp/fonts"
 	rm -rf "${install_dir}" && mkdir -p "${install_dir}"
 
@@ -38,10 +38,10 @@ function install_fonts() {
 	(
 		cd "${install_dir}"/nerd-fonts
 		git sparse-checkout add patched-fonts/Meslo/S/Regular
-		find . -type f -name '*.ttf' ! -name '*Windows*' ! -name '*Mono*' -exec cp "{}" "${fonts_dir}" \;
+		find . -type f -name '*.ttf' ! -name '*Mono*' -exec cp "{}" "${fonts_dir}" \;
 
 		git sparse-checkout add patched-fonts/Hack/Regular
-		find . -type f -name '*.ttf' ! -name '*Windows*' ! -name '*Mono*' -exec cp "{}" "${fonts_dir}" \;
+		find . -type f -name '*.ttf' ! -name '*Mono*' -exec cp "{}" "${fonts_dir}" \;
 	)
 
 	if [[ "${PLATFORM}" == "linux" ]]; then
