@@ -19,6 +19,7 @@ return {
       },
     },
     opts = function()
+      local icons = require('user.icons')
       return {
         hijack_netrw = false,
         diagnostics = { enable = true, icons = require('user.icons').nerdtree },
@@ -43,6 +44,19 @@ return {
           highlight_git = true,
           indent_markers = { enable = true },
           special_files = { 'Makefile', 'README.md', 'go.mod' },
+          icons = {
+            glyphs = {
+              git = {
+                unstaged = icons.ui.exclamation,
+                staged = icons.ui.plus,
+                unmerged = icons.git.merge,
+                renamed = icons.ui.arrow_right,
+                untracked = icons.ui.question,
+                deleted = icons.ui.minus,
+                ignored = icons.ui.times,
+              },
+            },
+          },
         },
         git = {
           ignore = false,
