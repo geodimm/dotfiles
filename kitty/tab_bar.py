@@ -3,7 +3,7 @@ from kitty.fast_data_types import Screen
 from kitty.tab_bar import DrawData, ExtraData, TabBarData, TabAccessor
 
 
-MAGNIFYING_GLASS_ICON="\uf0349"
+MAGNIFYING_GLASS_ICON = '󰍉'
 LEFT_SEP, RIGHT_SEP = ('', '')
 
 HOME = os.path.expanduser('~')
