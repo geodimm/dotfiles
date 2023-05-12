@@ -22,7 +22,7 @@ return {
       local icons = require('user.icons')
       return {
         hijack_netrw = false,
-        diagnostics = { enable = true, icons = require('user.icons').nerdtree },
+        diagnostics = { enable = true, icons = icons.nerdtree },
         respect_buf_cwd = true,
         on_attach = function(bufnr)
           local api = require('nvim-tree.api')
