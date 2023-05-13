@@ -60,10 +60,28 @@ return {
           icons_enabled = true,
           globalstatus = true,
           disabled_filetypes = {
-            winbar = { 'NvimTree', 'alpha', 'gitcommit' },
+            winbar = {
+              'NvimTree',
+              'alpha',
+              'dap-repl',
+              'dapui_breakpoints',
+              'dapui_console',
+              'dapui_scopes',
+              'dapui_stacks',
+              'dapui_watches',
+              'gitcommit',
+            },
           },
         },
-        extensions = { 'nvim-tree', 'fugitive', 'quickfix', 'toggleterm' },
+        extensions = {
+          'fugitive',
+          'lazy',
+          'nvim-dap-ui',
+          'nvim-tree',
+          'quickfix',
+          'toggleterm',
+          'trouble',
+        },
         sections = {
           lualine_a = {
             {
@@ -209,6 +227,7 @@ return {
                 TelescopePrompt = 'Telescope',
                 lazy = 'Lazy',
                 alpha = 'Alpha',
+                ['dap-repl'] = 'DAP REPL',
               },
               buffers_color = {
                 active = { fg = colors.bg, bg = colors.blue },
