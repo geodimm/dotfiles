@@ -24,6 +24,7 @@ linters:
     - gosimple
     - govet
     - ineffassign
+    - staticheck
     - typecheck
     - unused
     # non-default
