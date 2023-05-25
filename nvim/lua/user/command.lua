@@ -72,7 +72,9 @@ local function get_git_root()
 end
 
 vim.api.nvim_create_user_command('CdGitRoot', function()
-  vim.api.nvim_set_current_dir(get_git_root())
+  local dir = get_git_root()
+  vim.api.nvim_set_current_dir(dir)
+  vim.notify(string.format('Changed current directory to %s', dir), vim.log.levels.INFO)
 end, {})
 
 keymap.set('n', 'cd', vim.cmd.CdGitRoot, { desc = 'Change directory to Git root' })
