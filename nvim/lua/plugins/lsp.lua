@@ -9,7 +9,6 @@ local lsp_tools = {
   'dockerfile-language-server',
   'gopls',
   'html-lsp',
-  'jdtls',
   'json-lsp',
   'lua-language-server',
   'marksman',
@@ -151,12 +150,8 @@ return {
       local nvim_lspconfig = require('lspconfig')
       local mason_lspconfig = require('mason-lspconfig')
       for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-        if server == 'jdtls' then
-          goto continue -- see nvim/ftplugin/java.lua instead
-        end
         local config = lsp_utils.create_config(servers_config, server)
         nvim_lspconfig[server].setup(config)
-        ::continue::
       end
 
       if vim.fn.executable('tilt') then
@@ -268,5 +263,4 @@ return {
     },
   },
   { 'folke/neodev.nvim' },
-  { 'mfussenegger/nvim-jdtls' },
 }

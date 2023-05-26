@@ -28,7 +28,6 @@ packages: ## Install system packages
 dirs: ## Create directories in $HOME
 	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/bin"
 	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/repos"
-	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/java/workspace"
 
 fonts: ## Install fonts
 	@./scripts/fonts.sh
