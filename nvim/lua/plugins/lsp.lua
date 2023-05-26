@@ -261,6 +261,7 @@ return {
       vim.fn.sign_define('LightBulbSign', { text = icons.ui.lightbulb, texthl = 'Character', linehl = '', numhl = '' })
     end,
     opts = {
+      ignore = { 'null-ls' },
       autocmd = {
         enabled = true,
       },
