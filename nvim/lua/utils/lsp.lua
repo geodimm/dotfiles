@@ -158,24 +158,11 @@ local function configure_autocmds(client, bufnr)
   end
 end
 
-local function attach_navic(client, bufnr)
-  local status_ok, navic = pcall(require, 'nvim-navic')
-  if not status_ok then
-    vim.notify('Failed to import nvim-navic', vim.log.levels.WARN)
-    return
-  end
-
-  if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
-  end
-end
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local function on_attach(client, bufnr)
   configure_keymaps(bufnr)
   configure_autocmds(client, bufnr)
-  attach_navic(client, bufnr)
 end
 
 -- Create config that activates keymaps and enables snippet support

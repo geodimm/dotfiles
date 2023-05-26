@@ -9,9 +9,6 @@ return {
       transparent_background = true,
       integrations = {
         nvimtree = true,
-        navic = {
-          enabled = true,
-        },
         neotest = true,
         mason = true,
         notify = true,
