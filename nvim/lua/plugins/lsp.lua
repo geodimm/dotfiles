@@ -239,7 +239,6 @@ return {
 
           -- code actions
           null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.code_actions.gitsigns,
           null_ls.builtins.code_actions.shellcheck,
           null_ls.builtins.code_actions.gomodifytags,
 
@@ -255,7 +254,6 @@ return {
       vim.fn.sign_define('LightBulbSign', { text = icons.ui.lightbulb, texthl = 'Character', linehl = '', numhl = '' })
     end,
     opts = {
-      ignore = { 'null-ls' },
       autocmd = {
         enabled = true,
       },
