@@ -130,6 +130,16 @@ return {
             },
             space,
             {
+              'selectioncount',
+              maxcount = 999,
+              timeout = 500,
+              icon = icons.ui.pencil,
+              color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
+              separator = section_separator,
+              padding = 0,
+            },
+            space,
+            {
               function()
                 return 'TS'
               end,
