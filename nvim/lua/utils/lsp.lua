@@ -1,11 +1,12 @@
 local M = {}
 
-local diagnostics = require('utils.diagnostics')
+local feat = require('utils.feat')
 local icons = require('user.icons').lspconfig
 
 local function configure_keymaps(bufnr)
-  -- Mark diagnostics as enabled by default
-  diagnostics.set(bufnr, true)
+  -- Mark features as enabled by default
+  feat.Diagnostics:set(bufnr, true)
+  feat.Formatting:set(bufnr, true)
 
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -34,6 +35,7 @@ local function configure_keymaps(bufnr)
   }
 
   local keymap = require('utils.keymap')
+  -- LSP Code actions
   keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = 'Declaration', buffer = bufnr })
   keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = 'Definition', buffer = bufnr })
   keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = 'Type definition', buffer = bufnr })
@@ -45,39 +47,53 @@ local function configure_keymaps(bufnr)
   keymap.set('n', '<leader>gw', vim.lsp.buf.workspace_symbol, { desc = 'Workspace symbols', buffer = bufnr })
   keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Documentation', buffer = bufnr })
   keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
+  keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
-  keymap.set('n', '<leader>ce', function()
-    diagnostics.set(bufnr, true)
-    vim.diagnostic.enable(bufnr)
-  end, { desc = 'Enable diagnostics', buffer = bufnr })
-  keymap.set('n', '<leader>cd', function()
-    diagnostics.set(bufnr, false)
-    vim.diagnostic.disable(bufnr)
-  end, { desc = 'Disable diagnostics', buffer = bufnr })
+  keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format', buffer = bufnr })
   keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
+  keymap.set('n', '<leader>cl', vim.lsp.codelens.refresh, { desc = 'Refresh codelens', buffer = bufnr })
+  keymap.set('n', '<leader>rl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
+
+  -- Diagnostics
   keymap.set('n', '[d', function()
-    if diagnostics.is_disabled(bufnr) then
+    if feat.Diagnostics:is_disabled(bufnr) then
       return
     end
     vim.diagnostic.goto_prev({ float = diagnostic_float_opts })
   end, { desc = 'Go to previous diagnostic', buffer = bufnr })
   keymap.set('n', ']d', function()
-    if diagnostics.is_disabled(bufnr) then
+    if feat.Diagnostics:is_disabled(bufnr) then
       return
     end
     vim.diagnostic.goto_next({ float = diagnostic_float_opts })
   end, { desc = 'Go to next diagnostic', buffer = bufnr })
   keymap.set('n', '<leader>cs', function()
-    if diagnostics.is_disabled(bufnr) then
+    if feat.Diagnostics:is_disabled(bufnr) then
       return
     end
     vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
   end, { desc = 'Show diagnostics', buffer = bufnr })
-  keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, { desc = 'Populate loclist', buffer = bufnr })
-  keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format', buffer = bufnr })
+
+  -- Toggle Features
+  keymap.set('n', '<leader>cef', function()
+    feat.Formatting:set(bufnr, true)
+  end, { desc = 'Enable formatting', buffer = bufnr })
+  keymap.set('n', '<leader>cdf', function()
+    feat.Formatting:set(bufnr, false)
+  end, { desc = 'Disable formatting', buffer = bufnr })
+  keymap.set('n', '<leader>ced', function()
+    feat.Diagnostics:set(bufnr, true)
+    vim.diagnostic.enable(bufnr)
+  end, { desc = 'Enable diagnostics', buffer = bufnr })
+  keymap.set('n', '<leader>cdd', function()
+    feat.Diagnostics:set(bufnr, false)
+    vim.diagnostic.disable(bufnr)
+  end, { desc = 'Disable diagnostics', buffer = bufnr })
 
   keymap.register_group('<leader>g', 'Goto', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr })
+  keymap.register_group('<leader>ce', 'Enable features', { buffer = bufnr })
+  keymap.register_group('<leader>cd', 'Disable features', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = 'v' })
 end
 
@@ -115,6 +131,9 @@ local function configure_autocmds(client, bufnr)
       buffer = bufnr,
       desc = 'format on save',
       callback = function(_)
+        if feat.Formatting:is_disabled(bufnr) then
+          return
+        end
         vim.lsp.buf.format({ bufnr = bufnr })
 
         -- Workaround for gopls not organizing imports on vim.lsp.buf.format
