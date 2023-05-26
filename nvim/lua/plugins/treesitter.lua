@@ -23,6 +23,7 @@ return {
         'dockerfile',
         'go',
         'gomod',
+        'gosum',
         'gowork',
         'hcl',
         'html',
