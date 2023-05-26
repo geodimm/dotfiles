@@ -243,14 +243,6 @@ return {
     end,
   },
   {
-    'SmiteshP/nvim-navic',
-    dependencies = { 'neovim/nvim-lspconfig' },
-    opts = {
-      highlight = true,
-      separator = ' ' .. icons.ui.breadcrumb .. ' ',
-    },
-  },
-  {
     'kosayoda/nvim-lightbulb',
     init = function()
       vim.fn.sign_define('LightBulbSign', { text = icons.ui.lightbulb, texthl = 'Character', linehl = '', numhl = '' })
