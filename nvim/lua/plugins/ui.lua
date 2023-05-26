@@ -272,19 +272,6 @@ return {
     },
   },
   {
-    'giusgad/pets.nvim',
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      'edluffy/hologram.nvim',
-    },
-    cmd = 'PetsNew',
-    opts = {
-      popup = {
-        avoid_statusline = true,
-      },
-    },
-  },
-  {
     'echasnovski/mini.indentscope',
     opts = {
       draw = {
