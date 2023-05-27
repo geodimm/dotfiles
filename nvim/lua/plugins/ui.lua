@@ -160,7 +160,7 @@ return {
       { '<leader>gR', '<cmd>Trouble lsp_references<CR>', desc = 'References (Trouble)' },
     },
     opts = {
-      signs = require('user.icons').lsp,
+      use_diagnostic_signs = true,
     },
   },
   {
