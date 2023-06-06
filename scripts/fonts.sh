@@ -37,11 +37,8 @@ function install_fonts() {
 	git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"/nerd-fonts
 	(
 		cd "${install_dir}"/nerd-fonts
-		git sparse-checkout add patched-fonts/Meslo/S/Regular
-		find . -type f -name '*.ttf' ! -name '*Mono*' -exec cp "{}" "${fonts_dir}" \;
-
-		git sparse-checkout add patched-fonts/Hack/Regular
-		find . -type f -name '*.ttf' ! -name '*Mono*' -exec cp "{}" "${fonts_dir}" \;
+		git sparse-checkout add patched-fonts/Hack
+		find . -type f -name '*.ttf' ! -name '*Mono*' ! -name '*Propo*' -exec cp "{}" "${fonts_dir}" \;
 	)
 
 	if [[ "${PLATFORM}" == "linux" ]]; then
