@@ -20,19 +20,10 @@ function install_fonts() {
 	esac
 	install -d -m 0755 -o "${USER}" -g "${group}" "${fonts_dir}"
 
-	# Font: MesloLGS NF
-	# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
-	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/S/Regular
 	# Font: Hack Nerd Font
 	# https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Hack/Regular
 	local install_dir="/tmp/fonts"
 	rm -rf "${install_dir}" && mkdir -p "${install_dir}"
-
-	git clone --quiet "https://github.com/kgraefe/meslo-lgsn-patched" "${install_dir}"/p10k
-	(
-		cd "${install_dir}"/p10k
-		find . -type f -name '*.ttf' ! -exec cp "{}" "${fonts_dir}" \;
-	)
 
 	git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"/nerd-fonts
 	(
