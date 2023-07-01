@@ -3,8 +3,8 @@ typeset -g POWERLEVEL9K_SHELL_LEVEL_FOREGROUND=$purple
 typeset -g POWERLEVEL9K_SHELL_LEVEL_BACKGROUND=$black
 
 function prompt_shell_level() {
-    local one=0xf8a3
-    local nine_plus=0xf8be
+    local one=0xf03a4
+    local nine_plus=0xf03bf
     local code="${one}"
 
     (( code = one + (SHLVL - 1) * 3 ))
