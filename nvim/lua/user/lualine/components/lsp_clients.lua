@@ -97,7 +97,7 @@ local function get_progress(client)
     local buf_id = vim.api.nvim_get_current_buf()
     buf_progress_checks[buf_id] = (buf_progress_checks[buf_id] or 0) + 1
     if buf_progress_checks[buf_id] > num_checks_before_server_ready then
-      progress = vim.lsp.buf.server_ready() and 10 or 0
+      progress = 10
     end
   end
 
