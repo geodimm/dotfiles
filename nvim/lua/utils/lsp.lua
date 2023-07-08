@@ -7,6 +7,7 @@ local function configure_keymaps(bufnr)
   -- Mark features as enabled by default
   feat.Diagnostics:set(bufnr, true)
   feat.Formatting:set(bufnr, true)
+  feat.InlayHints:set(bufnr, true)
 
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -82,13 +83,25 @@ local function configure_keymaps(bufnr)
     feat.Formatting:set(bufnr, false)
   end, { desc = 'Disable formatting', buffer = bufnr })
   keymap.set('n', '<leader>ced', function()
-    feat.Diagnostics:set(bufnr, true)
     vim.diagnostic.enable(bufnr)
+    feat.Diagnostics:set(bufnr, true)
   end, { desc = 'Enable diagnostics', buffer = bufnr })
   keymap.set('n', '<leader>cdd', function()
-    feat.Diagnostics:set(bufnr, false)
     vim.diagnostic.disable(bufnr)
+    feat.Diagnostics:set(bufnr, false)
   end, { desc = 'Disable diagnostics', buffer = bufnr })
+  keymap.set('n', '<leader>ceh', function()
+    if vim.lsp.inlay_hint then
+      vim.lsp.inlay_hint(bufnr, true)
+    end
+    feat.InlayHints:set(bufnr, true)
+  end, { desc = 'Enable inlay hints', buffer = bufnr })
+  keymap.set('n', '<leader>cdh', function()
+    if vim.lsp.inlay_hint then
+      vim.lsp.inlay_hint(bufnr, false)
+    end
+    feat.InlayHints:set(bufnr, false)
+  end, { desc = 'Disable inlay hints', buffer = bufnr })
 
   keymap.register_group('<leader>g', 'Goto', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr })
@@ -180,6 +193,10 @@ local function on_attach(client, bufnr)
       },
       range = true,
     }
+  end
+
+  if vim.lsp.inlay_hint and client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint(bufnr, true)
   end
 end
 
