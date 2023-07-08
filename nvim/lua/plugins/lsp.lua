@@ -253,10 +253,10 @@ return {
   },
   {
     'kosayoda/nvim-lightbulb',
-    init = function()
-      vim.fn.sign_define('LightBulbSign', { text = icons.ui.lightbulb, texthl = 'Character', linehl = '', numhl = '' })
-    end,
     opts = {
+      sign = {
+        text = icons.ui.lightbulb,
+      },
       autocmd = {
         enabled = true,
       },
