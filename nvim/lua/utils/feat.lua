@@ -21,5 +21,6 @@ end
 
 M.Diagnostics = Feature:new()
 M.Formatting = Feature:new()
+M.InlayHints = Feature:new()
 
 return M
