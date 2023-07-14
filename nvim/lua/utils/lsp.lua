@@ -77,27 +77,33 @@ local function configure_keymaps(bufnr)
 
   -- Toggle Features
   keymap.set('n', '<leader>cef', function()
+    vim.notify('Enabling formatting for buffer', vim.log.levels.INFO)
     feat.Formatting:set(bufnr, true)
   end, { desc = 'Enable formatting', buffer = bufnr })
   keymap.set('n', '<leader>cdf', function()
+    vim.notify('Disabling formatting for buffer', vim.log.levels.INFO)
     feat.Formatting:set(bufnr, false)
   end, { desc = 'Disable formatting', buffer = bufnr })
   keymap.set('n', '<leader>ced', function()
+    vim.notify('Enabling diagnostics for buffer', vim.log.levels.INFO)
     vim.diagnostic.enable(bufnr)
     feat.Diagnostics:set(bufnr, true)
   end, { desc = 'Enable diagnostics', buffer = bufnr })
   keymap.set('n', '<leader>cdd', function()
+    vim.notify('Disabling diagnostics for buffer', vim.log.levels.INFO)
     vim.diagnostic.disable(bufnr)
     feat.Diagnostics:set(bufnr, false)
   end, { desc = 'Disable diagnostics', buffer = bufnr })
   keymap.set('n', '<leader>ceh', function()
     if vim.lsp.inlay_hint then
+      vim.notify('Enabling inlay hints for buffer', vim.log.levels.INFO)
       vim.lsp.inlay_hint(bufnr, true)
     end
     feat.InlayHints:set(bufnr, true)
   end, { desc = 'Enable inlay hints', buffer = bufnr })
   keymap.set('n', '<leader>cdh', function()
     if vim.lsp.inlay_hint then
+      vim.notify('Disabling inlay hints for buffer', vim.log.levels.INFO)
       vim.lsp.inlay_hint(bufnr, false)
     end
     feat.InlayHints:set(bufnr, false)
