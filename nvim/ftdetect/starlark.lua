@@ -1,5 +1,5 @@
 vim.filetype.add({
   pattern = {
-    ['.*/Tiltfile.*'] = 'starlark',
+    ['.*/.*Tiltfile.*'] = 'starlark',
   },
 })
