@@ -85,7 +85,7 @@ tig: ## Configure tig
 
 jqp: JQP_VERSION=v0.0.3
 jqp: ## Install jqp
-	curl -s "https://raw.githubusercontent.com/georgijd/jqp/${JQP_VERSION}/scripts/install.sh" | bash
+	curl -s "https://raw.githubusercontent.com/geodimm/jqp/${JQP_VERSION}/scripts/install.sh" | bash
 
 neovim: neovim-install neovim-configure ## Install and configure neovim
 
