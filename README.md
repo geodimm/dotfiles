@@ -1,11 +1,11 @@
 # Georgi's dotfiles
 
-[![Build Status](https://github.com/georgijd/dotfiles/actions/workflows/test.yaml/badge.svg)](https://github.com/georgijd/dotfiles/actions/workflows/test.yaml)
+[![Build Status](https://github.com/geodimm/dotfiles/actions/workflows/test.yaml/badge.svg)](https://github.com/geodimm/dotfiles/actions/workflows/test.yaml)
 
 ## How to install
 
 ```bash
-git clone https://github.com/georgijd/dotfiles.git ~/dotfiles
+git clone https://github.com/geodimm/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 make init
 ```
