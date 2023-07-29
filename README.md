@@ -10,7 +10,7 @@ cd ~/dotfiles
 make init
 ```
 
-> **Note**
+> [!NOTE]\
 > For more information run `make help`
 
 ## Useful Links
