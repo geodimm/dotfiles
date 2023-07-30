@@ -83,7 +83,7 @@ bat:
 tig: ## Configure tig
 	ln -fs "${DOTFILES_DIR}/tig/tigrc" "${HOME}/.tigrc"
 
-jqp: JQP_VERSION=v0.0.3
+jqp: JQP_VERSION=v0.0.4
 jqp: ## Install jqp
 	curl -s "https://raw.githubusercontent.com/geodimm/jqp/${JQP_VERSION}/scripts/install.sh" | bash
 
