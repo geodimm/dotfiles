@@ -201,6 +201,13 @@ local function on_attach(client, bufnr)
     }
   end
 
+  -- Don't attach yamlls to helm files
+  if client.name == 'yamlls' and vim.bo.filetype == 'helm' then
+    vim.schedule(function()
+      vim.lsp.buf_detach_client(bufnr, client.id)
+    end)
+  end
+
   if vim.lsp.inlay_hint and client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint(bufnr, true)
   end
