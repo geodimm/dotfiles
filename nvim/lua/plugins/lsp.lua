@@ -8,6 +8,7 @@ local lsp_tools = {
   'deno',
   'dockerfile-language-server',
   'gopls',
+  'helm-ls',
   'html-lsp',
   'json-lsp',
   'lua-language-server',
