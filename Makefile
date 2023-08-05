@@ -92,6 +92,11 @@ neovim: neovim-install neovim-configure ## Install and configure neovim
 neovim-install: ## Install neovim
 	brew install neovim
 
+neovim-nightly: ## Install neovim-nightly
+ifeq ($(PLATFORM),linux)
+	wget --quiet https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -O ~/bin/nvim && chmod +x ~/bin/nvim
+endif
+
 neovim-configure: ## Configure neovim
 	rm -rf "${XDG_CONFIG_HOME}/nvim" && mkdir -p "${XDG_CONFIG_HOME}"
 	ln -fs "${DOTFILES_DIR}/nvim" "${XDG_CONFIG_HOME}/"
