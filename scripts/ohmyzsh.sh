@@ -36,7 +36,7 @@ function do_update_plugins() {
 	for value in "${ZSH_CUSTOM_PLUGINS[@]}"; do
 		path="${value%%=*}"
 		if [[ -d "${ZSH_CUSTOM}/${path}" ]]; then
-			git -C "${ZSH_CUSTOM}/${path}" pull --quiet
+			git -C "${ZSH_CUSTOM}/${path}" pull --quiet --rebase --autostash
 		fi
 	done
 }
