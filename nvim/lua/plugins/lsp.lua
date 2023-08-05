@@ -38,7 +38,7 @@ local lsp_tools = {
 local servers_config = {
   gopls = function()
     local buildFlags = {}
-    for w in os.getenv('GOPLS_BUILD_FLAGS'):gmatch('%S+') do
+    for w in (os.getenv('GOPLS_BUILD_FLAGS') or ''):gmatch('%S+') do
       table.insert(buildFlags, w)
     end
 
