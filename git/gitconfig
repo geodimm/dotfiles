@@ -14,6 +14,8 @@
 	autoSetupRemote = true
 [pull]
 	rebase = true
+[rebase]
+	autoStash = true
 [diff]
 	wsErrorHighlight = all
 [alias]
