@@ -101,11 +101,6 @@ return {
             override_file_sorter = true,
             case_mode = 'smart_case',
           },
-          menufacture = {
-            mappings = {
-              main_menu = { [{ 'i', 'n' }] = '<C-o>' },
-            },
-          },
           repo = {
             list = {
               fd_opts = {
@@ -125,21 +120,20 @@ return {
       telescope.load_extension('noice')
       telescope.load_extension('fzf')
       telescope.load_extension('lsp_handlers')
-      telescope.load_extension('menufacture')
       telescope.load_extension('repo')
 
       local keymap = require('utils.keymap')
       keymap.set('n', '<leader>ft', command.load_command, { desc = 'Open telescope' })
-      keymap.set('n', '<leader>ff', telescope.extensions.menufacture.find_files, { desc = 'Files' })
+      keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Files' })
       keymap.set('n', '<leader>fd', function()
         builtin.find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })
       end, { desc = 'dotfiles' })
       keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, { desc = 'Current file' })
-      keymap.set('n', '<leader>f*', telescope.extensions.menufacture.grep_string, { desc = 'Word under cursor' })
+      keymap.set('n', '<leader>f*', builtin.grep_string, { desc = 'Word under cursor' })
       keymap.set('n', '<leader>fb', function()
         builtin.buffers({ show_all_buffers = true, sort_lastused = true })
       end, { desc = 'Buffers' })
-      keymap.set('n', '<leader>fa', telescope.extensions.menufacture.live_grep, { desc = 'Fuzzy live grep' })
+      keymap.set('n', '<leader>fa', builtin.live_grep, { desc = 'Fuzzy live grep' })
       keymap.set('n', '<leader>fm', builtin.keymaps, { desc = 'Keymapss' })
       keymap.set('n', '<leader>fgb', builtin.git_branches, { desc = 'Branches' })
       keymap.set('n', '<leader>fgc', builtin.git_commits, { desc = 'Commits' })
@@ -158,9 +152,6 @@ return {
   },
   {
     'gbrlsnchs/telescope-lsp-handlers.nvim',
-  },
-  {
-    'molecule-man/telescope-menufacture',
   },
   {
     'cljoly/telescope-repo.nvim',
