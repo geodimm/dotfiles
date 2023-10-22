@@ -8,15 +8,12 @@ return {
       flavour = 'macchiato',
       transparent_background = true,
       integrations = {
-        nvimtree = true,
-        neotest = true,
+        lsp_trouble = true,
         mason = true,
+        neotest = true,
+        noice = true,
         notify = true,
         which_key = true,
-        dap = {
-          enabled = true,
-          enable_ui = true,
-        },
       },
       custom_highlights = function(colors)
         return {
