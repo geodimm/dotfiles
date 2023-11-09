@@ -1,6 +1,7 @@
 import os
 from kitty.fast_data_types import Screen
 from kitty.tab_bar import DrawData, ExtraData, TabBarData, TabAccessor
+from kitty.utils import color_as_int
 
 
 MAGNIFYING_GLASS_ICON = '󰍉'
@@ -23,7 +24,7 @@ def draw_tab(
     orig_bg = screen.cursor.bg
 
     def draw_sep(which: str) -> None:
-        screen.cursor.bg = draw_data.default_bg
+        screen.cursor.bg = as_rgb(color_as_int(draw_data.default_bg))
         screen.cursor.fg = orig_bg
         screen.draw(which)
         screen.cursor.bg = orig_bg
@@ -58,3 +59,7 @@ def draw_tab(
         draw_sep(' ')
 
     return screen.cursor.x
+
+
+def as_rgb(x: int) -> int:
+    return (x << 8) | 2
