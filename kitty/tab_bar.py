@@ -7,8 +7,6 @@ from kitty.utils import color_as_int
 MAGNIFYING_GLASS_ICON = '󰍉'
 LEFT_SEP, RIGHT_SEP = ('', '')
 
-HOME = os.path.expanduser('~')
-
 
 def draw_tab(
     draw_data: DrawData,
@@ -20,46 +18,31 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData
 ) -> int:
-    orig_fg = screen.cursor.fg
-    orig_bg = screen.cursor.bg
+    active_wd = ''
+    while active_wd == '':
+        active_wd = os.path.basename(TabAccessor(tab.tab_id).active_wd)
 
-    def draw_sep(which: str) -> None:
-        screen.cursor.bg = as_rgb(color_as_int(draw_data.default_bg))
-        screen.cursor.fg = orig_bg
-        screen.draw(which)
-        screen.cursor.bg = orig_bg
-        screen.cursor.fg = orig_fg
-
-    if max_title_length <= 1:
-        screen.draw('…')
-    elif max_title_length == 2:
-        screen.draw('…|')
-    elif max_title_length < 6:
-        draw_sep(LEFT_SEP)
-        screen.draw((' ' if max_title_length == 5 else '') + '…' + (' ' if max_title_length >= 4 else ''))
-        draw_sep(RIGHT_SEP)
-    else:
-        draw_sep(LEFT_SEP)
+    draw_separator(draw_data, screen, LEFT_SEP)
+    screen.draw(' ')
+    screen.draw(active_wd)
+    if tab.layout_name == 'stack':
         screen.draw(' ')
-        # draw_title(draw_data, screen, tab, index)
-        ta = TabAccessor(tab.tab_id)
-        screen.draw(os.path.basename(ta.active_wd))
-        if tab.layout_name == 'stack':
-            screen.draw(' ' + MAGNIFYING_GLASS_ICON)
+        screen.draw(MAGNIFYING_GLASS_ICON)
 
-        extra = screen.cursor.x - before - max_title_length
-        if extra >= 0:
-            screen.cursor.x -= extra + 3
-            screen.draw('…')
-        elif extra == -1:
-            screen.cursor.x -= 2
-            screen.draw('…')
-        screen.draw(' ')
-        draw_sep(RIGHT_SEP)
-        draw_sep(' ')
-
+    screen.draw(' ')
+    draw_separator(draw_data, screen, RIGHT_SEP + ' ')
     return screen.cursor.x
 
 
 def as_rgb(x: int) -> int:
     return (x << 8) | 2
+
+
+def draw_separator(draw_data: DrawData, screen: Screen, separator: str) -> None:
+    orig_bg = screen.cursor.bg
+    orig_fg = screen.cursor.fg
+    screen.cursor.bg = as_rgb(color_as_int(draw_data.default_bg))
+    screen.cursor.fg = orig_bg
+    screen.draw(separator)
+    screen.cursor.bg = orig_bg
+    screen.cursor.fg = orig_fg
