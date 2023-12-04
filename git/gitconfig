@@ -31,6 +31,7 @@
 	find = !git log -p -S
 	all = "!f() { ls -R -d */.git | sed s,/.git,, | xargs -t -P0 -I{} git -C {} $1; }; f"
 	latest = for-each-ref --color=always --sort=committerdate refs/remotes --format='%(color:bold green)%(committerdate:relative) %(HEAD)%(color:yellow)%(refname:short) %(color:blue)%(subject) %(color:magenta)%(authorname)%(color:reset)'
+	delete-local-merged = "!git fetch && git branch --merged | egrep -v 'master|main' | xargs git branch -d"
 [color]
 	branch = auto
 	diff = auto
