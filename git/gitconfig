@@ -48,3 +48,5 @@
 	postBuffer = 1024288000
 [include]
 	path = ~/dotfiles/git/extras
+[fetch]
+	prune = true
