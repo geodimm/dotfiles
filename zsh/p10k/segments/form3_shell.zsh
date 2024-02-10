@@ -2,13 +2,15 @@
 typeset -g POWERLEVEL9K_FORM3_SHELL_BACKGROUND=$black
 
 function prompt_form3_shell() {
-    local session_expiry
-    if (( ${+F3_SESS_EXPIRY} )); then
-        session_expiry="${F3_SESS_EXPIRY}"
+    local session_file="${HOME}/.f3session"
+    local output
+    if find ${session_file} -mmin -5 2>/dev/null| grep -q "."; then
+        output="$(cat ${session_file})"
     else
-        session_expiry="$(f3 auth info --json 2>/dev/null | jq -Rr 'fromjson? | .expiry' 2>/dev/null)"
+        output="$(f3 auth info --json 2>/dev/null | tee ${session_file})"
     fi
 
+    local session_expiry="$(echo ${output} | jq -Rr 'fromjson? | .expiry' 2>/dev/null)"
     if (( ${session_expiry} )); then
         local total=$((session_expiry - $(date +%s)))
         local mins=$((total / 60))
