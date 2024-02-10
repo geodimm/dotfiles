@@ -3,6 +3,9 @@ return {
     'hrsh7th/nvim-cmp',
     config = function()
       local cmp = require('cmp')
+      local compare = require('cmp.config.compare')
+      local context = require('cmp.config.context')
+      local types = require('cmp.types')
       local luasnip = require('luasnip')
       local lspkind = require('lspkind')
       local cmp_git = require('cmp_git')
@@ -34,50 +37,62 @@ return {
         end
       end
 
-      local function lspkind_comparator(conf)
-        local lsp_types = require('cmp.types').lsp
-        return function(entry1, entry2)
-          if entry1.source.name ~= 'nvim_lsp' then
-            if entry2.source.name == 'nvim_lsp' then
-              return false
-            else
-              return nil
-            end
+      local function custom_kind_comparator(entry1, entry2)
+        local kind1 = entry1:get_kind()
+        local kind2 = entry2:get_kind()
+        kind1 = kind1 == types.lsp.CompletionItemKind.Text and 100 or kind1
+        kind2 = kind2 == types.lsp.CompletionItemKind.Text and 100 or kind2
+        if kind1 ~= kind2 then
+          if kind1 == types.lsp.CompletionItemKind.Snippet then
+            return false
           end
-          local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
-          local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
-
-          local priority1 = conf.kind_priority[kind1] or 0
-          local priority2 = conf.kind_priority[kind2] or 0
-          if priority1 == priority2 then
-            return nil
+          if kind2 == types.lsp.CompletionItemKind.Snippet then
+            return true
           end
-          return priority2 < priority1
+          local diff = kind1 - kind2
+          if diff < 0 then
+            return true
+          elseif diff > 0 then
+            return false
+          end
         end
       end
 
-      local function label_comparator(entry1, entry2)
-        return entry1.completion_item.label < entry2.completion_item.label
-      end
-
       cmp.setup({
-        window = {
-          completion = {
-            border = 'rounded',
-            winhighlight = 'CursorLine:Visual,Search:None',
-            zindex = 1001,
-            col_offset = -3,
-            side_padding = 0,
-          },
-          documentation = {
-            border = 'rounded',
-            winhighlight = 'CursorLine:Visual,Search:None',
-            zindex = 1001,
-            col_offset = 10,
-            side_padding = 1,
-          },
+        enabled = function()
+          local disabled = false
+          disabled = disabled or (vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt')
+          disabled = disabled or (vim.fn.reg_recording() ~= '')
+          disabled = disabled or (vim.fn.reg_executing() ~= '')
+          disabled = disabled or context.in_syntax_group('Comment')
+          return not disabled
+        end,
+
+        preselect = cmp.PreselectMode.None,
+
+        mapping = {
+          ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+          ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+          ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
+          ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<C-Space>'] = cmp.mapping.complete({}),
+          ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false,
+          }),
         },
+
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+
         formatting = {
+          expandable_indicator = true,
           fields = { cmp.ItemField.Kind, cmp.ItemField.Abbr, cmp.ItemField.Menu },
           format = function(entry, vim_item)
             local kind = lspkind.cmp_format({
@@ -102,75 +117,24 @@ return {
             return kind
           end,
         },
-        enabled = function()
-          -- disable completion in prompts such as telescope filtering prompt
-          local buftype = vim.api.nvim_buf_get_option(0, 'buftype')
-          if buftype == 'prompt' then
-            return false
-          end
 
-          -- disable completion in comments
-          local context = require('cmp.config.context')
-          if context.in_syntax_group('Comment') then
-            return false
-          end
-
-          return true
-        end,
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        preselect = cmp.PreselectMode.None,
-        mapping = {
-          ['<C-n>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-          ['<C-p>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
-          ['<Tab>'] = cmp.mapping(select_next_item, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(select_prev_item, { 'i', 's' }),
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-e>'] = cmp.mapping.close(),
-          ['<C-Space>'] = cmp.mapping.complete({}),
-          ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = false,
-          }),
-        },
         sorting = {
+          priority_weight = 2,
           comparators = {
-            lspkind_comparator({
-              kind_priority = {
-                Variable = 12,
-                Field = 11,
-                Property = 11,
-                Constant = 10,
-                Enum = 10,
-                EnumMember = 10,
-                Event = 10,
-                Function = 10,
-                Method = 10,
-                Operator = 10,
-                Reference = 10,
-                Struct = 10,
-                Module = 9,
-                File = 8,
-                Folder = 8,
-                Class = 5,
-                Color = 5,
-                Keyword = 2,
-                Constructor = 1,
-                Interface = 1,
-                Text = 1,
-                TypeParameter = 1,
-                Unit = 1,
-                Value = 1,
-                Snippet = 0,
-              },
-            }),
-            label_comparator,
+            compare.exact,
+            compare.offset,
+            -- compare.scopes,
+            compare.score,
+            -- compare.recently_used,
+            -- compare.locality,
+            -- compare.kind,
+            custom_kind_comparator,
+            compare.sort_text,
+            compare.length,
+            compare.order,
           },
         },
+
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
           { name = 'nvim_lsp_signature_help' },
@@ -181,6 +145,19 @@ return {
         }, {
           { name = 'path' },
         }),
+
+        window = {
+          completion = {
+            border = 'rounded',
+            winhighlight = 'Search:None',
+            side_padding = 0,
+          },
+          documentation = {
+            border = 'rounded',
+            winhighlight = 'FloatBorder:Pmenu',
+            side_padding = 1,
+          },
+        },
       })
 
       cmp.setup.filetype('gitcommit', {
@@ -255,6 +232,7 @@ return {
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load()
     end,
+    dependencies = { 'rafamadriz/friendly-snippets' },
   },
   {
     'saadparwaiz1/cmp_luasnip',
@@ -263,6 +241,5 @@ return {
       'L3MON4D3/LuaSnip',
     },
   },
-  { 'rafamadriz/friendly-snippets' },
   { 'onsails/lspkind-nvim' },
 }
