@@ -26,7 +26,6 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   go_version              # go version (https://golang.org)
   kubecontext             # current kubernetes context (https://kubernetes.io/)
   aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
-  vpn_ip                  # virtual private network indicator
 )
 # }}}
 
