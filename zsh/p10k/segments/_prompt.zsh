@@ -24,7 +24,6 @@ typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
   newline
   nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
   go_version              # go version (https://golang.org)
-  java_version            # java version (https://www.java.com/)
   kubecontext             # current kubernetes context (https://kubernetes.io/)
   aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
   public_ip               # public IP address
