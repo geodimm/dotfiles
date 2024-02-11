@@ -4,7 +4,6 @@ typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   # line 1 {{{2
   context                 # user@hostname
   form3_shell             # f3 shell indicator
-  shell_level             # show the subshell level - SHLVL
   vim_shell               # vim shell indicator (:sh)
   dir                     # current directory
   vcs                     # git status
