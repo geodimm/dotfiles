@@ -7,7 +7,7 @@ function prompt_form3_shell() {
     if find ${session_file} -mmin -5 2>/dev/null| grep -q "."; then
         output="$(cat ${session_file})"
     else
-        output="$(f3 auth info --json 2>/dev/null | tee ${session_file})"
+        (f3 auth info --json | tee ${session_file} &!) > /dev/null 2>&1
     fi
 
     local session_expiry="$(echo ${output} | jq -Rr 'fromjson? | .expiry' 2>/dev/null)"
