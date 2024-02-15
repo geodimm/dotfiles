@@ -160,9 +160,11 @@ return {
         },
       })
 
+      require('user.cmp-nvim.gitcommit')
       cmp.setup.filetype('gitcommit', {
         sources = cmp.config.sources({
           { name = 'git' },
+          { name = 'gitcommit' },
         }, {
           { name = 'buffer' },
         }),
