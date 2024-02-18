@@ -14,6 +14,7 @@ local lsp_tools = {
   'lua-language-server',
   'marksman',
   'pyright',
+  'rust-analyzer',
   'taplo',
   'terraform-ls',
   'yaml-language-server',
@@ -29,6 +30,7 @@ local lsp_tools = {
   'shfmt',
   'stylua',
   'clang-format',
+  'rustfmt',
 
   -- code actions
   'gomodifytags',
@@ -245,6 +247,7 @@ return {
               vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
             },
           }),
+          null_ls.builtins.formatting.rustfmt,
 
           -- code actions
           null_ls.builtins.code_actions.refactoring,
