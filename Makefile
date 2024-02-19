@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := all
-.PHONY: bat git kitty tig zsh
+.PHONY: bat git kitty tig zsh golangci-lint
 
 include test.mk
 
@@ -74,7 +74,7 @@ ohmyzsh-configure: ## Configure Oh My Zsh
 fzf: ## Configure FZF
 	"${HOMEBREW_PREFIX}/opt/fzf/install" --no-bash --no-fish --key-bindings --completion --no-update-rc
 
-tools: bat tig jqp
+tools: bat tig jqp golangci-lint
 
 bat:
 	mkdir -p "${XDG_CONFIG_HOME}/bat"
@@ -86,6 +86,9 @@ tig: ## Configure tig
 jqp: JQP_VERSION=v0.0.4
 jqp: ## Install jqp
 	curl -s "https://raw.githubusercontent.com/geodimm/jqp/${JQP_VERSION}/scripts/install.sh" | bash
+
+golangci-lint:
+	ln -fs "${DOTFILES_DIR}/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
 
 neovim: neovim-install neovim-configure ## Install and configure neovim
 
