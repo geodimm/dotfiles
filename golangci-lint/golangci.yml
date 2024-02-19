@@ -4,17 +4,12 @@ run:
   skip-dirs:
     - vendor$
 output:
-  print-issues-lines: true
   print-linter-name: true
 issues:
-  max-per-linter: 0
+  max-issues-per-linter: 0
   max-same-issues: 0
   exclude-use-default: true
   whole-files: true
-  exclude-rules:
-    - linters:
-        - lll
-      source: "^//go:generate ,byte"
 linters:
   disable-all: true
   fast: false
@@ -42,19 +37,19 @@ linters:
     - nestif
     - nolintlint
     - prealloc
-  linters-settings:
-    errcheck:
-      check-blank: true
-    lll:
-      line-length: 120
-      tab-width: 2
-    gofumpt:
-      extra-rules: false
-    gomnd:
-      checks:
-        - argument
-        - case
-        - condition
-        - return
-      ignored-functions:
-        - 'time.Duration'
+linters-settings:
+  errcheck:
+    check-blank: true
+  lll:
+    line-length: 120
+    tab-width: 2
+  gofumpt:
+    extra-rules: false
+  gomnd:
+    checks:
+      - argument
+      - case
+      - condition
+      - return
+    ignored-functions:
+      - 'time.Duration'
