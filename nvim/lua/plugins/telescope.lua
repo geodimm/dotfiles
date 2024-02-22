@@ -104,6 +104,7 @@ return {
           repo = {
             list = {
               fd_opts = {
+                '--no-ignore-vcs',
                 '--exclude',
                 'vendor',
               },
