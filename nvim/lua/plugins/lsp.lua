@@ -23,14 +23,12 @@ local lsp_tools = {
   'actionlint',
   'golangci-lint',
   'hadolint',
-  'jsonlint',
   'markdownlint',
 
   -- formatters
   'shfmt',
   'stylua',
   'clang-format',
-  'rustfmt',
 
   -- code actions
   'gomodifytags',
@@ -219,7 +217,6 @@ return {
           -- diagnostics
           null_ls.builtins.diagnostics.golangci_lint,
           null_ls.builtins.diagnostics.hadolint,
-          null_ls.builtins.diagnostics.jsonlint,
           null_ls.builtins.diagnostics.markdownlint.with({
             extra_args = {
               '--config',
@@ -237,7 +234,6 @@ return {
             },
           }),
           null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.jq,
           null_ls.builtins.formatting.shfmt,
           null_ls.builtins.formatting.markdownlint.with({
             extra_args = {
@@ -245,11 +241,9 @@ return {
               vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
             },
           }),
-          null_ls.builtins.formatting.rustfmt,
 
           -- code actions
           null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.code_actions.shellcheck,
           null_ls.builtins.code_actions.gomodifytags,
 
           -- hover
