@@ -11,7 +11,7 @@ PLATFORM ?= $(shell uname | tr '[:upper:]' '[:lower:]')
 GROUP := $(shell if [ ${PLATFORM} == "linux" ]; then  echo "${USER}"; else echo "staff"; fi)
 HOMEBREW_PREFIX ?= $(shell if [ ${PLATFORM} == "linux" ]; then echo "/home/linuxbrew/.linuxbrew"; else echo "/opt/homebrew"; fi)
 
-all: packages dirs fonts git node terminal tools neovim ## Install and configure everything (default)
+all: packages dirs fonts git node rust terminal tools neovim ## Install and configure everything (default)
 
 help: ## Display help
 	@grep -hE '^[a-zA-Z_0-9%-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -41,6 +41,11 @@ nvm: ## Configure nvm
 
 node: nvm ## Install node
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" && nvm install stable
+
+rust: rust-install ## Install and configure Rust
+
+rust-install: ## Install Rust
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 
 terminal: kitty zsh ohmyzsh fzf ## Setup the terminal
 
