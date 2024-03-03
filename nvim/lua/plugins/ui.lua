@@ -10,7 +10,28 @@ return {
     'folke/noice.nvim',
     dependencies = {
       'MunifTanjim/nui.nvim',
-      'rcarriga/nvim-notify',
+      {
+        'rcarriga/nvim-notify',
+        opts = function()
+          local icons = require('user.icons')
+          return {
+            timeout = 3000,
+            stages = 'slide',
+            icons = {
+              DEBUG = icons.ui.bug,
+              ERROR = icons.ui.times,
+              INFO = icons.ui.info,
+              TRACE = icons.ui.pencil,
+              WARN = icons.ui.exclamation,
+            },
+          }
+        end,
+        config = function(_, opts)
+          local notify = require('notify')
+          vim.notify = notify
+          notify.setup(opts)
+        end,
+      },
     },
     opts = {
       lsp = {
@@ -100,28 +121,6 @@ return {
         }),
       },
     },
-  },
-  {
-    'rcarriga/nvim-notify',
-    opts = function()
-      local icons = require('user.icons')
-      return {
-        timeout = 3000,
-        stages = 'slide',
-        icons = {
-          DEBUG = icons.ui.bug,
-          ERROR = icons.ui.times,
-          INFO = icons.ui.info,
-          TRACE = icons.ui.pencil,
-          WARN = icons.ui.exclamation,
-        },
-      }
-    end,
-    config = function(_, opts)
-      local notify = require('notify')
-      vim.notify = notify
-      notify.setup(opts)
-    end,
   },
   {
     'folke/which-key.nvim',

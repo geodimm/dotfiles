@@ -4,11 +4,23 @@ return {
     dependencies = {
       'nvim-lua/popup.nvim',
       'nvim-lua/plenary.nvim',
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+        cond = function()
+          return vim.fn.executable('make') == 1
+        end,
+      },
+      {
+        'gbrlsnchs/telescope-lsp-handlers.nvim',
+      },
+      {
+        'cljoly/telescope-repo.nvim',
+      },
     },
     config = function()
       local telescope = require('telescope')
       local builtin = require('telescope.builtin')
-      local command = require('telescope.command')
       local sorters = require('telescope.sorters')
       local previewers = require('telescope.previewers')
       local themes = require('telescope.themes')
@@ -124,18 +136,20 @@ return {
       telescope.load_extension('repo')
 
       local keymap = require('utils.keymap')
-      keymap.set('n', '<leader>ft', command.load_command, { desc = 'Open telescope' })
+      keymap.set('n', '<leader>ft', builtin.builtin, { desc = 'Open telescope' })
       keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Files' })
       keymap.set('n', '<leader>fd', function()
         builtin.find_files({ search_dirs = { os.getenv('HOME') .. '/dotfiles' } })
       end, { desc = 'dotfiles' })
-      keymap.set('n', '<leader>f/', builtin.current_buffer_fuzzy_find, { desc = 'Current file' })
+      keymap.set('n', '<leader>f/', function()
+        builtin.current_buffer_fuzzy_find(themes.get_dropdown({ previewer = false }))
+      end, { desc = 'Current file' })
       keymap.set('n', '<leader>f*', builtin.grep_string, { desc = 'Word under cursor' })
       keymap.set('n', '<leader>fb', function()
         builtin.buffers({ show_all_buffers = true, sort_lastused = true })
       end, { desc = 'Buffers' })
       keymap.set('n', '<leader>fa', builtin.live_grep, { desc = 'Fuzzy live grep' })
-      keymap.set('n', '<leader>fm', builtin.keymaps, { desc = 'Keymapss' })
+      keymap.set('n', '<leader>fm', builtin.keymaps, { desc = 'Keymaps' })
       keymap.set('n', '<leader>fgb', builtin.git_branches, { desc = 'Branches' })
       keymap.set('n', '<leader>fgc', builtin.git_commits, { desc = 'Commits' })
       keymap.set('n', '<leader>fgf', builtin.git_files, { desc = 'Files' })
@@ -146,15 +160,5 @@ return {
       keymap.register_group('<leader>f', 'Find', {})
       keymap.register_group('<leader>fg', 'Git', {})
     end,
-  },
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make',
-  },
-  {
-    'gbrlsnchs/telescope-lsp-handlers.nvim',
-  },
-  {
-    'cljoly/telescope-repo.nvim',
   },
 }
