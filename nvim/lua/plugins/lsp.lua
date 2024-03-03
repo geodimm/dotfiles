@@ -1,5 +1,6 @@
 local icons = require('user.icons')
 local lsp_utils = require('utils.lsp')
+local feat = require('utils.feat')
 
 local lsp_tools = {
   -- language servers
@@ -26,9 +27,9 @@ local lsp_tools = {
   'markdownlint',
 
   -- formatters
+  'gci',
   'shfmt',
   'stylua',
-  'clang-format',
 
   -- code actions
   'gomodifytags',
@@ -157,7 +158,33 @@ local servers_config = {
 return {
   {
     'neovim/nvim-lspconfig',
-    dependencies = { 'williamboman/mason-lspconfig.nvim' },
+    dependencies = {
+      {
+        'williamboman/mason.nvim',
+        opts = {
+          ui = {
+            border = 'rounded',
+            icons = {
+              package_installed = icons.ui.check,
+              package_pending = icons.ui.play,
+              package_uninstalled = icons.ui.times,
+            },
+          },
+        },
+      },
+      {
+        'williamboman/mason-lspconfig.nvim',
+        dependencies = { 'williamboman/mason.nvim' },
+      },
+      {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        opts = {
+          ensure_installed = lsp_tools,
+          auto_update = true,
+          run_on_start = true,
+        },
+      },
+    },
     init = function()
       lsp_utils.customise_ui()
       lsp_utils.setup_vim_diagnostics()
@@ -177,28 +204,33 @@ return {
     end,
   },
   {
-    'williamboman/mason.nvim',
+    'stevearc/conform.nvim',
     opts = {
-      ui = {
-        border = 'rounded',
-        icons = {
-          package_installed = icons.ui.check,
-          package_pending = icons.ui.play,
-          package_uninstalled = icons.ui.times,
+      notify_on_error = true,
+      format_on_save = function(bufnr)
+        if feat.Formatting:is_disabled(bufnr) then
+          return
+        end
+        return {
+          timeout_ms = 500,
+          lsp_fallback = true,
+        }
+      end,
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        go = { 'gci' },
+        sh = { 'shfmt' },
+        markdown = { 'markdownlint' },
+        rust = { 'rustfmt' },
+      },
+      formatters = {
+        markdownlint = {
+          prepend_args = {
+            '--config',
+            vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
+          },
         },
       },
-    },
-  },
-  {
-    'williamboman/mason-lspconfig.nvim',
-    dependencies = { 'williamboman/mason.nvim' },
-  },
-  {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    opts = {
-      ensure_installed = lsp_tools,
-      auto_update = true,
-      run_on_start = true,
     },
   },
   {
@@ -225,22 +257,6 @@ return {
           }),
           null_ls.builtins.diagnostics.zsh,
           null_ls.builtins.diagnostics.actionlint,
-
-          -- formatting
-          null_ls.builtins.formatting.clang_format.with({
-            extra_args = {
-              '--style',
-              '{BasedOnStyle: llvm, IndentWidth: 4}',
-            },
-          }),
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.shfmt,
-          null_ls.builtins.formatting.markdownlint.with({
-            extra_args = {
-              '--config',
-              vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
-            },
-          }),
 
           -- code actions
           null_ls.builtins.code_actions.refactoring,

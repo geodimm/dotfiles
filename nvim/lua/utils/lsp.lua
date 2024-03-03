@@ -50,7 +50,6 @@ local function configure_keymaps(bufnr)
   keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
-  keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format', buffer = bufnr })
   keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
   keymap.set('n', '<leader>cl', vim.lsp.codelens.refresh, { desc = 'Refresh codelens', buffer = bufnr })
   keymap.set('n', '<leader>rl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
@@ -137,44 +136,6 @@ local function configure_autocmds(client, bufnr)
       callback = vim.lsp.buf.clear_references,
     })
   end
-
-  if client.supports_method('textDocument/formatting') then
-    vim.api.nvim_create_augroup('user_lsp_document_format', { clear = false })
-    vim.api.nvim_clear_autocmds({
-      group = 'user_lsp_document_format',
-      buffer = bufnr,
-    })
-    local null_ls_command_prefix = 'NULL_LS'
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = 'user_lsp_document_format',
-      buffer = bufnr,
-      desc = 'format on save',
-      callback = function(_)
-        if feat.Formatting:is_disabled(bufnr) then
-          return
-        end
-        vim.lsp.buf.format({ bufnr = bufnr })
-
-        -- Workaround for gopls not organizing imports on vim.lsp.buf.format
-        -- Call the organizeImports codeActions for *.go files
-        if vim.bo.filetype == 'go' then
-          local params = vim.lsp.util.make_range_params()
-          params.context = { only = { 'source.organizeImports' } }
-          ---@diagnostic disable-next-line: param-type-mismatch
-          local result = vim.lsp.buf_request_sync(bufnr, 'textDocument/codeAction', params, 5000)
-          for _, res in pairs(result or {}) do
-            for _, r in pairs(res.result or {}) do
-              if r.edit then
-                vim.lsp.util.apply_workspace_edit(r.edit, client.offset_encoding)
-              elseif r.command:sub(1, #null_ls_command_prefix) ~= null_ls_command_prefix then
-                vim.lsp.buf.execute_command(r.command)
-              end
-            end
-          end
-        end
-      end,
-    })
-  end
 end
 
 -- Use an on_attach function to only map the following keys
@@ -215,7 +176,8 @@ end
 
 -- Create config that activates keymaps and enables snippet support
 local function create_config(servers, server)
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
   local opts = {
     capabilities = capabilities,
