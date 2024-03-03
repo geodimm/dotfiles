@@ -199,9 +199,8 @@ return {
     config = function(_, opts)
       local toggleterm = require('toggleterm')
 
-      vim.api.nvim_create_augroup('user_toggleterm', { clear = true })
       vim.api.nvim_create_autocmd('TermOpen', {
-        group = 'user_toggleterm',
+        group = vim.api.nvim_create_augroup('user_toggleterm', { clear = true }),
         desc = 'configure toggleterm keymaps',
         pattern = 'term://*',
         callback = function()
