@@ -218,7 +218,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        go = { 'gci' },
+        go = { 'gofumpt', 'goimports' },
         sh = { 'shfmt' },
         markdown = { 'markdownlint' },
         rust = { 'rustfmt' },
