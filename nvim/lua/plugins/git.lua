@@ -1,5 +1,6 @@
 return {
   { 'tpope/vim-fugitive' },
+  { 'sindrets/diffview.nvim' },
   {
     'rhysd/git-messenger.vim',
     init = function()
