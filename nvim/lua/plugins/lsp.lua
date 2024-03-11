@@ -28,6 +28,8 @@ local lsp_tools = {
 
   -- formatters
   'gci',
+  'goimports',
+  'gofumpt',
   'shfmt',
   'stylua',
 
