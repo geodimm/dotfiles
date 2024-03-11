@@ -28,7 +28,7 @@ vim.opt.shortmess = {
 }
 
 -- Timings {{{1
-vim.opt.updatetime = 100
+vim.opt.updatetime = 50
 vim.opt.timeout = true
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
@@ -56,9 +56,10 @@ vim.opt.diffopt:append({
 })
 
 -- Folds {{{1
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldlevelstart = 20 -- Always start editing with no folds closed
+vim.o.foldcolumn = 'auto'
+vim.o.foldmethod = 'indent'
+vim.o.foldlevel = 99
+vim.o.foldenable = false
 
 -- Display {{{1
 vim.opt.confirm = true -- Raise a dialog when an operation has to be confirmed
@@ -85,7 +86,7 @@ vim.opt.listchars = {
 }
 
 -- Indentation {{{1
-vim.opt.wrap = true -- wrap lines longer than the width of the window
+vim.opt.wrap = false -- wrap lines longer than the width of the window
 vim.opt.expandtab = true -- Use the appropriate number of spaces to insert a <Tab>
 vim.opt.autoindent = true -- Copy indent from current line when starting a new line
 vim.opt.smarttab = true -- Makes tabbing smarter
@@ -101,7 +102,7 @@ vim.opt.mousefocus = true
 vim.opt.mousemodel = 'extend'
 
 -- Match and search {{{1
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.opt.magic = true
 vim.opt.ignorecase = true
