@@ -47,7 +47,7 @@ rust: rust-install ## Install and configure Rust
 rust-install: ## Install Rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 
-terminal: kitty zsh ohmyzsh fzf ## Setup the terminal
+terminal: kitty zsh ohmyzsh ## Setup the terminal
 
 kitty: kitty-install kitty-configure ## Install and configure Kitty
 
@@ -75,9 +75,6 @@ ohmyzsh-install: ## Install Oh My Zsh
 
 ohmyzsh-configure: ## Configure Oh My Zsh
 	@./scripts/ohmyzsh.sh configure
-
-fzf: ## Configure FZF
-	"${HOMEBREW_PREFIX}/opt/fzf/install" --no-bash --no-fish --key-bindings --completion --no-update-rc
 
 tools: bat tig jqp golangci-lint
 

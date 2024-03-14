@@ -90,9 +90,7 @@ umask 022
 # Source files {{{2
 
 # Apply FZF configuration
-if [[ -f "${HOME}/.fzf.zsh" ]]; then
-    source "${HOME}/.fzf.zsh"
-fi
+eval "$(fzf --zsh)"
 
 # Load any extra settings
 if [[ -f "${HOME}/dotfiles/zsh/extras" ]]; then
