@@ -23,6 +23,7 @@ require('lazy').setup({
 }, {
   ui = {
     border = 'rounded',
+    backdrop = 100,
   },
   install = {
     colorscheme = { 'catppuccin-macchiato' },
