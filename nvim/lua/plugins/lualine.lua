@@ -94,7 +94,7 @@ return {
               'filetype',
               icon_only = true,
               icon = { align = 'left' },
-              color = {},
+              color = { bg = theme.normal.b.bg },
               separator = section_separator,
               padding = 0,
             },
@@ -104,7 +104,7 @@ return {
               newfile_status = true,
               symbols = icons.file,
               color = function()
-                return vim.bo.modified and { fg = colors.yellow } or {}
+                return vim.bo.modified and { fg = colors.yellow, bg = theme.normal.b.bg } or { bg = theme.normal.b.bg }
               end,
               separator = section_separator,
               padding = { left = 1 },
