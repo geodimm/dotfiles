@@ -96,14 +96,14 @@ local function configure_keymaps(bufnr)
   keymap.set('n', '<leader>ceh', function()
     if vim.lsp.inlay_hint then
       vim.notify('Enabling inlay hints for buffer', vim.log.levels.INFO)
-      vim.lsp.inlay_hint(bufnr, true)
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     end
     feat.InlayHints:set(bufnr, true)
   end, { desc = 'Enable inlay hints', buffer = bufnr })
   keymap.set('n', '<leader>cdh', function()
     if vim.lsp.inlay_hint then
       vim.notify('Disabling inlay hints for buffer', vim.log.levels.INFO)
-      vim.lsp.inlay_hint(bufnr, false)
+      vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
     end
     feat.InlayHints:set(bufnr, false)
   end, { desc = 'Disable inlay hints', buffer = bufnr })
@@ -170,7 +170,7 @@ local function on_attach(client, bufnr)
   end
 
   if vim.lsp.inlay_hint and client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint(bufnr, true)
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 end
 
