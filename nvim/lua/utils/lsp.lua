@@ -170,7 +170,7 @@ local function on_attach(client, bufnr)
   end
 
   if vim.lsp.inlay_hint and client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
   end
 end
 
