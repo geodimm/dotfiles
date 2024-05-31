@@ -19,4 +19,8 @@ return {
   { 'bfrg/vim-jq' },
   { 'mracos/mermaid.vim' },
   { 'bfontaine/Brewfile.vim' },
+  {
+    'fabridamicelli/cronex.nvim',
+    opts = {},
+  },
 }
