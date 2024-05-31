@@ -24,7 +24,7 @@ return {
       local sorters = require('telescope.sorters')
       local previewers = require('telescope.previewers')
       local themes = require('telescope.themes')
-      local trouble = require('trouble.providers.telescope')
+      local trouble = require('trouble.sources.telescope')
 
       local icons = require('user.icons')
       telescope.setup({
@@ -67,8 +67,8 @@ return {
           qflist_previewer = previewers.vim_buffer_qflist.new,
           dynamic_preview_title = true,
           mappings = {
-            i = { ['<C-r>'] = trouble.open_with_trouble },
-            n = { ['<C-r>'] = trouble.open_with_trouble },
+            i = { ['<C-r>'] = trouble.open },
+            n = { ['<C-r>'] = trouble.open },
           },
         },
         pickers = {
