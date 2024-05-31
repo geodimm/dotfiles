@@ -152,15 +152,17 @@ return {
     end,
     keys = {
       { '<leader>xx', '<cmd>Trouble<CR>', desc = 'Open' },
-      { '<leader>xw', '<cmd>Trouble workspace_diagnostics<CR>', desc = 'Workspace diagnostics' },
-      { '<leader>xd', '<cmd>Trouble document_diagnostics<CR>', desc = 'Document diagnostics' },
-      { '<leader>xl', '<cmd>Trouble loclist<CR>', desc = 'Loclist' },
-      { '<leader>xq', '<cmd>Trouble quickfix<CR>', desc = 'Quickfix' },
-      { '<leader>gR', '<cmd>Trouble lsp_references<CR>', desc = 'References (Trouble)' },
+      { '<leader>xw', '<cmd>Trouble diagnostics toggle<CR>', desc = 'Workspace diagnostics' },
+      { '<leader>xd', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>', desc = 'Document diagnostics' },
+      { '<leader>xl', '<cmd>Trouble loclist toggle<CR>', desc = 'Loclist' },
+      { '<leader>xq', '<cmd>Trouble quickfix toggle<CR>', desc = 'Quickfix' },
+      {
+        '<leader>gR',
+        '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
+        desc = 'LSP Definitions / references',
+      },
     },
-    opts = {
-      use_diagnostic_signs = true,
-    },
+    opts = {},
   },
   {
     'akinsho/nvim-toggleterm.lua',
