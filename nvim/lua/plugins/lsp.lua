@@ -91,14 +91,6 @@ local servers_config = {
     }
   end,
   lua_ls = function()
-    local ok, neodev = pcall(require, 'neodev')
-    if not ok then
-      vim.notify("Cannot import 'neodev'. Using empty config", vim.log.levels.WARN)
-      return {}
-    end
-
-    neodev.setup({})
-
     return {
       settings = {
         Lua = {
@@ -281,5 +273,4 @@ return {
       },
     },
   },
-  { 'folke/neodev.nvim' },
 }
