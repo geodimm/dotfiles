@@ -1,7 +1,6 @@
 --reverse
 --cycle
 --no-separator
---height=-1
 --bind='alt-a:select-all,alt-d:deselect-all'
 --tiebreak=index
 --info=inline
