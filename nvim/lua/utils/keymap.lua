@@ -17,7 +17,7 @@ local function register_group(prefix, name, opts)
     return
   end
 
-  wk.register({ [prefix] = { name = name } }, opts)
+  wk.add({ prefix, group = name }, opts)
 end
 
 M.set = set
