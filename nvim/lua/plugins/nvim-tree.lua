@@ -72,6 +72,11 @@ return {
               border = 'rounded',
             },
           },
+          open_file = {
+            window_picker = {
+              enable = false,
+            },
+          },
         },
       }
     end,
