@@ -15,7 +15,7 @@ return {
         opts = function()
           local icons = require('user.icons')
           return {
-            timeout = 3000,
+            timeout = 2000,
             stages = 'slide',
             icons = {
               DEBUG = icons.ui.bug,
