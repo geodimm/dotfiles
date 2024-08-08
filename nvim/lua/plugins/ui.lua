@@ -155,7 +155,7 @@ return {
       { '<leader>xq', '<cmd>Trouble quickfix toggle<CR>', desc = 'Quickfix' },
       {
         '<leader>gR',
-        '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
+        '<cmd>Trouble lsp toggle focus=false win.position=bottom<CR>',
         desc = 'LSP Definitions / references',
       },
     },
