@@ -61,7 +61,7 @@ return {
       cmp.setup({
         enabled = function()
           local disabled = false
-          disabled = disabled or (vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt')
+          disabled = disabled or (vim.api.nvim_get_option_value('buftype', { buf = 0 }) == 'prompt')
           disabled = disabled or (vim.fn.reg_recording() ~= '')
           disabled = disabled or (vim.fn.reg_executing() ~= '')
           disabled = disabled or context.in_syntax_group('Comment')
@@ -195,16 +195,15 @@ return {
         for kind, _ in pairs(lsp_types.CompletionItemKind) do
           if type(kind) == 'string' then
             local name = ('CmpItemKind%s'):format(kind)
-            local ok, hlgroup = pcall(vim.api.nvim_get_hl_by_name, name, true)
-            if ok then
-              hlgroup.reverse = true
-              vim.api.nvim_set_hl(0, name, hlgroup)
+            local hlinfo = vim.api.nvim_get_hl(0, { name = name })
+            if hlinfo then
+              vim.api.nvim_set_hl(0, name, { fg = hlinfo.fg, reverse = true })
             end
           end
         end
 
-        local fg = vim.api.nvim_get_hl_by_name('Label', true).foreground
-        vim.api.nvim_set_hl(0, 'CmpItemMenu', { foreground = fg })
+        local fg = vim.api.nvim_get_hl(0, { name = 'Label' }).fg
+        vim.api.nvim_set_hl(0, 'CmpItemMenu', { fg = fg })
       end
 
       vim.api.nvim_create_augroup('user_customise_cmp_colors', { clear = true })
