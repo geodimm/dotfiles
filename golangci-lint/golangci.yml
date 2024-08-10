@@ -1,8 +1,7 @@
 run:
   timeout: 5m
   tests: true
-  skip-dirs:
-    - vendor$
+  allow-parallel-runners: true
 output:
   print-linter-name: true
 issues:
@@ -10,6 +9,8 @@ issues:
   max-same-issues: 0
   exclude-use-default: true
   whole-files: true
+  exclude-dirs:
+    - vendor$
 linters:
   disable-all: true
   fast: false
@@ -19,7 +20,7 @@ linters:
     - gosimple
     - govet
     - ineffassign
-    - staticheck
+    - staticcheck
     - typecheck
     - unused
     # non-default
@@ -36,6 +37,7 @@ linters:
     - lll
     - nestif
     - nolintlint
+    - mnd
     - prealloc
 linters-settings:
   errcheck:
@@ -45,11 +47,11 @@ linters-settings:
     tab-width: 2
   gofumpt:
     extra-rules: false
-  gomnd:
+  mnd:
     checks:
       - argument
       - case
       - condition
       - return
     ignored-functions:
-      - 'time.Duration'
+      - "time.Duration"
