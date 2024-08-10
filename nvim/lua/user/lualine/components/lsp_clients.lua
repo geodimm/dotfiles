@@ -128,7 +128,7 @@ M.update_status = function(self)
   local progress = 0
   local client_names = {}
 
-  local active_clients = vim.lsp.get_active_clients({ bufnr = 0 })
+  local active_clients = vim.lsp.get_clients({ bufnr = 0 })
   for _, client in pairs(active_clients) do
     if client.name ~= 'null-ls' then
       table.insert(client_names, client.name)

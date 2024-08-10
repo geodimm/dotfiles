@@ -181,7 +181,7 @@ return {
       end,
       highlights = {
         FloatBorder = {
-          guifg = vim.api.nvim_get_hl_by_name('FloatBorder', true).foreground,
+          guifg = vim.api.nvim_get_hl(0, { name = 'FloatBorder' }).fg,
           guibg = '',
         },
       },
