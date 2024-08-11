@@ -10,7 +10,7 @@ local function configure_keymaps(bufnr)
   feat.InlayHints:set(bufnr, true)
 
   -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
 
   local diagnostic_float_opts = {
     focusable = false,
@@ -85,12 +85,12 @@ local function configure_keymaps(bufnr)
   end, { desc = 'Disable formatting', buffer = bufnr })
   keymap.set('n', '<leader>ced', function()
     vim.notify('Enabling diagnostics for buffer', vim.log.levels.INFO)
-    vim.diagnostic.enable(bufnr)
+    vim.diagnostic.enable(true, { bufnr = bufnr })
     feat.Diagnostics:set(bufnr, true)
   end, { desc = 'Enable diagnostics', buffer = bufnr })
   keymap.set('n', '<leader>cdd', function()
     vim.notify('Disabling diagnostics for buffer', vim.log.levels.INFO)
-    vim.diagnostic.disable(bufnr)
+    vim.diagnostic.enable(false, { bufnr = bufnr })
     feat.Diagnostics:set(bufnr, false)
   end, { desc = 'Disable diagnostics', buffer = bufnr })
   keymap.set('n', '<leader>ceh', function()
