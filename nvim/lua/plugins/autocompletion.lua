@@ -109,7 +109,9 @@ return {
             local strings = vim.split(kind.kind, '%s', { trimempty = true })
             kind.kind = ' ' .. strings[1] .. ' '
             local menu = kind.menu
-            kind.menu = ' ' .. strings[2]
+            if #strings > 1 then
+              kind.menu = ' ' .. strings[2]
+            end
             if menu then
               kind.menu = kind.menu .. ' ' .. menu
             end
