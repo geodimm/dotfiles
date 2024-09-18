@@ -26,7 +26,6 @@ linters:
     # non-default
     - asciicheck
     - bodyclose
-    - depguard
     - dogsled
     - exportloopref
     - goconst
