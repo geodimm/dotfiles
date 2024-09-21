@@ -236,6 +236,7 @@ return {
       require('luasnip.loaders.from_vscode').lazy_load()
     end,
     dependencies = { 'rafamadriz/friendly-snippets' },
+    build = 'make install_jsregexp',
   },
   {
     'saadparwaiz1/cmp_luasnip',
