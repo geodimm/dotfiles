@@ -22,7 +22,7 @@ local function get_github_repo()
 end
 
 local function get_main_branch()
-  local result = trim_space(vim.fn.system('git symbolic-ref refs/remotes/origin/HEAD'))
+  local result = trim_space(vim.fn.system('git symbolic-ref HEAD'))
   local parts = {}
   for part in string.gmatch(result, '([^/]+)') do
     table.insert(parts, part)
@@ -32,7 +32,7 @@ local function get_main_branch()
 end
 
 local function generate_github_link()
-  local repo_root = vim.fs.dirname(vim.fs.find('.git', { upward = true })[1])
+  local repo_root = vim.fs.root(0, '.git')
   local repo = get_github_repo()
   local branch = get_main_branch()
   local path = string.sub(vim.fn.expand('%:p'), string.len(repo_root .. '/') + 1)
