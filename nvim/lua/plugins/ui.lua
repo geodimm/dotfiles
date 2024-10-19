@@ -5,7 +5,13 @@ return {
     cmd = 'ColorizerToggle',
     config = true,
   },
-  { 'goolord/alpha-nvim' },
+  {
+    'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('alpha').setup(require('alpha.themes.startify').config)
+    end,
+  },
   {
     'folke/noice.nvim',
     dependencies = {
