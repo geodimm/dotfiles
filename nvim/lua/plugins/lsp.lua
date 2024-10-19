@@ -48,34 +48,31 @@ local servers_config = {
     return {
       settings = {
         gopls = {
+          -- build
           buildFlags = buildFlags,
+          -- formatting
+          gofumpt = true,
+          -- ui
           codelenses = {
-            tidy = true,
-            vendor = true,
-            generate = true,
-            regenerate_cgo = true,
-            upgrade_dependency = true,
             gc_details = true,
             test = true,
-            run_vulncheck_exp = true,
-          },
-          analyses = {
-            useany = true,
-            nilness = true,
-            unusedparams = true,
-            unusedvariable = true,
-            unusedwrite = true,
-            shadow = true,
+            run_govulncheck = true,
           },
           semanticTokens = true,
-          gofumpt = true,
-          staticcheck = true,
-          importShortcut = 'Both',
-          completionDocumentation = true,
-          linksInHover = true,
+          -- completion
           usePlaceholders = true,
-          experimentalPostfixCompletions = true,
+          -- diagnostic
+          analyses = {
+            useany = true,
+            unusedvariable = true,
+            shadow = true,
+          },
+          staticcheck = true,
+          vulncheck = 'Imports',
+          -- documentation
           hoverKind = 'FullDocumentation',
+          linksInHover = true,
+          -- inlay hints
           hints = {
             assignVariableTypes = true,
             compositeLiteralFields = true,
@@ -85,6 +82,8 @@ local servers_config = {
             parameterNames = true,
             rangeVariableTypes = true,
           },
+          -- navigation
+          importShortcut = 'Both',
         },
         tags = { skipUnexported = true },
       },
@@ -205,7 +204,7 @@ return {
           return
         end
         return {
-          timeout_ms = 1000,
+          timeout_ms = 5000,
           lsp_fallback = true,
         }
       end,
