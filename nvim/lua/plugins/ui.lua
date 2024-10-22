@@ -16,28 +16,6 @@ return {
     'folke/noice.nvim',
     dependencies = {
       'MunifTanjim/nui.nvim',
-      {
-        'rcarriga/nvim-notify',
-        opts = function()
-          local icons = require('user.icons')
-          return {
-            timeout = 2000,
-            stages = 'slide',
-            icons = {
-              DEBUG = icons.ui.bug,
-              ERROR = icons.ui.times,
-              INFO = icons.ui.info,
-              TRACE = icons.ui.pencil,
-              WARN = icons.ui.exclamation,
-            },
-          }
-        end,
-        config = function(_, opts)
-          local notify = require('notify')
-          vim.notify = notify
-          notify.setup(opts)
-        end,
-      },
     },
     opts = {
       lsp = {
@@ -71,23 +49,8 @@ return {
       },
       routes = {
         {
-          filter = {
-            any = {
-              { event = 'msg_show', find = '%d+L, %d+B' },
-              { event = 'msg_show', kind = '', find = 'fewer lines' },
-              { event = 'msg_show', kind = '', find = 'more line' },
-              { event = 'msg_show', kind = '', find = 'more lines' },
-            },
-          },
-          opts = { skip = true },
-        },
-        {
           filter = { cmdline = 'Inspect' },
           view = 'split',
-        },
-        {
-          filter = { event = 'msg_showmode' },
-          view = 'notify',
         },
       },
       views = {
