@@ -186,11 +186,7 @@ return {
     end,
   },
   {
-    'windwp/nvim-spectre',
-    dependencies = {
-      'nvim-lua/popup.nvim',
-      'nvim-lua/plenary.nvim',
-    },
+    'MagicDuck/grug-far.nvim',
     init = function()
       local keymap = require('utils.keymap')
       keymap.register_group('<leader>s', 'Search', {})
@@ -200,21 +196,21 @@ return {
       {
         '<leader>sr',
         function()
-          require('spectre').open()
+          require('grug-far').open()
         end,
         desc = 'Search in project',
       },
       {
         '<leader>sw',
         function()
-          require('spectre').open_visual({ select_word = true })
+          require('grug-far').open({ prefills = { search = vim.fn.expand('<cword>') } })
         end,
         desc = 'Search for word under cursor',
       },
       {
         '<leader>sw',
         function()
-          require('spectre').open_visual()
+          require('grug-far').with_visual_selection()
         end,
         desc = 'Search for selection',
         mode = { 'v', 'x' },
@@ -222,20 +218,21 @@ return {
       {
         '<leader>sf',
         function()
-          require('spectre').open_file_search()
+          require('grug-far').open({ prefills = { paths = vim.fn.expand('%') } })
         end,
         desc = 'Search in current file',
       },
-    },
-    opts = {
-      mapping = {
-        ['send_to_qf'] = {
-          map = '<M-q>',
-          cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-          desc = 'send all item to quickfix',
-        },
+      {
+        '<leader>sa',
+        function()
+          require('grug-far').open({ engine = 'astgrep' })
+        end,
+        desc = 'Search with ast-grep engine',
       },
     },
+    config = function(_, opts)
+      require('grug-far').setup(opts)
+    end,
   },
   {
     'echasnovski/mini.indentscope',
