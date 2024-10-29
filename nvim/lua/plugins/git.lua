@@ -47,15 +47,10 @@ return {
       local icons = require('user.icons')
 
       gitsigns.setup({
-        signs = {
-          add = { text = '▌' },
-          change = { text = '▌' },
-          delete = { text = '▌' },
-          topdelete = { text = '▌' },
-          changedelete = { text = '▌' },
-          untracked = { text = '▌' },
+        attach_to_untracked = true,
+        diff_opts = {
+          internal = false,
         },
-        diff_opts = { internal = true },
         current_line_blame = true,
         current_line_blame_formatter = ' ' .. icons.git.compare .. ' <author>, <author_time:%Y-%m-%d> - <summary>',
         preview_config = {
