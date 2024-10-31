@@ -230,6 +230,9 @@ return {
         desc = 'Search with ast-grep engine',
       },
     },
+    opts = {
+      startInInsertMode = false,
+    },
     config = function(_, opts)
       require('grug-far').setup(opts)
     end,
