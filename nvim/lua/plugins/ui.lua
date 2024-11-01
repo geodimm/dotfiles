@@ -1,5 +1,5 @@
 return {
-  { 'kyazdani42/nvim-web-devicons' },
+  { 'nvim-tree/nvim-web-devicons' },
   {
     'norcalli/nvim-colorizer.lua',
     cmd = 'ColorizerToggle',
@@ -111,7 +111,7 @@ return {
   },
   {
     'folke/trouble.nvim',
-    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
       local keymap = require('utils.keymap')
       keymap.register_group('<leader>x', 'Trouble', {})
