@@ -120,7 +120,7 @@ local servers_config = {
             ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
             ['https://json.schemastore.org/yamllint.json'] = '/*yamllint.y*ml',
             ['https://json.schemastore.org/markdownlint.json'] = '*markdownlint.y*ml',
-            ['https://raw.githubusercontent.com/GoogleContainerTools/skaffold/master/docs/content/en/schemas/v2beta12.json'] = '/*skaffold.y*ml',
+            ['https://raw.githubusercontent.com/GoogleContainerTools/skaffold/refs/heads/main/docs-v2/content/en/schemas/v2beta16.json'] = '/*skaffold.y*ml',
           },
           schemaStore = {
             url = 'https://www.schemastore.org/json',
