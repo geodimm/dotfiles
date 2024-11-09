@@ -16,41 +16,46 @@ linters:
   fast: false
   enable:
     # default
-    - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - typecheck
-    - unused
+    - errcheck # Errcheck is a program for checking for unchecked errors in Go code. These unchecked errors can be critical bugs in some cases.
+    - gosimple # Linter for Go source code that specializes in simplifying code.
+    - govet # Vet examines Go source code and reports suspicious constructs. It is roughly the same as 'go vet' and uses its passes.
+    - ineffassign # Detects when assignments to existing variables are not used.
+    - staticcheck # It's a set of rules from staticcheck. It's not the same thing as the staticcheck binary. The author of staticcheck doesn't support or approve the use of staticcheck as a library inside golangci-lint.
+    - unused # Checks Go code for unused constants, variables, functions and types.
     # non-default
-    - asciicheck
-    - bodyclose
-    - dogsled
-    - exportloopref
-    - goconst
-    - godot
-    - gofmt
-    - gofumpt
-    - goimports
-    - lll
-    - nestif
-    - nolintlint
-    - mnd
-    - prealloc
+    - asciicheck # Checks that all code identifiers does not have non-ASCII symbols in the name.
+    - bodyclose # Checks whether HTTP response body is closed successfully.
+    - copyloopvar # Copyloopvar is a linter detects places where loop variables are copied.
+    - contextcheck # Check whether the function uses a non-inherited context.
+    - dogsled # Checks assignments with too many blank identifiers (e.g. x, , , _, := f()).
+    - gci # Gci controls Go package import order and makes it always deterministic.
+    - goconst # Finds repeated strings that could be replaced by a constant.
+    - gocritic # Provides diagnostics that check for bugs, performance and style issues. Extensible without recompilation through dynamic rules. Dynamic rules are written declaratively with AST patterns, filters, report message and optional suggestion.
+    - godot # Check if comments end in a period.
+    - gofumpt # Gofumpt checks whether code was gofumpt-ed.
+    - gosec # Inspects source code for security problems.
+    - lll # Reports long lines.
+    - misspell # Finds commonly misspelled English words.
+    - mnd # An analyzer to detect magic numbers.
+    - nestif # Reports deeply nested if statements.
+    - nolintlint # Reports ill-formed or insufficient nolint directives.
+    - prealloc # Finds slice declarations that could potentially be pre-allocated.
 linters-settings:
   errcheck:
     check-blank: true
+  gci:
+    sections:
+      - standard
+      - default
+      - localmodule
+  gofumpt:
+    extra-rules: false
   lll:
     line-length: 120
     tab-width: 2
-  gofumpt:
-    extra-rules: false
   mnd:
     checks:
       - argument
       - case
       - condition
       - return
-    ignored-functions:
-      - "time.Duration"
