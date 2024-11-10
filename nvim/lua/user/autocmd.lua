@@ -29,4 +29,15 @@ vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufRead' }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  group = vim.api.nvim_create_augroup('user_filetype_mustache', { clear = true }),
+  desc = 'override mustache templates filetype to helm',
+  pattern = { 'mustache' },
+  callback = function()
+    if vim.fn.expand('%:e') == 'tpl' then
+      vim.opt_local.filetype = 'helm'
+    end
+  end,
+})
+
 --- }}}
