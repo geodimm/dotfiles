@@ -7,8 +7,11 @@ export KEYTIMEOUT=1
 # Set the system-wide editor
 export EDITOR=nvim
 
-# Set XDG_CONFIG_HOME
+# Set XDG base directories
 export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+export XDG_CACHE_HOME="${HOME}/.cache"
 
 # Set the GPG_TTY to the current TTY
 export GPG_TTY=${TTY}
