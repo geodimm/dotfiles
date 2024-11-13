@@ -3,9 +3,7 @@ return {
     'hrsh7th/nvim-cmp',
     config = function()
       local cmp = require('cmp')
-      local compare = require('cmp.config.compare')
       local context = require('cmp.config.context')
-      local types = require('cmp.types')
       local luasnip = require('luasnip')
       local lspkind = require('lspkind')
       local cmp_git = require('cmp_git')
@@ -34,27 +32,6 @@ return {
           luasnip.jump(-1)
         else
           fallback()
-        end
-      end
-
-      local function custom_kind_comparator(entry1, entry2)
-        local kind1 = entry1:get_kind()
-        local kind2 = entry2:get_kind()
-        kind1 = kind1 == types.lsp.CompletionItemKind.Text and 100 or kind1
-        kind2 = kind2 == types.lsp.CompletionItemKind.Text and 100 or kind2
-        if kind1 ~= kind2 then
-          if kind1 == types.lsp.CompletionItemKind.Snippet then
-            return false
-          end
-          if kind2 == types.lsp.CompletionItemKind.Snippet then
-            return true
-          end
-          local diff = kind1 - kind2
-          if diff < 0 then
-            return true
-          elseif diff > 0 then
-            return false
-          end
         end
       end
 
@@ -118,23 +95,6 @@ return {
 
             return kind
           end,
-        },
-
-        sorting = {
-          priority_weight = 2,
-          comparators = {
-            compare.exact,
-            compare.offset,
-            -- compare.scopes,
-            compare.score,
-            -- compare.recently_used,
-            -- compare.locality,
-            -- compare.kind,
-            custom_kind_comparator,
-            compare.sort_text,
-            compare.length,
-            compare.order,
-          },
         },
 
         sources = cmp.config.sources({
