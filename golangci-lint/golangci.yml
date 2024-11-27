@@ -37,7 +37,6 @@ linters:
     - gosec # Inspects source code for security problems.
     - lll # Reports long lines.
     - misspell # Finds commonly misspelled English words.
-    - mnd # An analyzer to detect magic numbers.
     - nestif # Reports deeply nested if statements.
     - nolintlint # Reports ill-formed or insufficient nolint directives.
     - prealloc # Finds slice declarations that could potentially be pre-allocated.
