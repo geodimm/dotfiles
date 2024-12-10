@@ -31,17 +31,17 @@ return {
       end
       local function next_hunk()
         if vim.wo.diff then
-          return ']c'
+          vim.cmd.normal({ ']c', bang = true })
+        else
+          gitsigns.nav_hunk('next')
         end
-        vim.schedule(gitsigns.next_hunk)
-        return '<Ignore>'
       end
       local function prev_hunk()
         if vim.wo.diff then
-          return '[c'
+          vim.cmd.normal({ '[c', bang = true })
+        else
+          gitsigns.nav_hunk('prev')
         end
-        vim.schedule(gitsigns.prev_hunk)
-        return '<Ignore>'
       end
 
       local icons = require('user.icons')
