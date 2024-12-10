@@ -68,8 +68,8 @@ return {
           keymap.set({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage hunk' })
           keymap.set('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'Undo stage hunk' })
           keymap.set('n', '<leader>ht', gitsigns.toggle_deleted, { desc = 'Toggle deleted' })
-          keymap.set('n', ']c', next_hunk, { desc = 'Next hunk', expr = true })
-          keymap.set('n', '[c', prev_hunk, { desc = 'Previous hunk', expr = true })
+          keymap.set('n', ']c', next_hunk, { desc = 'Next hunk' })
+          keymap.set('n', '[c', prev_hunk, { desc = 'Previous hunk' })
         end,
       })
     end,
