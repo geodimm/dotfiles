@@ -18,7 +18,6 @@ return {
       custom_highlights = function(colors)
         return {
           PmenuThumb = { bg = colors.blue },
-          DapUIFloatBorder = { link = 'FloatBorder' },
         }
       end,
     },
