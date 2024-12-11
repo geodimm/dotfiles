@@ -14,6 +14,7 @@ return {
         notify = true,
         which_key = true,
         grug_far = true,
+        blink_cmp = true,
       },
       custom_highlights = function(colors)
         return {
