@@ -176,8 +176,7 @@ end
 
 -- Create config that activates keymaps and enables snippet support
 local function create_config(servers, server)
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+  local capabilities = require('blink.cmp').get_lsp_capabilities()
 
   local opts = {
     capabilities = capabilities,
