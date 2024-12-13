@@ -33,6 +33,7 @@
   local fuchsia=13
   local aqua=14
   local white=15
+  # }}}
 
   LC_COLLATE=C # sort files in ASCIIbetical order
   for file in ~/dotfiles/zsh/p10k/segments/*; do

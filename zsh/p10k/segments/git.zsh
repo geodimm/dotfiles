@@ -1,5 +1,4 @@
 typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
-typeset -g POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 typeset -g POWERLEVEL9K_VCS_CLEAN_BACKGROUND=$black
 typeset -g POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$black
 typeset -g POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND=$black
@@ -21,6 +20,7 @@ function my_git_formatter() {
     local   modified='%F{yellow}'  # yellow foreground
     local  untracked='%F{blue}'    # blue foreground
     local conflicted='%F{red}'     # red foreground
+    local     action='%F{purple}'  # purple foreground
   else
     # Styling for incomplete and stale Git status.
     local       meta='%F{grey}'  # grey foreground
@@ -28,48 +28,49 @@ function my_git_formatter() {
     local   modified='%F{grey}'  # grey foreground
     local  untracked='%F{grey}'  # grey foreground
     local conflicted='%F{grey}'  # grey foreground
+    local     action='%F{grey}'  # grey foreground
   fi
 
   local res
 
   if [[ -n $VCS_STATUS_LOCAL_BRANCH ]]; then
     local branch=${(V)VCS_STATUS_LOCAL_BRANCH}
-    (( $#branch > 32 )) && branch[13,-13]="…"  # <-- this line
+    (( $#branch > 32 )) && branch[13,-13]="…"
     res+="${clean}${(g::)POWERLEVEL9K_VCS_BRANCH_ICON}${branch//\%/%%}"
   fi
 
-  if [[ -n $VCS_STATUS_TAG
-        && -z $VCS_STATUS_LOCAL_BRANCH  # <-- this line
-      ]]; then
+  if [[ -n $VCS_STATUS_TAG && -z $VCS_STATUS_LOCAL_BRANCH ]]; then
     local tag=${(V)VCS_STATUS_TAG}
-    (( $#tag > 32 )) && tag[13,-13]="…"  # <-- this line
-    res+="${meta}#${clean}${tag//\%/%%}"
+    (( $#tag > 32 )) && tag[13,-13]="…"
+    res+="${meta}󰓹 ${clean}${tag//\%/%%}"
   fi
 
-  [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_TAG ]] &&  # <-- this line
-    res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
+  if [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_TAG ]]; then
+    res+="${meta} ${clean}${VCS_STATUS_COMMIT[1,8]}"
+  fi
 
   if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
     res+="${meta}:${clean}${(V)VCS_STATUS_REMOTE_BRANCH//\%/%%}"
   fi
 
   if [[ $VCS_STATUS_COMMIT_SUMMARY == (|*[^[:alnum:]])(wip|WIP)(|[^[:alnum:]]*) ]]; then
-    res+=" ${modified}wip"
+    res+=" ${modified}󰖷 "
   fi
 
-  (( VCS_STATUS_COMMITS_BEHIND )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
-  (( VCS_STATUS_COMMITS_AHEAD && !VCS_STATUS_COMMITS_BEHIND )) && res+=" "
-  (( VCS_STATUS_COMMITS_AHEAD  )) && res+="${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
+  integer num_staged_modified='VCS_STATUS_NUM_STAGED - VCS_STATUS_NUM_STAGED_NEW - VCS_STATUS_NUM_STAGED_DELETED'
+  (( VCS_STATUS_COMMITS_BEHIND      )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
+  (( VCS_STATUS_COMMITS_AHEAD       )) && res+=" ${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
   (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
-  (( VCS_STATUS_PUSH_COMMITS_AHEAD && !VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" "
-  (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+="${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
-  (( VCS_STATUS_STASHES        )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
-  [[ -n $VCS_STATUS_ACTION     ]] && res+=" ${conflicted}${VCS_STATUS_ACTION}"
-  (( VCS_STATUS_NUM_CONFLICTED )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
-  (( VCS_STATUS_NUM_STAGED     )) && res+=" ${modified}+${VCS_STATUS_NUM_STAGED}"
-  (( VCS_STATUS_NUM_UNSTAGED   )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
-  (( VCS_STATUS_NUM_UNTRACKED  )) && res+=" ${untracked}${(g::)POWERLEVEL9K_VCS_UNTRACKED_ICON}${VCS_STATUS_NUM_UNTRACKED}"
-  (( VCS_STATUS_HAS_UNSTAGED == -1 )) && res+=" ${modified}─"
+  (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+=" ${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
+  (( VCS_STATUS_STASHES             )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
+  (( VCS_STATUS_ACTION              )) && res+=" ${action}${VCS_STATUS_ACTION}"
+  (( VCS_STATUS_NUM_CONFLICTED      )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
+  (( VCS_STATUS_NUM_STAGED_ADDED    )) && res+=" ${clean}+${VCS_STATUS_NUM_STAGED_ADDED}"
+  (( VCS_STATUS_NUM_STAGED_DELETED  )) && res+=" ${conflicted}-${VCS_STATUS_NUM_STAGED_DELETED}"
+  (( num_staged_modified            )) && res+=" ${modified}~${num_staged_modified}"
+  (( VCS_STATUS_NUM_UNSTAGED        )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
+  (( VCS_STATUS_NUM_UNTRACKED       )) && res+=" ${untracked}?${VCS_STATUS_NUM_UNTRACKED}"
+  (( VCS_STATUS_HAS_UNSTAGED == -1  )) && res+=" ${modified}─"
 
   typeset -g my_git_format=$res
 }
