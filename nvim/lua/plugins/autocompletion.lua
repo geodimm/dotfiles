@@ -42,6 +42,9 @@ return {
           selection = 'auto_insert',
         },
         menu = {
+          auto_show = function(ctx)
+            return ctx.mode ~= 'cmdline' or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+          end,
           border = 'rounded',
           draw = {
             treesitter = { 'lsp' },
