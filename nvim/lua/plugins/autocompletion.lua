@@ -44,7 +44,7 @@ return {
         menu = {
           border = 'rounded',
           draw = {
-            treesitter = true,
+            treesitter = { 'lsp' },
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' }, { 'source_name' } },
             components = {
               kind_icon = {
@@ -61,7 +61,7 @@ return {
         },
         documentation = {
           auto_show = true,
-          auto_show_delay_ms = 200,
+          auto_show_delay_ms = 100,
           window = {
             border = 'rounded',
           },
@@ -79,10 +79,18 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-        per_filetype = {
-          lua = { 'lsp', 'lazydev', 'path', 'snippets', 'buffer' },
-        },
+        default = function(ctx)
+          if vim.bo.filetype == 'lua' then
+            return { 'lsp', 'lazydev', 'path', 'snippets', 'buffer' }
+          end
+
+          local success, node = pcall(vim.treesitter.get_node)
+          if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
+            return { 'buffer' }
+          end
+
+          return { 'lsp', 'path', 'snippets', 'buffer' }
+        end,
         providers = {
           lazydev = {
             name = 'lazydev',
