@@ -95,6 +95,19 @@ return {
           return { 'lsp', 'path', 'snippets', 'buffer' }
         end,
         providers = {
+          lsp = {
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
+                  item.score_offset = item.score_offset - 2
+                end
+              end
+
+              return vim.tbl_filter(function(item)
+                return item.kind ~= require('blink.cmp.types').CompletionItemKind.Text
+              end, items)
+            end,
+          },
           lazydev = {
             name = 'lazydev',
             module = 'lazydev.integrations.blink',
