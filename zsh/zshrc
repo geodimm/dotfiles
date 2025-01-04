@@ -121,6 +121,20 @@ zstyle ':fzf-tab:*' prefix ''
 # Whether to automatically insert a space after the result.
 zstyle ':fzf-tab:*' insert-space false
 
+# Command line editing {{{2
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+function kitty_scrollback_edit_command_line() {
+  local VISUAL="${HOME}/.local/share/nvim/lazy/kitty-scrollback.nvim/scripts/edit_command_line.sh"
+  zle edit-command-line
+  zle kill-whole-line
+}
+
+zle -N kitty_scrollback_edit_command_line
+bindkey '^x^e' kitty_scrollback_edit_command_line
+bindkey -M vicmd ' ' kitty_scrollback_edit_command_line
+
 # Other {{{2
 
 # disable highlighting of pasted text

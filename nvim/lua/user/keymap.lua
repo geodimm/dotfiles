@@ -3,8 +3,8 @@ vim.g.maplocalleader = '\\'
 
 local keymap = require('utils.keymap')
 
-keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save' })
-keymap.set('v', '<leader>w', '<Esc>:w<CR>gv', { desc = 'Save' })
+keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save buffer' })
+keymap.set('v', '<leader>w', '<Esc>:w<CR>gv', { desc = 'Save buffer' })
 keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Close/Quit' })
 keymap.set('v', '<leader>q', '<Esc>:q<CR>gv', { desc = 'Close/Quit' })
 keymap.set('n', '<leader><CR>', ':noh<CR>', { desc = 'Turn off search highlights' })
@@ -21,10 +21,6 @@ keymap.set('n', 'j', "v:count == 0 ? 'gj' : '<Esc>'.v:count.'j'", { desc = 'Go t
 keymap.set('n', 'k', "v:count == 0 ? 'gk' : '<Esc>'.v:count.'k'", { desc = 'Go to previous wrapped line', expr = true })
 
 keymap.set('n', '<C-f>', ':vertical wincmd f<CR>', { desc = 'Open file under cursor' })
-keymap.set('n', '<M-j>', ':resize -2<CR>', { desc = 'Decrease window height' })
-keymap.set('n', '<M-k>', ':resize +2<CR>', { desc = 'Increase window height' })
-keymap.set('n', '<M-h>', ':vertical resize -10<CR>', { desc = 'Decrease window width' })
-keymap.set('n', '<M-l>', ':vertical resize +10<CR>', { desc = 'Increase window width' })
 keymap.set('n', '0', '^', { desc = 'Go to first non-whitespace character of the line' })
 keymap.set('n', 'Y', 'y$', { desc = 'Yank til end of line' })
 keymap.set('n', 'ZX', ':qa<CR>', { desc = 'Quitall' })

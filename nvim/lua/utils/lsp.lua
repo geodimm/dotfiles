@@ -110,6 +110,7 @@ local function configure_keymaps(bufnr)
 
   keymap.register_group('<leader>g', 'Goto', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr })
+  keymap.register_group('<leader>r', 'Run', { buffer = bufnr })
   keymap.register_group('<leader>ce', 'Enable features', { buffer = bufnr })
   keymap.register_group('<leader>cd', 'Disable features', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = 'v' })
