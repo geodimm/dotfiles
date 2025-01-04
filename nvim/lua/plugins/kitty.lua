@@ -35,12 +35,15 @@ return {
     },
     event = { 'User KittyScrollbackLaunch' },
     opts = {
-      status_window = {
-        show_timer = true,
-        icons = {
-          kitty = '󰄛 ',
-          heart = '󰣐 ',
-          nvim = ' ',
+      {
+        restore_options = true,
+        status_window = {
+          show_timer = true,
+          icons = {
+            kitty = '󰄛',
+            heart = '󰣐',
+            nvim = '',
+          },
         },
       },
     },
