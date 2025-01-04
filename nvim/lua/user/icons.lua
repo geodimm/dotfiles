@@ -64,6 +64,7 @@ M.git = {
     modified = M.ui.exclamation,
     removed = M.ui.minus,
     renamed = M.ui.arrow_right,
+    untracked = M.ui.question,
   },
 }
 

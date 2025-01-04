@@ -8,6 +8,7 @@ return {
       flavour = 'macchiato',
       transparent_background = true,
       integrations = {
+        fzf = true,
         lsp_trouble = true,
         mason = true,
         noice = true,
