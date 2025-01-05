@@ -231,33 +231,36 @@ return {
       'nvim-lua/plenary.nvim',
       'neovim/nvim-lspconfig',
     },
-    config = function()
+    opts = {
+      debug = false,
+      diagnostics_format = '#{m}',
+      on_attach = lsp_utils.on_attach,
+    },
+    config = function(_, opts)
       local null_ls = require('null-ls')
-      null_ls.setup({
-        debug = false,
-        diagnostics_format = '#{m}',
-        on_attach = lsp_utils.on_attach,
-        sources = {
-          -- diagnostics
-          null_ls.builtins.diagnostics.golangci_lint,
-          null_ls.builtins.diagnostics.hadolint,
-          null_ls.builtins.diagnostics.markdownlint.with({
-            extra_args = {
-              '--config',
-              vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
-            },
-          }),
-          null_ls.builtins.diagnostics.zsh,
-          null_ls.builtins.diagnostics.actionlint,
 
-          -- code actions
-          null_ls.builtins.code_actions.refactoring,
-          null_ls.builtins.code_actions.gomodifytags,
+      opts.sources = {
+        -- diagnostics
+        null_ls.builtins.diagnostics.golangci_lint,
+        null_ls.builtins.diagnostics.hadolint,
+        null_ls.builtins.diagnostics.markdownlint.with({
+          extra_args = {
+            '--config',
+            vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
+          },
+        }),
+        null_ls.builtins.diagnostics.zsh,
+        null_ls.builtins.diagnostics.actionlint,
 
-          -- hover
-          null_ls.builtins.hover.dictionary,
-        },
-      })
+        -- code actions
+        null_ls.builtins.code_actions.refactoring,
+        null_ls.builtins.code_actions.gomodifytags,
+
+        -- hover
+        null_ls.builtins.hover.dictionary,
+      }
+
+      null_ls.setup(opts)
     end,
   },
   {

@@ -3,7 +3,7 @@ return {
   {
     'norcalli/nvim-colorizer.lua',
     cmd = 'ColorizerToggle',
-    config = true,
+    opts = {},
   },
   {
     'goolord/alpha-nvim',
@@ -76,9 +76,9 @@ return {
   },
   {
     'folke/which-key.nvim',
-    opts = function()
+    opts = function(_, parent_opts)
       local icons = require('user.icons')
-      return {
+      local opts = {
         icons = {
           group = icons.ui.list_ul .. ' ',
           breadcrumb = icons.ui.breadcrumb,
@@ -90,6 +90,8 @@ return {
           padding = { 1, 1, 1, 1 },
         },
       }
+
+      return vim.tbl_deep_extend('force', parent_opts, opts)
     end,
   },
   {
@@ -161,9 +163,6 @@ return {
     opts = {
       startInInsertMode = false,
     },
-    config = function(_, opts)
-      require('grug-far').setup(opts)
-    end,
   },
   {
     'echasnovski/mini.indentscope',
@@ -172,8 +171,5 @@ return {
         delay = 0,
       },
     },
-    config = function(_, opts)
-      require('mini.indentscope').setup(opts)
-    end,
   },
 }

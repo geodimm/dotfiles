@@ -18,9 +18,9 @@ return {
         desc = 'Open file explorer',
       },
     },
-    opts = function()
+    opts = function(_, parent_opts)
       local icons = require('user.icons')
-      return {
+      local opts = {
         hijack_netrw = false,
         diagnostics = { enable = true, icons = icons.nerdtree },
         respect_buf_cwd = true,
@@ -79,6 +79,8 @@ return {
           },
         },
       }
+
+      return vim.tbl_deep_extend('force', parent_opts, opts)
     end,
   },
 }

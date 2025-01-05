@@ -4,8 +4,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
-    config = function()
-      local lualine = require('lualine')
+    opts = function(_, parent_opts)
       local strings = require('plenary.strings')
       local icons = require('user.icons')
       local colors = require('utils.color').colors(vim.g.colors_name)
@@ -40,7 +39,7 @@ return {
 
       local theme = require('lualine.themes.' .. vim.g.colors_name)
 
-      lualine.setup({
+      local opts = {
         options = {
           theme = vim.g.colors_name,
           section_separators = {
@@ -235,7 +234,9 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
-      })
+      }
+
+      return vim.tbl_deep_extend('force', parent_opts, opts)
     end,
   },
 }
