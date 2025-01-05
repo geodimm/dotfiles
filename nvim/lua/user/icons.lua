@@ -1,29 +1,18 @@
 local M = {}
 
 M.ui = {
-  prompt = '', -- nf-fa-chevron_right
-  search = '', -- nf-fa-search
   list_ul = '', -- nf-fa-list-ul
-  gear = '', --nf-fa-gear
   lightbulb = '', -- nf-cod-lightbulb
   tree = '', -- nf-fa-tree
-  calendar = '', -- nf-fa-calendar
   pencil = '', -- nf-fa-pencil
-  bug = '', -- nf-fa-bug
-  plug = '', -- nf-fa-plug
-  update = '󰚰', -- nf-md-update
   breadcrumb = '󰄾', -- nf-md-chevron_double_right
-  sign_out = '', -- nf-fa-sign_out
   check = '', -- nf-fa-check_circle
   play = '', -- nf-fa-play_circle
-  plus = '', -- nf-fa-plus_circle
-  minus = '', -- nf-fa-minus_circle
   times = '', -- nf-fa-times_circle
   arrow_right = '', -- nf-fa-arrow_circle_right
   info = '', -- nf-fa-info_circle
   exclamation = '', -- nf-fa-exclamation_circle
   question = '', -- nf-fa-question_circle
-  location = '', -- nf-cod-location
 }
 
 M.os = {
