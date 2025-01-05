@@ -54,10 +54,8 @@ return {
         extensions = {
           'fugitive',
           'lazy',
-          'nvim-dap-ui',
           'nvim-tree',
           'quickfix',
-          'toggleterm',
           'trouble',
         },
         sections = {
