@@ -1,7 +1,5 @@
 -- vim: foldmethod=marker
 
-local keymap = require('utils.keymap')
-
 -- Show current line in GitHub {{{1
 local function trim_space(s)
   return string.gsub(s, '%s+$', '')
@@ -58,12 +56,8 @@ end
 
 vim.api.nvim_create_user_command('ShowInGitHub', open_in_github, { nargs = 0 })
 
-keymap.set('n', '<leader>gg', vim.cmd.ShowInGitHub, { desc = 'Show in GitHub', silent = true })
-
 -- Close all buffers except the current one {{{1
 vim.api.nvim_create_user_command('BufOnly', 'silent! execute "%bd|e#|bd#"', { nargs = 0 })
-
-keymap.set('n', '<leader>b', vim.cmd.BufOnly, { desc = 'Close all other buffers' })
 
 -- Change directory to the .git root of the current buffer
 local function get_git_root()
@@ -76,6 +70,3 @@ vim.api.nvim_create_user_command('CdGitRoot', function()
   vim.api.nvim_set_current_dir(dir)
   vim.notify(string.format('Changed current directory to %s', dir), vim.log.levels.INFO)
 end, {})
-
-keymap.set('n', 'cd', vim.cmd.CdGitRoot, { desc = 'Change directory to Git root' })
--- }}}
