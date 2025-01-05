@@ -4,7 +4,7 @@ from kitty.tab_bar import DrawData, ExtraData, TabBarData, TabAccessor
 from kitty.utils import color_as_int
 
 
-MAGNIFYING_GLASS_ICON = '󰍉'
+MAGNIFYING_GLASS_ICON = ''
 LEFT_SEP, RIGHT_SEP = ('', '')
 
 

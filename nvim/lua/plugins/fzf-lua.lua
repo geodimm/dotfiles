@@ -8,7 +8,7 @@ return {
 
       opts = {
         globals = {
-          file_icon_padding = '',
+          file_icon_padding = ' ',
         },
         winopts = {
           preview = {
@@ -44,13 +44,13 @@ return {
         },
         git = {
           icons = {
-            ['M'] = { icon = icons.git.diff.modified, color = 'yellow' },
-            ['D'] = { icon = icons.git.diff.removed, color = 'red' },
-            ['A'] = { icon = icons.git.diff.added, color = 'green' },
-            ['R'] = { icon = icons.git.diff.renamed, color = 'yellow' },
-            ['C'] = { icon = 'C', color = 'yellow' },
-            ['T'] = { icon = 'T', color = 'magenta' },
-            ['?'] = { icon = icons.git.diff.untracked, color = 'magenta' },
+            ['M'] = { icon = icons.git.status.modified, color = 'yellow' },
+            ['D'] = { icon = icons.git.status.deleted, color = 'red' },
+            ['A'] = { icon = icons.git.status.added, color = 'green' },
+            ['R'] = { icon = icons.git.status.renamed, color = 'yellow' },
+            ['C'] = { icon = icons.git.status.copied, color = 'yellow' },
+            ['T'] = { icon = icons.git.status.filetype_changed, color = 'magenta' },
+            ['?'] = { icon = icons.git.status.untracked, color = 'magenta' },
           },
         },
       }

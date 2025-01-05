@@ -53,18 +53,18 @@ M.file = {
 }
 
 M.git = {
-  repositories = '󰳐', -- nf-md-source_repository_multiple
-  branch = '', -- nf-dev-git_branch
-  compare = '', -- nf-dev-git_compare
-  merge = '', -- nf-dev-git_merge
-  diff = {
-    diff = '', -- nf-oct-diff
-    added = M.ui.plus,
-    ignored = M.ui.times,
-    modified = M.ui.exclamation,
-    removed = M.ui.minus,
-    renamed = M.ui.arrow_right,
-    untracked = M.ui.question,
+  branch = '', -- nf-oct-git_branch
+  compare = '', -- nf-oct-git_compare
+  status = {
+    modified = '', -- nf-oct-diff_modified
+    filetype_changed = '', -- nf-oct-file-diff
+    added = '', -- nf-oct-diff_added
+    deleted = '', -- nf-oct-diff_removed
+    renamed = '', -- nf-oct-diff_renamed
+    copied = '', -- nf-oct-copy
+    unmerged = '', -- nf-oct-diff_modified
+    untracked = '', -- nf-oct-question
+    ignored = '', -- nf-oct-diff_ignored
   },
 }
 
@@ -103,24 +103,11 @@ M.lspconfig = {
   Warn = M.lsp.warn,
 }
 
-M.dap = {
-  DapBreakpoint = '', -- nf-cod-debug
-  DapBreakpointCondition = '', -- nf-cod-debug_breakpoint_conditional
-  DapBreakpointRejected = '', -- nf-cod-debug_breakpoint_unsupported
-  DapLogPoint = '', -- nf-cod-debug_breakpoint_log
-  DapStopped = '', -- nf-cod-debug_continue
-}
-
 M.nerdtree = {
   error = M.lsp.error,
   hint = M.lsp.hint,
   info = M.lsp.info,
   warning = M.lsp.warn,
-}
-
-M.telescope = {
-  prompt_prefix = M.ui.search .. ' ',
-  selection_caret = M.ui.prompt .. ' ',
 }
 
 return M

@@ -47,13 +47,13 @@ return {
           icons = {
             glyphs = {
               git = {
-                unstaged = icons.ui.exclamation,
-                staged = icons.ui.plus,
-                unmerged = icons.git.merge,
-                renamed = icons.ui.arrow_right,
-                untracked = icons.ui.question,
-                deleted = icons.ui.minus,
-                ignored = icons.ui.times,
+                unstaged = icons.git.status.modified,
+                staged = icons.git.status.added,
+                unmerged = icons.git.status.unmerged,
+                renamed = icons.git.status.renamed,
+                untracked = icons.git.status.untracked,
+                deleted = icons.git.status.deleted,
+                ignored = icons.git.status.ignored,
               },
             },
           },

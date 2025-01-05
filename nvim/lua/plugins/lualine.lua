@@ -84,7 +84,11 @@ return {
             {
               'diff',
               source = package.loaded.gitsigns and diff_source or nil,
-              symbols = vim.tbl_map(append_whitespace, icons.git.diff),
+              symbols = vim.tbl_map(append_whitespace, {
+                added = icons.git.status.added,
+                modified = icons.git.status.modified,
+                removed = icons.git.status.deleted,
+              }),
               color = { bg = theme.normal.b.bg },
               separator = section_separator,
               padding = { left = 1 },
