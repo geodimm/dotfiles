@@ -33,7 +33,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### completion
 
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
++ [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp)
 
 ### diagnostics
 
@@ -55,7 +55,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### fuzzy-finder
 
-+ [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
++ [ibhagwan/fzf-lua](https://dotfyle.com/plugins/ibhagwan/fzf-lua)
 
 ### git
 
@@ -98,7 +98,6 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 + [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
 + [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
 + [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
-+ [nvim-lua/popup.nvim](https://dotfyle.com/plugins/nvim-lua/popup.nvim)
 
 ### plugin-manager
 
@@ -110,8 +109,11 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### snippet
 
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 + [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
+
+### split-and-window
+
++ [mrjones2014/smart-splits.nvim](https://dotfyle.com/plugins/mrjones2014/smart-splits.nvim)
 
 ### startup
 
@@ -125,11 +127,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### terminal-integration
 
-+ [akinsho/nvim-toggleterm.lua](https://dotfyle.com/plugins/akinsho/nvim-toggleterm.lua)
-
-### test
-
-+ [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
++ [mikesmithgh/kitty-scrollback.nvim](https://dotfyle.com/plugins/mikesmithgh/kitty-scrollback.nvim)
 
 ### utility
 
