@@ -214,10 +214,8 @@ return {
               show_modified_status = true,
               filetype_names = {
                 NvimTree = 'NvimTree',
-                TelescopePrompt = 'Telescope',
                 lazy = 'Lazy',
                 alpha = 'Alpha',
-                ['dap-repl'] = 'DAP REPL',
               },
               buffers_color = {
                 active = { fg = colors.bg, bg = colors.blue },
