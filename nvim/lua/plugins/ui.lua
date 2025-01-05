@@ -114,61 +114,6 @@ return {
     opts = {},
   },
   {
-    'akinsho/nvim-toggleterm.lua',
-    branch = 'main',
-    keys = {
-      { '<leader>tt', vim.cmd.ToggleTerm, desc = 'Open terminal' },
-    },
-    init = function()
-      local keymap = require('utils.keymap')
-      keymap.register_group('<leader>t', 'Terminal', {})
-    end,
-    opts = {
-      size = function(term)
-        if term.direction == 'horizontal' then
-          return vim.o.lines * 0.25
-        elseif term.direction == 'vertical' then
-          return vim.o.columns * 0.3
-        end
-      end,
-      highlights = {
-        FloatBorder = {
-          guifg = vim.api.nvim_get_hl(0, { name = 'FloatBorder' }).fg,
-          guibg = '',
-        },
-      },
-      open_mapping = nil, -- [[<leader>tt]],
-      insert_mappings = false,
-      shade_terminals = false,
-      persist_size = false,
-      direction = 'horizontal',
-      close_on_exit = true,
-      shell = vim.o.shell,
-      float_opts = { border = 'curved', winblend = 0 },
-    },
-    config = function(_, opts)
-      local toggleterm = require('toggleterm')
-
-      vim.api.nvim_create_autocmd('TermOpen', {
-        group = vim.api.nvim_create_augroup('user_toggleterm', { clear = true }),
-        desc = 'configure toggleterm keymaps',
-        pattern = 'term://*',
-        callback = function()
-          local keymap_opts = { buffer = 0 }
-          vim.keymap.set('t', '<leader>tt', '<cmd>wincmd q<CR>', keymap_opts)
-          vim.keymap.set('t', 'jj', [[<C-\><C-n>]], keymap_opts)
-          vim.keymap.set('t', '<C-h>', [[<cmd>wincmd h<CR>]], keymap_opts)
-          vim.keymap.set('t', '<C-j>', [[<cmd>wincmd j<CR>]], keymap_opts)
-          vim.keymap.set('t', '<C-k>', [[<cmd>wincmd k<CR>]], keymap_opts)
-          vim.keymap.set('t', '<C-l>', [[<cmd>wincmd l<CR>]], keymap_opts)
-          vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], keymap_opts)
-        end,
-      })
-
-      toggleterm.setup(opts)
-    end,
-  },
-  {
     'MagicDuck/grug-far.nvim',
     init = function()
       local keymap = require('utils.keymap')
