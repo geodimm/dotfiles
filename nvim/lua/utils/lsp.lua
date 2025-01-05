@@ -66,8 +66,8 @@ local function configure_keymaps(bufnr)
   keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
-  keymap.set('n', '<leader>cl', vim.lsp.codelens.refresh, { desc = 'Refresh codelens', buffer = bufnr })
-  keymap.set('n', '<leader>rl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
+  keymap.set('n', '<leader>cu', vim.lsp.codelens.refresh, { desc = 'Refresh codelens', buffer = bufnr })
+  keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
 
   -- Diagnostics
   keymap.set('n', '[d', function()
@@ -125,7 +125,6 @@ local function configure_keymaps(bufnr)
 
   keymap.register_group('<leader>g', 'Goto', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr })
-  keymap.register_group('<leader>r', 'Run', { buffer = bufnr })
   keymap.register_group('<leader>ce', 'Enable features', { buffer = bufnr })
   keymap.register_group('<leader>cd', 'Disable features', { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = 'v' })
