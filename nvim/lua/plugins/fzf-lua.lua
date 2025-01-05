@@ -2,11 +2,11 @@ return {
   {
     'ibhagwan/fzf-lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function(plugin, opts)
+    opts = function(plugin, parent_opts)
       local fzf = require(plugin.name)
       local icons = require('user.icons')
 
-      opts = {
+      local opts = {
         globals = {
           file_icon_padding = ' ',
         },
@@ -55,7 +55,10 @@ return {
         },
       }
 
-      fzf.setup(opts)
+      return vim.tbl_deep_extend('force', parent_opts, opts)
+    end,
+    config = function(plugin, opts)
+      local fzf = require(plugin.name)
 
       local keymap = require('utils.keymap')
       keymap.set('n', '<leader>ft', fzf.builtin, { desc = 'Find anything' })
@@ -81,6 +84,8 @@ return {
 
       keymap.register_group('<leader>f', 'Find', {})
       keymap.register_group('<leader>fg', 'Git', {})
+
+      fzf.setup(opts)
     end,
   },
 }

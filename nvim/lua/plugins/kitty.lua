@@ -4,7 +4,7 @@ return {
     'mrjones2014/smart-splits.nvim',
     build = './kitty/install-kittens.bash',
     opts = {},
-    config = function()
+    config = function(_, opts)
       local keymap = require('utils.keymap')
       local smartsplits = require('smart-splits')
       keymap.set('n', '<A-h>', smartsplits.resize_left, { desc = 'Increase window width' })
@@ -22,6 +22,7 @@ return {
       -- keymap.set('n', '<leader><leader>j', smartsplits.swap_buf_down, { desc = 'Swap with down window' })
       -- keymap.set('n', '<leader><leader>k', smartsplits.swap_buf_up, { desc = 'Swap with up window' })
       -- keymap.set('n', '<leader><leader>l', smartsplits.swap_buf_right, { desc = 'Swap with right window' })
+      smartsplits.setup(opts)
     end,
   },
   {
