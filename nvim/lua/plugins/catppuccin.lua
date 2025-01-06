@@ -16,6 +16,10 @@ return {
         which_key = true,
         grug_far = true,
         blink_cmp = true,
+        mini = {
+          enabled = true,
+          indentscope_color = 'overlay2',
+        },
       },
       custom_highlights = function(colors)
         return {
