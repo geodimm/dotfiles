@@ -53,9 +53,3 @@ linters-settings:
   lll:
     line-length: 120
     tab-width: 2
-  mnd:
-    checks:
-      - argument
-      - case
-      - condition
-      - return
