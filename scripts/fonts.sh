@@ -20,16 +20,16 @@ function install_fonts() {
     esac
     install -d -m 0755 -o "${USER}" -g "${group}" "${fonts_dir}"
 
-    # Font: NerdFontsSymbolsOnly
-    # https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/NerdFontsSymbolsOnly
+    # Font: Monaspace Argon Var
+    # https://github.com/githubnext/monaspace/tree/master/fonts/variable/
     local install_dir="/tmp/fonts"
     rm -rf "${install_dir}" && mkdir -p "${install_dir}"
 
-    git clone --quiet --filter=blob:none --sparse "https://github.com/ryanoasis/nerd-fonts.git" "${install_dir}"/nerd-fonts
+    git clone --quiet --filter=blob:none --sparse "https://github.com/githubnext/monaspace.git" "${install_dir}"/monaspace
     (
-        cd "${install_dir}"/nerd-fonts
-        git sparse-checkout add patched-fonts/NerdFontsSymbolsOnly
-        find . -type f -name '*.ttf' ! -name '*Propo*' -exec cp "{}" "${fonts_dir}" \;
+        cd "${install_dir}"/monaspace
+        git sparse-checkout add fonts/variable/
+        find . -type f -name '*.ttf' -exec cp "{}" "${fonts_dir}" \;
     )
 
     if [[ "${PLATFORM}" == "linux" ]]; then
