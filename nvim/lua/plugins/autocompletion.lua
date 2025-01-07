@@ -136,6 +136,10 @@ return {
         },
       }
 
+      -- related issue: https://github.com/Saghen/blink.cmp/issues/542
+      opts.keymap.cmdline = vim.deepcopy(opts.keymap)
+      opts.keymap.cmdline['<CR>'] = {}
+
       return vim.tbl_deep_extend('force', parent_opts, opts)
     end,
     config = function(plugin, opts)
@@ -146,6 +150,8 @@ return {
         if hlinfo then
           vim.api.nvim_set_hl(0, name .. 'Reversed', { fg = hlinfo.fg, reverse = true })
         end
+
+        -- related PR: https://github.com/catppuccin/nvim/pull/809
         for _, hl in ipairs({ 'BlinkCmpMenuBorder', 'BlinkCmpDocBorder', 'BlinkCmpSignatureHelpBorder' }) do
           vim.api.nvim_set_hl(0, hl, { link = 'FloatBorder' })
         end
