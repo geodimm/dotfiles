@@ -6,6 +6,11 @@ set -o pipefail # don't hide errors within pipes
 
 PLATFORM="$(uname | tr '[:upper:]' '[:lower:]')"
 
+declare -a FONTS=(
+    "Monaspace=https://github.com/githubnext/monaspace.git"
+    "JetBrainsMono=https://github.com/JetBrains/JetBrainsMono.git"
+)
+
 function install_fonts() {
     local fonts_dir
     case "${PLATFORM}" in
@@ -20,17 +25,19 @@ function install_fonts() {
     esac
     install -d -m 0755 -o "${USER}" -g "${group}" "${fonts_dir}"
 
-    # Font: Monaspace Argon Var
-    # https://github.com/githubnext/monaspace/tree/master/fonts/variable/
     local install_dir="/tmp/fonts"
     rm -rf "${install_dir}" && mkdir -p "${install_dir}"
 
-    git clone --quiet --filter=blob:none --sparse "https://github.com/githubnext/monaspace.git" "${install_dir}"/monaspace
-    (
-        cd "${install_dir}"/monaspace
-        git sparse-checkout add fonts/variable/
-        find . -type f -name '*.ttf' -exec cp "{}" "${fonts_dir}" \;
-    )
+    for value in "${FONTS[@]}"; do
+        path="${value%%=*}"
+        repo="${value##*=}"
+        git clone --quiet --filter=blob:none --sparse "${repo}" "${install_dir}/${path}"
+        (
+            cd "${install_dir}/${path}"
+            git sparse-checkout add fonts/variable/
+            find . -type f -name '*.ttf' -exec cp "{}" "${fonts_dir}" \;
+        )
+    done
 
     if [[ "${PLATFORM}" == "linux" ]]; then
         if ! type -P "fc-cache" >/dev/null; then
