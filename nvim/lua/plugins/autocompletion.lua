@@ -58,7 +58,9 @@ return {
 
         completion = {
           list = {
-            selection = 'auto_insert',
+            selection = {
+              preselect = false,
+            },
           },
           menu = {
             auto_show = function(ctx)
