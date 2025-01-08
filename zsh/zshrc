@@ -35,9 +35,6 @@ plugins=(
 # Set the theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Use case-sensitive completion
-CASE_SENSITIVE="true"
-
 # Fix slow paste
 DISABLE_MAGIC_FUNCTIONS=true
 
