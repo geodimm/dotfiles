@@ -76,7 +76,7 @@ return {
       keymap.set('n', '<leader>fb', function()
         fzf.buffers({ sort_mru = true, sort_lastused = true })
       end, { desc = 'Buffers' })
-      keymap.set('n', '<leader>fa', fzf.live_grep, { desc = 'Fuzzy live grep' })
+      keymap.set('n', '<leader>fa', fzf.live_grep, { desc = 'Live grep' })
       keymap.set('n', '<leader>fm', fzf.keymaps, { desc = 'Keymaps' })
       keymap.set('n', '<leader>fgb', fzf.git_branches, { desc = 'Branches' })
       keymap.set('n', '<leader>fgc', fzf.git_commits, { desc = 'Commits' })
