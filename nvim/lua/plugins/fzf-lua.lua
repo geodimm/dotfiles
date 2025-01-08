@@ -53,6 +53,11 @@ return {
             ['?'] = { icon = icons.git.status.untracked, color = 'magenta' },
           },
         },
+        grep = {
+          actions = {
+            ['ctrl-r'] = { fzf.actions.toggle_ignore },
+          },
+        },
       }
 
       return vim.tbl_deep_extend('force', parent_opts, opts)
