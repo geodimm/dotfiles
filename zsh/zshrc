@@ -26,6 +26,7 @@ plugins=(
     you-should-use
     z
     zsh-autosuggestions
+    zsh-kitty
     zsh-nvm
     fzf-tab # fzf-tab should be the last plugin to bind "^I"
 )
