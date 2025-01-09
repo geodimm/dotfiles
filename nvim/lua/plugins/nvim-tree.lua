@@ -18,7 +18,7 @@ return {
         desc = 'Open file explorer',
       },
     },
-    opts = function(_, parent_opts)
+    config = function()
       local icons = require('user.icons')
       local opts = {
         hijack_netrw = false,
@@ -80,7 +80,7 @@ return {
         },
       }
 
-      return vim.tbl_deep_extend('force', parent_opts, opts)
+      require('nvim-tree').setup(opts)
     end,
   },
 }

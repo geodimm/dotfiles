@@ -7,7 +7,7 @@ return {
       'catppuccin/nvim', -- to customise highlights
     },
     version = 'v0.*',
-    opts = function(_, parent_opts)
+    config = function()
       local function has_words_before()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
@@ -142,10 +142,8 @@ return {
       opts.keymap.cmdline = vim.deepcopy(opts.keymap)
       opts.keymap.cmdline['<CR>'] = {}
 
-      return vim.tbl_deep_extend('force', parent_opts, opts)
-    end,
-    config = function(plugin, opts)
-      require(plugin.name).setup(opts)
+      require('blink.cmp').setup(opts)
+
       for _, kind in ipairs(require('blink.cmp.types').CompletionItemKind) do
         local name = 'BlinkCmpKind' .. kind
         local hlinfo = vim.api.nvim_get_hl(0, { name = name })

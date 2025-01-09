@@ -76,7 +76,7 @@ return {
   },
   {
     'folke/which-key.nvim',
-    opts = function(_, parent_opts)
+    config = function()
       local icons = require('user.icons')
       local opts = {
         icons = {
@@ -91,7 +91,7 @@ return {
         },
       }
 
-      return vim.tbl_deep_extend('force', parent_opts, opts)
+      require('which-key').setup(opts)
     end,
   },
   {
