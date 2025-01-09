@@ -23,19 +23,6 @@ return {
         fzf_opts = {
           ['--layout'] = false,
         },
-        keymap = {
-          actions = {
-            files = {
-              ['ctrl-q'] = 'select-all+accept',
-            },
-          },
-          builtin = {
-            ['ctrl-q'] = 'select-all+accept',
-          },
-          fzf = {
-            ['ctrl-q'] = 'select-all+accept',
-          },
-        },
         files = {
           cwd_prompt = false,
           actions = {
