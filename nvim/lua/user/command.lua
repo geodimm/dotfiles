@@ -80,6 +80,7 @@ local function lookup_in_repositories()
     return
   end
   local root = vim.g.user_repos_dir or vim.fn.expand('$HOME/repos')
+  local depth = vim.fs.basename(root) == 'repos' and '2' or '1'
   local _picker = 'files'
   local function toggle_action(_, opts)
     local o = vim.tbl_deep_extend('keep', { resume = true }, opts.__call_opts)
@@ -88,7 +89,7 @@ local function lookup_in_repositories()
   end
   fzf.files({
     cwd = root,
-    fd_opts = '--color=never --type d --follow --exclude .git --max-depth 2',
+    fd_opts = '--color=never --type d --follow --exclude .git --max-depth ' .. depth,
     actions = {
       ['ctrl-h'] = false,
       ['ctrl-g'] = {
