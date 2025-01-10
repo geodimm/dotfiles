@@ -7,9 +7,6 @@ return {
       local icons = require('user.icons')
 
       local opts = {
-        globals = {
-          file_icon_padding = ' ',
-        },
         winopts = {
           preview = {
             border = 'rounded',
