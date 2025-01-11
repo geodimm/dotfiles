@@ -44,8 +44,7 @@ fi
 
 # NVM
 export NVM_DIR="${HOME}/.nvm"
-export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('vim' 'nvim')
+export NVM_HOMEBREW="$(brew --prefix nvm)"
 
 # Append ~/bin directory to PATH
 if [[ ! "${PATH}" == *${HOME}/bin* ]]; then

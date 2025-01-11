@@ -21,6 +21,7 @@ plugins=(
     httpie
     kubectl
     npm
+    nvm
     terraform
     vi-mode
     you-should-use
@@ -132,6 +133,11 @@ function kitty_scrollback_edit_command_line() {
 zle -N kitty_scrollback_edit_command_line
 bindkey '^x^e' kitty_scrollback_edit_command_line
 bindkey -M vicmd ' ' kitty_scrollback_edit_command_line
+
+# nvm {{{2
+
+zstyle ':omz:plugins:nvm' lazy yes
+zstyle ':omz:plugins:nvm' lazy-cmd vim nvim
 
 # Other {{{2
 
