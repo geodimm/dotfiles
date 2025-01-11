@@ -39,7 +39,6 @@ alias up="${HOME}/dotfiles/scripts/update.sh"
 # git
 alias ggrep="git grep -n -I --break --heading -B0 -A0"
 alias ggrepi="ggrep --ignore-case"
-alias gu="git stash && git pull && git stash pop || true"
 
 # docker
 docker-clean() {
