@@ -13,7 +13,6 @@ declare -a ZSH_CUSTOM_PLUGINS=(
     "plugins/zsh-autosuggestions=https://github.com/zsh-users/zsh-autosuggestions"
     "plugins/zsh-completions=https://github.com/zsh-users/zsh-completions"
     "plugins/you-should-use=https://github.com/MichaelAquilina/zsh-you-should-use"
-    "plugins/zsh-nvm=https://github.com/lukechilds/zsh-nvm"
     "plugins/fzf-tab=https://github.com/Aloxaf/fzf-tab"
     "plugins/zsh-kitty=https://github.com/redxtech/zsh-kitty"
 )
