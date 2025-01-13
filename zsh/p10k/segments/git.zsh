@@ -65,7 +65,7 @@ function my_git_formatter() {
   (( VCS_STATUS_STASHES             )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
   (( VCS_STATUS_ACTION              )) && res+=" ${action}${VCS_STATUS_ACTION}"
   (( VCS_STATUS_NUM_CONFLICTED      )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
-  (( VCS_STATUS_NUM_STAGED_ADDED    )) && res+=" ${clean}+${VCS_STATUS_NUM_STAGED_ADDED}"
+  (( VCS_STATUS_NUM_STAGED_NEW      )) && res+=" ${clean}+${VCS_STATUS_NUM_STAGED_NEW}"
   (( VCS_STATUS_NUM_STAGED_DELETED  )) && res+=" ${conflicted}-${VCS_STATUS_NUM_STAGED_DELETED}"
   (( num_staged_modified            )) && res+=" ${modified}~${num_staged_modified}"
   (( VCS_STATUS_NUM_UNSTAGED        )) && res+=" ${modified}!${VCS_STATUS_NUM_UNSTAGED}"
