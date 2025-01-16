@@ -43,7 +43,6 @@ if [[ ! "${PATH}" == *${HOME}/.cargo/bin* ]]; then
 fi
 
 # NVM
-export NVM_DIR="${HOME}/.nvm"
 export NVM_HOMEBREW="$(brew --prefix nvm)"
 
 # Append ~/bin directory to PATH
