@@ -61,6 +61,7 @@ return {
     },
   },
   {
+    -- keep this plugin as it allows editing input in Normal mode
     'stevearc/dressing.nvim',
     opts = {
       input = {
