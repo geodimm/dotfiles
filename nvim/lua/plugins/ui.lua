@@ -61,6 +61,20 @@ return {
     },
   },
   {
+    'stevearc/dressing.nvim',
+    opts = {
+      input = {
+        win_options = {
+          winblend = 0,
+        },
+        insert_only = false,
+        prompt_align = 'center',
+        relative = 'editor',
+        prefer_width = 0.5,
+      },
+    },
+  },
+  {
     'folke/which-key.nvim',
     config = function()
       local icons = require('user.icons')
