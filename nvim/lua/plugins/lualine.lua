@@ -52,8 +52,10 @@ return {
         },
         extensions = {
           'fugitive',
+          'fzf',
           'lazy',
           'nvim-tree',
+          'mason',
           'quickfix',
           'trouble',
         },
