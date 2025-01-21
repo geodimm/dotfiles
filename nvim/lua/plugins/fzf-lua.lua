@@ -18,7 +18,8 @@ return {
           },
         },
         fzf_opts = {
-          ['--layout'] = false,
+          ['--layout'] = 'reverse',
+          ['--header-border'] = 'bottom',
         },
         files = {
           cwd_prompt = false,
