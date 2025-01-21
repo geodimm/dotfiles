@@ -23,9 +23,6 @@ return {
         },
         files = {
           cwd_prompt = false,
-          actions = {
-            ['ctrl-h'] = { fzf.actions.toggle_hidden },
-          },
         },
         git = {
           icons = {
@@ -36,11 +33,6 @@ return {
             ['C'] = { icon = icons.git.status.copied, color = 'yellow' },
             ['T'] = { icon = icons.git.status.filetype_changed, color = 'magenta' },
             ['?'] = { icon = icons.git.status.untracked, color = 'magenta' },
-          },
-        },
-        grep = {
-          actions = {
-            ['ctrl-r'] = { fzf.actions.toggle_ignore },
           },
         },
       }
