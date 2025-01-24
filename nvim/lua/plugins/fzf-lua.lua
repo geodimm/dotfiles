@@ -23,6 +23,7 @@ return {
         },
         files = {
           cwd_prompt = false,
+          git_icons = true,
         },
         git = {
           icons = {
