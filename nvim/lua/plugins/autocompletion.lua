@@ -69,7 +69,13 @@ return {
             border = 'rounded',
             draw = {
               treesitter = { 'lsp' },
-              columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' }, { 'source_name' } },
+              columns = function(ctx)
+                if ctx.mode == 'cmdline' then
+                  return { { 'kind_icon' }, { 'label' } }
+                else
+                  return { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' }, { 'source_name' } }
+                end
+              end,
               components = {
                 kind_icon = {
                   ellipsis = false,
