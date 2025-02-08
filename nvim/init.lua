@@ -26,6 +26,6 @@ require('lazy').setup({
     backdrop = 100,
   },
   install = {
-    colorscheme = { 'catppuccin-macchiato' },
+    colorscheme = { 'catppuccin-mocha' },
   },
 })
