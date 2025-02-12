@@ -40,7 +40,7 @@ local function configure_keymaps(bufnr)
   if status_ok then
     keymap.set('n', '<leader>gD', fzf.lsp_declarations, { desc = 'Declaration', buffer = bufnr })
     keymap.set('n', '<leader>gd', function()
-      fzf.lsp_definitions({ jump_to_single_result = true })
+      fzf.lsp_definitions({ jump1 = true })
     end, { desc = 'Definition', buffer = bufnr })
     keymap.set('n', '<leader>gt', fzf.lsp_typedefs, { desc = 'Type definition', buffer = bufnr })
     keymap.set('n', '<leader>gI', fzf.lsp_implementations, { desc = 'Implementation', buffer = bufnr })
