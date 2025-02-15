@@ -100,6 +100,9 @@ local servers_config = {
             checkThirdParty = false,
           },
           format = { enable = false },
+          diagnostics = {
+            globals = { 'vim' },
+          },
         },
       },
     }
