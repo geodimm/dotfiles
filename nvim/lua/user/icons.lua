@@ -13,6 +13,9 @@ M.ui = {
   info = '', -- nf-fa-info_circle
   exclamation = '', -- nf-fa-exclamation_circle
   question = '', -- nf-fa-question_circle
+  keyboard = '', -- nf-fa-keyboard
+  plug = '', -- nf-fa-plug
+  history = '', -- nf-fa-history
 }
 
 M.os = {
@@ -39,6 +42,7 @@ M.file = {
   unnamed = '󰡯', -- nf-md-file_question
   find = '󰈞', -- nf-md-file_find
   directory = '󰉋', -- nf-md-folder
+  directory_open = '󰝰', -- nf-md-folder_open
 }
 
 M.git = {

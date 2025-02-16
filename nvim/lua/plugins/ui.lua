@@ -6,13 +6,6 @@ return {
     opts = {},
   },
   {
-    'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('alpha').setup(require('alpha.themes.startify').config)
-    end,
-  },
-  {
     'folke/noice.nvim',
     dependencies = {
       'MunifTanjim/nui.nvim',
@@ -62,21 +55,38 @@ return {
   },
   {
     'folke/snacks.nvim',
-    opts = {
-      input = {
-        icon_pos = 'title',
-      },
-      styles = {
+    init = function()
+      vim.b.miniindentscope_disable = true
+    end,
+    config = function()
+      local icons = require('user.icons')
+      local opts = {
         input = {
-          relative = 'cursor',
-          row = -3,
-          col = 0,
-          wo = {
-            winhighlight = 'SnacksInputTitle:Title,SnacksInputIcon:Title',
+          icon_pos = 'title',
+        },
+        dashboard = {
+          sections = {
+            { section = 'header' },
+            { section = 'keys', icon = icons.ui.keyboard, indent = 2, padding = 1 },
+            { section = 'recent_files', title = 'Recent Files', icon = icons.ui.history, indent = 2, padding = 1 },
+            { section = 'projects', title = 'Projects', icon = icons.file.directory_open, indent = 2, padding = 1 },
+            { section = 'startup', icon = icons.ui.plug .. ' ' },
           },
         },
-      },
-    },
+        styles = {
+          input = {
+            relative = 'cursor',
+            row = -3,
+            col = 0,
+            wo = {
+              winhighlight = 'SnacksInputTitle:Title,SnacksInputIcon:Title',
+            },
+          },
+        },
+      }
+
+      require('snacks').setup(opts)
+    end,
   },
   {
     'folke/which-key.nvim',

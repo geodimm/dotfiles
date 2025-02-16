@@ -101,7 +101,7 @@ local servers_config = {
           },
           format = { enable = false },
           diagnostics = {
-            globals = { 'vim' },
+            globals = { 'vim', 'Snacks' },
           },
         },
       },
