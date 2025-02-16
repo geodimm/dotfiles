@@ -45,7 +45,7 @@ return {
         enabled = function()
           local disabled = false
           disabled = disabled or vim.bo.buftype == 'prompt'
-          disabled = disabled or vim.bo.filetype == 'DressingInput'
+          disabled = disabled or vim.bo.filetype == 'snacks_input'
           disabled = disabled or (vim.fn.reg_recording() ~= '')
           disabled = disabled or (vim.fn.reg_executing() ~= '')
           return not disabled

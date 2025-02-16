@@ -61,17 +61,20 @@ return {
     },
   },
   {
-    -- keep this plugin as it allows editing input in Normal mode
-    'stevearc/dressing.nvim',
+    'folke/snacks.nvim',
     opts = {
       input = {
-        win_options = {
-          winblend = 0,
+        icon_pos = 'title',
+      },
+      styles = {
+        input = {
+          relative = 'cursor',
+          row = -3,
+          col = 0,
+          wo = {
+            winhighlight = 'SnacksInputTitle:Title,SnacksInputIcon:Title',
+          },
         },
-        insert_only = false,
-        prompt_align = 'center',
-        relative = 'editor',
-        prefer_width = 0.5,
       },
     },
   },

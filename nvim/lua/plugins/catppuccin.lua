@@ -20,6 +20,7 @@ return {
           enabled = true,
           indentscope_color = 'overlay2',
         },
+        snacks = true,
       },
       custom_highlights = function(colors)
         return {
