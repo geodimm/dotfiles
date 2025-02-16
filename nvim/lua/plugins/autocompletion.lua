@@ -63,19 +63,10 @@ return {
             },
           },
           menu = {
-            auto_show = function(ctx)
-              return ctx.mode ~= 'cmdline' or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
-            end,
             border = 'rounded',
             draw = {
               treesitter = { 'lsp' },
-              columns = function(ctx)
-                if ctx.mode == 'cmdline' then
-                  return { { 'kind_icon' }, { 'label' } }
-                else
-                  return { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' }, { 'source_name' } }
-                end
-              end,
+              columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' }, { 'source_name' } },
               components = {
                 kind_icon = {
                   ellipsis = false,
@@ -122,19 +113,6 @@ return {
             return { 'lsp', 'path', 'snippets', 'buffer' }
           end,
           providers = {
-            lsp = {
-              transform_items = function(_, items)
-                for _, item in ipairs(items) do
-                  if item.kind == require('blink.cmp.types').CompletionItemKind.Snippet then
-                    item.score_offset = item.score_offset - 2
-                  end
-                end
-
-                return vim.tbl_filter(function(item)
-                  return item.kind ~= require('blink.cmp.types').CompletionItemKind.Text
-                end, items)
-              end,
-            },
             lazydev = {
               name = 'lazydev',
               module = 'lazydev.integrations.blink',
@@ -142,11 +120,19 @@ return {
             },
           },
         },
+        cmdline = {
+          completion = {
+            menu = {
+              draw = {
+                columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
+              },
+            },
+          },
+        },
       }
 
-      -- related issue: https://github.com/Saghen/blink.cmp/issues/542
-      opts.keymap.cmdline = vim.deepcopy(opts.keymap)
-      opts.keymap.cmdline['<CR>'] = {}
+      opts.cmdline.keymap = vim.deepcopy(opts.keymap)
+      opts.cmdline.keymap['<CR>'] = { 'accept_and_enter', 'fallback' }
 
       require('blink.cmp').setup(opts)
 
