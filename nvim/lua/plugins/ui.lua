@@ -157,7 +157,7 @@ return {
       { '<leader>xl', '<cmd>Trouble loclist toggle<CR>', desc = 'Loclist' },
       { '<leader>xq', '<cmd>Trouble quickfix toggle<CR>', desc = 'Quickfix' },
       {
-        '<leader>gR',
+        '<leader>xR',
         '<cmd>Trouble lsp toggle focus=false win.position=bottom<CR>',
         desc = 'LSP Definitions / references',
       },
