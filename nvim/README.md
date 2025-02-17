@@ -33,7 +33,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### completion
 
-+ [Saghen/blink.cmp](https://github.com/Saghen/blink.cmp)
++ [Saghen/blink.cmp](https://dotfyle.com/plugins/Saghen/blink.cmp)
 
 ### diagnostics
 
@@ -117,7 +117,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### startup
 
-+ [goolord/alpha-nvim](https://dotfyle.com/plugins/goolord/alpha-nvim)
++ [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
 
 ### syntax
 
@@ -132,7 +132,6 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 ### utility
 
 + [folke/noice.nvim](https://dotfyle.com/plugins/folke/noice.nvim)
-+ [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
 
 ## Language Servers
 
