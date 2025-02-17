@@ -61,8 +61,8 @@ return {
     config = function()
       local icons = require('user.icons')
       local opts = {
-        input = {
-          icon_pos = 'title',
+        bigfile = {
+          enabled = true,
         },
         dashboard = {
           sections = {
@@ -73,8 +73,11 @@ return {
             { section = 'startup', icon = icons.ui.plug .. ' ' },
           },
         },
-        bigfile = {
+        gitbrowse = {
           enabled = true,
+        },
+        input = {
+          icon_pos = 'title',
         },
         styles = {
           input = {
@@ -87,6 +90,9 @@ return {
           },
         },
       }
+
+      local keymap = require('utils.keymap')
+      keymap.set({ 'n', 'v' }, '<leader>hB', Snacks.gitbrowse.open, { desc = 'Open in browser' })
 
       require('snacks').setup(opts)
     end,
