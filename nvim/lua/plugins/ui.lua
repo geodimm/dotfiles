@@ -73,6 +73,9 @@ return {
             { section = 'startup', icon = icons.ui.plug .. ' ' },
           },
         },
+        bigfile = {
+          enabled = true,
+        },
         styles = {
           input = {
             relative = 'cursor',
