@@ -4,6 +4,7 @@ return {
     lazy = false,
     dependencies = {
       'rafamadriz/friendly-snippets',
+      'xzbdmw/colorful-menu.nvim',
       'catppuccin/nvim', -- to customise highlights
     },
     version = 'v0.*',
@@ -66,8 +67,18 @@ return {
             border = 'rounded',
             draw = {
               treesitter = { 'lsp' },
-              columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 }, { 'kind' }, { 'source_name' } },
+              -- We don't need label_description now because label and label_description are already
+              -- combined together in label by colorful-menu.nvim.
+              columns = { { 'kind_icon' }, { 'label', gap = 1 }, { 'kind' }, { 'source_name' } },
               components = {
+                label = {
+                  text = function(ctx)
+                    return require('colorful-menu').blink_components_text(ctx)
+                  end,
+                  highlight = function(ctx)
+                    return require('colorful-menu').blink_components_highlight(ctx)
+                  end,
+                },
                 kind_icon = {
                   ellipsis = false,
                   text = function(ctx)
@@ -149,5 +160,9 @@ return {
         end
       end
     end,
+  },
+  {
+    'xzbdmw/colorful-menu.nvim',
+    opts = {},
   },
 }
