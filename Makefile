@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := all
-.PHONY: bat git kitty tig zsh golangci-lint
+.PHONY: bat git kitty ghostty tig zsh golangci-lint
 
 include test.mk
 
@@ -47,7 +47,7 @@ rust: rust-install ## Install and configure Rust
 rust-install: ## Install Rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 
-terminal: kitty zsh ohmyzsh ## Setup the terminal
+terminal: kitty ghostty zsh ohmyzsh ## Setup the terminal
 
 kitty: kitty-install kitty-configure ## Install and configure Kitty
 
@@ -61,6 +61,10 @@ endif
 
 kitty-configure: ## Configure Kitty
 	@./scripts/kitty.sh
+
+ghostty: ## Configure Ghostty
+	mkdir -p "${XDG_CONFIG_HOME}/ghostty"
+	ln -fs "${DOTFILES_DIR}/ghostty/config" "${XDG_CONFIG_HOME}/ghostty/config"
 
 zsh: ## Install zsh
 ifeq ($(PLATFORM),linux)

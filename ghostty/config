@@ -1,0 +1,67 @@
+# vim:ft=conf foldmethod=marker
+
+# UI {{{1
+# Theme
+theme = "catppuccin-mocha"
+
+# Fonts
+font-size = 16
+font-family = "Monaspace Argon Var"
+font-style = "Light"
+font-feature = "+calt, +liga, +ss01, +ss02, +ss03, +ss07, +ss08, +ss09, +cv01=2"
+font-thicken = true
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-invert-fg-bg = true
+
+shell-integration-features = "no-cursor,no-title"
+
+unfocused-split-opacity = 1
+
+# Keyboard shortcuts{{{1
+copy-on-select = true
+macos-option-as-alt = true
+
+# Open tabs and windows in the same folder
+keybind = ctrl+shift+enter=new_split:down
+keybind = cmd+enter=new_split:down
+keybind = ctrl+shift+t=new_tab
+keybind = cmd+t=new_tab
+
+# Move a window into a new tab
+# keybind = kitty_mod+x=detach_window:new-tab
+
+# tmux {{{1
+# Jump to tabs
+keybind = ctrl+a>1=goto_tab:1
+keybind = ctrl+a>2=goto_tab:2
+keybind = ctrl+a>3=goto_tab:3
+keybind = ctrl+a>4=goto_tab:4
+keybind = ctrl+a>5=goto_tab:5
+keybind = ctrl+a>6=goto_tab:6
+keybind = ctrl+a>7=goto_tab:7
+keybind = ctrl+a>8=goto_tab:8
+keybind = ctrl+a>9=goto_tab:9
+keybind = ctrl+a>0=goto_tab:0
+# Move a window into a new tab
+# keybind = ctrl+a>!=detach_window new-tab
+# Zoom on a window
+keybind =  ctrl+a>z=toggle_split_zoom
+# Change layout
+# keybind = ctrl+a>space next_layout
+
+# smart-splits.nvim {{{1
+# Move
+keybind = unconsumed:ctrl+h=goto_split:left
+keybind = unconsumed:ctrl+j=goto_split:down
+keybind = unconsumed:ctrl+k=goto_split:up
+keybind = unconsumed:ctrl+l=goto_split:right
+# Resize
+keybind = alt+h=resize_split:left,30
+keybind = alt+j=resize_split:down,30
+keybind = alt+k=resize_split:up,30
+keybind = alt+l=resize_split:right,30
+
+# }}}
