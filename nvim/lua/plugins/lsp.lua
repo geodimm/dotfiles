@@ -32,6 +32,7 @@ local lsp_tools = {
   'gofumpt',
   'shfmt',
   'stylua',
+  'buildifier',
 
   -- code actions
   'gomodifytags',
@@ -217,6 +218,7 @@ return {
         sh = { 'shfmt' },
         markdown = { 'markdownlint' },
         rust = { 'rustfmt' },
+        starlark = { 'buildifier' },
       },
       formatters = {
         markdownlint = {
