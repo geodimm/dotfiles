@@ -8,6 +8,7 @@ return {
 
       local opts = {
         winopts = {
+          height = 0.95,
           preview = {
             border = 'rounded',
             layout = 'vertical',
