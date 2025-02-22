@@ -55,6 +55,8 @@ return {
   },
   {
     'folke/snacks.nvim',
+    lazy = false,
+    priority = 1000,
     init = function()
       vim.b.miniindentscope_disable = true
     end,
