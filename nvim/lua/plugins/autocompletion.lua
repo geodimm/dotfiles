@@ -132,8 +132,19 @@ return {
           },
         },
         cmdline = {
+          keymap = {
+            preset = 'cmdline',
+          },
           completion = {
+            list = {
+              selection = {
+                preselect = false,
+              },
+            },
             menu = {
+              auto_show = function(ctx)
+                return vim.fn.getcmdtype() == ':'
+              end,
               draw = {
                 columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
               },
@@ -141,9 +152,6 @@ return {
           },
         },
       }
-
-      opts.cmdline.keymap = vim.deepcopy(opts.keymap)
-      opts.cmdline.keymap['<CR>'] = { 'accept_and_enter', 'fallback' }
 
       require('blink.cmp').setup(opts)
 
