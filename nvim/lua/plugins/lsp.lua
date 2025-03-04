@@ -51,11 +51,11 @@ local servers_config = {
         gopls = {
           -- build
           buildFlags = buildFlags,
+          templateExtensions = { 'tmpl' },
           -- formatting
           gofumpt = true,
           -- ui
           codelenses = {
-            gc_details = true,
             test = true,
             run_govulncheck = true,
           },
@@ -64,8 +64,6 @@ local servers_config = {
           usePlaceholders = true,
           -- diagnostic
           analyses = {
-            useany = true,
-            unusedvariable = true,
             shadow = true,
           },
           staticcheck = true,
