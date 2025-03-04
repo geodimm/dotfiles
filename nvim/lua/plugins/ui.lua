@@ -104,6 +104,9 @@ return {
         gitbrowse = {
           enabled = true,
         },
+        image = {
+          enabled = true,
+        },
         input = {
           icon_pos = 'title',
         },
