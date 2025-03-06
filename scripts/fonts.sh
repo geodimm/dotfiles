@@ -16,7 +16,7 @@ function install_fonts() {
     case "${PLATFORM}" in
     "linux")
         group="${USER}"
-        fonts_dir="${HOME}/.fonts"
+        fonts_dir="${XDG_DATA_HOME:=${HOME}/.local/share}/fonts"
         ;;
     "darwin")
         group="staff"
@@ -38,13 +38,6 @@ function install_fonts() {
             find . -type f -name '*.ttf' -exec cp "{}" "${fonts_dir}" \;
         )
     done
-
-    if [[ "${PLATFORM}" == "linux" ]]; then
-        if ! type -P "fc-cache" >/dev/null; then
-            sudo apt update && sudo apt install -y fontconfig
-        fi
-        sudo fc-cache -f
-    fi
 }
 
 install_fonts
