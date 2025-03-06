@@ -110,6 +110,7 @@ vim.opt.isfname:append('@-@')
 
 -- Backup and swap {{{1
 vim.opt.undofile = true -- Enable persistent undo
+vim.opt.undolevels = 10000 -- Increase undo levels
 vim.opt.backup = false -- Disable backups
 vim.opt.writebackup = false -- Disable backups
 vim.opt.swapfile = false -- Disable swapfiles
