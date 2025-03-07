@@ -191,7 +191,11 @@ end
 
 -- Create config that activates keymaps and enables snippet support
 local function create_config(servers, server)
-  local capabilities = require('blink.cmp').get_lsp_capabilities()
+  local capabilities = vim.tbl_extend(
+    'force',
+    require('blink.cmp').get_lsp_capabilities(),
+    require('lsp-file-operations').default_capabilities()
+  )
 
   local opts = {
     capabilities = capabilities,

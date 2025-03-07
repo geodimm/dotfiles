@@ -124,6 +124,7 @@ return {
 
       local keymap = require('utils.keymap')
       keymap.set({ 'n', 'v' }, '<leader>hB', Snacks.gitbrowse.open, { desc = 'Open in browser' })
+      keymap.set('n', '<leader>cR', Snacks.rename.rename_file, { desc = 'Rename File' })
 
       require('snacks').setup(opts)
     end,
