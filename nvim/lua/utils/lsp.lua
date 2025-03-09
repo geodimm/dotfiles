@@ -4,10 +4,8 @@ local feat = require('utils.feat')
 local icons = require('user.icons').lspconfig
 
 local function configure_keymaps(bufnr)
-  -- Mark features as enabled by default
-  feat.Diagnostics:set(bufnr, true)
+  -- Set formatting to enabled by default
   feat.Formatting:set(bufnr, true)
-  feat.InlayHints:set(bufnr, true)
 
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
@@ -71,63 +69,17 @@ local function configure_keymaps(bufnr)
 
   -- Diagnostics
   keymap.set('n', '[d', function()
-    if feat.Diagnostics:is_disabled(bufnr) then
-      return
-    end
     vim.diagnostic.goto_prev({ float = diagnostic_float_opts })
   end, { desc = 'Go to previous diagnostic', buffer = bufnr })
   keymap.set('n', ']d', function()
-    if feat.Diagnostics:is_disabled(bufnr) then
-      return
-    end
     vim.diagnostic.goto_next({ float = diagnostic_float_opts })
   end, { desc = 'Go to next diagnostic', buffer = bufnr })
   keymap.set('n', '<leader>cs', function()
-    if feat.Diagnostics:is_disabled(bufnr) then
-      return
-    end
     vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
   end, { desc = 'Show diagnostics', buffer = bufnr })
 
-  -- Toggle Features
-  keymap.set('n', '<leader>cef', function()
-    vim.notify('Enabling formatting for buffer', vim.log.levels.INFO)
-    feat.Formatting:set(bufnr, true)
-  end, { desc = 'Enable formatting', buffer = bufnr })
-  keymap.set('n', '<leader>cdf', function()
-    vim.notify('Disabling formatting for buffer', vim.log.levels.INFO)
-    feat.Formatting:set(bufnr, false)
-  end, { desc = 'Disable formatting', buffer = bufnr })
-  keymap.set('n', '<leader>ced', function()
-    vim.notify('Enabling diagnostics for buffer', vim.log.levels.INFO)
-    vim.diagnostic.enable(true, { bufnr = bufnr })
-    feat.Diagnostics:set(bufnr, true)
-  end, { desc = 'Enable diagnostics', buffer = bufnr })
-  keymap.set('n', '<leader>cdd', function()
-    vim.notify('Disabling diagnostics for buffer', vim.log.levels.INFO)
-    vim.diagnostic.enable(false, { bufnr = bufnr })
-    feat.Diagnostics:set(bufnr, false)
-  end, { desc = 'Disable diagnostics', buffer = bufnr })
-  keymap.set('n', '<leader>ceh', function()
-    if vim.lsp.inlay_hint then
-      vim.notify('Enabling inlay hints for buffer', vim.log.levels.INFO)
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-    end
-    feat.InlayHints:set(bufnr, true)
-  end, { desc = 'Enable inlay hints', buffer = bufnr })
-  keymap.set('n', '<leader>cdh', function()
-    if vim.lsp.inlay_hint then
-      vim.notify('Disabling inlay hints for buffer', vim.log.levels.INFO)
-      vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-    end
-    feat.InlayHints:set(bufnr, false)
-  end, { desc = 'Disable inlay hints', buffer = bufnr })
-
   keymap.register_group('<leader>g', 'Goto', { buffer = bufnr })
-  keymap.register_group('<leader>c', 'LSP', { buffer = bufnr })
-  keymap.register_group('<leader>ce', 'Enable features', { buffer = bufnr })
-  keymap.register_group('<leader>cd', 'Disable features', { buffer = bufnr })
-  keymap.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = 'v' })
+  keymap.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = { 'n', 'v' } })
 end
 
 local function configure_autocmds(client, bufnr)

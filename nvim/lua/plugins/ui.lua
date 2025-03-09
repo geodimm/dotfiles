@@ -126,7 +126,27 @@ return {
       keymap.set({ 'n', 'v' }, '<leader>hB', Snacks.gitbrowse.open, { desc = 'Open in browser' })
       keymap.set('n', '<leader>cR', Snacks.rename.rename_file, { desc = 'Rename File' })
 
-      require('snacks').setup(opts)
+      keymap.register_group('<leader>t', 'Toggle', {})
+
+      Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tl')
+      Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>tw')
+      Snacks.toggle.diagnostics():map('<leader>td')
+      Snacks.toggle.inlay_hints():map('<leader>th')
+
+      local feat = require('utils.feat')
+      local formattingToggle = Snacks.toggle.new({
+        id = 'formatting',
+        name = 'Formatting',
+        get = function()
+          return feat.Formatting:is_enabled(0)
+        end,
+        set = function(state)
+          return feat.Formatting:set(0, state)
+        end,
+      }, opts)
+      formattingToggle:map('<leader>tf')
+
+      Snacks.setup(opts)
     end,
   },
   {
@@ -174,8 +194,7 @@ return {
     'MagicDuck/grug-far.nvim',
     init = function()
       local keymap = require('utils.keymap')
-      keymap.register_group('<leader>s', 'Search', {})
-      keymap.register_group('<leader>s', 'Search', { mode = 'v' })
+      keymap.register_group('<leader>s', 'Search', { mode = { 'n', 'v' } })
     end,
     keys = {
       {
