@@ -11,13 +11,14 @@ local function set(mode, lhs, rhs, opts)
 end
 
 -- Register group assigns a name for a keymap prefix in which-key
-local function register_group(prefix, name, opts)
+local function register_group(prefix, name, wk_opts, opts)
   local status_ok, wk = pcall(require, 'which-key')
   if not status_ok then
     return
   end
 
-  wk.add({ prefix, group = name }, opts)
+  wk_opts = vim.tbl_deep_extend('keep', { prefix, group = name }, wk_opts or {})
+  wk.add(wk_opts, opts)
 end
 
 M.set = set

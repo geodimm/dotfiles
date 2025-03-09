@@ -1,7 +1,7 @@
 local M = {}
 
 local feat = require('utils.feat')
-local icons = require('user.icons').lspconfig
+local icons = require('user.icons')
 
 local function configure_keymaps(bufnr)
   -- Set formatting to enabled by default
@@ -78,8 +78,8 @@ local function configure_keymaps(bufnr)
     vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
   end, { desc = 'Show diagnostics', buffer = bufnr })
 
-  keymap.register_group('<leader>g', 'Goto', { buffer = bufnr })
-  keymap.register_group('<leader>c', 'LSP', { buffer = bufnr, mode = { 'n', 'v' } })
+  keymap.register_group('<leader>g', 'Goto', { icon = icons.ui.code_braces }, { buffer = bufnr })
+  keymap.register_group('<leader>c', 'LSP', { mode = { 'n', 'v' }, icon = icons.ui.code_braces }, { buffer = bufnr })
 end
 
 local function configure_autocmds(client, bufnr)
@@ -163,7 +163,7 @@ end
 
 local function customise_ui()
   -- Update the sign icons
-  for type, icon in pairs(icons) do
+  for type, icon in pairs(icons.lspconfig) do
     local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
   end
