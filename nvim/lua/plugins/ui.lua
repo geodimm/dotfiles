@@ -126,7 +126,7 @@ return {
       keymap.set({ 'n', 'v' }, '<leader>hB', Snacks.gitbrowse.open, { desc = 'Open in browser' })
       keymap.set('n', '<leader>cR', Snacks.rename.rename_file, { desc = 'Rename File' })
 
-      keymap.register_group('<leader>t', 'Toggle', {})
+      keymap.register_group('<leader>t', 'Toggle')
 
       Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tl')
       Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>tw')
@@ -174,7 +174,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     init = function()
       local keymap = require('utils.keymap')
-      keymap.register_group('<leader>x', 'Trouble', {})
+      keymap.register_group('<leader>x', 'Trouble', { icon = '🚦' })
     end,
     keys = {
       { '<leader>xx', '<cmd>Trouble<CR>', desc = 'Open' },

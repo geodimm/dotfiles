@@ -16,6 +16,7 @@ M.ui = {
   keyboard = '', -- nf-fa-keyboard
   plug = '', -- nf-fa-plug
   history = '', -- nf-fa-history
+  code_braces = '󰅩', -- nf-md-code_braces
 }
 
 M.os = {

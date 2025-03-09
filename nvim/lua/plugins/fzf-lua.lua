@@ -59,8 +59,8 @@ return {
       keymap.set('n', '<leader>fgh', fzf.git_bcommits, { desc = 'Buffer commits' })
       keymap.set('n', '<leader>fgs', fzf.git_status, { desc = 'Status' })
 
-      keymap.register_group('<leader>f', 'Find', {})
-      keymap.register_group('<leader>fg', 'Git', {})
+      keymap.register_group('<leader>f', 'Find', { mode = { 'n', 'v' } })
+      keymap.register_group('<leader>fg', 'Git')
 
       fzf.setup(opts)
     end,
