@@ -202,7 +202,7 @@ return {
     opts = {
       notify_on_error = true,
       format_on_save = function(bufnr)
-        if feat.Formatting:is_disabled(bufnr) then
+        if not feat.Formatting:is_enabled(bufnr) then
           return
         end
         return {

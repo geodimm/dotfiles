@@ -1,7 +1,5 @@
 local M = {}
 
--- diagnostics is map[number]bool which keeps the current status of
--- lsp diagnostics for each buffer.
 local Feature = { buffers = {} }
 
 function Feature:new(o)
@@ -12,15 +10,15 @@ function Feature:new(o)
 end
 
 function Feature:set(bufnr, enabled)
+  bufnr = bufnr == 0 and vim.fn.bufnr('%') or bufnr
   self.buffers[bufnr] = enabled
 end
 
-function Feature:is_disabled(bufnr)
-  return not self.buffers[bufnr]
+function Feature:is_enabled(bufnr)
+  bufnr = bufnr == 0 and vim.fn.bufnr('%') or bufnr
+  return self.buffers[bufnr]
 end
 
-M.Diagnostics = Feature:new()
 M.Formatting = Feature:new()
-M.InlayHints = Feature:new()
 
 return M

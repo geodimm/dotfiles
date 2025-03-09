@@ -7,8 +7,7 @@ return {
     init = function()
       local keymap = require('utils.keymap')
 
-      keymap.register_group('<leader>h', 'Git', {})
-      keymap.register_group('<leader>h', 'Git', { mode = 'v' })
+      keymap.register_group('<leader>h', 'Git', { mode = { 'n', 'v' } })
     end,
     config = function()
       local gitsigns = require('gitsigns')
