@@ -28,7 +28,6 @@ local lsp_tools = {
 
   -- formatters
   'gci',
-  'goimports',
   'gofumpt',
   'shfmt',
   'stylua',
@@ -212,13 +211,23 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        go = { 'gofumpt', 'goimports' },
+        go = { 'gofumpt', 'gci' },
         sh = { 'shfmt' },
         markdown = { 'markdownlint' },
         rust = { 'rustfmt' },
         starlark = { 'buildifier' },
       },
       formatters = {
+        gci = {
+          prepend_args = {
+            '-s',
+            'standard',
+            '-s',
+            'default',
+            '-s',
+            'localmodule',
+          },
+        },
         markdownlint = {
           prepend_args = {
             '--config',
