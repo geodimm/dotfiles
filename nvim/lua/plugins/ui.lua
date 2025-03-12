@@ -196,6 +196,7 @@ return {
       local keymap = require('utils.keymap')
       keymap.register_group('<leader>s', 'Search', { mode = { 'n', 'v' } })
     end,
+    cmd = { 'GrugFar', 'GrugFarWithin' },
     keys = {
       {
         '<leader>sr',
@@ -225,6 +226,14 @@ return {
           require('grug-far').open({ prefills = { paths = vim.fn.expand('%') } })
         end,
         desc = 'Search in current file',
+      },
+      {
+        '<leader>sv',
+        function()
+          require('grug-far').open({ visualSelectionUsage = 'operate-within-range' })
+        end,
+        desc = 'Search in visual selection',
+        mode = { 'v', 'x' },
       },
       {
         '<leader>sa',
