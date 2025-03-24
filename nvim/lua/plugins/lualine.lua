@@ -160,20 +160,14 @@ return {
             },
             space,
             {
-              require('user.lualine.components.lsp_clients'),
-              progress = {
-                colors = {
-                  inactive = theme.normal.b.fg,
-                  loading = colors.yellow,
-                  done = colors.green,
-                },
+              'lsp_status',
+              icon = icons.ui.code_braces,
+              symbols = {
+                spinner = vim.tbl_map(append_whitespace, icons.lsp_progress),
+                done = append_whitespace(icons.ui.check),
+                separator = ' ',
               },
-              names = {
-                colors = {
-                  inactive = theme.normal.b.fg,
-                  active = theme.normal.b.fg,
-                },
-              },
+              ignore_lsp = { 'null-ls' },
               color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
               separator = section_separator,
               padding = 0,
