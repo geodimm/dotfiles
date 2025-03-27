@@ -60,7 +60,6 @@ local function configure_keymaps(bufnr)
     keymap.set('n', '<leader>gw', vim.lsp.buf.workspace_symbol, { desc = 'Workspace symbols', buffer = bufnr })
     keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
   end
-  keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'Documentation', buffer = bufnr })
   keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
@@ -68,12 +67,6 @@ local function configure_keymaps(bufnr)
   keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
 
   -- Diagnostics
-  keymap.set('n', '[d', function()
-    vim.diagnostic.goto_prev({ float = diagnostic_float_opts })
-  end, { desc = 'Go to previous diagnostic', buffer = bufnr })
-  keymap.set('n', ']d', function()
-    vim.diagnostic.goto_next({ float = diagnostic_float_opts })
-  end, { desc = 'Go to next diagnostic', buffer = bufnr })
   keymap.set('n', '<leader>cs', function()
     vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
   end, { desc = 'Show diagnostics', buffer = bufnr })
@@ -161,33 +154,7 @@ local function create_config(servers, server)
   return opts
 end
 
-local function customise_ui()
-  -- Update the sign icons
-  for type, icon in pairs(icons.lspconfig) do
-    local hl = 'DiagnosticSign' .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-  end
-
-  -- Update LspInfo window border
-  require('lspconfig.ui.windows').default_options.border = 'rounded'
-end
-
-local function setup_vim_diagnostics()
-  vim.diagnostic.config({
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    float = {
-      border = 'rounded',
-    },
-    update_in_insert = true,
-    severity_sort = true,
-  })
-end
-
 M.on_attach = on_attach
 M.create_config = create_config
-M.customise_ui = customise_ui
-M.setup_vim_diagnostics = setup_vim_diagnostics
 
 return M

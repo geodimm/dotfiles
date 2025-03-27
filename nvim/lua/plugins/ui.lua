@@ -16,19 +16,13 @@ return {
           enabled = false,
         },
         hover = {
-          enabled = true,
+          enabled = false,
         },
         signature = {
-          enabled = true,
+          enabled = false,
         },
         message = {
           enabled = true,
-        },
-        override = {
-          -- override the default lsp markdown formatter with Noice
-          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-          -- override the lsp markdown formatter with Noice
-          ['vim.lsp.util.stylize_markdown'] = true,
         },
       },
       presets = {

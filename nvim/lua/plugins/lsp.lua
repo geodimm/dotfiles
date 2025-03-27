@@ -180,8 +180,39 @@ return {
       },
     },
     init = function()
-      lsp_utils.customise_ui()
-      lsp_utils.setup_vim_diagnostics()
+      require('lspconfig.ui.windows').default_options.border = 'rounded'
+      vim.diagnostic.config({
+        underline = false,
+        virtual_lines = {},
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.lsp.error,
+            [vim.diagnostic.severity.WARN] = icons.lsp.warn,
+            [vim.diagnostic.severity.INFO] = icons.lsp.info,
+            [vim.diagnostic.severity.HINT] = icons.lsp.hint,
+          },
+          numhl = {
+            [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+            [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+          },
+        },
+        float = {
+          border = 'rounded',
+        },
+        update_in_insert = false,
+        severity_sort = true,
+      })
+
+      -- Add rounded border to lsp windows only
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or 'rounded'
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      end
     end,
     config = function()
       local nvim_lspconfig = require('lspconfig')
