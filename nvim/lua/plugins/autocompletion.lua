@@ -7,7 +7,7 @@ return {
       'xzbdmw/colorful-menu.nvim',
       'catppuccin/nvim', -- to customise highlights
     },
-    version = 'v0.*',
+    version = 'v1.*',
     config = function()
       local function has_words_before()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
