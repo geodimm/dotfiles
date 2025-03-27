@@ -89,14 +89,6 @@ M.lsp_progress = {
   [10] = '󰪥', -- nf-md-circle_slice_8
 }
 
-M.lspconfig = {
-  Error = M.lsp.error,
-  Hint = M.lsp.hint,
-  Info = M.lsp.info,
-  Other = M.lsp.other,
-  Warn = M.lsp.warn,
-}
-
 M.nerdtree = {
   error = M.lsp.error,
   hint = M.lsp.hint,
