@@ -300,17 +300,6 @@ return {
     end,
   },
   {
-    'kosayoda/nvim-lightbulb',
-    opts = {
-      sign = {
-        text = icons.ui.lightbulb,
-      },
-      autocmd = {
-        enabled = true,
-      },
-    },
-  },
-  {
     'antosha417/nvim-lsp-file-operations',
     dependencies = {
       'nvim-lua/plenary.nvim',
