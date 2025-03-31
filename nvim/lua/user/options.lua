@@ -56,10 +56,11 @@ vim.opt.diffopt:append({
 })
 
 -- Folds {{{1
-vim.o.foldcolumn = 'auto'
-vim.o.foldmethod = 'indent'
-vim.o.foldlevel = 99
-vim.o.foldenable = false
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.opt.foldcolumn = 'auto'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- Display {{{1
 vim.opt.confirm = true -- Raise a dialog when an operation has to be confirmed
