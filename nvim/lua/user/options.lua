@@ -97,7 +97,6 @@ vim.opt.joinspaces = false -- Insert only one space with a join command
 -- Mouse {{{1
 vim.opt.mouse = 'a' -- Enable mouse for all modes
 vim.opt.mousefocus = true
-vim.opt.mousemodel = 'extend'
 
 -- Match and search {{{1
 vim.opt.hlsearch = true
