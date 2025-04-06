@@ -150,6 +150,8 @@ local servers_config = {
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
+---@param client vim.lsp.Client
+---@param bufnr integer
 local function on_attach(client, bufnr)
   -- Set formatting to enabled by default
   feat.Formatting:set(bufnr, true)
