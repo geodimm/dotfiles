@@ -186,24 +186,6 @@ local function on_attach(client, bufnr)
   keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
   keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
 
-  -- Diagnostics
-  keymap.set('n', '<leader>cs', function()
-    vim.diagnostic.open_float({
-      focusable = false,
-      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-      border = 'rounded',
-      source = true,
-      prefix = function(_, i, total)
-        if total > 1 then
-          return tostring(i) .. '. ', ''
-        end
-
-        return '', ''
-      end,
-      scope = 'line',
-    })
-  end, { desc = 'Show all diagnostics for current line', buffer = bufnr })
-
   keymap.register_group('<leader>g', 'Goto', { icon = icons.ui.code_braces }, { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { mode = { 'n', 'v' }, icon = icons.ui.code_braces }, { buffer = bufnr })
 
