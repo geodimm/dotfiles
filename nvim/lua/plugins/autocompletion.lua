@@ -111,7 +111,7 @@ return {
         },
 
         sources = {
-          default = function(ctx)
+          default = function(_)
             if vim.bo.filetype == 'lua' then
               return { 'lsp', 'lazydev', 'path', 'snippets', 'buffer' }
             end
@@ -142,7 +142,7 @@ return {
               },
             },
             menu = {
-              auto_show = function(ctx)
+              auto_show = function(_)
                 return vim.fn.getcmdtype() == ':'
               end,
               draw = {
