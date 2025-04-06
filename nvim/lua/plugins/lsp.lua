@@ -183,9 +183,6 @@ return {
       require('lspconfig.ui.windows').default_options.border = 'rounded'
       vim.diagnostic.config({
         underline = false,
-        virtual_lines = {
-          current_line = true,
-        },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = icons.lsp.error,
@@ -202,6 +199,9 @@ return {
         },
         float = {
           border = 'rounded',
+        },
+        jump = {
+          float = true,
         },
         update_in_insert = false,
         severity_sort = true,
