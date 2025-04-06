@@ -1,7 +1,7 @@
 ifdef UBUNTU_VERSION
 UBUNTU_VERSION := $(subst ubuntu-,,$(UBUNTU_VERSION))
 else
-UBUNTU_VERSION = 22.04
+UBUNTU_VERSION = 24.04
 endif
 
 test: build ## Run tests
