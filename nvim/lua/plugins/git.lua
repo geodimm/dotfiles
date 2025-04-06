@@ -38,6 +38,9 @@ return {
         },
         current_line_blame = true,
         current_line_blame_formatter = ' ' .. icons.git.compare .. ' <author>, <author_time:%Y-%m-%d> - <summary>',
+        current_line_blame_opts = {
+          virt_text_pos = 'right_align',
+        },
         preview_config = {
           border = 'rounded',
         },
@@ -48,11 +51,10 @@ return {
           keymap.set('n', '<leader>hU', gitsigns.reset_buffer_index, { desc = 'Reset buffer index' })
           keymap.set('n', '<leader>hb', blame_line, { desc = 'Blame line' })
           keymap.set('n', '<leader>hd', gitsigns.diffthis, { desc = 'Diff this' })
-          keymap.set('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview hunk' })
+          keymap.set('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview hunk in a floating window' })
+          keymap.set('n', '<leader>ht', gitsigns.preview_hunk_inline, { desc = 'Preview hunk inline' })
           keymap.set({ 'n', 'v' }, '<leader>hr', gitsigns.reset_hunk, { desc = 'Reset hunk' })
-          keymap.set({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage hunk' })
-          keymap.set('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = 'Undo stage hunk' })
-          keymap.set('n', '<leader>ht', gitsigns.toggle_deleted, { desc = 'Toggle deleted' })
+          keymap.set({ 'n', 'v' }, '<leader>hs', gitsigns.stage_hunk, { desc = 'Stage/Unstage hunk' })
           keymap.set('n', ']c', next_hunk, { desc = 'Next hunk' })
           keymap.set('n', '[c', prev_hunk, { desc = 'Previous hunk' })
         end,
