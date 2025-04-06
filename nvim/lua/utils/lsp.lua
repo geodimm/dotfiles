@@ -3,35 +3,11 @@ local M = {}
 local feat = require('utils.feat')
 local icons = require('user.icons')
 
-local function configure_keymaps(bufnr)
+-- Use an on_attach function to only map the following keys
+-- after the language server attaches to the current buffer
+local function on_attach(client, bufnr)
   -- Set formatting to enabled by default
   feat.Formatting:set(bufnr, true)
-
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_set_option_value('omnifunc', 'v:lua.vim.lsp.omnifunc', { buf = bufnr })
-
-  local diagnostic_float_opts = {
-    focusable = false,
-    close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
-    border = 'rounded',
-    source = 'always',
-    prefix = function(_, i, total)
-      if total > 1 then
-        return tostring(i) .. '. '
-      end
-
-      return ''
-    end,
-    format = function(diagnostic)
-      if diagnostic.code then
-        return string.format('%s [%s]', diagnostic.message, diagnostic.code)
-      end
-
-      return diagnostic.message
-    end,
-    scope = 'cursor',
-    header = { 'Diagnostics', 'Title' },
-  }
 
   local keymap = require('utils.keymap')
   local status_ok, fzf = pcall(require, 'fzf-lua')
@@ -63,64 +39,56 @@ local function configure_keymaps(bufnr)
   keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
   keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
-  keymap.set('n', '<leader>cu', vim.lsp.codelens.refresh, { desc = 'Refresh codelens', buffer = bufnr })
   keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
 
   -- Diagnostics
   keymap.set('n', '<leader>cs', function()
-    vim.diagnostic.open_float(nil, vim.tbl_extend('force', diagnostic_float_opts, { scope = 'line' }))
-  end, { desc = 'Show diagnostics', buffer = bufnr })
+    vim.diagnostic.open_float({
+      focusable = false,
+      close_events = { 'BufLeave', 'CursorMoved', 'InsertEnter' },
+      border = 'rounded',
+      source = true,
+      prefix = function(_, i, total)
+        if total > 1 then
+          return tostring(i) .. '. ', ''
+        end
+
+        return '', ''
+      end,
+      scope = 'line',
+    })
+  end, { desc = 'Show all diagnostics for current line', buffer = bufnr })
 
   keymap.register_group('<leader>g', 'Goto', { icon = icons.ui.code_braces }, { buffer = bufnr })
   keymap.register_group('<leader>c', 'LSP', { mode = { 'n', 'v' }, icon = icons.ui.code_braces }, { buffer = bufnr })
-end
 
-local function configure_autocmds(client, bufnr)
-  -- Set autocommands conditional on server_capabilities
   if client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_augroup('user_lsp_document_highlight', { clear = false })
+    local lsp_hl_augroup = vim.api.nvim_create_augroup('user_lsp_document_highlight', { clear = false })
     vim.api.nvim_clear_autocmds({
-      group = 'user_lsp_document_highlight',
+      group = lsp_hl_augroup,
       buffer = bufnr,
     })
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-      group = 'user_lsp_document_highlight',
+      group = lsp_hl_augroup,
       buffer = bufnr,
       desc = 'highlight current symbol on hover',
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd('CursorMoved', {
-      group = 'user_lsp_document_highlight',
+      group = lsp_hl_augroup,
       buffer = bufnr,
       desc = 'clear current symbol highlight',
       callback = vim.lsp.buf.clear_references,
     })
   end
-end
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local function on_attach(client, bufnr)
-  configure_keymaps(bufnr)
-  configure_autocmds(client, bufnr)
-
-  -- As of v0.11.0, gopls does not send a Semantic Token legend (in a
-  -- client/registerCapability message) unless the client supports dynamic
-  -- registration. Neovim's LSP client does not support dynamic registration
-  -- for semantic tokens, so we need to declare those server_capabilities
-  -- ourselves for the time being.
-  -- Ref. https://github.com/golang/go/issues/54531
-  if client.name == 'gopls' and not client.server_capabilities.semanticTokensProvider then
-    local semantic = client.config.capabilities.textDocument.semanticTokens
-    client.server_capabilities.semanticTokensProvider = {
-      full = true,
-      legend = {
-        tokenModifiers = semantic.tokenModifiers,
-        tokenTypes = semantic.tokenTypes,
-      },
-      range = true,
-    }
-  end
+  vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+    group = vim.api.nvim_create_augroup('user_lsp_refresh_codelens', { clear = true }),
+    desc = 'refresh lsp codelens',
+    callback = function()
+      vim.lsp.codelens.refresh({ bufnr = bufnr })
+    end,
+  })
 
   -- Don't attach yamlls to helm files
   if client.name == 'yamlls' and vim.bo.filetype == 'helm' then
@@ -128,13 +96,9 @@ local function on_attach(client, bufnr)
       vim.lsp.buf_detach_client(bufnr, client.id)
     end)
   end
-
-  if vim.lsp.inlay_hint and client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-  end
 end
 
--- Create config that activates keymaps and enables snippet support
+-- Create config that sets up LSP keymaps, augroups and capabilities
 local function create_config(servers, server)
   local capabilities = vim.tbl_extend(
     'force',
