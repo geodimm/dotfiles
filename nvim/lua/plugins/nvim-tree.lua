@@ -36,7 +36,7 @@ return {
     config = function()
       local icons = require('user.icons')
       local opts = {
-        hijack_netrw = false,
+        hijack_cursor = true,
         diagnostics = { enable = true, icons = icons.nerdtree },
         respect_buf_cwd = true,
         on_attach = function(bufnr)
@@ -56,9 +56,14 @@ return {
         end,
         renderer = {
           add_trailing = true,
-          highlight_git = true,
+          highlight_git = 'name',
           indent_markers = { enable = true },
-          special_files = { 'Makefile', 'README.md', 'go.mod' },
+          special_files = {
+            'Makefile',
+            'README.md',
+            'go.mod',
+            'go.sum',
+          },
           icons = {
             glyphs = {
               git = {
@@ -75,6 +80,7 @@ return {
         },
         git = {
           ignore = false,
+          timeout = 5000,
         },
         view = {
           adaptive_size = true,
