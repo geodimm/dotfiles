@@ -1,43 +1,6 @@
 local icons = require('user.icons')
 local feat = require('utils.feat')
 
-local mason_tools = {
-  -- language servers
-  'bash-language-server',
-  'clangd',
-  'deno',
-  'dockerfile-language-server',
-  'gopls',
-  'helm-ls',
-  'html-lsp',
-  'json-lsp',
-  'lua-language-server',
-  'marksman',
-  'pyright',
-  'rust-analyzer',
-  'taplo',
-  'terraform-ls',
-  'tilt',
-  'yaml-language-server',
-
-  -- linters
-  'actionlint',
-  'golangci-lint',
-  'hadolint',
-  'markdownlint',
-
-  -- formatters
-  'gci',
-  'goimports',
-  'gofumpt',
-  'shfmt',
-  'stylua',
-  'buildifier',
-
-  -- code actions
-  'gomodifytags',
-}
-
 -- Define LSP configuration settings for languages
 local servers_config = {
   gopls = function()
@@ -246,29 +209,8 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       {
-        'williamboman/mason.nvim',
-        opts = {
-          ui = {
-            border = 'rounded',
-            icons = {
-              package_installed = icons.ui.check,
-              package_pending = icons.ui.play,
-              package_uninstalled = icons.ui.times,
-            },
-          },
-        },
-      },
-      {
         'williamboman/mason-lspconfig.nvim',
         dependencies = { 'williamboman/mason.nvim' },
-      },
-      {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
-        opts = {
-          ensure_installed = mason_tools,
-          auto_update = true,
-          run_on_start = true,
-        },
       },
       {
         'antosha417/nvim-lsp-file-operations',
