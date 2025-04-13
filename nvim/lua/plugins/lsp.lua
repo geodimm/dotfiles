@@ -1,7 +1,7 @@
 local icons = require('user.icons')
 local feat = require('utils.feat')
 
-local lsp_tools = {
+local mason_tools = {
   -- language servers
   'bash-language-server',
   'clangd',
@@ -17,6 +17,7 @@ local lsp_tools = {
   'rust-analyzer',
   'taplo',
   'terraform-ls',
+  'tilt',
   'yaml-language-server',
 
   -- linters
@@ -150,78 +151,87 @@ local servers_config = {
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
----@param client vim.lsp.Client
----@param bufnr integer
-local function on_attach(client, bufnr)
+---@param args { buf: integer, data: any }
+local function on_attach(args)
+  if not args or not args.data then
+    return
+  end
+
+  ---@type vim.lsp.Client|nil
+  local client = vim.lsp.get_client_by_id(args.data.client_id)
+  if not client then
+    return
+  end
+
   -- Set formatting to enabled by default
-  feat.Formatting:set(bufnr, true)
+  feat.Formatting:set(args.buf, true)
 
   local keymap = require('utils.keymap')
   local status_ok, fzf = pcall(require, 'fzf-lua')
   if status_ok then
-    keymap.set('n', '<leader>gD', fzf.lsp_declarations, { desc = 'Declaration', buffer = bufnr })
+    keymap.set('n', '<leader>gD', fzf.lsp_declarations, { desc = 'Declaration', buffer = args.buf })
     keymap.set('n', '<leader>gd', function()
       fzf.lsp_definitions({ jump1 = true })
-    end, { desc = 'Definition', buffer = bufnr })
-    keymap.set('n', '<leader>gt', fzf.lsp_typedefs, { desc = 'Type definition', buffer = bufnr })
-    keymap.set('n', '<leader>gI', fzf.lsp_implementations, { desc = 'Implementation', buffer = bufnr })
-    keymap.set('n', '<leader>gi', fzf.lsp_incoming_calls, { desc = 'Incoming calls', buffer = bufnr })
-    keymap.set('n', '<leader>go', fzf.lsp_outgoing_calls, { desc = 'Outgoing calls', buffer = bufnr })
-    keymap.set('n', '<leader>gr', fzf.lsp_references, { desc = 'References', buffer = bufnr })
-    keymap.set('n', '<leader>gs', fzf.lsp_document_symbols, { desc = 'Document symbols', buffer = bufnr })
-    keymap.set('n', '<leader>gw', fzf.lsp_workspace_symbols, { desc = 'Workspace symbols', buffer = bufnr })
-    keymap.set({ 'v', 'n' }, '<leader>ca', fzf.lsp_code_actions, { desc = 'Code action', buffer = bufnr })
+    end, { desc = 'Definition', buffer = args.buf })
+    keymap.set('n', '<leader>gt', fzf.lsp_typedefs, { desc = 'Type definition', buffer = args.buf })
+    keymap.set('n', '<leader>gI', fzf.lsp_implementations, { desc = 'Implementation', buffer = args.buf })
+    keymap.set('n', '<leader>gi', fzf.lsp_incoming_calls, { desc = 'Incoming calls', buffer = args.buf })
+    keymap.set('n', '<leader>go', fzf.lsp_outgoing_calls, { desc = 'Outgoing calls', buffer = args.buf })
+    keymap.set('n', '<leader>gr', fzf.lsp_references, { desc = 'References', buffer = args.buf })
+    keymap.set('n', '<leader>gs', fzf.lsp_document_symbols, { desc = 'Document symbols', buffer = args.buf })
+    keymap.set('n', '<leader>gw', fzf.lsp_workspace_symbols, { desc = 'Workspace symbols', buffer = args.buf })
+    keymap.set({ 'v', 'n' }, '<leader>ca', fzf.lsp_code_actions, { desc = 'Code action', buffer = args.buf })
   else
-    keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = 'Declaration', buffer = bufnr })
-    keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = 'Definition', buffer = bufnr })
-    keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = 'Type definition', buffer = bufnr })
-    keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, { desc = 'Implementation', buffer = bufnr })
-    keymap.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, { desc = 'Incoming calls', buffer = bufnr })
-    keymap.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, { desc = 'Outgoing calls', buffer = bufnr })
-    keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = 'References', buffer = bufnr })
-    keymap.set('n', '<leader>gs', vim.lsp.buf.document_symbol, { desc = 'Document symbols', buffer = bufnr })
-    keymap.set('n', '<leader>gw', vim.lsp.buf.workspace_symbol, { desc = 'Workspace symbols', buffer = bufnr })
-    keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = bufnr })
+    keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = 'Declaration', buffer = args.buf })
+    keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = 'Definition', buffer = args.buf })
+    keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = 'Type definition', buffer = args.buf })
+    keymap.set('n', '<leader>gI', vim.lsp.buf.implementation, { desc = 'Implementation', buffer = args.buf })
+    keymap.set('n', '<leader>gi', vim.lsp.buf.incoming_calls, { desc = 'Incoming calls', buffer = args.buf })
+    keymap.set('n', '<leader>go', vim.lsp.buf.outgoing_calls, { desc = 'Outgoing calls', buffer = args.buf })
+    keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = 'References', buffer = args.buf })
+    keymap.set('n', '<leader>gs', vim.lsp.buf.document_symbol, { desc = 'Document symbols', buffer = args.buf })
+    keymap.set('n', '<leader>gw', vim.lsp.buf.workspace_symbol, { desc = 'Workspace symbols', buffer = args.buf })
+    keymap.set({ 'v', 'n' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buffer = args.buf })
   end
-  keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = bufnr })
-  keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = bufnr })
-  keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = bufnr })
+  keymap.set('n', '<leader>ck', vim.lsp.buf.signature_help, { desc = 'Signature help', buffer = args.buf })
+  keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Rename', buffer = args.buf })
+  keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run codelens', buffer = args.buf })
 
-  keymap.register_group('<leader>g', 'Goto', { icon = icons.ui.code_braces }, { buffer = bufnr })
-  keymap.register_group('<leader>c', 'LSP', { mode = { 'n', 'v' }, icon = icons.ui.code_braces }, { buffer = bufnr })
+  keymap.register_group('<leader>g', 'Goto', { icon = icons.ui.code_braces }, { buffer = args.buf })
+  keymap.register_group('<leader>c', 'LSP', { mode = { 'n', 'v' }, icon = icons.ui.code_braces }, { buffer = args.buf })
 
   if client.server_capabilities.documentHighlightProvider then
     local lsp_hl_augroup = vim.api.nvim_create_augroup('user_lsp_document_highlight', { clear = false })
     vim.api.nvim_clear_autocmds({
       group = lsp_hl_augroup,
-      buffer = bufnr,
+      buffer = args.buf,
     })
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
       group = lsp_hl_augroup,
-      buffer = bufnr,
       desc = 'highlight current symbol on hover',
+      buffer = args.buf,
       callback = vim.lsp.buf.document_highlight,
     })
     vim.api.nvim_create_autocmd('CursorMoved', {
       group = lsp_hl_augroup,
-      buffer = bufnr,
       desc = 'clear current symbol highlight',
+      buffer = args.buf,
       callback = vim.lsp.buf.clear_references,
     })
   end
 
   vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
-    group = vim.api.nvim_create_augroup('user_lsp_refresh_codelens', { clear = true }),
+    group = vim.api.nvim_create_augroup('user_lsp_refresh_codelens', {}),
     desc = 'refresh lsp codelens',
     callback = function()
-      vim.lsp.codelens.refresh({ bufnr = bufnr })
+      vim.lsp.codelens.refresh({ bufnr = args.buf })
     end,
   })
 
   -- Don't attach yamlls to helm files
   if client.name == 'yamlls' and vim.bo.filetype == 'helm' then
     vim.schedule(function()
-      vim.lsp.buf_detach_client(bufnr, client.id)
+      vim.lsp.buf_detach_client(args.buf, client.id)
     end)
   end
 
@@ -229,26 +239,6 @@ local function on_attach(client, bufnr)
     local win = vim.api.nvim_get_current_win()
     vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
   end
-end
-
--- Create config that sets up LSP keymaps, augroups and capabilities
-local function create_config(servers, server)
-  local capabilities = vim.tbl_extend(
-    'force',
-    require('blink.cmp').get_lsp_capabilities(),
-    require('lsp-file-operations').default_capabilities()
-  )
-
-  local opts = {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  }
-
-  if servers[server] then
-    opts = vim.tbl_deep_extend('force', opts, servers[server]())
-  end
-
-  return opts
 end
 
 return {
@@ -275,10 +265,18 @@ return {
       {
         'WhoIsSethDaniel/mason-tool-installer.nvim',
         opts = {
-          ensure_installed = lsp_tools,
+          ensure_installed = mason_tools,
           auto_update = true,
           run_on_start = true,
         },
+      },
+      {
+        'antosha417/nvim-lsp-file-operations',
+        dependencies = {
+          'nvim-lua/plenary.nvim',
+          'nvim-tree/nvim-tree.lua',
+        },
+        opts = {},
       },
     },
     init = function()
@@ -319,16 +317,32 @@ return {
       end
     end,
     config = function()
-      local nvim_lspconfig = require('lspconfig')
+      vim.lsp.config('*', {
+        capabilities = vim.tbl_extend(
+          'force',
+          require('blink.cmp').get_lsp_capabilities(),
+          require('lsp-file-operations').default_capabilities()
+        ),
+      })
+
+      vim.api.nvim_create_autocmd('LspAttach', {
+        group = vim.api.nvim_create_augroup('user_lsp_attach', {}),
+        desc = 'LSP actions',
+        callback = on_attach,
+      })
+
       local mason_lspconfig = require('mason-lspconfig')
-      for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-        local config = create_config(servers_config, server)
-        nvim_lspconfig[server].setup(config)
+      local installed_servers = mason_lspconfig.get_installed_servers()
+      if vim.fn.executable('tilt') then
+        installed_servers = vim.list_extend(installed_servers, { 'tilt_ls' })
       end
 
-      if vim.fn.executable('tilt') then
-        local config = create_config(servers_config, 'tilt_ls')
-        nvim_lspconfig['tilt_ls'].setup(config)
+      for _, server in ipairs(installed_servers) do
+        local cfg = servers_config[server]
+        if cfg then
+          vim.lsp.config(server, cfg())
+        end
+        vim.lsp.enable(server)
       end
     end,
   },
@@ -357,13 +371,5 @@ return {
 
       null_ls.setup(opts)
     end,
-  },
-  {
-    'antosha417/nvim-lsp-file-operations',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-tree.lua',
-    },
-    opts = {},
   },
 }
