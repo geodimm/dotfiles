@@ -58,7 +58,7 @@ vim.opt.diffopt:append({
 -- Folds {{{1
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
-vim.opt.foldcolumn = 'auto'
+vim.opt.foldcolumn = '1'
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
