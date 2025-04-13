@@ -71,6 +71,7 @@ local servers_config = {
   end,
   yamlls = function()
     return {
+      filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.github' },
       settings = {
         yaml = {
           hover = true,

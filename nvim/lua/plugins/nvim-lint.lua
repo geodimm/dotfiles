@@ -11,7 +11,7 @@ return {
 
       vim.filetype.add({
         pattern = {
-          ['.*/.github/workflows/.*y*ml'] = 'yaml.ghaction',
+          ['.*/.github/workflows/.*y*ml'] = 'yaml.github',
         },
       })
 
@@ -24,7 +24,7 @@ return {
         go = { 'golangcilint' },
         dockerfile = { 'hadolint' },
         markdown = { 'markdownlint' },
-        ghaction = { 'actionlint' },
+        github = { 'actionlint' },
         zsh = { 'zsh' },
       }
 
