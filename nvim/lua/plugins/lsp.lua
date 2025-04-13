@@ -347,18 +347,6 @@ return {
       local null_ls = require('null-ls')
 
       opts.sources = {
-        -- diagnostics
-        null_ls.builtins.diagnostics.golangci_lint,
-        null_ls.builtins.diagnostics.hadolint,
-        null_ls.builtins.diagnostics.markdownlint.with({
-          extra_args = {
-            '--config',
-            vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
-          },
-        }),
-        null_ls.builtins.diagnostics.zsh,
-        null_ls.builtins.diagnostics.actionlint,
-
         -- code actions
         null_ls.builtins.code_actions.refactoring,
         null_ls.builtins.code_actions.gomodifytags,
