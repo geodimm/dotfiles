@@ -298,7 +298,16 @@ return {
     opts = {
       debug = false,
       diagnostics_format = '#{m}',
-      on_attach = on_attach,
+      ---@param client vim.lsp.Client
+      ---@param bufnr integer
+      on_attach = function(client, bufnr)
+        on_attach({
+          buf = bufnr,
+          data = {
+            client_id = client.id,
+          },
+        })
+      end,
     },
     config = function(_, opts)
       local null_ls = require('null-ls')
