@@ -29,7 +29,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufEnter', 'BufWritePost' }, {
-        group = vim.api.nvim_create_augroup('user_lint', { clear = true }),
+        group = vim.api.nvim_create_augroup('user_lint', {}),
         desc = 'run nvim-lint',
         pattern = '*',
         callback = function()
