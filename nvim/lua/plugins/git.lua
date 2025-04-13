@@ -44,6 +44,7 @@ return {
         preview_config = {
           border = 'rounded',
         },
+        sign_priority = 1000,
         on_attach = function()
           local keymap = require('utils.keymap')
           keymap.set('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'Stage buffer' })
