@@ -111,6 +111,18 @@ local servers_config = {
       },
     }
   end,
+  harper_ls = function()
+    return {
+      settings = {
+        ['harper-ls'] = {
+          linters = {
+            SentenceCapitalization = false,
+          },
+          dialect = 'British',
+        },
+      },
+    }
+  end,
 }
 
 -- Use an on_attach function to only map the following keys
