@@ -10,6 +10,7 @@ return {
         'bash',
         'css',
         'dockerfile',
+        'git_config',
         'go',
         'gomod',
         'gosum',
