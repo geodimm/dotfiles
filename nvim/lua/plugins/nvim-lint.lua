@@ -1,6 +1,7 @@
 return {
   {
-    'mfussenegger/nvim-lint',
+    'tyanxie/nvim-lint',
+    branch = 'feat/golangcilint',
     event = {
       'BufReadPre',
       'BufNewFile',
