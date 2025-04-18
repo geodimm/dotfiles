@@ -19,7 +19,7 @@ make init
 - [ohmyzsh] Oh My Zsh is an open source, community-driven
 framework for managing your zsh configuration.
 - [powerlevel10k] Powerlevel10k is a theme for Zsh. It emphasizes speed,
-flexibility and out-of-the-box experience.
+flexibility, and out-of-the-box experience.
 - [fzf] A command-line fuzzy finder
 - [bat] A cat(1) clone with wings.
 - [lsd] The next gen ls command

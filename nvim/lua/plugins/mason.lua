@@ -6,6 +6,7 @@ local tools = {
   'clangd',
   'deno',
   'dockerfile-language-server',
+  'harper-ls',
   'gopls',
   'helm-ls',
   'html-lsp',
