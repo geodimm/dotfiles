@@ -1,5 +1,5 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.mapleader = vim.keycode('<space>')
+vim.g.maplocalleader = vim.keycode('\\')
 
 local keymap = require('utils.keymap')
 
