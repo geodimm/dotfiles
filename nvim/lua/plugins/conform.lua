@@ -1,12 +1,10 @@
-local feat = require('utils.feat')
-
 return {
   {
     'stevearc/conform.nvim',
     opts = {
       notify_on_error = true,
-      format_on_save = function(bufnr)
-        if not feat.Formatting:is_enabled(bufnr) then
+      format_on_save = function(_)
+        if not vim.b.formatting then
           return
         end
         return {

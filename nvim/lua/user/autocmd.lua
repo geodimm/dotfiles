@@ -1,5 +1,17 @@
 -- vim: foldmethod=marker
 
+-- Set various buffer-local variables {{{1
+vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
+  group = vim.api.nvim_create_augroup('user_buffer_local_vars', {}),
+  desc = 'set various buffer-local variables',
+  pattern = '*',
+  callback = function()
+    if vim.b.formatting == nil then
+      vim.b.formatting = true
+    end
+  end,
+})
+
 -- Toggle highlighting current line only in active splits {{{1
 vim.api.nvim_create_autocmd({ 'VimEnter', 'WinEnter', 'BufWinEnter', 'VimLeave', 'WinLeave', 'BufWinLeave' }, {
   group = vim.api.nvim_create_augroup('user_toggle_cursorline', {}),

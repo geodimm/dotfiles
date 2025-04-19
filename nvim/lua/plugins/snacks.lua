@@ -79,15 +79,14 @@ return {
       Snacks.toggle.diagnostics():map('<leader>td')
       Snacks.toggle.inlay_hints():map('<leader>th')
 
-      local feat = require('utils.feat')
       local formattingToggle = Snacks.toggle.new({
         id = 'formatting',
         name = 'Formatting',
         get = function()
-          return feat.Formatting:is_enabled(0)
+          return vim.b.formatting
         end,
         set = function(state)
-          return feat.Formatting:set(0, state)
+          vim.b.formatting = state
         end,
       }, opts)
       formattingToggle:map('<leader>tf')

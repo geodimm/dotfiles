@@ -1,5 +1,4 @@
 local icons = require('user.icons')
-local feat = require('utils.feat')
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -14,9 +13,6 @@ local function on_attach(args)
   if not client then
     return
   end
-
-  -- Set formatting to enabled by default
-  feat.Formatting:set(args.buf, true)
 
   local keymap = require('utils.keymap')
   local status_ok, fzf = pcall(require, 'fzf-lua')
