@@ -91,6 +91,27 @@ return {
       }, opts)
       formattingToggle:map('<leader>tf')
 
+      local grammarToggle = Snacks.toggle.new({
+        id = 'grammar',
+        name = 'Grammar checker',
+        get = function()
+          return vim.b.grammar
+        end,
+        set = function(state)
+          vim.b.grammar = state
+          if state then
+            vim.cmd('edit')
+          else
+            for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+              if client.name == 'harper_ls' and client.attached_buffers[vim.api.nvim_get_current_buf()] then
+                vim.lsp.buf_detach_client(0, client.id)
+              end
+            end
+          end
+        end,
+      }, opts)
+      grammarToggle:map('<leader>tg')
+
       Snacks.setup(opts)
     end,
   },
