@@ -11,7 +11,7 @@ return {
       templateExtensions = { 'tmpl' },
       -- formatting
       gofumpt = true,
-      -- ui
+      -- UI
       codelenses = {
         test = true,
         run_govulncheck = true,
