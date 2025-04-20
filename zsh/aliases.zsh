@@ -40,6 +40,10 @@ alias up="${HOME}/dotfiles/scripts/update.sh"
 alias ggrep="git grep -n -I --break --heading -B0 -A0"
 alias ggrepi="ggrep --ignore-case"
 
+# rg
+# hyperlinked grep for kitty
+alias rg="rg --hyperlink-format=kitty"
+
 # docker
 docker-clean() {
     docker container prune -f && docker volume prune -f && docker network prune -f
