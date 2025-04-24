@@ -68,7 +68,7 @@ local function on_attach(args)
     })
   end
 
-  vim.api.nvim_create_autocmd({ 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+  vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
     group = vim.api.nvim_create_augroup('user_lsp_refresh_codelens', {}),
     desc = 'refresh lsp codelens',
     callback = function()
