@@ -13,11 +13,12 @@ return {
         }
       end,
       formatters_by_ft = {
-        lua = { 'stylua' },
         go = { 'gofumpt', 'goimports' },
-        sh = { 'shfmt' },
+        java = { 'google-java-format' },
+        lua = { 'stylua' },
         markdown = { 'markdownlint' },
         rust = { 'rustfmt' },
+        sh = { 'shfmt' },
         starlark = { 'buildifier' },
       },
       formatters = {
