@@ -10,6 +10,7 @@ local tools = {
   'gopls',
   'helm-ls',
   'html-lsp',
+  'jdtls',
   'json-lsp',
   'lua-language-server',
   'marksman',
@@ -23,6 +24,7 @@ local tools = {
   -- linters
   'actionlint',
   'golangci-lint',
+  'google-java-format',
   'hadolint',
   'markdownlint',
 

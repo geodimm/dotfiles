@@ -11,7 +11,7 @@ PLATFORM ?= $(shell uname | tr '[:upper:]' '[:lower:]')
 GROUP := $(shell if [ ${PLATFORM} == "linux" ]; then  echo "${USER}"; else echo "staff"; fi)
 HOMEBREW_PREFIX ?= $(shell if [ ${PLATFORM} == "linux" ]; then echo "/home/linuxbrew/.linuxbrew"; else echo "/opt/homebrew"; fi)
 
-all: packages dirs fonts git node rust terminal tools neovim ## Install and configure everything (default)
+all: packages dirs fonts git languages terminal tools neovim ## Install and configure everything (default)
 
 help: ## Display help
 	@grep -hE '^[a-zA-Z_0-9%-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -36,16 +36,21 @@ git: ## Configure git
 	ln -fs "${DOTFILES_DIR}/git/gitconfig" "${HOME}/.gitconfig"
 	touch "${DOTFILES_DIR}/git/commit-template"
 
+languages: node rust java ## Setup languages
+
 nvm: ## Configure nvm
 	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/.nvm"
 
 node: nvm ## Install node
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" && nvm install stable
 
-rust: rust-install ## Install and configure Rust
-
-rust-install: ## Install Rust
+rust: ## Install Rust
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+
+java: ## Configure Java
+ifeq ($(PLATFORM),darwin)
+	sudo ln -fs "${HOMEBREW_PREFIX}/opt/openjdk/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk.jdk"
+endif
 
 terminal: kitty zsh ohmyzsh ## Setup the terminal
 
@@ -78,7 +83,7 @@ ohmyzsh-configure: ## Configure Oh My Zsh
 
 tools: bat tig jqp golangci-lint
 
-bat:
+bat: ## Configure bat
 	mkdir -p "${XDG_CONFIG_HOME}/bat"
 	ln -fs "${DOTFILES_DIR}/bat/config" "${XDG_CONFIG_HOME}/bat/config"
 
@@ -89,7 +94,7 @@ jqp: JQP_VERSION=v0.0.4
 jqp: ## Install jqp
 	curl -s "https://raw.githubusercontent.com/geodimm/jqp/${JQP_VERSION}/scripts/install.sh" | bash
 
-golangci-lint:
+golangci-lint: ## Configure golangci-lint
 	ln -fs "${DOTFILES_DIR}/golangci-lint/golangci.yml" "${HOME}/.golangci.yml"
 
 neovim: neovim-install neovim-configure ## Install and configure neovim

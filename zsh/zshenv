@@ -42,6 +42,9 @@ if [[ ! "${PATH}" == *${HOME}/.cargo/bin* ]]; then
     export PATH="${PATH}:${HOME}/.cargo/bin"
 fi
 
+# Java
+export JAVA_HOME="$(brew --prefix java)/libexec/openjdk.jdk/Contents/Home"
+
 # NVM
 export NVM_HOMEBREW="$(brew --prefix nvm)"
 
