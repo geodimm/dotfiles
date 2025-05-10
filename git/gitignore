@@ -1,7 +1,5 @@
-georgi.yaml
 .vim
 .classpath
 .project
 .settings/
-tags
 .luarc.json
