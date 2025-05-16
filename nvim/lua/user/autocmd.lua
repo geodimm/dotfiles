@@ -9,10 +9,6 @@ vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
     if vim.b.formatting == nil then
       vim.b.formatting = true
     end
-
-    if vim.b.grammar == nil then
-      vim.b.grammar = true
-    end
   end,
 })
 
