@@ -41,7 +41,9 @@ return {
 
       local keymap = require('utils.keymap')
       keymap.set('n', '<leader>ft', fzf.builtin, { desc = 'Find anything' })
-      keymap.set('n', '<leader>ff', fzf.files, { desc = 'Files' })
+      keymap.set('n', '<leader>ff', function()
+        fzf.files({ line_query = true })
+      end, { desc = 'Files' })
       keymap.set('n', '<leader>f/', function()
         fzf.lgrep_curbuf({ previewer = false })
       end, { desc = 'Current file' })
