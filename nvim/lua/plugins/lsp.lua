@@ -126,6 +126,7 @@ return {
         },
         float = {
           border = 'rounded',
+          source = true,
         },
         jump = {
           float = true,
