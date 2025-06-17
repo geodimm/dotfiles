@@ -4,7 +4,6 @@ local tools = {
   -- language servers
   'bash-language-server',
   'clangd',
-  'deno',
   'dockerfile-language-server',
   'gopls',
   'helm-ls',
@@ -18,6 +17,7 @@ local tools = {
   'taplo',
   'terraform-ls',
   'tilt',
+  'typescript-language-server',
   'yaml-language-server',
 
   -- linters
