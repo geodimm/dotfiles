@@ -143,6 +143,8 @@ return {
         opts.border = opts.border or 'rounded'
         return orig_util_open_floating_preview(contents, syntax, opts, ...)
       end
+
+      vim.lsp.set_log_level('OFF')
     end,
     config = function()
       vim.lsp.config('*', {
