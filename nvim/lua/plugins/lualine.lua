@@ -105,12 +105,12 @@ return {
               'filename',
               file_status = true,
               newfile_status = true,
-              symbols = icons.file,
+              symbols = vim.tbl_map(append_whitespace, icons.file),
               color = function()
                 return vim.bo.modified and { fg = colors.yellow, bg = theme.normal.b.bg } or { bg = theme.normal.b.bg }
               end,
               separator = section_separator,
-              padding = { left = 1 },
+              padding = 0,
             },
           },
           lualine_x = {
