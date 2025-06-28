@@ -44,6 +44,7 @@ vim.opt.fillchars = {
   foldopen = '▾',
   foldclose = '▸',
 }
+
 -- Diff options {{{1
 vim.opt.diffopt:append({
   'vertical',
@@ -71,10 +72,12 @@ vim.opt.relativenumber = true -- Show the line number relative to the line with 
 vim.opt.colorcolumn = '80' -- Set the colored vertical column
 vim.opt.cmdheight = 1 -- Set the command-line height to 1
 vim.opt.showbreak = '↪ ' -- Show a symbol at the start of wrapped lines
-vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
+vim.opt.completeopt = { 'menuone', 'popup', 'noinsert', 'noselect', 'fuzzy' }
+vim.opt.pumheight = 10 -- Maximum number of items to show in the popup menu
 vim.opt.showmode = false -- Don't show mode in cmd
 vim.opt.syntax = 'on' -- Enable syntax highlighting
 vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
+vim.g.netrw_banner = 0 -- Remove netrw banner for cleaner looking
 
 -- List chars {{{1
 vim.opt.list = true -- Show special characters
