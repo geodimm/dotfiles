@@ -51,6 +51,7 @@ return {
           keymap.set('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Reset buffer' })
           keymap.set('n', '<leader>hU', gitsigns.reset_buffer_index, { desc = 'Reset buffer index' })
           keymap.set('n', '<leader>hb', blame_line, { desc = 'Blame line' })
+          keymap.set('n', '<leader>hc', gitsigns.show_commit, { desc = 'Show commit' })
           keymap.set('n', '<leader>hd', gitsigns.diffthis, { desc = 'Diff this' })
           keymap.set('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview hunk in a floating window' })
           keymap.set('n', '<leader>ht', gitsigns.preview_hunk_inline, { desc = 'Preview hunk inline' })
