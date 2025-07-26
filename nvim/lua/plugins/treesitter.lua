@@ -40,6 +40,7 @@ return {
         'ssh_config',
         'terraform',
         'toml',
+        'typescript',
         'vim',
         'vimdoc',
         'xml',
