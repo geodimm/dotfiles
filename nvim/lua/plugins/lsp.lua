@@ -105,6 +105,9 @@ return {
         },
         opts = {},
       },
+      {
+        'b0o/schemastore.nvim',
+      },
     },
     init = function()
       require('lspconfig.ui.windows').default_options.border = 'rounded'
