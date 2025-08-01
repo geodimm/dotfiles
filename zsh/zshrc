@@ -93,6 +93,8 @@ umask 022
 
 # Source files {{{2
 
+source "${HOME}/dotfiles/zsh/zshpath"
+
 # Apply FZF configuration
 eval "$(fzf --zsh)"
 
