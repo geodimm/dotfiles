@@ -21,39 +21,21 @@ case "${OSTYPE}" in
     linux*) brew_path="/home/linuxbrew/.linuxbrew" ;;
     darwin*) brew_path="/opt/homebrew" ;;
 esac
-if [[ -f "${brew_path}/bin/brew" ]]; then
-    eval "$(${brew_path}/bin/brew shellenv)"
-fi
+export HOMEBREW_BIN="${brew_path}/bin/brew"
 
 # FZF
 export FZF_DEFAULT_OPTS_FILE="${HOME}/dotfiles/fzf/fzfrc"
 
 # Golang
 export GOPATH="${HOME}/go"
-if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
-    export PATH="${PATH}:${GOPATH}/bin"
-fi
 
 # Rust
 if [[ -f "${HOME}/.cargo/env" ]]; then
     source "${HOME}/.cargo/env"
 fi
-if [[ ! "${PATH}" == *${HOME}/.cargo/bin* ]]; then
-    export PATH="${PATH}:${HOME}/.cargo/bin"
-fi
 
 # Java
-export JAVA_HOME="$(brew --prefix java)/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME="$(${HOMEBREW_BIN} --prefix java)/libexec/openjdk.jdk/Contents/Home"
 
 # NVM
-export NVM_HOMEBREW="$(brew --prefix nvm)"
-
-# Append ~/bin directory to PATH
-if [[ ! "${PATH}" == *${HOME}/bin* ]]; then
-    export PATH="${HOME}/bin:${PATH}"
-fi
-
-# Append current directory to PATH
-if [[ ! "${PATH}" == *:.* ]]; then
-    export PATH="${PATH}:."
-fi
+export NVM_HOMEBREW="$(${HOMEBREW_BIN} --prefix nvm)"

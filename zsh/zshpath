@@ -1,0 +1,27 @@
+#!/usr/bin/env zsh
+# vim: set filetype=zsh
+
+# Homebrew
+if [[ -f "${HOMEBREW_BIN}" ]]; then
+    eval "$(${HOMEBREW_BIN} shellenv)"
+fi
+
+# Golang
+if [[ ! "${PATH}" == *${GOPATH}/bin* ]]; then
+    export PATH="${PATH}:${GOPATH}/bin"
+fi
+
+# Rust
+if [[ ! "${PATH}" == *${HOME}/.cargo/bin* ]]; then
+    export PATH="${PATH}:${HOME}/.cargo/bin"
+fi
+
+# Append ~/bin directory to PATH
+if [[ ! "${PATH}" == *${HOME}/bin* ]]; then
+    export PATH="${HOME}/bin:${PATH}"
+fi
+
+# Append current directory to PATH
+if [[ ! "${PATH}" == *:.* ]]; then
+    export PATH="${PATH}:."
+fi
