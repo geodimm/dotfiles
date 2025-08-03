@@ -91,6 +91,22 @@ return {
       }, opts)
       formattingToggle:map('<leader>tf')
 
+      local concealToggle = Snacks.toggle.new({
+        id = 'conceallevel',
+        name = 'Conceal Level',
+        get = function()
+          return vim.opt_local.conceallevel:get() ~= 0
+        end,
+        set = function(state)
+          if state then
+            vim.opt_local.conceallevel = 3
+          else
+            vim.opt_local.conceallevel = 0
+          end
+        end,
+      })
+      concealToggle:map('<leader>tc')
+
       Snacks.setup(opts)
     end,
   },
