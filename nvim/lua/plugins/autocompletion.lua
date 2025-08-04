@@ -161,11 +161,6 @@ return {
         if hlinfo then
           vim.api.nvim_set_hl(0, name .. 'Reversed', { fg = hlinfo.fg, reverse = true })
         end
-
-        -- related PR: https://github.com/catppuccin/nvim/pull/809
-        for _, hl in ipairs({ 'BlinkCmpMenuBorder', 'BlinkCmpDocBorder', 'BlinkCmpSignatureHelpBorder' }) do
-          vim.api.nvim_set_hl(0, hl, { link = 'FloatBorder' })
-        end
       end
     end,
   },
