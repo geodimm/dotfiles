@@ -7,6 +7,9 @@ return {
     opts = {
       flavour = 'mocha',
       transparent_background = true,
+      float = {
+        transparent = true,
+      },
       integrations = {
         fzf = true,
         lsp_trouble = true,
@@ -15,7 +18,10 @@ return {
         notify = true,
         which_key = true,
         grug_far = true,
-        blink_cmp = true,
+        blink_cmp = {
+          enabled = true,
+          style = 'bordered',
+        },
         mini = {
           enabled = true,
           indentscope_color = 'overlay2',
@@ -25,6 +31,7 @@ return {
       custom_highlights = function(colors)
         return {
           PmenuThumb = { bg = colors.blue },
+          BlinkCmpScrollBarThumb = { bg = colors.blue },
         }
       end,
     },
