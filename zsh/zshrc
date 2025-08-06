@@ -94,6 +94,7 @@ umask 022
 # Source files {{{2
 
 source "${HOME}/dotfiles/zsh/zshpath"
+source "${HOME}/dotfiles/zsh/aliases.zsh"
 
 # Apply FZF configuration
 eval "$(fzf --zsh)"
