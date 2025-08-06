@@ -27,7 +27,6 @@ function do_configure() {
     done
 
     ln -fs "${DOTFILES_DIR}/zsh/p10k/p10k.zsh" "${ZSH_CUSTOM}/p10k.zsh"
-    ln -fs "${DOTFILES_DIR}/zsh/aliases.zsh" "${ZSH_CUSTOM}/aliases.zsh"
     ln -fs "${DOTFILES_DIR}/zsh/zshrc" "${HOME}/.zshrc"
     ln -fs "${DOTFILES_DIR}/zsh/zshenv" "${HOME}/.zshenv"
 }
