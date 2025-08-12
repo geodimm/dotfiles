@@ -57,7 +57,7 @@ function my_git_formatter() {
     res+=" ${modified}󰖷 "
   fi
 
-  integer num_staged_modified='VCS_STATUS_NUM_STAGED - VCS_STATUS_NUM_STAGED_NEW - VCS_STATUS_NUM_STAGED_DELETED'
+  integer num_staged_modified=$((VCS_STATUS_NUM_STAGED - VCS_STATUS_NUM_STAGED_NEW - VCS_STATUS_NUM_STAGED_DELETED))
   (( VCS_STATUS_COMMITS_BEHIND      )) && res+=" ${clean}⇣${VCS_STATUS_COMMITS_BEHIND}"
   (( VCS_STATUS_COMMITS_AHEAD       )) && res+=" ${clean}⇡${VCS_STATUS_COMMITS_AHEAD}"
   (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
