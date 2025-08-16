@@ -20,6 +20,7 @@ return {
         rust = { 'rustfmt' },
         sh = { 'shfmt' },
         starlark = { 'buildifier' },
+        latex = { 'latexindent' },
       },
       formatters = {
         markdownlint = {
