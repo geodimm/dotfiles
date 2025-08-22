@@ -7,8 +7,8 @@ set -o pipefail # don't hide errors within pipes
 PLATFORM="$(uname | tr '[:upper:]' '[:lower:]')"
 
 declare -a FONTS=(
-    "Monaspace=https://github.com/githubnext/monaspace.git"
-    "JetBrainsMono=https://github.com/JetBrains/JetBrainsMono.git"
+    "Monaspace=https://github.com/githubnext/monaspace.git,fonts/Variable Fonts"
+    "JetBrainsMono=https://github.com/JetBrains/JetBrainsMono.git,fonts/variable"
 )
 
 function install_fonts() {
@@ -30,11 +30,13 @@ function install_fonts() {
 
     for value in "${FONTS[@]}"; do
         path="${value%%=*}"
-        repo="${value##*=}"
+        rest="${value#*=}"
+        repo="${rest%%,*}"
+        dir="${rest#*,}"
         git clone --quiet --filter=blob:none --sparse "${repo}" "${install_dir}/${path}"
         (
             cd "${install_dir}/${path}"
-            git sparse-checkout add fonts/variable/
+            git sparse-checkout add "${dir}"
             find . -type f -name '*.ttf' -exec cp "{}" "${fonts_dir}" \;
         )
     done
