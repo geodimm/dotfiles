@@ -63,7 +63,7 @@ function my_git_formatter() {
   (( VCS_STATUS_PUSH_COMMITS_BEHIND )) && res+=" ${clean}⇠${VCS_STATUS_PUSH_COMMITS_BEHIND}"
   (( VCS_STATUS_PUSH_COMMITS_AHEAD  )) && res+=" ${clean}⇢${VCS_STATUS_PUSH_COMMITS_AHEAD}"
   (( VCS_STATUS_STASHES             )) && res+=" ${clean}*${VCS_STATUS_STASHES}"
-  (( VCS_STATUS_ACTION              )) && res+=" ${action}${VCS_STATUS_ACTION}"
+  [[ -n ${VCS_STATUS_ACTION}        ]] && res+=" ${action}${VCS_STATUS_ACTION}"
   (( VCS_STATUS_NUM_CONFLICTED      )) && res+=" ${conflicted}~${VCS_STATUS_NUM_CONFLICTED}"
   (( VCS_STATUS_NUM_STAGED_NEW      )) && res+=" ${clean}+${VCS_STATUS_NUM_STAGED_NEW}"
   (( VCS_STATUS_NUM_STAGED_DELETED  )) && res+=" ${conflicted}-${VCS_STATUS_NUM_STAGED_DELETED}"
