@@ -22,6 +22,13 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
+    opts = {
+      headings = {
+        heading_1 = { sign = '' },
+        heading_2 = { sign = '' },
+      },
+      code_blocks = { sign = false },
+    },
   },
   {
     'iamcco/markdown-preview.nvim',
