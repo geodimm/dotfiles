@@ -33,6 +33,7 @@ return {
         return {
           PmenuThumb = { bg = C.blue },
           BlinkCmpScrollBarThumb = { bg = C.blue },
+          MarkviewCode = { bg = C.mantle },
 
           ['@variable.member'] = { fg = C.lavender }, -- For fields.
           ['@module'] = { fg = C.lavender, style = O.styles.miscs or { 'italic' } }, -- For identifiers referring to modules and namespaces.
