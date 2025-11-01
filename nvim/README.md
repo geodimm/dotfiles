@@ -23,13 +23,21 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ## Plugins
 
+### ai
+
++ [johnseth97/codex.nvim](https://dotfyle.com/plugins/johnseth97/codex.nvim)
+
+### color
+
++ [xzbdmw/colorful-menu.nvim](https://dotfyle.com/plugins/xzbdmw/colorful-menu.nvim)
+
 ### colorscheme
 
 + [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
 
 ### comment
 
-+ [echasnovski/mini.comment](https://dotfyle.com/plugins/echasnovski/mini.comment)
++ [nvim-mini/mini.comment](https://dotfyle.com/plugins/nvim-mini/mini.comment)
 
 ### completion
 
@@ -42,7 +50,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 ### editing-support
 
 + [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
-+ [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
++ [nvim-mini/mini.ai](https://dotfyle.com/plugins/nvim-mini/mini.ai)
 
 ### file-explorer
 
@@ -51,7 +59,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 ### formatting
 
 + [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
-+ [echasnovski/mini.align](https://dotfyle.com/plugins/echasnovski/mini.align)
++ [nvim-mini/mini.align](https://dotfyle.com/plugins/nvim-mini/mini.align)
 
 ### fuzzy-finder
 
@@ -72,7 +80,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### indent
 
-+ [echasnovski/mini.indentscope](https://dotfyle.com/plugins/echasnovski/mini.indentscope)
++ [nvim-mini/mini.indentscope](https://dotfyle.com/plugins/nvim-mini/mini.indentscope)
 
 ### keybinding
 
@@ -121,7 +129,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### syntax
 
-+ [echasnovski/mini.surround](https://dotfyle.com/plugins/echasnovski/mini.surround)
++ [nvim-mini/mini.surround](https://dotfyle.com/plugins/nvim-mini/mini.surround)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 
@@ -138,9 +146,11 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 + clangd
 + gopls
 + html
++ jdtls
 + marksman
 + pyright
 + taplo
++ texlab
 + tilt_ls
 + yamlls
 
