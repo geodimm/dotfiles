@@ -1,22 +1,22 @@
 return {
   {
-    'echasnovski/mini.ai',
+    'nvim-mini/mini.ai',
     opts = {
       n_lines = 500,
     },
   },
   {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     opts = {
       highlight_duration = 1000,
     },
   },
   {
-    'echasnovski/mini.comment',
+    'nvim-mini/mini.comment',
     opts = {},
   },
   {
-    'echasnovski/mini.align',
+    'nvim-mini/mini.align',
     opts = {},
   },
 }
