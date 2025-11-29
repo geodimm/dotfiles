@@ -36,6 +36,7 @@ local tools = {
   'shfmt',
   'stylua',
   'buildifier',
+  'xmlformatter',
 
   -- code actions
   'gomodifytags',

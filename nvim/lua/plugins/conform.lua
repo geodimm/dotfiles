@@ -21,6 +21,7 @@ return {
         sh = { 'shfmt' },
         starlark = { 'buildifier' },
         latex = { 'latexindent' },
+        xml = { 'xmlformatter' },
       },
       formatters = {
         markdownlint = {
