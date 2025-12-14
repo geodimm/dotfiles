@@ -1,10 +1,10 @@
 return {
   'johnseth97/codex.nvim',
   lazy = true,
-  cmd = { 'Codex', 'CodexToggle' }, -- Optional: Load only on command execution
+  cmd = { 'Codex', 'CodexToggle' },
   keys = {
     {
-      '<leader>cc', -- Change this to your preferred keybinding
+      '<leader>cc',
       function()
         require('codex').toggle()
       end,
@@ -13,13 +13,14 @@ return {
   },
   opts = {
     keymaps = {
-      toggle = nil, -- Keybind to toggle Codex window (Disabled by default, watch out for conflicts)
-      quit = '<C-q>', -- Keybind to close the Codex window (default: Ctrl + q)
-    }, -- Disable internal default keymap (<leader>cc -> :CodexToggle)
-    border = 'rounded', -- Options: 'single', 'double', or 'rounded'
-    width = 0.8, -- Width of the floating window (0.0 to 1.0)
-    height = 0.8, -- Height of the floating window (0.0 to 1.0)
-    model = nil, -- Optional: pass a string to use a specific model (e.g., 'o3-mini')
-    autoinstall = false, -- Automatically install the Codex CLI if not found
+      toggle = nil,
+      quit = '<C-q>',
+    },
+    border = 'rounded',
+    width = 0.33,
+    height = 1,
+    model = nil,
+    autoinstall = false,
+    panel = true,
   },
 }
