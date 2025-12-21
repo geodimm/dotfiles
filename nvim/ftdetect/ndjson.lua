@@ -1,5 +1,5 @@
 vim.filetype.add({
   pattern = {
-    ['.*/.*ndjson.*'] = 'json',
+    ['.*/.*ndjson'] = 'json',
   },
 })
