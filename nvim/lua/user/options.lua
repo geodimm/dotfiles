@@ -80,10 +80,14 @@ vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
 vim.g.netrw_banner = 0 -- Remove netrw banner for cleaner looking
 
 -- List chars {{{1
-vim.opt.list = true -- Show special characters
+vim.opt.list = false -- Show special characters
 vim.opt.listchars = {
-  tab = '  ',
+  tab = '› ',
   trail = '•',
+  eol = '↲',
+  nbsp = '␣',
+  precedes = '«',
+  extends = '»',
 }
 
 -- Indentation {{{1

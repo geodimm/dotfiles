@@ -74,8 +74,9 @@ return {
 
       keymap.register_group('<leader>t', 'Toggle')
 
-      Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tl')
+      Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tr')
       Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>tw')
+      Snacks.toggle.option('list', { name = 'Listchars' }):map('<leader>tl')
       Snacks.toggle.diagnostics():map('<leader>td')
       Snacks.toggle.inlay_hints():map('<leader>th')
 
