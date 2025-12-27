@@ -1,6 +1,28 @@
 return {
   { 'tpope/vim-fugitive' },
-  { 'sindrets/diffview.nvim' },
+  {
+    'sindrets/diffview.nvim',
+    opts = {
+      enhanced_diff_hl = true,
+      view = {
+        default = {
+          winbar_info = true,
+        },
+        merge_tool = {
+          winbar_info = true,
+        },
+        file_history = {
+          winbar_info = true,
+        },
+      },
+      hooks = {
+        diff_buf_read = function(_)
+          vim.opt_local.wrap = false
+          vim.opt_local.list = false
+        end,
+      },
+    },
+  },
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
