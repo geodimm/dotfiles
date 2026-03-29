@@ -144,10 +144,10 @@ return {
         move.goto_previous_end('@class.outer', 'textobjects')
       end, { desc = 'Previous class end' })
 
-      keymap.set('n', '<leader>a', function()
+      keymap.set('n', '<leader>cs', function()
         swap.swap_next('@parameter.inner')
       end, { desc = 'Swap next parameter' })
-      keymap.set('n', '<leader>A', function()
+      keymap.set('n', '<leader>cS', function()
         swap.swap_previous('@parameter.inner')
       end, { desc = 'Swap previous parameter' })
     end,
