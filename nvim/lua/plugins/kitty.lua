@@ -2,7 +2,9 @@ return {
   {
     'mrjones2014/smart-splits.nvim',
     build = './kitty/install-kittens.bash',
-    opts = {},
+    opts = {
+      disable_multiplexer_nav_when_zoomed = false,
+    },
     config = function(_, opts)
       local keymap = require('utils.keymap')
       local smartsplits = require('smart-splits')
