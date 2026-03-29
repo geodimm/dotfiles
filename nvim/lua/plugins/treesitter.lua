@@ -48,7 +48,6 @@ return {
             'javascript',
             'json',
             'json5',
-            'jsonc',
             'jq',
             'kitty',
             'lua',
