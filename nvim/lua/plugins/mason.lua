@@ -18,7 +18,8 @@ local tools = {
   'terraform-ls',
   'texlab',
   'tilt',
-  'typescript-language-server',
+  'vue_ls',
+  'vtsls',
   'yaml-language-server',
 
   -- linters

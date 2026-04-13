@@ -22,6 +22,14 @@ return {
         starlark = { 'buildifier' },
         latex = { 'latexindent' },
         xml = { 'xmlformatter' },
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        vue = { 'prettier' },
+        css = { 'prettier' },
+        scss = { 'prettier' },
+        html = { 'prettier' },
       },
       formatters = {
         markdownlint = {
