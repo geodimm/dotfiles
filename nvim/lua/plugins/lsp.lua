@@ -72,7 +72,7 @@ local function on_attach(args)
     group = vim.api.nvim_create_augroup('user_lsp_refresh_codelens', {}),
     desc = 'refresh lsp codelens',
     callback = function()
-      vim.lsp.codelens.refresh({ bufnr = args.buf })
+      vim.lsp.codelens.enable(true)
     end,
   })
 
@@ -147,7 +147,7 @@ return {
         return orig_util_open_floating_preview(contents, syntax, opts, ...)
       end
 
-      vim.lsp.set_log_level('OFF')
+      vim.lsp.log.set_level('OFF')
     end,
     config = function()
       vim.lsp.config('*', {
@@ -166,9 +166,6 @@ return {
 
       local mason_lspconfig = require('mason-lspconfig')
       local installed_servers = mason_lspconfig.get_installed_servers()
-      if vim.fn.executable('tilt') then
-        installed_servers = vim.list_extend(installed_servers, { 'tilt_ls' })
-      end
 
       vim.lsp.enable(installed_servers)
     end,
