@@ -46,7 +46,7 @@ return {
             return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
           end
 
-          api.config.mappings.default_on_attach(bufnr)
+          api.map.on_attach.default(bufnr)
 
           vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
           vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
