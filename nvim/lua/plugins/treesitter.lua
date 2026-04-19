@@ -63,6 +63,7 @@ return {
             'rust',
             'scss',
             'ssh_config',
+            'sql',
             'starlark',
             'terraform',
             'toml',
