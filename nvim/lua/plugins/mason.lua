@@ -1,7 +1,4 @@
-local icons = require('user.icons')
-
 local tools = {
-  -- language servers
   'bash-language-server',
   'clangd',
   'dockerfile-language-server',
@@ -21,15 +18,11 @@ local tools = {
   'vue_ls',
   'vtsls',
   'yaml-language-server',
-
-  -- linters
   'actionlint',
   'golangci-lint',
   'google-java-format',
   'hadolint',
   'markdownlint',
-
-  -- formatters
   'gci',
   'goimports',
   'gofumpt',
@@ -38,32 +31,28 @@ local tools = {
   'stylua',
   'buildifier',
   'xmlformatter',
-
-  -- code actions
   'gomodifytags',
 }
 
-return {
-  {
-    'williamboman/mason.nvim',
-    opts = {
-      ui = {
-        border = 'rounded',
-        icons = {
-          package_installed = icons.ui.check,
-          package_pending = icons.ui.play,
-          package_uninstalled = icons.ui.times,
-        },
+local M = {}
+
+function M.setup()
+  local icons = require('user.icons')
+  require('mason').setup({
+    ui = {
+      border = 'rounded',
+      icons = {
+        package_installed = icons.ui.check,
+        package_pending = icons.ui.play,
+        package_uninstalled = icons.ui.times,
       },
     },
-  },
-  {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    dependencies = { 'williamboman/mason.nvim' },
-    opts = {
-      ensure_installed = tools,
-      auto_update = true,
-      run_on_start = true,
-    },
-  },
-}
+  })
+  require('mason-tool-installer').setup({
+    ensure_installed = tools,
+    auto_update = true,
+    run_on_start = true,
+  })
+end
+
+return M

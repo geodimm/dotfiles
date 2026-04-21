@@ -1,114 +1,134 @@
-return {
-  {
-    'folke/snacks.nvim',
-    lazy = false,
-    priority = 1000,
-    init = function()
-      vim.b.miniindentscope_disable = true
+local M = {}
+
+local icons = require('user.icons')
+
+--- vim.pack replacement for the built-in `section = "startup"` (which uses lazy.nvim).
+---@return function
+local function pack_startup_section_factory()
+  return function(_)
+    local plugins = vim.pack.get() or {}
+    local n = type(plugins) == 'table' and #plugins or 0
+    -- Set once in `user.pack` after `pack_config`; do not recompute hrtime here or the value
+    -- grows on every Snacks refresh (e.g. Noice, dashboard keys).
+    local ms = vim.g._nvim_pack_startup_ms or 0
+    local prefix = icons.ui.plug .. '  '
+    return {
+      align = 'center',
+      text = {
+        { prefix .. 'Neovim loaded ', hl = 'footer' },
+        { tostring(n), hl = 'special' },
+        { ' plugins (vim.pack) in ', hl = 'footer' },
+        { string.format('%.2f', ms) .. 'ms', hl = 'special' },
+      },
+    }
+  end
+end
+
+function M.setup()
+  local Snacks = require('snacks')
+
+  local keymap = require('utils.keymap')
+  vim.b.miniindentscope_disable = true
+  local opts = {
+    bigfile = {
+      enabled = true,
+    },
+    dashboard = {
+      sections = {
+        { section = 'header' },
+        { section = 'keys', icon = icons.ui.keyboard, indent = 2, padding = 1 },
+        {
+          section = 'recent_files',
+          title = 'Recent Project Files',
+          icon = icons.ui.history,
+          file = vim.fn.fnamemodify('.', ':~'),
+          limit = 5,
+          cwd = true,
+          indent = 2,
+          padding = 1,
+        },
+        {
+          section = 'recent_files',
+          title = 'Recent Files',
+          icon = icons.ui.history,
+          file = vim.fn.fnamemodify('.', ':~'),
+          limit = 5,
+          cwd = vim.g.user_repos_dir or vim.fn.expand('$HOME/repos'),
+          indent = 2,
+          padding = 1,
+        },
+        {
+          section = 'projects',
+          title = 'Projects',
+          icon = icons.file.directory_open,
+          limit = 5,
+          indent = 2,
+          padding = 1,
+        },
+        pack_startup_section_factory(),
+      },
+    },
+    gitbrowse = {
+      enabled = true,
+    },
+    image = {
+      enabled = true,
+    },
+    input = {
+      icon_pos = 'title',
+    },
+    styles = {
+      input = {
+        relative = 'cursor',
+        row = -3,
+        col = 0,
+        wo = {
+          winhighlight = 'SnacksInputTitle:Title,SnacksInputIcon:Title',
+        },
+      },
+    },
+  }
+
+  Snacks.setup(opts)
+
+  keymap.set({ 'n', 'v' }, '<leader>hB', Snacks.gitbrowse.open, { desc = 'Open in browser' })
+  keymap.set('n', '<leader>cR', Snacks.rename.rename_file, { desc = 'Rename File' })
+
+  keymap.register_group('<leader>t', 'Toggle')
+
+  Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tr')
+  Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>tw')
+  Snacks.toggle.option('list', { name = 'Listchars' }):map('<leader>tl')
+  Snacks.toggle.diagnostics():map('<leader>td')
+  Snacks.toggle.inlay_hints():map('<leader>th')
+
+  local formattingToggle = Snacks.toggle.new({
+    id = 'formatting',
+    name = 'Formatting',
+    get = function()
+      return vim.b.formatting
     end,
-    config = function()
-      local icons = require('user.icons')
-      local opts = {
-        bigfile = {
-          enabled = true,
-        },
-        dashboard = {
-          sections = {
-            { section = 'header' },
-            { section = 'keys', icon = icons.ui.keyboard, indent = 2, padding = 1 },
-            {
-              section = 'recent_files',
-              title = 'Recent Project Files',
-              icon = icons.ui.history,
-              file = vim.fn.fnamemodify('.', ':~'),
-              limit = 5,
-              cwd = true,
-              indent = 2,
-              padding = 1,
-            },
-            {
-              section = 'recent_files',
-              title = 'Recent Files',
-              icon = icons.ui.history,
-              file = vim.fn.fnamemodify('.', ':~'),
-              limit = 5,
-              cwd = vim.g.user_repos_dir or vim.fn.expand('$HOME/repos'),
-              indent = 2,
-              padding = 1,
-            },
-            {
-              section = 'projects',
-              title = 'Projects',
-              icon = icons.file.directory_open,
-              limit = 5,
-              indent = 2,
-              padding = 1,
-            },
-            { section = 'startup', icon = icons.ui.plug .. ' ' },
-          },
-        },
-        gitbrowse = {
-          enabled = true,
-        },
-        image = {
-          enabled = true,
-        },
-        input = {
-          icon_pos = 'title',
-        },
-        styles = {
-          input = {
-            relative = 'cursor',
-            row = -3,
-            col = 0,
-            wo = {
-              winhighlight = 'SnacksInputTitle:Title,SnacksInputIcon:Title',
-            },
-          },
-        },
-      }
-
-      local keymap = require('utils.keymap')
-      keymap.set({ 'n', 'v' }, '<leader>hB', Snacks.gitbrowse.open, { desc = 'Open in browser' })
-      keymap.set('n', '<leader>cR', Snacks.rename.rename_file, { desc = 'Rename File' })
-
-      keymap.register_group('<leader>t', 'Toggle')
-
-      Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tr')
-      Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>tw')
-      Snacks.toggle.option('list', { name = 'Listchars' }):map('<leader>tl')
-      Snacks.toggle.diagnostics():map('<leader>td')
-      Snacks.toggle.inlay_hints():map('<leader>th')
-
-      local formattingToggle = Snacks.toggle.new({
-        id = 'formatting',
-        name = 'Formatting',
-        get = function()
-          return vim.b.formatting
-        end,
-        set = function(state)
-          vim.b.formatting = state
-        end,
-      }, opts)
-      formattingToggle:map('<leader>tf')
-
-      local concealToggle = Snacks.toggle.new({
-        id = 'conceallevel',
-        name = 'Conceal Level',
-        get = function()
-          return vim.opt_local.conceallevel:get() ~= 0
-        end,
-        set = function(state)
-          if state then
-            vim.opt_local.conceallevel = 3
-          else
-            vim.opt_local.conceallevel = 0
-          end
-        end,
-      })
-      concealToggle:map('<leader>tc')
-
-      Snacks.setup(opts)
+    set = function(state)
+      vim.b.formatting = state
     end,
-  },
-}
+  }, opts)
+  formattingToggle:map('<leader>tf')
+
+  local concealToggle = Snacks.toggle.new({
+    id = 'conceallevel',
+    name = 'Conceal Level',
+    get = function()
+      return vim.opt_local.conceallevel:get() ~= 0
+    end,
+    set = function(state)
+      if state then
+        vim.opt_local.conceallevel = 3
+      else
+        vim.opt_local.conceallevel = 0
+      end
+    end,
+  })
+  concealToggle:map('<leader>tc')
+end
+
+return M
