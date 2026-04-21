@@ -1,8 +1,8 @@
 # dotfiles/nvim
 
 <a href="https://dotfyle.com/geodimm/dotfiles-nvim"><img src="https://dotfyle.com/geodimm/dotfiles-nvim/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/geodimm/dotfiles-nvim"><img src="https://dotfyle.com/geodimm/dotfiles-nvim/badges/plugin-manager?style=flat" /></a>
 <a href="https://dotfyle.com/geodimm/dotfiles-nvim"><img src="https://dotfyle.com/geodimm/dotfiles-nvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/geodimm/dotfiles-nvim"><img src="https://dotfyle.com/geodimm/dotfiles-nvim/badges/plugin-manager?style=flat" /></a>
 
 ## Install Instructions
 
@@ -35,13 +35,9 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 + [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
 
-### comment
-
-+ [nvim-mini/mini.comment](https://dotfyle.com/plugins/nvim-mini/mini.comment)
-
 ### completion
 
-+ [Saghen/blink.cmp](https://dotfyle.com/plugins/Saghen/blink.cmp)
++ [saghen/blink.cmp](https://dotfyle.com/plugins/saghen/blink.cmp)
 
 ### diagnostics
 
@@ -50,16 +46,15 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 ### editing-support
 
 + [Wansmer/treesj](https://dotfyle.com/plugins/Wansmer/treesj)
-+ [nvim-mini/mini.ai](https://dotfyle.com/plugins/nvim-mini/mini.ai)
++ [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
 
 ### file-explorer
 
-+ [kyazdani42/nvim-tree.lua](https://dotfyle.com/plugins/kyazdani42/nvim-tree.lua)
++ [nvim-tree/nvim-tree.lua](https://dotfyle.com/plugins/nvim-tree/nvim-tree.lua)
 
 ### formatting
 
 + [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
-+ [nvim-mini/mini.align](https://dotfyle.com/plugins/nvim-mini/mini.align)
 
 ### fuzzy-finder
 
@@ -78,10 +73,6 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 + [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
 
-### indent
-
-+ [nvim-mini/mini.indentscope](https://dotfyle.com/plugins/nvim-mini/mini.indentscope)
-
 ### keybinding
 
 + [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
@@ -89,7 +80,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 ### lsp
 
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [kosayoda/nvim-lightbulb](https://dotfyle.com/plugins/kosayoda/nvim-lightbulb)
++ [mfussenegger/nvim-lint](https://dotfyle.com/plugins/mfussenegger/nvim-lint)
 + [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)
 
 ### lsp-installer
@@ -123,13 +114,8 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 + [mrjones2014/smart-splits.nvim](https://dotfyle.com/plugins/mrjones2014/smart-splits.nvim)
 
-### startup
-
-+ [folke/snacks.nvim](https://dotfyle.com/plugins/folke/snacks.nvim)
-
 ### syntax
 
-+ [nvim-mini/mini.surround](https://dotfyle.com/plugins/nvim-mini/mini.surround)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 
