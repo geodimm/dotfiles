@@ -58,6 +58,7 @@ return {
         },
 
         completion = {
+          keyword = { range = 'full' },
           list = {
             selection = {
               preselect = false,
