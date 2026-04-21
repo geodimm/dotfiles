@@ -1,31 +1,10 @@
 -- vim: foldmethod=marker
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.uv.fs_stat(lazypath) then
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  })
-end
-
-vim.opt.rtp:prepend(lazypath)
+-- Monotonic t0; `user.pack` sets `vim.g._nvim_pack_startup_ms` when plugin setup finishes.
+vim.g._nvim_start_hrtime_ms = (vim.uv or vim.loop).hrtime() / 1e6
 
 require('user.options')
 require('user.keymap')
 require('user.autocmd')
 require('user.command')
 
-require('lazy').setup({
-  { import = 'plugins' },
-}, {
-  ui = {
-    border = 'rounded',
-    backdrop = 100,
-  },
-  install = {
-    colorscheme = { 'catppuccin-mocha' },
-  },
-})
+require('user.pack').setup()

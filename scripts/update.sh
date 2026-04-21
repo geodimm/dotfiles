@@ -18,7 +18,7 @@ function update_system() {
 }
 
 function update_neovim() {
-    nvim --headless "+Lazy! sync" +qa
+    nvim --headless "+lua vim.pack.update(nil, { force = true })" +qa
     nvim --headless -c 'autocmd User MasonToolsUpdateCompleted quitall' -c 'MasonToolsUpdate'
 }
 

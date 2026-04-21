@@ -1,7 +1,7 @@
 /Brewfile.lock.json
 /nvim/spell
 /nvim/.netrwhist
-/nvim/lazy-lock.json
+/nvim/nvim-pack-lock.json
 /nvim/lua/plugins/extras.lua
 /zsh/extras
 /git/extras

@@ -1,22 +1,14 @@
-return {
-  {
-    'nvim-mini/mini.ai',
-    opts = {
-      n_lines = 500,
-    },
-  },
-  {
-    'nvim-mini/mini.surround',
-    opts = {
-      highlight_duration = 1000,
-    },
-  },
-  {
-    'nvim-mini/mini.comment',
-    opts = {},
-  },
-  {
-    'nvim-mini/mini.align',
-    opts = {},
-  },
-}
+local M = {}
+
+function M.setup()
+  require('mini.ai').setup({
+    n_lines = 500,
+  })
+  require('mini.surround').setup({
+    highlight_duration = 1000,
+  })
+  require('mini.comment').setup({})
+  require('mini.align').setup({})
+end
+
+return M

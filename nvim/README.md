@@ -6,14 +6,17 @@
 
 ## Install Instructions
 
- > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+ > Install requires Neovim 0.12+ (for `vim.pack`). Always review the code before installing a configuration.
 
-Clone the repository and install the plugins:
+Clone the repository. Plugins install on first `nvim` start via `vim.pack.add` in your config. To refresh plugins from a committed lockfile on another machine, run `:lua vim.pack.update(nil, { target = 'lockfile' })` after startup (see `:h vim.pack`).
 
 ```sh
 git clone git@github.com:geodimm/dotfiles ~/.config/geodimm/dotfiles
-NVIM_APPNAME=geodimm/dotfiles/nvim nvim --headless +"Lazy! sync" +qa
+# Optional: headless first launch to install plugins and exit
+NVIM_APPNAME=geodimm/dotfiles/nvim nvim --headless +qa
 ```
+
+Commit `nvim-pack-lock.json` in this repo if you want reproducible plugin revisions across machines.
 
 Open Neovim with this config:
 
@@ -100,7 +103,7 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ### plugin-manager
 
-+ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
+Plugins are managed with Neovim’s built-in `vim.pack` (see [`:h vim.pack`](https://neovim.io/doc/user/lua.html#vim.pack) and [`lua/user/pack.lua`](lua/user/pack.lua)).
 
 ### search
 

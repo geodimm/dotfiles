@@ -1,7 +1,6 @@
 local icons = require('user.icons')
+local keymap = require('utils.keymap')
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 ---@param args { buf: integer, data: any }
 local function on_attach(args)
   if not args or not args.data then
@@ -14,7 +13,6 @@ local function on_attach(args)
     return
   end
 
-  local keymap = require('utils.keymap')
   local status_ok, fzf = pcall(require, 'fzf-lua')
   if status_ok then
     keymap.set('n', '<leader>gD', fzf.lsp_declarations, { desc = 'Declaration', buffer = args.buf })
@@ -76,7 +74,6 @@ local function on_attach(args)
     end,
   })
 
-  -- Don't attach yamlls to helm files
   if client.name == 'yamlls' and vim.bo.filetype == 'helm' then
     vim.schedule(function()
       vim.lsp.buf_detach_client(args.buf, client.id)
@@ -89,135 +86,101 @@ local function on_attach(args)
   end
 end
 
-return {
-  {
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      {
-        'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'williamboman/mason.nvim' },
+local M = {}
+
+function M.setup()
+  require('lspconfig.ui.windows').default_options.border = 'rounded'
+  vim.diagnostic.config({
+    underline = false,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = icons.lsp.error,
+        [vim.diagnostic.severity.WARN] = icons.lsp.warn,
+        [vim.diagnostic.severity.INFO] = icons.lsp.info,
+        [vim.diagnostic.severity.HINT] = icons.lsp.hint,
       },
-      {
-        'antosha417/nvim-lsp-file-operations',
-        dependencies = {
-          'nvim-lua/plenary.nvim',
-          'nvim-tree/nvim-tree.lua',
-        },
-        opts = {},
-      },
-      {
-        'b0o/schemastore.nvim',
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+        [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+        [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+        [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
       },
     },
-    init = function()
-      require('lspconfig.ui.windows').default_options.border = 'rounded'
-      vim.diagnostic.config({
-        underline = false,
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = icons.lsp.error,
-            [vim.diagnostic.severity.WARN] = icons.lsp.warn,
-            [vim.diagnostic.severity.INFO] = icons.lsp.info,
-            [vim.diagnostic.severity.HINT] = icons.lsp.hint,
-          },
-          numhl = {
-            [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
-            [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
-            [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
-            [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
-          },
-        },
-        float = {
-          border = 'rounded',
-          source = true,
-        },
-        jump = {
-          float = true,
-        },
-        update_in_insert = false,
-        severity_sort = true,
-      })
-
-      -- Add rounded border to lsp windows only
-      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-      ---@diagnostic disable-next-line: duplicate-set-field
-      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-        opts = opts or {}
-        opts.border = opts.border or 'rounded'
-        return orig_util_open_floating_preview(contents, syntax, opts, ...)
-      end
-
-      vim.lsp.log.set_level('OFF')
-
-      local orig_apply_workspace_edit = vim.lsp.util.apply_workspace_edit
-      ---@diagnostic disable-next-line: duplicate-set-field
-      function vim.lsp.util.apply_workspace_edit(workspace_edit, offset_encoding, ...)
-        local result = orig_apply_workspace_edit(workspace_edit, offset_encoding, ...)
-        vim.schedule(function()
-          vim.cmd('silent! wall')
-          vim.cmd('checktime')
-        end)
-        return result
-      end
-    end,
-    config = function()
-      vim.lsp.config('*', {
-        capabilities = vim.tbl_extend(
-          'force',
-          require('blink.cmp').get_lsp_capabilities(),
-          require('lsp-file-operations').default_capabilities()
-        ),
-      })
-
-      vim.api.nvim_create_autocmd('LspAttach', {
-        group = vim.api.nvim_create_augroup('user_lsp_attach', {}),
-        desc = 'LSP actions',
-        callback = on_attach,
-      })
-
-      local mason_lspconfig = require('mason-lspconfig')
-      local installed_servers = mason_lspconfig.get_installed_servers()
-      -- Mason package `tilt` has no neovim.lspconfig maping; tilt_ls uses the tilt binary
-      if vim.fn.executable('tilt') then
-        installed_servers = vim.list_extend(installed_servers, { 'tilt_ls' })
-      end
-
-      vim.lsp.enable(installed_servers)
-    end,
-  },
-  {
-    'nvimtools/none-ls.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'neovim/nvim-lspconfig',
+    float = {
+      border = 'rounded',
+      source = true,
     },
-    opts = {
-      debug = false,
-      diagnostics_format = '#{m}',
-      ---@param client vim.lsp.Client
-      ---@param bufnr integer
-      on_attach = function(client, bufnr)
-        on_attach({
-          buf = bufnr,
-          data = {
-            client_id = client.id,
-          },
-        })
-      end,
+    jump = {
+      float = true,
     },
-    config = function(_, opts)
-      local null_ls = require('null-ls')
+    update_in_insert = false,
+    severity_sort = true,
+  })
 
-      opts.sources = {
-        -- code actions
-        null_ls.builtins.code_actions.refactoring,
-        null_ls.builtins.code_actions.gomodifytags,
+  local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+  ---@diagnostic disable-next-line: duplicate-set-field
+  function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or 'rounded'
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+  end
 
-        -- hover
-        null_ls.builtins.hover.dictionary,
-      }
+  vim.lsp.log.set_level('OFF')
 
-      null_ls.setup(opts)
+  local orig_apply_workspace_edit = vim.lsp.util.apply_workspace_edit
+  ---@diagnostic disable-next-line: duplicate-set-field
+  function vim.lsp.util.apply_workspace_edit(workspace_edit, offset_encoding, ...)
+    local result = orig_apply_workspace_edit(workspace_edit, offset_encoding, ...)
+    vim.schedule(function()
+      vim.cmd('silent! wall')
+      vim.cmd('checktime')
+    end)
+    return result
+  end
+
+  require('lsp-file-operations').setup({})
+
+  vim.lsp.config('*', {
+    capabilities = vim.tbl_extend(
+      'force',
+      require('blink.cmp').get_lsp_capabilities(),
+      require('lsp-file-operations').default_capabilities()
+    ),
+  })
+
+  vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('user_lsp_attach', {}),
+    desc = 'LSP actions',
+    callback = on_attach,
+  })
+
+  local mason_lspconfig = require('mason-lspconfig')
+  local installed_servers = mason_lspconfig.get_installed_servers()
+  if vim.fn.executable('tilt') then
+    installed_servers = vim.list_extend(installed_servers, { 'tilt_ls' })
+  end
+
+  vim.lsp.enable(installed_servers)
+
+  local null_ls = require('null-ls')
+  local null_opts = {
+    debug = false,
+    diagnostics_format = '#{m}',
+    on_attach = function(client, bufnr)
+      on_attach({
+        buf = bufnr,
+        data = {
+          client_id = client.id,
+        },
+      })
     end,
-  },
-}
+    sources = {
+      null_ls.builtins.code_actions.refactoring,
+      null_ls.builtins.code_actions.gomodifytags,
+      null_ls.builtins.hover.dictionary,
+    },
+  }
+  null_ls.setup(null_opts)
+end
+
+return M
