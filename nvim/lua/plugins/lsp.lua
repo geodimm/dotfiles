@@ -177,6 +177,10 @@ return {
 
       local mason_lspconfig = require('mason-lspconfig')
       local installed_servers = mason_lspconfig.get_installed_servers()
+      -- Mason package `tilt` has no neovim.lspconfig maping; tilt_ls uses the tilt binary
+      if vim.fn.executable('tilt') then
+        installed_servers = vim.list_extend(installed_servers, { 'tilt_ls' })
+      end
 
       vim.lsp.enable(installed_servers)
     end,
