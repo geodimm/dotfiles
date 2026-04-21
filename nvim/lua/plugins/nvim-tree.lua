@@ -1,6 +1,6 @@
 return {
   {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     init = function()
       local prev = { new_name = '', old_name = '' } -- Prevents duplicate events
       vim.api.nvim_create_autocmd('User', {
