@@ -1,5 +1,5 @@
 vim.filetype.add({
   pattern = {
-    ['.*/kitty.*.conf'] = 'kitty',
+    ['.*/kitty.*%.conf'] = 'kitty',
   },
 })
