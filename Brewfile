@@ -1,3 +1,4 @@
+brew "ast-grep"
 brew "bash"
 brew "bat"
 brew "coreutils"
