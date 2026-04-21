@@ -148,6 +148,17 @@ return {
       end
 
       vim.lsp.log.set_level('OFF')
+
+      local orig_apply_workspace_edit = vim.lsp.util.apply_workspace_edit
+      ---@diagnostic disable-next-line: duplicate-set-field
+      function vim.lsp.util.apply_workspace_edit(workspace_edit, offset_encoding, ...)
+        local result = orig_apply_workspace_edit(workspace_edit, offset_encoding, ...)
+        vim.schedule(function()
+          vim.cmd('silent! wall')
+          vim.cmd('checktime')
+        end)
+        return result
+      end
     end,
     config = function()
       vim.lsp.config('*', {
