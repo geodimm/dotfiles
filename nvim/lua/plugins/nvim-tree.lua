@@ -74,6 +74,7 @@ function M.setup()
     },
     view = {
       adaptive_size = true,
+      preserve_window_proportions = true,
       width = 40,
       side = 'left',
     },

@@ -5,14 +5,18 @@ local icons = require('user.icons')
 --- vim.pack replacement for the built-in `section = "startup"` (which uses lazy.nvim).
 ---@return function
 local function pack_startup_section_factory()
-  return function(_)
+  local memo ---@type table?
+  return function()
+    if memo then
+      return memo
+    end
     local plugins = vim.pack.get() or {}
     local n = type(plugins) == 'table' and #plugins or 0
     -- Set once in `user.pack` after `pack_config`; do not recompute hrtime here or the value
     -- grows on every Snacks refresh (e.g. Noice, dashboard keys).
     local ms = vim.g._nvim_pack_startup_ms or 0
     local prefix = icons.ui.plug .. '  '
-    return {
+    memo = {
       align = 'center',
       text = {
         { prefix .. 'Neovim loaded ', hl = 'footer' },
@@ -21,6 +25,7 @@ local function pack_startup_section_factory()
         { string.format('%.2f', ms) .. 'ms', hl = 'special' },
       },
     }
+    return memo
   end
 end
 
