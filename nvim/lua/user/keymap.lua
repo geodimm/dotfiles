@@ -53,9 +53,11 @@ vim.keymap.set(
       if not buf and not win then
         vim.cmd('split | terminal')
         buf = vim.api.nvim_get_current_buf()
+        vim.b[buf].miniindentscope_disable = true
         vim.api.nvim_win_close(vim.api.nvim_get_current_win(), true)
         win = vim.api.nvim_open_win(buf, true, cfg())
       elseif not win and buf then
+        vim.b[buf].miniindentscope_disable = true
         win = vim.api.nvim_open_win(buf, true, cfg())
       elseif win then
         was_insert = vim.api.nvim_get_mode().mode == 't'
