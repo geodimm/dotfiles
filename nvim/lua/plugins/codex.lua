@@ -12,11 +12,9 @@ function M.setup()
       quit = '<C-q>',
     },
     border = 'rounded',
-    width = 0.33,
-    height = 1,
     model = nil,
     autoinstall = false,
-    panel = true,
+    panel = false,
   })
 end
 
