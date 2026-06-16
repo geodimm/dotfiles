@@ -14,7 +14,7 @@ function main() {
 
 function update_system() {
     brew update
-    brew upgrade
+    brew upgrade --yes
 }
 
 function update_neovim() {
