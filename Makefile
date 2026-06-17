@@ -69,7 +69,7 @@ kitty-configure: ## Configure Kitty
 
 zsh: ## Install zsh
 ifeq ($(PLATFORM),linux)
-	brew install zsh
+	brew install zsh --yes
 	sudo usermod -s "$$(type -P zsh)" "$$(whoami)"
 endif
 
@@ -100,7 +100,7 @@ golangci-lint: ## Configure golangci-lint
 neovim: neovim-install neovim-configure ## Install and configure neovim
 
 neovim-install: ## Install neovim
-	brew install neovim
+	brew install neovim --yes
 
 neovim-nightly: ## Install neovim-nightly
 ifeq ($(PLATFORM),linux)
