@@ -17,18 +17,6 @@ function M.setup()
   smartsplits.setup({
     disable_multiplexer_nav_when_zoomed = false,
   })
-
-  require('kitty-scrollback').setup({
-    restore_options = true,
-    status_window = {
-      show_timer = true,
-      icons = {
-        kitty = '󰄛',
-        heart = '󰣐',
-        nvim = '',
-      },
-    },
-  })
 end
 
 return M
