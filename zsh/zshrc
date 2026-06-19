@@ -106,6 +106,9 @@ fi
 
 # Completion {{{2
 
+# case-sensitive completion
+zstyle ':completion:*' matcher-list 'r:|=* l:|=*'
+
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
 
