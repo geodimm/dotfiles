@@ -1,3 +1,5 @@
+tap "geodim/local", __dir__
+
 brew "ast-grep"
 brew "bash"
 brew "bat"
@@ -28,4 +30,4 @@ brew "tree-sitter"
 brew "tree-sitter-cli"
 brew "wget"
 brew "yq"
-cask "kitty"
+cask "geodim/local/kitty"
