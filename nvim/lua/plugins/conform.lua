@@ -30,6 +30,7 @@ function M.setup()
       css = { 'prettier' },
       scss = { 'prettier' },
       html = { 'prettier' },
+      python = { 'isort', 'black' },
     },
     formatters = {
       markdownlint = {
