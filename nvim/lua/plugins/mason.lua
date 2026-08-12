@@ -1,10 +1,12 @@
 local tools = {
   'bash-language-server',
+  'black',
   'clangd',
   'dockerfile-language-server',
   'gopls',
   'helm-ls',
   'html-lsp',
+  'isort',
   'jdtls',
   'json-lsp',
   'lua-language-server',
