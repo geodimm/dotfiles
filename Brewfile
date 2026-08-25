@@ -1,4 +1,4 @@
-tap "geodim/local", __dir__
+tap "geodim/local", __dir__, trusted: true
 
 brew "ast-grep"
 brew "bash"
@@ -30,4 +30,4 @@ brew "tree-sitter"
 brew "tree-sitter-cli"
 brew "wget"
 brew "yq"
-cask "geodim/local/kitty"
+cask "geodim/local/kitty", trusted: true
