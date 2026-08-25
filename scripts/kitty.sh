@@ -11,15 +11,16 @@ KITTY_CONFIG_DIR="${XDG_CONFIG_HOME:=${HOME}/.config}/kitty"
 function configure_kitty() {
     case "${PLATFORM}" in
     "linux")
-        local kitty_path
+        local kitty_path kitty_root
         kitty_path="$(type -P kitty)"
+        kitty_root="$(dirname "$(dirname "$(readlink -f "$kitty_path")")")"
         sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$kitty_path" 60
         sudo update-alternatives --set x-terminal-emulator "$kitty_path"
 
         mkdir -p "${HOME}/.local/share/applications/"
-        cp "${HOME}"/.local/kitty.app/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
-        sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
-        sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty*.desktop
+        cp "${kitty_root}"/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
+        sed -i "s|Icon=kitty|Icon=${kitty_root}/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
+        sed -i "s|Exec=kitty|Exec=${kitty_path}|g" "${HOME}"/.local/share/applications/kitty*.desktop
         ;;
 
     "darwin")

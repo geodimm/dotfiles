@@ -95,7 +95,6 @@ cask "kitty" do
     manpage "share/man/man1/kitten-command-palette.1"
     manpage "share/man/man1/kitten-desktop-ui.1"
     manpage "share/man/man1/kitten-diff.1"
-    manpage "share/man/man1/kitten-dnd.1"
     manpage "share/man/man1/kitten-edit-in-kitty.1"
     manpage "share/man/man1/kitten-hints.1"
     manpage "share/man/man1/kitten-hyperlinked-grep.1"
