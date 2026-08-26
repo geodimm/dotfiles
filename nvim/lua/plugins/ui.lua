@@ -4,8 +4,6 @@ function M.setup()
   local keymap = require('utils.keymap')
   local icons = require('user.icons')
 
-  require('colorizer').setup({})
-
   require('noice').setup({
     lsp = {
       progress = {
