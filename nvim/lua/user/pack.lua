@@ -98,7 +98,7 @@ function M.setup()
   -- One-shot ms from first line of `init.lua` to here (dashboard must not recompute live).
   local t0 = vim.g._nvim_start_hrtime_ms
   if t0 then
-    vim.g._nvim_pack_startup_ms = (vim.uv or vim.loop).hrtime() / 1e6 - t0
+    vim.g._nvim_pack_startup_ms = vim.uv.hrtime() / 1e6 - t0
   end
 end
 
