@@ -89,7 +89,6 @@ end
 local M = {}
 
 function M.setup()
-  require('lspconfig.ui.windows').default_options.border = 'rounded'
   vim.diagnostic.config({
     underline = false,
     signs = {

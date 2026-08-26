@@ -74,6 +74,7 @@ vim.opt.cmdheight = 1 -- Set the command-line height to 1
 vim.opt.showbreak = '↪ ' -- Show a symbol at the start of wrapped lines
 vim.opt.completeopt = { 'menuone', 'popup', 'noinsert', 'noselect', 'fuzzy' }
 vim.opt.pumheight = 10 -- Maximum number of items to show in the popup menu
+vim.opt.winborder = 'rounded' -- Default border for floating windows
 vim.opt.showmode = false -- Don't show mode in cmd
 vim.opt.syntax = 'on' -- Enable syntax highlighting
 vim.opt.termguicolors = true -- Enable 24-bit RGB color in the TUI
