@@ -162,7 +162,7 @@ function M.setup()
             done = append_whitespace(icons.ui.check),
             separator = ' ',
           },
-          ignore_lsp = { 'null-ls' },
+          ignore_lsp = {},
           color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },
           separator = section_separator,
           padding = 0,

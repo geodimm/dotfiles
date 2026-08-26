@@ -157,10 +157,7 @@ function M.setup()
         return
       end
       if ok == false then
-        vim.notify(
-          'nvim-treesitter: one or more parsers failed (see :messages / plugin log).',
-          vim.log.levels.WARN
-        )
+        vim.notify('nvim-treesitter: one or more parsers failed (see :messages / plugin log).', vim.log.levels.WARN)
       elseif vim.g.user_ts_notify_install then
         vim.notify('nvim-treesitter: parser install finished.', vim.log.levels.INFO)
       end
@@ -229,6 +226,33 @@ function M.setup()
   end, { desc = 'Split or Join code block with autodetect' })
 
   require('refactoring').setup()
+  -- Suggested maps from refactoring.nvim (option 1). `<leader>r` is only a
+  -- which-key prefix; wait on it to pick, or follow with e/v/i/s.
+  keymap.register_group('<leader>r', 'Refactor', { mode = { 'n', 'x' } })
+  keymap.set({ 'n', 'x' }, '<leader>re', function()
+    return require('refactoring').extract_func()
+  end, { desc = 'Extract function', expr = true })
+  keymap.set('n', '<leader>ree', function()
+    return require('refactoring').extract_func() .. '_'
+  end, { desc = 'Extract function (line)', expr = true })
+  keymap.set({ 'n', 'x' }, '<leader>rE', function()
+    return require('refactoring').extract_func_to_file()
+  end, { desc = 'Extract function to file', expr = true })
+  keymap.set({ 'n', 'x' }, '<leader>rv', function()
+    return require('refactoring').extract_var()
+  end, { desc = 'Extract variable', expr = true })
+  keymap.set('n', '<leader>rvv', function()
+    return require('refactoring').extract_var() .. '_'
+  end, { desc = 'Extract variable (line)', expr = true })
+  keymap.set({ 'n', 'x' }, '<leader>ri', function()
+    return require('refactoring').inline_var()
+  end, { desc = 'Inline variable', expr = true })
+  keymap.set({ 'n', 'x' }, '<leader>rI', function()
+    return require('refactoring').inline_func()
+  end, { desc = 'Inline function', expr = true })
+  keymap.set({ 'n', 'x' }, '<leader>rs', function()
+    require('refactoring').select_refactor()
+  end, { desc = 'Select refactor' })
 end
 
 return M

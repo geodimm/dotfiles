@@ -161,26 +161,6 @@ function M.setup()
   end
 
   vim.lsp.enable(installed_servers)
-
-  local null_ls = require('null-ls')
-  local null_opts = {
-    debug = false,
-    diagnostics_format = '#{m}',
-    on_attach = function(client, bufnr)
-      on_attach({
-        buf = bufnr,
-        data = {
-          client_id = client.id,
-        },
-      })
-    end,
-    sources = {
-      null_ls.builtins.code_actions.refactoring,
-      null_ls.builtins.code_actions.gomodifytags,
-      null_ls.builtins.hover.dictionary,
-    },
-  }
-  null_ls.setup(null_opts)
 end
 
 return M
