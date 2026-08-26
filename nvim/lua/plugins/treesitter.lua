@@ -222,7 +222,7 @@ function M.setup()
     use_default_keymaps = false,
   })
   keymap.set('n', 'gS', function()
-    require('treesj').toggle()
+    require('treesj').toggle({ split = { recursive = true } })
   end, { desc = 'Split or Join code block with autodetect' })
 
   require('refactoring').setup()
