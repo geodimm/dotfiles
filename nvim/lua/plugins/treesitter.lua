@@ -226,8 +226,6 @@ function M.setup()
   end, { desc = 'Split or Join code block with autodetect' })
 
   require('refactoring').setup()
-  -- Suggested maps from refactoring.nvim (option 1). `<leader>r` is only a
-  -- which-key prefix; wait on it to pick, or follow with e/v/i/s.
   keymap.register_group('<leader>r', 'Refactor', { mode = { 'n', 'x' } })
   keymap.set({ 'n', 'x' }, '<leader>re', function()
     return require('refactoring').extract_func()
