@@ -16,5 +16,5 @@ return function()
   require('plugins.nvim-lint').setup()
   require('plugins.nvim-tree').setup()
   require('plugins.codex').setup()
-  require('plugins.kitty').setup()
+  require('plugins.smart-splits').setup()
 end

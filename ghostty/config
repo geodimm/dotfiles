@@ -53,14 +53,22 @@ keybind = ctrl+a>6=goto_tab:6
 keybind = ctrl+a>7=goto_tab:7
 keybind = ctrl+a>8=goto_tab:8
 keybind = ctrl+a>9=last_tab
+keybind = ctrl+a>z=toggle_split_zoom
 
 # smart-splits.nvim {{{1
 # Move
-keybind = ctrl+a>z=toggle_split_zoom
+# Default: ctrl+hjkl moves Ghostty splits
+# performable: pass the key through when no split exists that way.
+# Neovim activates the `nvim` key table so vsplits still get the keys first.
 keybind = performable:ctrl+h=goto_split:left
 keybind = performable:ctrl+j=goto_split:down
 keybind = performable:ctrl+k=goto_split:up
 keybind = performable:ctrl+l=goto_split:right
+keybind = nvim/
+keybind = nvim/ctrl+h=text:\x08
+keybind = nvim/ctrl+j=text:\x0a
+keybind = nvim/ctrl+k=text:\x0b
+keybind = nvim/ctrl+l=text:\x0c
 # Resize
 keybind = performable:alt+h=resize_split:left,30
 keybind = performable:alt+j=resize_split:down,30
