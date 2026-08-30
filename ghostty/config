@@ -1,0 +1,70 @@
+# foldmethod=marker
+
+# UI {{{1
+# Theme
+theme = Catppuccin Mocha
+
+# Fonts (Ghostty ships Nerd Font symbols; no extra symbol map needed)
+font-family = Monaspace Argon Var
+font-style = Light
+font-size = 16
+font-feature = +calt
+font-feature = liga
+font-feature = ss01
+font-feature = ss02
+font-feature = ss03
+font-feature = ss07
+font-feature = ss08
+font-feature = ss09
+font-feature = cv01=2
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor,no-title
+
+# Behavior
+scrollback-limit = 100000000
+copy-on-select = true
+macos-option-as-alt = true
+window-inherit-working-directory = true
+tab-inherit-working-directory = true
+split-inherit-working-directory = true
+window-show-tab-bar = always
+macos-titlebar-style = tabs
+
+# Active split: dim inactive panes (no per-split border in Ghostty)
+# default opacity is 0.7; lower is more contrast. fill is Catppuccin crust.
+unfocused-split-opacity = 0.5
+unfocused-split-fill = #11111b
+split-divider-color = #89b4fa
+
+# Keyboard shortcuts {{{1
+
+# tmux {{{1
+# Jump to tabs
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+a>1=goto_tab:1
+keybind = ctrl+a>2=goto_tab:2
+keybind = ctrl+a>3=goto_tab:3
+keybind = ctrl+a>4=goto_tab:4
+keybind = ctrl+a>5=goto_tab:5
+keybind = ctrl+a>6=goto_tab:6
+keybind = ctrl+a>7=goto_tab:7
+keybind = ctrl+a>8=goto_tab:8
+keybind = ctrl+a>9=last_tab
+
+# smart-splits.nvim {{{1
+# Move
+keybind = ctrl+a>z=toggle_split_zoom
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:down
+keybind = performable:ctrl+k=goto_split:up
+keybind = performable:ctrl+l=goto_split:right
+# Resize
+keybind = performable:alt+h=resize_split:left,30
+keybind = performable:alt+j=resize_split:down,30
+keybind = performable:alt+k=resize_split:up,30
+keybind = performable:alt+l=resize_split:right,30
+
+# }}}
