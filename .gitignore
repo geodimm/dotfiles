@@ -2,7 +2,8 @@
 /nvim/spell
 /nvim/.netrwhist
 /nvim/nvim-pack-lock.json
-/nvim/lua/plugins/extras.lua
-/zsh/extras
-/git/extras
+/nvim/lua/plugins/local.lua
+/zsh/local
+/git/local
 /git/commit-template
+/ghostty/local

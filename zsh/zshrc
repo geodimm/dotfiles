@@ -98,9 +98,9 @@ umask 022
 source "${HOME}/dotfiles/zsh/zshpath"
 source "${HOME}/dotfiles/zsh/aliases.zsh"
 
-# Load any extra settings
-if [[ -f "${HOME}/dotfiles/zsh/extras" ]]; then
-    source "${HOME}/dotfiles/zsh/extras"
+# Load machine-local settings
+if [[ -f "${HOME}/dotfiles/zsh/local" ]]; then
+    source "${HOME}/dotfiles/zsh/local"
 fi
 
 # Completion {{{2

@@ -1,5 +1,7 @@
 # vim: foldmethod=marker
 
+config-file = ?local
+
 # UI {{{1
 # Theme
 theme = Catppuccin Mocha
