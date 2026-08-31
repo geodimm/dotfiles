@@ -1,5 +1,3 @@
-tap "geodim/local", __dir__, trusted: true if OS.mac?
-
 brew "ast-grep"
 brew "bash"
 brew "bat"
@@ -30,6 +28,5 @@ brew "tree-sitter"
 brew "tree-sitter-cli"
 brew "wget"
 brew "yq"
-cask "geodim/local/kitty", trusted: true if OS.mac?
-cask "kitty" if OS.linux?
+cask "kitty"
 cask "ghostty" if OS.mac?
