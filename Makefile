@@ -69,7 +69,7 @@ endif
 ohmyzsh: ohmyzsh-install ohmyzsh-configure ## Install and configure Oh My Zsh
 
 ohmyzsh-install: ## Install Oh My Zsh
-	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
+	sh -c "$$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 ohmyzsh-configure: ## Configure Oh My Zsh
 	@./scripts/ohmyzsh.sh configure
