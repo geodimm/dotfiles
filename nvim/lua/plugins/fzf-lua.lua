@@ -63,6 +63,12 @@ function M.setup()
   keymap.register_group('<leader>fg', 'Git')
 
   fzf.setup(opts)
+  fzf.register_ui_select(function(_, items)
+    local min_h, max_h = 0.15, 0.70
+    local h = (#items + 4) / vim.o.lines
+    h = math.max(min_h, math.min(max_h, h))
+    return { winopts = { height = h, width = 0.60 } }
+  end)
 end
 
 return M
