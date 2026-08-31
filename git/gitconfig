@@ -54,6 +54,6 @@
 [http]
 	postBuffer = 1024288000
 [include]
-	path = ~/dotfiles/git/extras
+	path = ~/dotfiles/git/local
 [fetch]
 	prune = true

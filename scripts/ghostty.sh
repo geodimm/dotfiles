@@ -18,8 +18,7 @@ function configure_ghostty() {
         ;;
     esac
 
-    mkdir -p "${GHOSTTY_CONFIG_DIR}"
-    ln -fs "${DOTFILES_DIR}"/ghostty/* "${GHOSTTY_CONFIG_DIR}/"
+    ln -fs "${DOTFILES_DIR}"/ghostty "${GHOSTTY_CONFIG_DIR}"
 }
 
 configure_ghostty

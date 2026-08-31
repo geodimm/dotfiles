@@ -17,4 +17,7 @@ return function()
   require('plugins.nvim-tree').setup()
   require('plugins.codex').setup()
   require('plugins.smart-splits').setup()
+  pcall(function()
+    require('plugins.local').setup()
+  end)
 end
