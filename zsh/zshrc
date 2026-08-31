@@ -2,6 +2,7 @@
 # Oh-My-Zsh {{{1
 
 export ZSH="${HOME}/.oh-my-zsh"
+export ZSH_CUSTOM="${ZSH_CUSTOM:-${ZSH}/custom}"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -14,7 +15,6 @@ plugins=(
     aws
     colored-man-pages
     docker
-    F-Sy-H
     git
     golang
     helm
@@ -26,9 +26,11 @@ plugins=(
     vi-mode
     you-should-use
     z
+    # ZLE plugins are order-sensitive; keep this block at the end.
+    fzf
+    fzf-tab
     zsh-autosuggestions
-    zsh-kitty
-    fzf-tab # fzf-tab should be the last plugin to bind "^I"
+    zsh-syntax-highlighting # Keep last: it observes the other ZLE plugins.
 )
 
 # Settings that must be applied before loading Oh-My-Zsh {{{2
@@ -39,7 +41,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Fix slow paste
 DISABLE_MAGIC_FUNCTIONS=true
 
-# Workaround for https://github.com/zsh-users/zsh-completions/issues/603
+# zsh-completions must extend fpath before OMZ runs compinit. Its upstream
+# documentation recommends this instead of adding it to the plugins array.
 if [[ -d "${ZSH_CUSTOM}/plugins/zsh-completions/src" ]]; then
   fpath+="${ZSH_CUSTOM}/plugins/zsh-completions/src"
 fi
@@ -76,7 +79,6 @@ setopt NO_BG_NICE           # don't nice background jobs
 setopt NO_FLOW_CONTROL      # disable start/stop characters in shell editor
 setopt PATH_DIRS            # perform path search even on command names with slashes
 setopt correct              # Correct typos
-unsetopt FLOW_CONTROL       # Disable start/stop characters output (usually assigned to ^S/^Q) in the shell's editor.
 
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
@@ -96,9 +98,6 @@ umask 022
 source "${HOME}/dotfiles/zsh/zshpath"
 source "${HOME}/dotfiles/zsh/aliases.zsh"
 
-# Apply FZF configuration
-eval "$(fzf --zsh)"
-
 # Load any extra settings
 if [[ -f "${HOME}/dotfiles/zsh/extras" ]]; then
     source "${HOME}/dotfiles/zsh/extras"
@@ -106,8 +105,15 @@ fi
 
 # Completion {{{2
 
-# case-sensitive completion
-zstyle ':completion:*' matcher-list 'r:|=* l:|=*'
+# Try matchers in order (not combined). Combining 'r:|=*' with 'l:|=*' in one
+# matcher makes $ZS match _ZSH_* and fzf-tab bails on a bogus unambiguous
+# prefix (https://github.com/Aloxaf/fzf-tab/issues/560).
+# Staging keeps prefix for $VARS and fuzzy after.
+zstyle ':completion:*' matcher-list \
+    'r:|=*' \
+    'l:|=* r:|=*'
+# Parameters: prefix only — substring matching is rarely useful here.
+zstyle ':completion:*:-parameter-:*' matcher-list 'r:|=*'
 
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -140,6 +146,3 @@ bindkey -M vicmd 'v' edit-command-line
 
 # disable highlighting of pasted text
 zle_highlight=('paste:none')
-
-# Reload the completions (uncomment if zsh-completions don't work)
-# autoload -U compinit && compinit
