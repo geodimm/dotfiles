@@ -23,21 +23,26 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor,no-title
 
+# Windows
+window-padding-x = 5
+window-padding-y = 5
+window-show-tab-bar = always
+window-inherit-working-directory = true
+
+# Splits
+unfocused-split-opacity = 0.5
+unfocused-split-fill = #11111b
+split-divider-color = #89b4fa
+split-inherit-working-directory = true
+
+# Tabs
+tab-inherit-working-directory = true
+
 # Behavior
 scrollback-limit = 100000000
 copy-on-select = true
 macos-option-as-alt = true
-window-inherit-working-directory = true
-tab-inherit-working-directory = true
-split-inherit-working-directory = true
-window-show-tab-bar = always
 macos-titlebar-style = tabs
-
-# Active split: dim inactive panes (no per-split border in Ghostty)
-# default opacity is 0.7; lower is more contrast. fill is Catppuccin crust.
-unfocused-split-opacity = 0.5
-unfocused-split-fill = #11111b
-split-divider-color = #89b4fa
 
 # Keyboard shortcuts {{{1
 
