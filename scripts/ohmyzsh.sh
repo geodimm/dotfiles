@@ -9,12 +9,11 @@ ZSH_CUSTOM="${HOME}/.oh-my-zsh/custom"
 
 declare -a ZSH_CUSTOM_PLUGINS=(
     "themes/powerlevel10k=https://github.com/romkatv/powerlevel10k"
-    "plugins/F-Sy-H=https://github.com/z-shell/F-Sy-H"
+    "plugins/zsh-syntax-highlighting=https://github.com/zsh-users/zsh-syntax-highlighting"
     "plugins/zsh-autosuggestions=https://github.com/zsh-users/zsh-autosuggestions"
     "plugins/zsh-completions=https://github.com/zsh-users/zsh-completions"
     "plugins/you-should-use=https://github.com/MichaelAquilina/zsh-you-should-use"
     "plugins/fzf-tab=https://github.com/Aloxaf/fzf-tab"
-    "plugins/zsh-kitty=https://github.com/redxtech/zsh-kitty"
 )
 
 function do_configure() {
