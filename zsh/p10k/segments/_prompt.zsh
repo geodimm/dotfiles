@@ -3,7 +3,6 @@
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   # line 1 {{{2
   context                 # user@hostname
-  vim_shell               # vim shell indicator (:sh)
   dir                     # current directory
   vcs                     # git status
   # line 2 {{{2
