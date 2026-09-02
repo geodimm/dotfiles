@@ -20,6 +20,7 @@ function M.setup()
   if not vim.tbl_contains(linters.golangcilint.args, '--disable=modernize') then
     table.insert(linters.golangcilint.args, #linters.golangcilint.args, '--disable=modernize')
   end
+  require('utils.golangci').attach(linters.golangcilint)
 
   lint.linters_by_ft = {
     go = { 'golangcilint' },

@@ -73,6 +73,7 @@ function M.plugin_specs()
     'https://github.com/neovim/nvim-lspconfig',
     'https://github.com/antosha417/nvim-lsp-file-operations',
     'https://github.com/nvim-tree/nvim-tree.lua',
+    'https://github.com/nvimtools/none-ls.nvim',
     'https://github.com/stevearc/conform.nvim',
     'https://github.com/mfussenegger/nvim-lint',
     'https://github.com/ibhagwan/fzf-lua',
