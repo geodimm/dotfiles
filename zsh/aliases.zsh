@@ -10,11 +10,11 @@ function cmd_path () {
 }
 
 # misc
-if cmd_path lsd; then
-    LS_OPTS="--color=always --long --group-dirs first"
-    alias ls="lsd ${LS_OPTS}"
-    alias lt="ls -t --reverse"
-    alias la="ls -a"
+if cmd_path eza; then
+    EZA_OPTS="--color=always  --icons=auto --long --group --group-directories-first --git --color-scale=age"
+    alias ls="eza ${EZA_OPTS}"
+    alias lt="ls --sort=modified --reverse"
+    alias la="ls --all --all"
 else
     platform="$(uname | tr '[:upper:]' '[:lower:]')"
     LS_OPTS="--color=auto -l --group-directories-first"

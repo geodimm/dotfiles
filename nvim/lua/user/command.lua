@@ -62,7 +62,8 @@ local function lookup_in_repositories()
       type = 'cmd',
       fn = function(items)
         local file = fzf.path.entry_to_file(items[1])
-        return string.format('lsd --color=always --long --group-dirs first %s', vim.fs.joinpath(root, file.path))
+        local path = vim.fn.shellescape(vim.fs.joinpath(root, file.path))
+        return string.format('eza --color=always --long --group --group-directories-first --icons=auto --git %s', path)
       end,
     },
   })
