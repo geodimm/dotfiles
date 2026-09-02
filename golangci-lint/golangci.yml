@@ -5,32 +5,88 @@ run:
 linters:
   default: none
   enable:
-    - asciicheck
-    - bodyclose
-    - contextcheck
-    - copyloopvar
-    - dogsled
+    # Core Go analysis.
     - errcheck
-    - errname
-    - goconst
     - gocritic
-    - godot
-    - gosec
     - govet
     - ineffassign
+    - staticcheck
+    - unused
+
+    # Correctness and resource safety.
+    - asasalint
+    - bodyclose
+    - contextcheck
+    - durationcheck
+    - errchkjson
+    - errorlint
+    - fatcontext
+    - gocheckcompilerdirectives
+    - makezero
+    - nilerr
+    - nilnesserr
+    - noctx
+    - reassign
+    - rowserrcheck
+    - sqlclosecheck
+    - wastedassign
+
+    # Security.
+    - bidichk
+    - gosec
+
+    # Modern Go and performance.
+    - canonicalheader
+    - copyloopvar
+    - exptostd
+    - mirror
+    - modernize
+    - nosprintfhostport
+    - perfsprint
+    - unconvert
+    - usestdlibvars
+
+    # API and design consistency.
+    - errname
+    - goconst
+    - goprintffuncname
+    - iotamixing
+    - loggercheck
+    - predeclared
+    - recvcheck
+    - revive
+
+    # Tests.
+    - testifylint
+    - thelper
+    - tparallel
+    - usetesting
+
+    # Source hygiene and maintainability.
+    - asciicheck
+    - dogsled
+    - dupword
+    - godot
     - lll
     - misspell
     - nestif
     - nolintlint
-    - prealloc
-    - staticcheck
-    - unused
   settings:
     errcheck:
       check-blank: true
+    govet:
+      enable:
+        - atomicalign
+        - deepequalerrors
+        - nilness
+        - reflectvaluecompare
+        - sortslice
+        - unusedwrite
     lll:
       line-length: 120
       tab-width: 2
+    nolintlint:
+      require-specific: true
   exclusions:
     generated: lax
     presets:
@@ -57,8 +113,6 @@ formatters:
         - standard
         - default
         - localmodule
-    gofumpt:
-      extra-rules: false
   exclusions:
     generated: lax
     paths:
