@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := all
-.PHONY: bat eza git kitty ghostty tig zsh golangci-lint
+.PHONY: bat eza git ghostty tig zsh golangci-lint
 
 include test.mk
 
@@ -52,13 +52,17 @@ ifeq ($(PLATFORM),darwin)
 	sudo ln -fs "${HOMEBREW_PREFIX}/opt/openjdk/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk.jdk"
 endif
 
-terminal: kitty ghostty zsh ohmyzsh ## Setup the terminal
+terminal: ghostty zsh ohmyzsh ## Setup the terminal
 
-kitty: ## Configure Kitty
-	@./scripts/kitty.sh
+ghostty: ghostty-install ghostty-configure # Install and configure Ghostty
 
-ghostty: ## Configure Ghostty
-	@./scripts/ghostty.sh
+ghostty-install: ## Install Ghostty
+ifeq ($(PLATFORM),linux)
+	@echo Please follow https://ghostty.org/docs/install/binary
+endif
+
+ghostty-configure: ## Configure Ghostty
+	@./scripts/ghostty.sh configure
 
 zsh: ## Install zsh
 ifeq ($(PLATFORM),linux)

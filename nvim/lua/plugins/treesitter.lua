@@ -68,7 +68,6 @@ function M.setup()
     'json',
     'json5',
     'jsx',
-    'kitty',
     'lua',
     'make',
     'markdown',
