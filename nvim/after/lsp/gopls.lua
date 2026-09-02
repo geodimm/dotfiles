@@ -4,6 +4,9 @@ for w in (os.getenv('GOPLS_BUILD_FLAGS') or ''):gmatch('%S+') do
 end
 
 return {
+  -- Keep gopls built by the active Go toolchain. Mason's prebuilt binary can
+  -- lag behind it and suppress version-gated modernize diagnostics/actions.
+  cmd = { vim.fn.expand('~/go/bin/gopls') },
   settings = {
     gopls = {
       -- build
@@ -14,14 +17,16 @@ return {
       -- UI
       codelenses = {
         test = true,
-        run_govulncheck = true,
+        vulncheck = true,
       },
       semanticTokens = true,
       -- completion
       usePlaceholders = true,
-      -- diagnostic
+      -- diagnostic; gopls enables its modernize analyzers by default
       analyses = {
+        appendclipped = true,
         shadow = true,
+        slicesdelete = true,
       },
       staticcheck = true,
       vulncheck = 'Imports',
@@ -35,12 +40,12 @@ return {
         compositeLiteralTypes = true,
         constantValues = true,
         functionTypeParameters = true,
+        ignoredError = true,
         parameterNames = true,
         rangeVariableTypes = true,
       },
       -- navigation
       importShortcut = 'Both',
     },
-    tags = { skipUnexported = true },
   },
 }
