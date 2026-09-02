@@ -15,6 +15,12 @@ function M.setup()
     vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
   })
 
+  -- Let gopls own interactive modernize diagnostics and their code actions.
+  -- The shared golangci-lint config still runs modernize in CI.
+  if not vim.tbl_contains(linters.golangcilint.args, '--disable=modernize') then
+    table.insert(linters.golangcilint.args, #linters.golangcilint.args, '--disable=modernize')
+  end
+
   lint.linters_by_ft = {
     go = { 'golangcilint' },
     dockerfile = { 'hadolint' },
