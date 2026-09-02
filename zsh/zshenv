@@ -39,3 +39,6 @@ export JAVA_HOME="$(${HOMEBREW_BIN} --prefix java)/libexec/openjdk.jdk/Contents/
 
 # NVM
 export NVM_HOMEBREW="$(${HOMEBREW_BIN} --prefix nvm)"
+
+# eza
+export EZA_MIN_LUMINANCE=75

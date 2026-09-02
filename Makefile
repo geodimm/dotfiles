@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := all
-.PHONY: bat git kitty ghostty tig zsh golangci-lint
+.PHONY: bat eza git kitty ghostty tig zsh golangci-lint
 
 include test.mk
 
@@ -74,11 +74,15 @@ ohmyzsh-install: ## Install Oh My Zsh
 ohmyzsh-configure: ## Configure Oh My Zsh
 	@./scripts/ohmyzsh.sh configure
 
-tools: bat tig jqp golangci-lint
+tools: bat eza tig jqp golangci-lint
 
 bat: ## Configure bat
 	mkdir -p "${XDG_CONFIG_HOME}/bat"
 	ln -fs "${DOTFILES_DIR}/bat/config" "${XDG_CONFIG_HOME}/bat/config"
+
+eza: ## Configure eza
+	mkdir -p "${XDG_CONFIG_HOME}/eza"
+	ln -fs "${DOTFILES_DIR}/eza/theme.yml" "${XDG_CONFIG_HOME}/eza/theme.yml"
 
 tig: ## Configure tig
 	ln -fs "${DOTFILES_DIR}/tig/tigrc" "${HOME}/.tigrc"
