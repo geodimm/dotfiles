@@ -6,7 +6,7 @@ local function opt_path(name)
 end
 
 vim.api.nvim_create_autocmd('PackChanged', {
-  desc = 'vim.pack post-install: TSUpdate, yarn, kitty kittens',
+  desc = 'vim.pack post-install: TSUpdate, yarn',
   callback = function(ev)
     local d = ev.data
     if not d or not d.spec or not d.kind then
@@ -31,13 +31,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
         vim.system({ 'sh', '-c', 'cd app && yarn install' }, { cwd = p }):wait()
       end
       return
-    end
-
-    if kind == 'install' and name == 'smart-splits.nvim' then
-      local p = opt_path('smart-splits.nvim')
-      if vim.uv.fs_stat(p) and vim.uv.fs_stat(vim.fs.joinpath(p, 'kitty', 'install-kittens.bash')) then
-        vim.system({ 'sh', './kitty/install-kittens.bash' }, { cwd = p }):wait()
-      end
     end
   end,
 })
