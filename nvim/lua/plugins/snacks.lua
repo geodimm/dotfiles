@@ -103,9 +103,21 @@ function M.setup()
 
   Snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map('<leader>tr')
   Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>tw')
-  Snacks.toggle.option('list', { name = 'Listchars' }):map('<leader>tl')
+  Snacks.toggle.option('list', { name = 'Listchars' }):map('<leader>tL')
   Snacks.toggle.diagnostics():map('<leader>td')
   Snacks.toggle.inlay_hints():map('<leader>th')
+
+  local codeLensToggle = Snacks.toggle.new({
+    id = 'codelens',
+    name = 'CodeLens',
+    get = function()
+      return vim.lsp.codelens.is_enabled({ bufnr = 0 })
+    end,
+    set = function(state)
+      vim.lsp.codelens.enable(state, { bufnr = 0 })
+    end,
+  })
+  codeLensToggle:map('<leader>tl')
 
   local formattingToggle = Snacks.toggle.new({
     id = 'formatting',

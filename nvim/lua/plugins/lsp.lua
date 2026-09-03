@@ -66,13 +66,9 @@ local function on_attach(args)
     })
   end
 
-  vim.api.nvim_create_autocmd({ 'BufEnter', 'InsertLeave' }, {
-    group = vim.api.nvim_create_augroup('user_lsp_refresh_codelens', {}),
-    desc = 'refresh lsp codelens',
-    callback = function()
-      vim.lsp.codelens.enable(true)
-    end,
-  })
+  if client:supports_method('textDocument/codeLens') then
+    vim.lsp.codelens.enable(client.name ~= 'lua_ls', { bufnr = args.buf })
+  end
 
   if client.name == 'yamlls' and vim.bo.filetype == 'helm' then
     vim.schedule(function()
