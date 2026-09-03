@@ -61,9 +61,8 @@ endif
 ghostty-configure: ## Configure Ghostty
 	@./scripts/ghostty.sh configure
 
-zsh: ## Install zsh
+zsh: ## Configure zsh
 ifeq ($(PLATFORM),linux)
-	brew install zsh --yes
 	sudo usermod -s "$$(type -P zsh)" "$$(whoami)"
 endif
 
