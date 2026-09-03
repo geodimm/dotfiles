@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
   local lint = require('lint')
-  local linters = require('lint').linters
+  local linters = lint.linters
 
   vim.filetype.add({
     pattern = {
@@ -20,7 +20,6 @@ function M.setup()
   if not vim.tbl_contains(linters.golangcilint.args, '--disable=modernize') then
     table.insert(linters.golangcilint.args, #linters.golangcilint.args, '--disable=modernize')
   end
-  require('utils.golangci').attach(linters.golangcilint)
 
   lint.linters_by_ft = {
     go = { 'golangcilint' },

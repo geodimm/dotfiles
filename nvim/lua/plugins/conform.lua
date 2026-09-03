@@ -16,7 +16,6 @@ function M.setup()
       go = { 'gofumpt', 'goimports' },
       java = { 'google-java-format' },
       lua = { 'stylua' },
-      markdown = { 'markdownlint' },
       rust = { 'rustfmt' },
       sh = { 'shfmt' },
       starlark = { 'buildifier' },
@@ -31,14 +30,6 @@ function M.setup()
       scss = { 'prettier' },
       html = { 'prettier' },
       python = { 'isort', 'black' },
-    },
-    formatters = {
-      markdownlint = {
-        prepend_args = {
-          '--config',
-          vim.fn.expand('$HOME/dotfiles/markdownlint/markdownlint.yaml'),
-        },
-      },
     },
   })
 end
