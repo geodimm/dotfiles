@@ -3,12 +3,9 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := all
 .PHONY: bat eza git ghostty tig zsh golangci-lint
 
-include test.mk
-
 DOTFILES_DIR ?= ${HOME}/dotfiles
 XDG_CONFIG_HOME ?= ${HOME}/.config
 PLATFORM ?= $(shell uname | tr '[:upper:]' '[:lower:]')
-GROUP := $(shell if [ ${PLATFORM} == "linux" ]; then  echo "${USER}"; else echo "staff"; fi)
 HOMEBREW_PREFIX ?= $(shell if [ ${PLATFORM} == "linux" ]; then echo "/home/linuxbrew/.linuxbrew"; else echo "/opt/homebrew"; fi)
 
 all: packages dirs fonts git languages terminal tools neovim ## Install and configure everything (default)
@@ -26,8 +23,8 @@ packages: ## Install system packages
 	brew bundle --file="${DOTFILES_DIR}/Brewfile"
 
 dirs: ## Create directories in $HOME
-	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/bin"
-	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/repos"
+	install -d -m 0755 "${HOME}/bin"
+	install -d -m 0755 "${HOME}/repos"
 
 fonts: ## Install fonts
 	@./scripts/fonts.sh
@@ -39,7 +36,7 @@ git: ## Configure git
 languages: node rust java ## Setup languages
 
 nvm: ## Configure nvm
-	install -d -m 0755 -o "${USER}" -g "${GROUP}" "${HOME}/.nvm"
+	install -d -m 0755 "${HOME}/.nvm"
 
 node: nvm ## Install node
 	source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" && nvm install stable

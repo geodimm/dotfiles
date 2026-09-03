@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Ubuntu 24.04
+            runner: ubuntu-24.04
+            homebrew_prefix: /home/linuxbrew/.linuxbrew
+
+          - name: macOS 15
+            runner: macos-15
+            homebrew_prefix: /opt/homebrew
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Install and configure
+        run: |
+          eval "$("${HOMEBREW_PREFIX}/bin/brew" shellenv)"
+          make all
+        env:
+          DOTFILES_DIR: ${{ github.workspace }}
+          HOMEBREW_PREFIX: ${{ matrix.homebrew_prefix }}
+          HOMEBREW_NO_AUTO_UPDATE: "1"

@@ -1,6 +1,6 @@
 # Georgi's dotfiles
 
-[![Build Status](https://github.com/geodimm/dotfiles/actions/workflows/test.yaml/badge.svg)](https://github.com/geodimm/dotfiles/actions/workflows/test.yaml)
+[![CI](https://github.com/geodimm/dotfiles/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/geodimm/dotfiles/actions/workflows/ci.yaml)
 
 ## How to install
 
