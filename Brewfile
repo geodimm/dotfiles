@@ -29,4 +29,5 @@ brew "tree-sitter"
 brew "tree-sitter-cli"
 brew "wget"
 brew "yq"
-cask "ghostty" if OS.mac?
+brew "zsh" if OS.linux?
+cask "ghostty"

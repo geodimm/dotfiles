@@ -15,15 +15,13 @@ function install_fonts() {
     local fonts_dir
     case "${PLATFORM}" in
     "linux")
-        group="${USER}"
         fonts_dir="${XDG_DATA_HOME:=${HOME}/.local/share}/fonts"
         ;;
     "darwin")
-        group="staff"
         fonts_dir="${HOME}/Library/fonts"
         ;;
     esac
-    install -d -m 0755 -o "${USER}" -g "${group}" "${fonts_dir}"
+    install -d -m 0755 "${fonts_dir}"
 
     local install_dir="/tmp/fonts"
     rm -rf "${install_dir}" && mkdir -p "${install_dir}"
