@@ -51,14 +51,7 @@ endif
 
 terminal: ghostty zsh ohmyzsh ## Setup the terminal
 
-ghostty: ghostty-install ghostty-configure # Install and configure Ghostty
-
-ghostty-install: ## Install Ghostty
-ifeq ($(PLATFORM),linux)
-	@echo Please follow https://ghostty.org/docs/install/binary
-endif
-
-ghostty-configure: ## Configure Ghostty
+ghostty: ## Configure Ghostty
 	@./scripts/ghostty.sh configure
 
 zsh: ## Configure zsh
