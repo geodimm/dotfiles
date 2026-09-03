@@ -9,6 +9,7 @@ function M.setup()
       },
     },
   })
+  require('plugins.lint-actions.foldmarker').setup()
 end
 
 return M
