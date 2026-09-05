@@ -45,9 +45,28 @@ function M.setup()
   local ts = require('nvim-treesitter')
   local keymap = require('utils.keymap')
 
+  -- Custom parser definitions must be registered whenever nvim-treesitter
+  -- refreshes its parser configuration.
+  vim.api.nvim_create_autocmd('User', {
+    pattern = 'TSUpdate',
+    desc = 'Register custom Treesitter parsers',
+    callback = function()
+      require('nvim-treesitter.parsers').applescript = {
+        install_info = {
+          url = 'https://github.com/waddie/tree-sitter-applescript',
+          branch = 'main',
+
+          -- Installs highlights.scm and tags.scm from the repository.
+          queries = 'queries',
+        },
+      }
+    end,
+  })
+
   ts.setup({})
 
   local ensure_parsers = {
+    'applescript',
     'bash',
     'css',
     'dockerfile',
