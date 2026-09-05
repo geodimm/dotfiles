@@ -83,6 +83,7 @@ function M.plugin_specs()
     'https://github.com/lewis6991/gitsigns.nvim',
     'https://github.com/johnseth97/codex.nvim',
     'https://github.com/mrjones2014/smart-splits.nvim',
+    'https://github.com/geodimm/ghostty-smart-splits.nvim',
   }
 end
 
