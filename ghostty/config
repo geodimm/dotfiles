@@ -3,6 +3,11 @@
 config-file = ?local
 
 # UI {{{1
+
+# Shaders
+custom-shader = ./shaders/cursor-pixel-scatter.glsl
+custom-shader-animation = always
+
 # Theme
 theme = Catppuccin Mocha
 
