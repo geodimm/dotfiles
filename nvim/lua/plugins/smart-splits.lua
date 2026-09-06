@@ -14,7 +14,7 @@ function M.setup()
   keymap.set('n', '<C-\\>', smartsplits.move_cursor_previous, { desc = 'Switch to the last window' })
 
   smartsplits.setup({})
-  require('ghostty-smart-splits').setup()
+  require('ghostty-smart-splits').setup({ bridge = true })
 end
 
 return M
