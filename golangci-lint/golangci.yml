@@ -40,7 +40,6 @@ linters:
     - copyloopvar
     - exptostd
     - mirror
-    - modernize
     - nosprintfhostport
     - perfsprint
     - unconvert
