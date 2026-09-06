@@ -88,8 +88,8 @@ function M.plugin_specs()
     'https://github.com/sindrets/diffview.nvim',
     'https://github.com/lewis6991/gitsigns.nvim',
     'https://github.com/johnseth97/codex.nvim',
-    'https://github.com/mrjones2014/smart-splits.nvim',
-    'https://github.com/geodimm/ghostty-smart-splits.nvim',
+    'https://github.com/smart-splits-nvim/smart-splits.nvim',
+    'https://github.com/smart-splits-nvim/backend-ghostty',
   }
 end
 
