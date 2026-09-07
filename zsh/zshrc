@@ -57,6 +57,9 @@ fi
 # nvm {{{2
 zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' lazy-cmd nvim
+
+#vi-mode{{{2
+VI_MODE_DISABLE_CLIPBOARD=true
 # }}}
 
 # Load oh-my-zsh
