@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
       return
     end
 
-    if name == 'ghostty-smart-splits.nvim' then
+    if name == 'backend-ghostty' then
       local r = vim.system({ 'make', 'bridge' }, { cwd = d.path, text = true }):wait()
       assert(r.code == 0, r.stderr or 'bridge build failed')
       return
