@@ -71,4 +71,60 @@ end
 vim.api.nvim_create_user_command('LookupInRepos', lookup_in_repositories, { nargs = 0 })
 keymap.set('n', '<leader>fr', vim.cmd.LookupInRepos, { desc = 'Lookup in repositories' })
 
+-- Manage plugins {{{1
+local function pack_names()
+  local names = vim
+    .iter(vim.pack.get(nil, { info = false }))
+    :map(function(plugin)
+      return plugin.spec.name
+    end)
+    :totable()
+  table.sort(names)
+  return names
+end
+
+vim.api.nvim_create_user_command('PackUpdate', function(opts)
+  local names = #opts.fargs > 0 and opts.fargs or nil
+  vim.pack.update(names, { force = opts.bang })
+end, {
+  nargs = '*',
+  bang = true,
+  desc = 'Update all or selected plugins; ! skips review',
+  complete = function(arg_lead)
+    return vim
+      .iter(pack_names())
+      :filter(function(name)
+        return vim.startswith(name, arg_lead)
+      end)
+      :totable()
+  end,
+})
+
+vim.api.nvim_create_user_command('PackClean', function(opts)
+  local unused = vim
+    .iter(vim.pack.get(nil, { info = false }))
+    :filter(function(plugin)
+      return not plugin.active
+    end)
+    :map(function(plugin)
+      return plugin.spec.name
+    end)
+    :totable()
+  table.sort(unused)
+
+  if #unused == 0 then
+    vim.notify('No unused plugins', vim.log.levels.INFO)
+    return
+  end
+
+  local message = ('Remove %d unused plugin(s)?\n\n%s'):format(#unused, table.concat(unused, '\n'))
+  if opts.bang or vim.fn.confirm(message, '&Yes\n&No', 2) == 1 then
+    vim.pack.del(unused)
+    vim.notify(('Removed %d unused plugin(s)'):format(#unused), vim.log.levels.INFO)
+  end
+end, {
+  nargs = 0,
+  bang = true,
+  desc = 'Remove plugins absent from the current config; ! skips confirmation',
+})
 --- }}}
