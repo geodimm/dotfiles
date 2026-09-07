@@ -83,6 +83,14 @@ local function pack_names()
   return names
 end
 
+vim.api.nvim_create_user_command('Pack', function()
+  require('user.pack_picker').open()
+end, {
+  nargs = 0,
+  desc = 'Inspect and manage plugins',
+})
+keymap.set('n', '<leader>fp', vim.cmd.Pack, { desc = 'Plugins' })
+
 vim.api.nvim_create_user_command('PackUpdate', function(opts)
   local names = #opts.fargs > 0 and opts.fargs or nil
   vim.pack.update(names, { force = opts.bang })
