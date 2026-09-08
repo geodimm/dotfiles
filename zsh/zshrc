@@ -100,6 +100,7 @@ umask 022
 
 source "${HOME}/dotfiles/zsh/zshpath"
 source "${HOME}/dotfiles/zsh/aliases.zsh"
+source "${HOME}/dotfiles/fzf/git.zsh"
 
 # Load machine-local settings
 if [[ -f "${HOME}/dotfiles/zsh/local" ]]; then
