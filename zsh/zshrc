@@ -146,6 +146,15 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd 'v' edit-command-line
 
+# Ghostty title {{{2
+autoload -Uz add-zsh-hook
+set_ghostty_title() {
+  local title="${PWD/#$HOME/~}"
+  echo -ne "\e]2;${title}\a"
+}
+add-zsh-hook precmd set_ghostty_title
+add-zsh-hook chpwd set_ghostty_title
+
 # Other {{{2
 
 # disable highlighting of pasted text
