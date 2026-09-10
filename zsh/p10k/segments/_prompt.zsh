@@ -3,6 +3,7 @@
 typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
   # line 1 {{{2
   context                 # user@hostname
+  nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
   dir                     # current directory
   vcs                     # git status
   # line 2 {{{2

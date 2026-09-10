@@ -107,6 +107,10 @@ if [[ -f "${HOME}/dotfiles/zsh/local" ]]; then
     source "${HOME}/dotfiles/zsh/local"
 fi
 
+# Automatically load and unload project-specific environments when changing directories
+export DIRENV_LOG_FORMAT=""
+eval "$(direnv hook zsh)"
+
 # Completion {{{2
 
 # Try matchers in order (not combined). Combining 'r:|=*' with 'l:|=*' in one

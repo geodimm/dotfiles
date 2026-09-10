@@ -1,7 +1,11 @@
 SHELL := /bin/bash
 
 .DEFAULT_GOAL := all
-.PHONY: bat eza git ghostty tig zsh golangci-lint
+.PHONY: all help homebrew init packages dirs fonts git
+.PHONY: languages nvm node rust java
+.PHONY: terminal shell ghostty zsh ohmyzsh ohmyzsh-install ohmyzsh-configure
+.PHONY: tools bat direnv eza tig jqp golangci-lint
+.PHONY: neovim-nightly neovim
 
 DOTFILES_DIR ?= ${HOME}/dotfiles
 XDG_CONFIG_HOME ?= ${HOME}/.config
@@ -49,7 +53,9 @@ ifeq ($(PLATFORM),darwin)
 	sudo ln -fs "${HOMEBREW_PREFIX}/opt/openjdk/libexec/openjdk.jdk" "/Library/Java/JavaVirtualMachines/openjdk.jdk"
 endif
 
-terminal: ghostty zsh ohmyzsh ## Setup the terminal
+terminal: ghostty shell ## Configure terminal and shell
+
+shell: zsh ohmyzsh direnv ## Configure interactive shell
 
 ghostty: ## Configure Ghostty
 	@./scripts/ghostty.sh configure
@@ -72,6 +78,10 @@ tools: bat eza tig jqp golangci-lint
 bat: ## Configure bat
 	mkdir -p "${XDG_CONFIG_HOME}/bat"
 	ln -fs "${DOTFILES_DIR}/bat/config" "${XDG_CONFIG_HOME}/bat/config"
+
+direnv: ## Configure direnv
+	mkdir -p "${XDG_CONFIG_HOME}/direnv"
+	ln -fs "${DOTFILES_DIR}/direnv/direnv.toml" "${XDG_CONFIG_HOME}/direnv/direnv.toml"
 
 eza: ## Configure eza
 	mkdir -p "${XDG_CONFIG_HOME}/eza"
