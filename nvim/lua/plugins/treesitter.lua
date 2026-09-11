@@ -91,6 +91,7 @@ function M.setup()
     'make',
     'markdown',
     'markdown_inline',
+    'nix',
     'pem',
     'python',
     'regex',

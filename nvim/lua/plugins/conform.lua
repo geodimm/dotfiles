@@ -30,6 +30,7 @@ function M.setup()
       scss = { 'prettier' },
       html = { 'prettier' },
       python = { 'isort', 'black' },
+      nix = { 'nixfmt' },
     },
   })
 end
