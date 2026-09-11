@@ -25,12 +25,6 @@ vim.api.nvim_create_autocmd('PackChanged', {
       return
     end
 
-    if name == 'backend-ghostty' then
-      local r = vim.system({ 'make', 'bridge' }, { cwd = d.path, text = true }):wait()
-      assert(r.code == 0, r.stderr or 'bridge build failed')
-      return
-    end
-
     if kind == 'install' and name == 'markdown-preview.nvim' then
       local p = opt_path('markdown-preview.nvim')
       if vim.uv.fs_stat(p) then
