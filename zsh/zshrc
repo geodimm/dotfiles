@@ -58,6 +58,9 @@ fi
 zstyle ':omz:plugins:nvm' lazy yes
 zstyle ':omz:plugins:nvm' lazy-cmd nvim
 
+# F-Sy-H {{{2
+zstyle ':fsh:config' theme base16
+
 #vi-mode{{{2
 VI_MODE_DISABLE_CLIPBOARD=true
 # }}}
