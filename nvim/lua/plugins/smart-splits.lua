@@ -11,10 +11,15 @@ function M.setup()
   keymap.set('n', '<C-j>', smartsplits.move_cursor_down, { desc = 'Go to the down window' })
   keymap.set('n', '<C-k>', smartsplits.move_cursor_up, { desc = 'Go to the up window' })
   keymap.set('n', '<C-l>', smartsplits.move_cursor_right, { desc = 'Go to the right window' })
-  keymap.set('n', '<C-\\>', smartsplits.move_cursor_previous, { desc = 'Switch to the last window' })
 
-  smartsplits.setup({})
-  require('ghostty-smart-splits').setup({})
+  require('smart-splits').setup({
+    mux = {
+      backend = 'smart-splits-backend-ghostty',
+    },
+    move = {
+      at_edge = 'stop',
+    },
+  })
 end
 
 return M
