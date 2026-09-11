@@ -30,7 +30,7 @@ plugins=(
     fzf
     fzf-tab
     zsh-autosuggestions
-    zsh-syntax-highlighting # Keep last: it observes the other ZLE plugins.
+    F-Sy-H # Keep last: it observes the other ZLE plugins.
 )
 
 # Settings that must be applied before loading Oh-My-Zsh {{{2
