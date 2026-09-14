@@ -27,8 +27,15 @@ function M.setup()
     group = vim.api.nvim_create_augroup('user_lint', {}),
     desc = 'run nvim-lint',
     pattern = '*',
-    callback = function()
-      lint.try_lint()
+    callback = function(args)
+      local opts = {}
+
+      -- run golangcilint from project root (where go.mod is)
+      if vim.bo[args.buf].filetype == 'go' then
+        opts.cwd = vim.fs.root(args.buf, 'go.mod')
+      end
+
+      lint.try_lint(nil, opts)
     end,
   })
 end
