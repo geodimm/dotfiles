@@ -32,6 +32,9 @@ function M.setup()
   local function blame_line()
     gitsigns.blame_line({ full = true })
   end
+  local function show_commit()
+    gitsigns.diff(nil, nil, { commit = true })
+  end
   local function next_hunk()
     if vim.wo.diff then
       vim.cmd.normal({ ']c', bang = true })
@@ -66,7 +69,7 @@ function M.setup()
       keymap.set('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'Reset buffer' })
       keymap.set('n', '<leader>hU', gitsigns.reset_buffer_index, { desc = 'Reset buffer index' })
       keymap.set('n', '<leader>hb', blame_line, { desc = 'Blame line' })
-      keymap.set('n', '<leader>hc', gitsigns.show_commit, { desc = 'Show commit' })
+      keymap.set('n', '<leader>hc', show_commit, { desc = 'Show commit' })
       keymap.set('n', '<leader>hd', gitsigns.diffthis, { desc = 'Diff this' })
       keymap.set('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'Preview hunk in a floating window' })
       keymap.set('n', '<leader>ht', gitsigns.preview_hunk_inline, { desc = 'Preview hunk inline' })
