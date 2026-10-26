@@ -33,7 +33,7 @@ function M.setup()
       local api = require('nvim-tree.api')
 
       local function tree_opts(desc)
-        return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        return { desc = 'nvim-tree: ' .. desc, buf = bufnr, noremap = true, silent = true, nowait = true }
       end
 
       api.map.on_attach.default(bufnr)

@@ -53,7 +53,6 @@ vim.opt.diffopt:append({
   'foldcolumn:0',
   'context:4',
   'algorithm:histogram',
-  'indent-heuristic',
 })
 
 -- Folds {{{1
