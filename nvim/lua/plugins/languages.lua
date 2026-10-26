@@ -23,7 +23,7 @@ function M.setup()
 
   vim.g.mkdp_filetypes = { 'markdown' }
 
-  require('lazydev').setup({})
+  require('lazydev').setup()
 end
 
 return M
