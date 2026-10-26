@@ -38,10 +38,8 @@ vim.api.nvim_create_autocmd('PackChanged', {
 ---@return unknown[]
 function M.plugin_specs()
   return {
-    { src = 'https://github.com/nvim-lua/plenary.nvim' },
     { src = 'https://github.com/nvim-tree/nvim-web-devicons' },
     { src = 'https://github.com/MunifTanjim/nui.nvim' },
-    { src = 'https://github.com/Bilal2453/luvit-meta' },
     { src = 'https://github.com/rafamadriz/friendly-snippets' },
     { src = 'https://github.com/b0o/schemastore.nvim' },
     { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },

@@ -23,11 +23,7 @@ function M.setup()
 
   vim.g.mkdp_filetypes = { 'markdown' }
 
-  require('lazydev').setup({
-    library = {
-      { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-    },
-  })
+  require('lazydev').setup({})
 end
 
 return M

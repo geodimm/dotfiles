@@ -1,12 +1,18 @@
 local M = {}
 
 function M.setup()
-  local strings = require('plenary.strings')
   local icons = require('user.icons')
   local colors = require('utils.color').colors(vim.g.colors_name)
 
   local function append_whitespace(v)
     return v .. ' '
+  end
+
+  local function truncate(str, len)
+    if vim.fn.strdisplaywidth(str) <= len then
+      return str
+    end
+    return vim.fn.strcharpart(str, 0, len - 1) .. '…'
   end
 
   local function diff_source()
@@ -68,7 +74,7 @@ function M.setup()
         {
           package.loaded.gitsigns and 'b:gitsigns_head' or 'branch',
           fmt = function(str)
-            return strings.truncate(str, 10, nil, 1)
+            return truncate(str, 10)
           end,
           icon = icons.git.branch,
           color = { fg = theme.normal.b.fg, bg = theme.normal.b.bg },

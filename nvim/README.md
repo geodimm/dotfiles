@@ -91,7 +91,6 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 + [folke/lazydev.nvim](https://dotfyle.com/plugins/folke/lazydev.nvim)
 + [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
-+ [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 
 ### search
 
