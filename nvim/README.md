@@ -26,10 +26,6 @@ NVIM_APPNAME=geodimm/dotfiles/nvim nvim
 
 ## Plugins
 
-### ai
-
-+ [johnseth97/codex.nvim](https://dotfyle.com/plugins/johnseth97/codex.nvim)
-
 ### color
 
 + [xzbdmw/colorful-menu.nvim](https://dotfyle.com/plugins/xzbdmw/colorful-menu.nvim)

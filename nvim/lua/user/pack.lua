@@ -81,7 +81,6 @@ function M.plugin_specs()
     { src = 'https://github.com/tpope/vim-fugitive' },
     { src = 'https://github.com/sindrets/diffview.nvim' },
     { src = 'https://github.com/lewis6991/gitsigns.nvim' },
-    { src = 'https://github.com/johnseth97/codex.nvim' },
     { src = 'https://github.com/smart-splits-nvim/smart-splits.nvim', version = vim.version.range('3') },
     { src = 'https://github.com/smart-splits-nvim/backend-ghostty' },
   }
