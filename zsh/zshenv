@@ -35,10 +35,10 @@ if [[ -f "${HOME}/.cargo/env" ]]; then
 fi
 
 # Java
-export JAVA_HOME="$(${HOMEBREW_BIN} --prefix java)/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME="${brew_path}/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
 
 # NVM
-export NVM_HOMEBREW="$(${HOMEBREW_BIN} --prefix nvm)"
+export NVM_HOMEBREW="${brew_path}/opt/nvm"
 
 # eza
 export EZA_MIN_LUMINANCE=75
